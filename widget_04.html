@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · Presencia 2.5</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#412DB6',
+            'primary-light': '#6C63FF',
+            'primary-soft': '#F4F2FB',
+            'text-primary': '#101928',
+            'text-secondary': '#2D3748',
+            'text-tertiary': '#475467',
+            'text-muted': '#718096',
+            'text-placeholder': '#98A2B3',
+            'text-disabled': '#CBD5E1',
+            success: '#50C878',
+            'success-soft': '#ECFDF3',
+            warning: '#F8B730',
+            'warning-soft': '#FFFAEB',
+            danger: '#FD5B55',
+            'danger-soft': '#FEF3F2',
+            info: '#1BA1EB',
+            'info-soft': '#EFF8FF',
+            background: '#F5F7FB',
+            'surface-secondary': '#F8FAFB',
+            'surface-muted': '#F8FAFC',
+            border: '#E4E7EC',
+            'border-light': '#EEF0F3',
+            'border-strong': '#CBD5E1',
+          },
+          fontFamily: {
+            'dm-sans': ['DM Sans', 'sans-serif'],
+          },
+          fontSize: {
+            'xxs': ['11px', { lineHeight: '1.4' }],
+          },
+          borderRadius: {
+            '2xl': '20px',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+</head>
+<body class="bg-background text-text-primary font-dm-sans">
+
+<!-- Grid de 3 columnas con Tailwind -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto p-6 max-w-[1600px]">
+
+  <!-- 1. Viajes -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-5">
+      <h2 class="text-xl font-medium text-primary">Viajes</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="my-5 border-border" />
+    <div class="flex flex-col gap-3">
+      <div class="relative flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-secondary p-4">
+        <div class="flex min-w-0 flex-col gap-2">
+          <p class="truncate text-base font-medium text-text-primary"><i class="ti ti-plane text-primary text-lg"></i> Viaje a Chile – Reunión con cliente</p>
+          <div class="flex flex-wrap items-center gap-x-1 gap-y-1 text-sm text-text-muted">
+            <span class="whitespace-nowrap">01 Mar, 15:00</span><i class="ti ti-arrow-right text-text-muted shrink-0"></i><span class="whitespace-nowrap">16 Mar, 20:00</span>
+            <span class="ml-1 shrink-0 rounded-full bg-border px-1.5 py-0.5 text-xxs font-medium text-text-tertiary">2025</span>
+          </div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warning"><i class="ti ti-alert-circle text-white text-sm"></i></div>
+      </div>
+      <div class="relative flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-secondary p-4">
+        <div class="flex min-w-0 flex-col gap-2">
+          <p class="truncate text-base font-medium text-text-primary"><i class="ti ti-plane text-primary text-lg"></i> Viaje a Barcelona – Conferencia</p>
+          <div class="flex flex-wrap items-center gap-x-1 gap-y-1 text-sm text-text-muted">
+            <span class="whitespace-nowrap">25 Mar, 10:00</span><i class="ti ti-arrow-right text-text-muted shrink-0"></i><span class="whitespace-nowrap">13 Abr, 16:00</span>
+            <span class="ml-1 shrink-0 rounded-full bg-border px-1.5 py-0.5 text-xxs font-medium text-text-tertiary">2025</span>
+          </div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-check text-white text-sm"></i></div>
+      </div>
+      <div class="relative flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-secondary p-4">
+        <div class="flex min-w-0 flex-col gap-2">
+          <p class="truncate text-base font-medium text-text-primary"><i class="ti ti-plane text-primary text-lg"></i> Viaje a Sevilla – Capacitación</p>
+          <div class="flex flex-wrap items-center gap-x-1 gap-y-1 text-sm text-text-muted">
+            <span class="whitespace-nowrap">03 Mar, 15:00</span><i class="ti ti-arrow-right text-text-muted shrink-0"></i><span class="whitespace-nowrap">12 Mar, 20:00</span>
+            <span class="ml-1 shrink-0 rounded-full bg-border px-1.5 py-0.5 text-xxs font-medium text-text-tertiary">2025</span>
+          </div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-danger"><i class="ti ti-x text-white text-sm"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Solicitud Fichaje (1) -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Solicitud Fichaje</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="my-5 border-border" />
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border px-4 py-4 gap-3">
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-1.5"><span class="text-sm font-medium text-text-primary"><i class="ti ti-calendar-event text-primary text-lg"></i> 01 Mar 2025</span></div>
+          <div class="flex flex-wrap items-center gap-2 text-xxs"><span class="font-medium text-text-tertiary">Entrada:</span><span class="text-sm font-medium text-text-primary">08:00</span><span class="text-text-muted">-</span><span class="font-medium text-text-tertiary">Salida:</span><span class="text-sm font-medium text-text-primary">15:29</span></div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-check text-sm text-white"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border px-4 py-4 gap-3">
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-1.5"><span class="text-sm font-medium text-text-primary"><i class="ti ti-calendar-event text-primary text-lg"></i> 12 May 2025</span></div>
+          <div class="flex flex-wrap items-center gap-2 text-xxs"><span class="font-medium text-text-tertiary">Entrada:</span><span class="text-sm font-medium text-text-primary">08:00</span><span class="text-text-muted">-</span><span class="font-medium text-text-tertiary">Salida:</span><span class="text-sm font-medium text-text-primary">15:29</span></div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warning"><i class="ti ti-alert-circle text-sm text-white"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border px-4 py-4 gap-3">
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-1.5"><span class="text-sm font-medium text-text-primary"><i class="ti ti-calendar-event text-primary text-lg"></i> 25 Abr 2025</span></div>
+          <div class="flex flex-wrap items-center gap-2 text-xxs"><span class="font-medium text-text-tertiary">Entrada:</span><span class="text-sm font-medium text-text-primary">08:00</span><span class="text-text-muted">-</span><span class="font-medium text-text-tertiary">Salida:</span><span class="text-sm font-medium text-text-primary">15:29</span></div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-danger"><i class="ti ti-x text-sm text-white"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Permisos -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Permisos</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="my-4 border-border" />
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border p-4 gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="text-base font-semibold text-text-secondary">Cita Odontólogo</span>
+          <div class="flex flex-wrap items-center gap-1.5 text-sm text-text-muted">
+            <i class="ti ti-calendar-event text-primary"></i><span>01 Mar, 15:00</span><i class="ti ti-arrow-right text-primary"></i><span>16 Mar, 20:00</span>
+          </div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warning"><i class="ti ti-exclamation-mark text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border p-4 gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="text-base font-semibold text-text-secondary">Permiso por matrimonio</span>
+          <div class="flex flex-wrap items-center gap-1.5 text-sm text-text-muted">
+            <i class="ti ti-calendar-event text-primary"></i><span>25 Mar, 10:00</span><i class="ti ti-arrow-right text-primary"></i><span>13 Abr, 16:00</span>
+          </div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-check text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border p-4 gap-2">
+        <div class="flex flex-col gap-1">
+          <span class="text-base font-semibold text-text-secondary">Permiso por mudanza</span>
+          <div class="flex flex-wrap items-center gap-1 text-sm text-text-muted">
+            <i class="ti ti-calendar-event text-primary"></i><span>03 Mar, 15:00</span><i class="ti ti-arrow-right text-primary"></i><span>12 Mar, 20:00</span>
+          </div>
+        </div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-danger"><i class="ti ti-x text-white text-sm"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Vacaciones 2026 -->
+  <div class="w-full max-w-[530px] bg-white rounded-2xl shadow-sm border border-border p-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Vacaciones – 2026</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="my-4 border-border" />
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-success-soft rounded-xl px-3 py-4">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center justify-center w-7 h-7 bg-green-200 rounded-full flex-shrink-0"><i class="ti ti-check text-green-700 text-sm"></i></div>
+          <div class="flex flex-col min-w-[80px]"><span class="text-xxs text-text-muted">Asignadas</span><span class="text-base font-semibold text-text-primary">22 días</span></div>
+        </div>
+        <div class="flex flex-col flex-1 gap-1.5 min-w-[60px]"><div class="w-full h-1.5 bg-green-200 rounded-full overflow-hidden"><div class="h-full bg-success rounded-full" style="width:100%"></div></div><span class="text-xxs font-medium text-success">100%</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-danger-soft rounded-xl px-3 py-4">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center justify-center w-7 h-7 bg-red-200 rounded-full flex-shrink-0"><i class="ti ti-x text-red-700 text-sm"></i></div>
+          <div class="flex flex-col min-w-[80px]"><span class="text-xxs text-text-muted">Consumidas</span><span class="text-base font-semibold text-text-primary">5 días</span></div>
+        </div>
+        <div class="flex flex-col flex-1 gap-1.5 min-w-[60px]"><div class="w-full h-1.5 bg-red-200 rounded-full overflow-hidden"><div class="h-full bg-danger rounded-full" style="width:23%"></div></div><span class="text-xxs font-medium text-danger">23%</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-warning-soft rounded-xl px-3 py-4">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center justify-center w-7 h-7 bg-amber-200 rounded-full flex-shrink-0"><i class="ti ti-alert-triangle text-amber-700 text-sm"></i></div>
+          <div class="flex flex-col min-w-[80px]"><span class="text-xxs text-text-muted">Disponibles</span><span class="text-base font-semibold text-text-primary">17 días</span></div>
+        </div>
+        <div class="flex flex-col flex-1 gap-1.5 min-w-[60px]"><div class="w-full h-1.5 bg-amber-200 rounded-full overflow-hidden"><div class="h-full bg-warning rounded-full" style="width:77%"></div></div><span class="text-xxs font-medium text-warning">77%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Horas Extras -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans shadow-sm widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Horas Extras</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <div class="my-4 h-px bg-border"></div>
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border p-4 gap-2">
+        <div class="flex flex-col gap-1"><span class="text-sm font-medium text-text-primary">Proyecto Nom – 35...</span><div class="flex flex-wrap items-center gap-2 text-sm text-text-tertiary"><span class="flex items-center gap-1.5"><i class="ti ti-calendar text-text-muted"></i>01 Mar 2025</span><span class="flex items-center gap-1.5"><i class="ti ti-clock text-text-muted"></i>3:00 horas</span></div></div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warning"><i class="ti ti-alert-circle text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border p-4 gap-2">
+        <div class="flex flex-col gap-1"><span class="text-sm font-medium text-text-primary">Maquetado internas Rotau...</span><div class="flex flex-wrap items-center gap-2 text-sm text-text-tertiary"><span class="flex items-center gap-1.5"><i class="ti ti-calendar text-text-muted"></i>01 Mar 2025</span><span class="flex items-center gap-1.5"><i class="ti ti-clock text-text-muted"></i>1:00 horas</span></div></div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-circle-check text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border p-4 gap-2">
+        <div class="flex flex-col gap-1"><span class="text-sm font-medium text-text-primary">Redacción de informe...</span><div class="flex flex-wrap items-center gap-2 text-sm text-text-tertiary"><span class="flex items-center gap-1.5"><i class="ti ti-calendar text-text-muted"></i>01 Mar 2025</span><span class="flex items-center gap-1.5"><i class="ti ti-clock text-text-muted"></i>2:00 horas</span></div></div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-circle-check text-white text-sm"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Solicitudes Web -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans shadow-sm widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
+      <h2 class="text-xl font-medium text-primary">Solicitudes Web</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="border-border mb-4" />
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-secondary rounded-xl px-4 py-4 gap-2">
+        <div class="flex flex-col gap-1"><p class="text-sm font-medium text-text-primary">Permiso retribuirle recuper...</p><div class="flex flex-wrap items-center gap-2 text-xxs text-text-muted"><i class="ti ti-calendar text-base text-primary"></i><span>01 Mar 2025</span><i class="ti ti-arrow-right text-xxs text-text-muted"></i><span>15 May 2025</span></div></div>
+        <div class="flex items-center justify-center w-6 h-6 shrink-0 bg-success rounded-full"><i class="ti ti-check text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-secondary rounded-xl px-4 py-4 gap-2">
+        <div class="flex flex-col gap-1"><p class="text-sm font-medium text-text-primary">Permiso retribuirle recuper...</p><div class="flex flex-wrap items-center gap-2 text-xxs text-text-muted"><i class="ti ti-calendar text-base text-primary"></i><span>01 Mar 2025</span><i class="ti ti-arrow-right text-xxs text-text-muted"></i><span>16 Abr 2025</span></div></div>
+        <div class="flex items-center justify-center w-6 h-6 shrink-0 bg-danger rounded-full"><i class="ti ti-x text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-secondary rounded-xl px-4 py-4 gap-2">
+        <div class="flex flex-col gap-1"><p class="text-sm font-medium text-text-primary">Permiso retribuirle recupera ...</p><div class="flex flex-wrap items-center gap-2 text-xxs text-text-muted"><i class="ti ti-calendar text-base text-primary"></i><span>01 Mar 2025</span><i class="ti ti-arrow-right text-xxs text-text-muted"></i><span>16 Abr 2025</span></div></div>
+        <div class="flex items-center justify-center w-6 h-6 shrink-0 bg-warning rounded-full"><i class="ti ti-alert-circle text-white text-sm"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Calendario Eventos -->
+  <div class="w-full max-w-[530px] bg-white rounded-2xl border border-border p-4 flex flex-col gap-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Calendario</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="border-border" />
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2"><span class="text-base font-medium text-text-primary">Abril 2025</span><div class="flex items-center gap-2"><button class="w-7 h-7 flex items-center justify-center bg-black/5 rounded-full"><i class="ti ti-chevron-left text-text-primary text-xxs"></i></button><button class="w-7 h-7 flex items-center justify-center bg-blue-600/10 rounded-full"><i class="ti ti-chevron-right text-info text-xxs"></i></button></div></div>
+    <div class="flex justify-between gap-1 overflow-x-auto">
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-surface-secondary border border-border rounded-xl gap-1"><span class="text-xxs font-bold text-text-muted tracking-wide">LUN</span><span class="text-base font-bold text-text-primary">21</span></div>
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-surface-secondary border border-border rounded-xl gap-1"><span class="text-xxs font-bold text-text-muted tracking-wide">MAR</span><span class="text-base font-bold text-text-primary">22</span></div>
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-[#8488FF]/[0.12] border border-[#8488FF] rounded-xl gap-1"><span class="text-xxs font-bold text-[#8488FF] tracking-wide">MIÉ</span><span class="text-base font-bold text-[#8488FF]">23</span></div>
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-info-soft border border-info rounded-xl gap-1"><span class="text-xxs font-bold text-info tracking-wide">JUE</span><span class="text-base font-bold text-info">24</span></div>
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-[#20CA9A]/[0.12] border border-[#20CA9A] rounded-xl gap-1"><span class="text-xxs font-bold text-[#20CA9A] tracking-wide">VIE</span><span class="text-base font-bold text-[#20CA9A]">25</span></div>
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-[#FB9824]/[0.12] border border-[#FB9824] rounded-xl gap-1"><span class="text-xxs font-bold text-[#FB9824] tracking-wide">SÁB</span><span class="text-base font-bold text-[#FB9824]">26</span></div>
+      <div class="flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] bg-surface-secondary border border-border rounded-xl gap-1"><span class="text-xxs font-bold text-text-muted tracking-wide">DOM</span><span class="text-base font-bold text-text-primary">27</span></div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-col sm:flex-row sm:items-start gap-3 bg-surface-secondary border border-border rounded-xl p-3"><div class="w-1 h-10 bg-[#8488FF] rounded-sm shrink-0 mt-0.5"></div><div class="flex flex-col gap-0.5"><div class="flex flex-wrap items-center gap-3"><span class="text-sm text-text-secondary">23 de abril</span><div class="flex items-center gap-1 text-text-muted"><i class="ti ti-clock text-xxs"></i><span class="text-xxs">11:30 am - 12:00 pm</span></div></div><p class="text-base font-medium text-text-primary">Reunión del equipo de desarrollo</p></div></div>
+      <div class="flex flex-col sm:flex-row sm:items-start gap-3 bg-surface-secondary border border-border rounded-xl p-3"><div class="w-1 h-10 bg-info rounded-sm shrink-0 mt-0.5"></div><div class="flex flex-col gap-0.5"><div class="flex flex-wrap items-center gap-3"><span class="text-sm text-text-secondary">24 de abril</span><div class="flex items-center gap-1 text-text-muted"><i class="ti ti-clock text-xxs"></i><span class="text-xxs">11:30 am - 12:00 pm</span></div></div><p class="text-base font-medium text-text-primary">Reunión con el cliente Nestle</p></div></div>
+    </div>
+  </div>
+
+  <!-- 8. Documentos -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Documentos</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="my-5 border-border" />
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary px-4 py-4 gap-2"><div class="flex flex-col gap-1"><span class="text-sm font-semibold text-text-secondary">DOCUMENTO_PRL.png</span><span class="text-xxs text-text-muted">13-09-2024</span></div><span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-primary-soft px-2.5 py-1.5 shrink-0"><i class="ti ti-file-download text-sm text-primary"></i><span class="text-xxs font-bold text-primary">PDF</span></span></div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary px-4 py-4 gap-2"><div class="flex flex-col gap-1"><span class="text-sm font-semibold text-text-secondary">February, 10, 2021</span><span class="text-xxs text-text-muted">13-09-2024</span></div><span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-primary-soft px-2.5 py-1.5 shrink-0"><i class="ti ti-file-download text-sm text-primary"></i><span class="text-xxs font-bold text-primary">PDF</span></span></div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary px-4 py-4 gap-2"><div class="flex flex-col gap-1"><span class="text-sm font-semibold text-text-secondary">April, 05, 2020</span><span class="text-xxs text-text-muted">13-09-2024</span></div><span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-primary-soft px-2.5 py-1.5 shrink-0"><i class="ti ti-file-download text-sm text-primary"></i><span class="text-xxs font-bold text-primary">PDF</span></span></div>
+    </div>
+  </div>
+
+  <!-- 9. Cumpleañeros -->
+  <div class="w-full max-w-[530px] rounded-2xl border border-border bg-white p-4 font-dm-sans widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Cumpleaños</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <div class="my-2.5 h-px w-full bg-border"></div>
+    <div class="flex flex-col sm:flex-row gap-4 pt-5">
+      <div class="flex flex-1 flex-col items-center gap-3">
+        <div class="flex h-[80px] w-[80px] sm:h-[100px] sm:w-[100px] items-center justify-center rounded-full bg-blue-400 shadow-md"><span class="text-[22px] sm:text-[26px] font-bold text-white font-sans">MM</span></div>
+        <div class="flex flex-col items-center gap-0.5"><span class="text-base font-medium text-text-primary truncate max-w-full">Madelyn Ma...</span><span class="text-base font-medium text-text-placeholder">@made.ngo</span></div>
+      </div>
+      <div class="flex flex-1 flex-col items-center gap-3">
+        <div class="flex h-[80px] w-[80px] sm:h-[100px] sm:w-[100px] items-center justify-center rounded-full bg-purple-400 shadow-md"><span class="text-[22px] sm:text-[26px] font-bold text-white font-sans">ZS</span></div>
+        <div class="flex flex-col items-center gap-0.5"><span class="text-base font-medium text-text-primary">Manuela Perez</span><span class="text-base font-medium text-text-placeholder">@zainsiphron</span></div>
+      </div>
+      <div class="flex flex-1 flex-col items-center gap-3">
+        <div class="h-[80px] w-[80px] sm:h-[100px] sm:w-[100px] overflow-hidden rounded-full shadow-md ring-2 ring-white"><img src="https://i.pravatar.cc/100?img=33" alt="Olga Gonzalez" class="h-full w-full object-cover"/></div>
+        <div class="flex flex-col items-center gap-0.5"><span class="text-base font-medium text-text-primary truncate max-w-full">Olga Gonz...</span><span class="text-base font-medium text-text-placeholder">@zain_c</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Onboarding -->
+  <div class="w-full max-w-[530px] p-4 bg-white border border-border rounded-2xl font-dm-sans flex flex-col gap-4 widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Onboarding</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="border-border" />
+    <div class="flex flex-col gap-1"><p class="text-base font-bold text-text-primary">¡Hola Pedro Pérez!</p><p class="text-sm text-text-muted">¡No olvides revisar las tareas en tu ficha!</p></div>
+    <div class="flex flex-col gap-1"><div class="flex items-center justify-between"><span class="text-xxs font-semibold text-text-muted uppercase">Estado del proceso</span><span class="text-sm font-bold text-primary">37%</span></div><div class="w-full h-2 bg-surface-secondary rounded-full"><div class="h-2 bg-primary rounded-full" style="width:37%"></div></div></div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between px-3 py-2.5 bg-white border border-border rounded-md gap-1"><div class="flex items-center gap-2"><i class="ti ti-list text-text-tertiary text-base"></i><span class="text-sm font-medium text-text-primary">Tareas Asignadas</span></div><span class="text-sm font-bold text-text-primary">6</span></div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between px-3 py-2.5 bg-white border border-border rounded-md gap-1"><div class="flex items-center gap-2"><i class="ti ti-circle-check text-success text-base"></i><span class="text-sm font-medium text-text-primary">Tareas Realizadas</span></div><span class="text-sm font-bold text-text-primary">2</span></div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between px-3 py-2.5 bg-white border border-border rounded-md gap-1"><div class="flex items-center gap-2"><i class="ti ti-clock text-warning text-base"></i><span class="text-sm font-medium text-text-primary">Tareas Pendiente</span></div><span class="text-sm font-bold text-text-primary">5</span></div>
+    </div>
+  </div>
+
+  <!-- 11. Solicitud Fichaje (2) -->
+  <div class="w-full max-w-[530px] p-4 bg-white border border-border rounded-2xl font-dm-sans flex flex-col gap-4 widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Solicitud Fichaje</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="border-border" />
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-surface-secondary rounded-xl px-4 py-4"><i class="ti ti-circle-check-filled text-success text-2xl"></i><div class="flex flex-col gap-1 flex-1"><span class="text-sm font-semibold text-text-secondary">15 May 2025</span><div class="flex items-center gap-2 text-xxs font-medium text-text-muted"><span>Salida</span><span>15:29:00</span></div></div><span class="px-[10px] py-[6px] bg-success-soft text-emerald-800 text-xxs font-semibold rounded-full shrink-0">Aceptado</span></div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-surface-secondary rounded-xl px-4 py-4"><i class="ti ti-circle-check-filled text-success text-2xl"></i><div class="flex flex-col gap-1 flex-1"><span class="text-sm font-semibold text-text-secondary">15 May 2025</span><div class="flex items-center gap-2 text-xxs font-medium text-text-muted"><span>Salida</span><span>15:29:00</span></div></div><span class="px-[10px] py-[6px] bg-success-soft text-emerald-800 text-xxs font-semibold rounded-full shrink-0">Aceptado</span></div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-surface-secondary rounded-xl px-4 py-4"><i class="ti ti-circle-check-filled text-success text-2xl"></i><div class="flex flex-col gap-1 flex-1"><span class="text-sm font-semibold text-text-secondary">15 May 2025</span><div class="flex items-center gap-2 text-xxs font-medium text-text-muted"><span>Salida</span><span>15:29:00</span></div></div><span class="px-[10px] py-[6px] bg-success-soft text-emerald-800 text-xxs font-semibold rounded-full shrink-0">Aceptado</span></div>
+    </div>
+  </div>
+
+  <!-- 12. Vacaciones Permisos -->
+  <div class="w-full max-w-[530px] p-4 bg-white border border-border rounded-2xl font-dm-sans flex flex-col gap-4 widget-card">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-medium text-primary">Vacaciones</h2>
+      <div class="flex items-center gap-3">
+        <button class="flex items-center gap-2 px-3 py-1.5 text-sm text-text-tertiary bg-white border border-border rounded-lg hover:bg-surface-muted transition whitespace-nowrap">Filtrar<i class="ti ti-chevron-down text-sm"></i></button>
+        <button class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-border rounded-full hover:bg-surface-muted transition"><i class="ti ti-chevron-right text-sm text-text-tertiary"></i></button>
+      </div>
+    </div>
+    <hr class="border-border" />
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border px-4 py-4 gap-2">
+        <div class="flex flex-col gap-1"><span class="text-base font-semibold text-text-secondary">Vacacione Empresa1</span><div class="flex flex-wrap items-center gap-1.5 text-sm text-text-muted"><i class="ti ti-calendar text-primary text-base"></i><span>01 Jul 2026</span><i class="ti ti-arrow-right text-primary text-sm"></i><span>06 Jul 2026</span></div></div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-check text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border px-4 py-4 gap-2">
+        <div class="flex flex-col gap-1"><span class="text-base font-semibold text-text-secondary">P.Vacaciones 2026.Bilbao</span><div class="flex flex-wrap items-center gap-1.5 text-sm text-text-muted"><i class="ti ti-calendar text-primary text-base"></i><span>16 Feb 2026</span><i class="ti ti-arrow-right text-primary text-sm"></i><span>20 Feb 2026</span></div></div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success"><i class="ti ti-check text-white text-sm"></i></div>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between rounded-xl bg-surface-secondary border border-border px-4 py-4 gap-2">
+        <div class="flex flex-col gap-1"><span class="text-base font-semibold text-text-secondary">Permiso</span><div class="flex flex-wrap items-center gap-1.5 text-sm text-text-muted"><i class="ti ti-calendar text-primary text-base"></i><span>09 Oct 2025</span><i class="ti ti-arrow-right text-primary text-sm"></i><span>09 Oct 2025</span></div></div>
+        <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warning"><i class="ti ti-exclamation-mark text-white text-sm"></i></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

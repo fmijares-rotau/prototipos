@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+@media only screen and (min-width: 1025px) and (max-width: 1280px) {
+    .oculta_1366{display: none;}
+    .oculta_1280{display: none;}
+    
+    /* -------------------------------------------- */
+    /* ------------------Header-------------------- */
+    header #logo_vpd {width: 16%;}
+    header nav {width: 70%;}
+    header #logo_vpd img {height: 50px;margin: 35px 5px;}
+    header #search {width: 10%;}
+    header #search .bienvenido span{float: right;margin: 5px 10px;}
+    header #search .bienvenido span.datos_usuario {display: none;}
+    header nav .caja_quick {margin-left: 26%;}
+    .submenu ul li.first {margin-left: 0;}
+    
+    /* -------------------------------------------- */
+    /* ------------------Content------------------- */
+    nav .wrap-nav {height: auto;}
+    .submenu ul li {border-bottom: 1px solid #e3e5e5;border-right: 1px solid #e3e5e5;}
+    .block01 form input[type="button"] {font-size: 80%;}
+    .block02 .formulario form .item_elemento {margin-right: 15px;}
+    .block02 .formulario form .roles_menu .item_elemento .acceso_menu {font-size: 12px;width: 180px;}
+    .block02 .formulario form .roles_menu .item_elemento .acceso_menu label {width: 130px;}
+    .block02 .formulario form .configuracion_horario .fila_horario .celda_horario select {margin: 10px 5px;width: 90px;}
+    .block02 .formulario form .configuracion_horario .fila_horario .celda_horario .subcelda_horario input[type="checkbox"] {margin: 5px 5px 5px 10px;}
+    .block02 .formulario form .configuracion_horario .fila_horario .celda_horario .subcelda_horario input {margin: 1px 0 1px 5px;}
+    .block02 .tabla_1-3 {margin: 5px;min-height: 40px;width: 38%;}
+    .block02 .tabla_2-3 {margin: 5px;}
+    .block03 {width: 60%;margin: 20px 20%;}
+    .block03 .formulario form .contenedor_reloj {margin: 2% 15%;}
+    .tabla_listado .tabla_separador {font-size: 14px;padding: 0 1px;}
+    .block02 .compara_calendarios .calendarios table thead tr th {font-size: 11px;padding: 5px;}
+    .incidencia{margin: 20px 0 20px 10px;width: 57%;}
+    /* -------------------------------------------- */
+    /* ------------------Footer-------------------- */
+    
+    /* -------------------------------------------- */
+    /* ------------------Other----------------*---- */
+    
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .oculta_1366{display: none;}
+    .oculta_1280{display: none;}
+    
+    /* -------------------------------------------- */
+    /* ------------------Header-------------------- */
+    header {height: auto;margin-top: 0;background-color: rgb(0,51,153);}
+    header .wrap-header{height: auto;}
+    header #logo_vpd {width: 25%;height: 90px;}
+    header #logo_vpd img {margin: 10px 1%;height: 70px;width: auto;}
+    header #logo_vpd_out {display: none;}
+    header #cabecera_movil{float: left;display: block;width: 100%;height: 50px;}
+    header #cabecera_movil .icono{float: left;color: white;font-size: 35px;margin: 13px 5px;}
+    header #cabecera_movil .texto{float: left;color: white;font-size: 30px;margin: 13px 23px;}
+    header nav {width: 58%;min-height: 85px;height: auto;margin-left: 2%;}
+    header nav .wrap-nav{height: 100%;}
+    header .menu ul li {height: 80px;padding: 0;width: 80px;margin: 0 5px;}
+    header .menu ul li img {margin: 15px 27px 5px;}
+    header .menu ul li p {height: 20px;line-height: 12px;font-size: 80%;}
+    header #search {width: 15%;}
+    header #search .bienvenido span {margin: 5px;}
+    header #search .bienvenido span.datos_usuario {display: none}
+    header #search .selector_idiomas select {margin: 5px 10px;}
+    header nav .caja_quick {margin-left: 10%;}
+    header nav .caja_quick .reloj_quick {width: 10%;}
+    header nav .caja_quick .titulo_quick label {line-height: 85px;}
+    
+    nav .wrap-nav {height: auto;}
+    nav .submenu{border-bottom: none;}
+    nav .submenu ul li {border: 1px solid #037bc9;height: 60px;margin: 1%;width: 12%;}
+    nav .submenu ul li img {margin: 5px 30%;width: auto;}
+    nav .submenu ul li p {font-size: 70%;height: 20px;line-height: 12px;}
+    
+    .submenu ul li.first {margin-left: 1%;}
+    
+    /* -------------------------------------------- */
+    /* ------------------Content------------------- */
+    #loading img {width: 90%;left: 55%;margin: -21px 0 0 -50%;}
+    #content {margin-bottom: 8%;}
+    
+    .block01 {margin: 15% 0 0;width: 100%;}
+    .block01 h2 {margin: 0;width: 100%;margin-bottom: 5%;}
+    .block01 form {margin: 2% 0;width: 100%;}
+    .block01 form label {width: 30%;}
+    .block01 form input {width: 55%;}
+    .block01 form input[type="button"] {font-size: 100%;margin: 5% 10%;width: 80%;}
+    .block01 .caja_gris{float: left;background: #f1f1f1;margin: 0 12%;width: 76%;}
+    .block01 .caja_gris h1{font-size: 20px;line-height: 30px;font-weight: bolder;margin: 5px 5%;width: 86%;}
+    .block01 .caja_gris h2{color: #848484;font-size: 16px;text-align: left;line-height: 20px;font-weight: normal;margin: 5px 5%;width: 90%;}
+    .block01 .caja_gris form {margin: 0 5%;width: 90%;height: 100px;}
+    .block01 .caja_gris form input {width: 97%;margin: 2% 0;}
+    .block01 .entrar{float: left;width: 76%;background-color: #037bc9;color: white;margin: 20px 12%;font-size: 20px;line-height: 35px;text-align: center;cursor: pointer;}
+    .block01 .recordar{float: left;width: 100%;background-color: #f1f1f1;color: #848484;margin: 20px 0;cursor: pointer;}
+    .block01 .recordar .texto{float: left;width: 70%;margin: 0 0 0 5%;font-size: 16px;line-height: 28px;text-align: left;cursor: pointer;}
+    .block01 .recordar .flecha{float: left;width: 23%;margin: 0 2% 0 0;font-size: 20px;line-height: 28px;text-align: right;font-weight: bolder;cursor: pointer;}
+    .block01 .language{float: left;width: 100%;background-color: #f1f1f1;color: #848484;margin: 0;cursor: pointer;position: relative;}
+    .block01 .language .texto{float: left;width: 70%;margin: 0 0 0 5%;font-size: 16px;line-height: 28px;text-align: left;cursor: pointer;}
+    .block01 .language .flecha{float: left;width: 23%;margin: 0 2% 0 0;font-size: 20px;line-height: 28px;text-align: right;font-weight: bolder;cursor: pointer;}
+    .block01 .language select{cursor: pointer;height: 100%;opacity: 0;position: absolute;left: 0;top: 0;width: 100%;}
+
+    .block02 {margin: 1%;}
+    .block02 h2 {font-size: 18px;line-height: 22px;}
+    .block02 .botonera {height: auto;margin-top: 5px;}
+    .block02 .botonera .first {margin-left: 2%;}
+    .block02 .botonera .tab.first{clear: both;}
+    .block02 .botonera .boton {margin: 1%;width: 11%;text-align: center;}
+    .block02 .botonera .boton.tab{width: 15%;}
+    .block02 .botonera .busqueda_elemento {font-size: 11px;margin: 5px;padding: 0 0 0 5px;}
+    .block02 .botonera .busqueda_elemento input {padding: 0;}
+    .block02 .seleccionar .accion_seleccionar {margin: 0 1%;width: auto;padding: 5px 0;}
+    .block02 .seleccionar .titulo_seleccionar {line-height: 20px;margin: 5px;}
+    .block02 .seleccionar .accion_seleccionar label {margin: 0 5px 5px;}
+    .block02 .seleccionar .accion_seleccionar input {padding: 1% 4%;width: 48%;}
+    .block02 .seleccionar .accion_seleccionar .boton {margin: 2%;padding: 2px 1%;width: 94%;text-align: center;width: 14%;text-align: center;}
+    .block02 .seleccionar .accion_seleccionar select {width: 480px;}
+    .block02 .seleccionar .accion_seleccionar select.select_medio {width: 480px;}
+    .block02 .tabla {margin: 1% 0;}
+    .block02 .tabla .calendario {margin: 0;width: 100%;float:right;}
+    .block02 .tabla .calendario .year {font-size: 100%;line-height: 20px;}
+    .block02 .tabla .calendario .year .left_year {font-size: 80%;}
+    .block02 .tabla .calendario .year .right_year {font-size: 80%;}
+    .block02 .tabla .calendario .cajames {height: auto;margin: 0;width: 100%;}
+    .block02 .tabla .calendario .cajames .mes {font-size: 100%;line-height: 30px;margin: 0;text-align: center;} 
+    .block02 .tabla .leyenda {border-left: none;border-bottom: 1px solid;float: right;margin: 0;width: 100%;}
+    .block02 .formulario form .item_elemento {line-height: 40px;margin-right: 0;min-height: 45px;width: 100%;}
+    .block02 .formulario form .item_elemento label {line-height: 20px;margin: 1%;width: 98%;}
+    .block02 .formulario form .item_elemento .boton_fichar{width: 99%;text-align: center;padding: 10px 0;margin: 5px 0;}
+    .block02 .formulario form .item_elemento textarea {width: 93%;}
+    .block02 .formulario form .item_elemento input[type="number"] {width: 25%;}
+    .block02 .formulario form .item_elemento label.separador {width: 10px;}
+    .block02 .formulario form .contenedor_reloj{margin: 0 0 10px;}
+    
+    .block02 .paginar {font-size: 16px;line-height: 30px;margin: 10px 0;width: 100%;min-height: auto;}
+    
+    .block03 {width: 80%;margin: 20px 10%;}
+    .block03 .formulario form .contenedor_reloj {margin: 2% 15%;}
+    
+    /* -------------------------------------------- */
+    /* ------------------Footer-------------------- */
+    
+    /* -------------------------------------------- */
+    /* ------------------Other--------------------- */
+    .tabla_listado thead tr th {font-size: 80%;}
+    .tabla_listado tbody tr td {font-size: 60%;line-height: 25px;}
+    
+    .fichaje{margin: 10px 0;width: 100%;}
+    .incidencia{margin: 10px 0;width: 100%;}
+    
+}

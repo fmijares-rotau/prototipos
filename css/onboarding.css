@@ -1,0 +1,167 @@
+.widget {
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      width: 300px; /* Ajusta el ancho del widget */
+      height: 180px;
+    }
+    .widget-title {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .widget h2 {
+        float: none;
+    }
+    .chart-container {
+      width: 100%;
+      height: 25px;
+      background-color: #d6f3d7;
+    }
+    .bar {
+      background-color: #4CAF50;
+      height: 100%;
+      position: relative;
+    }
+    .bar span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+    .view-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 60px;
+      text-align: center;
+    }
+    .container-button {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+
+    /* Estilos para el carrusel de imagenes */
+    .carousel {
+      position: relative;
+      max-width: 60%;
+      margin: auto;
+      overflow: hidden;
+      border: 2px solid #ccc; /* Agregar bordes al carrusel */
+      padding: 10px; /* Espacio alrededor del carrusel */
+      box-sizing: border-box; /* Incluir el padding y el borde en el tamaño total del carrusel */
+      border-radius: 10px; /* Bordes redondeados */
+      height: 600px;
+      display: flex;
+      align-items: center; /* Centrar verticalmente */
+      justify-content: center; /* Centrar horizontalmente */
+    }
+
+    .carousel-item {
+        display: none;
+        text-align: center;
+        height: 100%;
+        width: 90%;
+        display: flex;
+        align-items: center; /* Centrar verticalmente */
+        justify-content: center; /* Centrar horizontalmente */
+        background-color: white;
+    }
+
+    .carousel-item img, .carousel-item iframe {
+      max-height: 100%; /* Ajustar la imagen para que no exceda la altura del carrusel */
+      max-width: 100%; /* Ajustar la imagen para que no exceda el ancho del carrusel */
+      margin: auto;
+      display: block;
+      padding: 10px; /* Espacio alrededor de la imagen */
+      box-sizing: border-box; /* Incluir el padding en el tamaño total de la imagen */
+      object-fit: contain; /* Escalar la imagen para que se ajuste dentro del contenedor sin distorsionarse */
+    }
+
+    .carousel-item.active {
+        display: flex;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .next:hover, .prev:hover {
+      background-color: #E4E7EC;
+    }
+
+    .block02 .formulario_obd{
+      display:flex; 
+      flex-direction: column; 
+      width: 100%;
+      min-height: 40px;
+      line-height: 40px;
+      border: 1px solid #bbb;
+      margin: 1% 0;
+      background: transparent;
+    }
+
+    /* .item_elemento_obd{
+      float: left;
+      margin-right: 30px;
+      line-height: 50px;
+      min-height: 60px;
+      margin-left: 30px
+    } */
+
+    .item_elemento_obd{
+      float: left;
+      margin-right: 30px;
+      margin-left: 30px
+    }
+
+    .text_area_obd{
+      width: 100%;
+      height: 100px;
+      border: 1px solid #bbb;
+      background: transparent;
+      padding: 10px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .ul_obd{
+      list-style-type: disc;
+      padding-left: 30px;
+      margin: 0;
+    }	
+
+    .block02 .botonera_obd{
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      gap: 40px; 
+      width: 99%;
+      height: 40px;
+      line-height: 40px;
+      border: 1px solid #bbb;
+      margin-top: 10px;
+      padding-left: 20px;
+    }

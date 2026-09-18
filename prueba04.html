@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control con Date Picker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <style>
+        .ti {
+            font-size: 1.1em;
+        }
+        .calendar-container {
+            display: none;
+            position: absolute;
+            z-index: 50;
+            min-width: 300px;
+        }
+        .calendar-visible {
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .calendar-container {
+                min-width: 400px;
+            }
+        }
+        .day-cell {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        .day-cell:hover:not(.other-month):not(.selected) {
+            background-color: #e5e7eb;
+        }
+        .date-input-container {
+            position: relative;
+        }
+        #calendarContainer {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+
+
+
+
+
+
+
+    <div class="sticky top-16 z-10 px-3 md:px-4 py-3">
+        <div class="mx-auto max-w-[1800px]">
+            <!-- Card de acciones -->
+            <div class="bg-white rounded-xl border border-solid border-gray-200 p-4 md:p-5 flex flex-col gap-5">
+                
+                <!-- Fila 1: Acciones principales y exportación -->
+                <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                    
+                    <!-- Acciones principales -->
+                    <div class="flex flex-wrap gap-2" role="group" aria-label="Acciones principales">
+                        <button type="button"
+                            class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center transition shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                            <i class="ti ti-plus mr-2"></i>Nuevo
+                        </button>
+                        <button type="button"
+                            class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center transition shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">
+                            <i class="ti ti-file-import mr-2"></i>Importar
+                        </button>
+                        <button type="button"
+                            class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-sm font-medium flex items-center transition shadow focus-visible:ring-2 focus-visible:ring-amber-400">
+                            <i class="ti ti-user-off mr-2"></i>Sin Fichajes
+                        </button>
+                        <button type="button"
+                            class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium flex items-center transition shadow focus-visible:ring-2 focus-visible:ring-amber-400">
+                            <i class="ti ti-alert-triangle mr-2"></i>Incidencias
+                        </button>
+                    </div>
+
+                    <!-- Exportar -->
+                    <div class="flex flex-wrap items-center gap-3" role="group" aria-label="Descargar archivos">
+                        <span class="text-sm text-gray-600 font-medium">Descargar archivos:</span>
+                        <button
+                            class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-sm font-medium transition focus-visible:ring-2 focus-visible:ring-green-500">
+                            <i class="ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel
+                        </button>
+                        <button
+                            class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-red-50 flex items-center text-sm font-medium transition focus-visible:ring-2 focus-visible:ring-red-500">
+                            <i class="ti ti-file-type-pdf text-red-600 mr-2"></i>PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Separador -->
+                <div class="border-t border-dashed border-gray-300"></div>
+
+                <!-- Fila 2: Filtros y búsqueda -->
+                <div class="flex flex-col md:flex-row md:flex-wrap gap-3 w-full">
+                    
+                    <!-- Fechas -->
+                    <div class="flex flex-1 gap-3 min-w-[200px]">
+                        <div class="date-input-container flex-1">
+                            <input type="text" name="fecha_inicio" id="fecha_inicio" placeholder="Desde" readonly
+                                class="w-full pl-8 pr-3 py-2 rounded-lg text-sm border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none cursor-pointer date-input" />
+                            <i class="ti ti-calendar absolute left-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        </div>
+                        <span class="flex items-center text-gray-500">a</span>
+                        <div class="date-input-container flex-1">
+                            <input type="text" name="fecha_fin" id="fecha_fin" placeholder="Hasta" readonly
+                                class="w-full pl-8 pr-3 py-2 rounded-lg text-sm border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none cursor-pointer date-input" />
+                            <i class="ti ti-calendar absolute left-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Rango rápido -->
+                    <div class="flex-1 min-w-[150px]">
+                        <div class="relative">
+                            <select
+                                class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">Rango rápido</option>
+                                <option value="1">Hoy</option>
+                                <option value="2">Ayer</option>
+                                <option value="3">Semana</option>
+                                <option value="4">Mes</option>
+                            </select>
+                            <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Empresas -->
+                    <div class="flex-1 min-w-[150px]">
+                        <div class="relative">
+                            <select
+                                class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">Empresas</option>
+                                <option value="1">ROI Network</option>
+                                <option value="2">Empresa1</option>
+                                <option value="3">Salud</option>
+                            </select>
+                            <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="flex gap-2">
+                        <button id="limpiarFiltros" type="button" disabled
+                            class="px-3 py-2 border border-indigo-700 bg-indigo-700 text-white text-sm rounded-lg opacity-50 cursor-not-allowed flex items-center">
+                            <i class="ti ti-broom mr-1"></i> Limpiar
+                        </button>
+                        <button type="button"
+                            class="px-3 py-2 bg-indigo-700 text-white text-sm rounded-lg flex items-center hover:bg-indigo-800 focus-visible:ring-2 focus-visible:ring-indigo-400">
+                            <i class="ti ti-search mr-1"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor del calendario (inicialmente oculto) -->
+    <div id="calendarContainer" class="calendar-container bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+          
+            
+            <!-- Selector de calendario -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <button id="prevMonth" class="p-2 rounded-full hover:bg-gray-200 transition">
+                        <i class="fas fa-chevron-left text-gray-600"></i>
+                    </button>
+                    <h2 id="currentMonth" class="text-lg font-semibold text-gray-800">Agosto 2025</h2>
+                    <button id="nextMonth" class="p-2 rounded-full hover:bg-gray-200 transition">
+                        <i class="fas fa-chevron-right text-gray-600"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-7 gap-2 mb-2">
+                    <div class="text-center text-sm text-gray-500">Do</div>
+                    <div class="text-center text-sm text-gray-500">Lu</div>
+                    <div class="text-center text-sm text-gray-500">Ma</div>
+                    <div class="text-center text-sm text-gray-500">Mi</div>
+                    <div class="text-center text-sm text-gray-500">Ju</div>
+                    <div class="text-center text-sm text-gray-500">Vi</div>
+                    <div class="text-center text-sm text-gray-500">Sá</div>
+                </div>
+                
+                <div id="calendarDays" class="grid grid-cols-7 gap-2">
+                    <!-- Los días se generarán con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables de estado
+            let currentDate = new Date(2025, 7, 1); // Agosto 2025
+            let startDate = null;
+            let endDate = null;
+            let selecting = false;
+            let activeInput = null;
+            
+            // Elementos del DOM
+            const calendarDays = document.getElementById('calendarDays');
+            const currentMonthElement = document.getElementById('currentMonth');
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            const fechaInicioInput = document.getElementById('fecha_inicio');
+            const fechaFinInput = document.getElementById('fecha_fin');
+            const prevMonthButton = document.getElementById('prevMonth');
+            const nextMonthButton = document.getElementById('nextMonth');
+            const applyButton = document.getElementById('applyBtn');
+            const calendarContainer = document.getElementById('calendarContainer');
+            const dateInputs = document.querySelectorAll('.date-input');
+            
+            // Nombres de meses y días
+            const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+                               "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            const dayNames = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"];
+            
+            // Mostrar/ocultar calendario cuando se hace clic en los inputs de fecha
+            dateInputs.forEach(input => {
+                input.addEventListener('click', function(e) {
+                    // Posicionar el calendario debajo del input actual
+                    const rect = this.getBoundingClientRect();
+                    calendarContainer.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                    calendarContainer.style.left = `${rect.left + window.scrollX}px`;
+                    
+                    // Mostrar calendario
+                    calendarContainer.classList.add('calendar-visible');
+                    
+                    // Determinar qué input está activo
+                    if (this.id === 'fecha_inicio') {
+                        activeInput = 'start';
+                        if (startDate) {
+                            currentDate = new Date(startDate);
+                        }
+                    } else {
+                        activeInput = 'end';
+                        if (endDate) {
+                            currentDate = new Date(endDate);
+                        }
+                    }
+                    
+                    renderCalendar();
+                    
+                    e.stopPropagation();
+                });
+            });
+            
+            // Ocultar calendario cuando se hace clic fuera
+            document.addEventListener('click', function(e) {
+                if (!calendarContainer.contains(e.target) && !e.target.classList.contains('date-input')) {
+                    calendarContainer.classList.remove('calendar-visible');
+                }
+            });
+            
+            // Prevenir que el clic en el calendario lo oculte
+            calendarContainer.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Inicializar el calendario
+            function renderCalendar() {
+                // Limpiar el calendario
+                calendarDays.innerHTML = '';
+                
+                // Establecer el texto del mes actual
+                currentMonthElement.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+                
+                // Obtener el primer día del mes y el último día del mes
+                const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+                
+                // Días del mes anterior (para completar la primera semana)
+                const prevMonthLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+                const firstDayIndex = firstDay.getDay();
+                
+                // Días del próximo mes (para completar la última semana)
+                const daysInMonth = lastDay.getDate();
+                
+                // Generar días del mes anterior
+                for (let i = firstDayIndex; i > 0; i--) {
+                    const day = prevMonthLastDay - i + 1;
+                    const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, day);
+                    const dayElement = createDayElement(day, date, true);
+                    calendarDays.appendChild(dayElement);
+                }
+                
+                // Generar días del mes actual
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+                    const dayElement = createDayElement(i, date, false);
+                    calendarDays.appendChild(dayElement);
+                }
+                
+                // Calcular cuántos días del próximo mes necesitamos mostrar
+                const lastDayIndex = lastDay.getDay();
+                const nextDays = 7 - lastDayIndex - 1;
+                
+                // Generar días del próximo mes
+                for (let i = 1; i <= nextDays; i++) {
+                    const date = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, i);
+                    const dayElement = createDayElement(i, date, true);
+                    calendarDays.appendChild(dayElement);
+                }
+                
+                updateSelectedRange();
+            }
+            
+            // Crear elemento de día
+            function createDayElement(day, date, isOtherMonth) {
+                const dayElement = document.createElement('div');
+                dayElement.className = `text-center p-2 rounded-full cursor-pointer transition ${isOtherMonth ? 'text-gray-400' : 'text-gray-700 hover:bg-gray-200'}`;
+                dayElement.textContent = day;
+                
+                // Comprobar si el día está seleccionado
+                if (isDateSelected(date)) {
+                    dayElement.classList.add('bg-blue-500', 'text-white');
+                } else if (isDateInRange(date)) {
+                    dayElement.classList.add('bg-blue-100');
+                }
+                
+                // Añadir evento de clic
+                dayElement.addEventListener('click', () => selectDate(date));
+                
+                return dayElement;
+            }
+            
+            // Comprobar si una fecha está seleccionada
+            function isDateSelected(date) {
+                return (startDate && isSameDay(date, startDate)) || (endDate && isSameDay(date, endDate));
+            }
+            
+            // Comprobar si una fecha está en el rango seleccionado
+            function isDateInRange(date) {
+                if (!startDate || !endDate) return false;
+                
+                const time = date.getTime();
+                return time > startDate.getTime() && time < endDate.getTime();
+            }
+            
+            // Comprobar si dos fechas son el mismo día
+            function isSameDay(date1, date2) {
+                return date1.getDate() === date2.getDate() &&
+                       date1.getMonth() === date2.getMonth() &&
+                       date1.getFullYear() === date2.getFullYear();
+            }
+            
+            // Seleccionar fecha
+            function selectDate(date) {
+                if (activeInput === 'start') {
+                    startDate = date;
+                    startDateInput.value = formatDate(date);
+                    fechaInicioInput.value = formatShortDate(date);
+                    
+                    // Si ya hay una fecha de fin y es anterior a la de inicio, resetear la de fin
+                    if (endDate && date > endDate) {
+                        endDate = null;
+                        endDateInput.value = '';
+                        fechaFinInput.value = '';
+                    }
+                    
+                    // Cambiar al input de fin
+                    activeInput = 'end';
+                } else {
+                    endDate = date;
+                    endDateInput.value = formatDate(date);
+                    fechaFinInput.value = formatShortDate(date);
+                    
+                    // Si ya hay una fecha de inicio y es posterior a la de fin, resetear la de inicio
+                    if (startDate && date < startDate) {
+                        startDate = null;
+                        startDateInput.value = '';
+                        fechaInicioInput.value = '';
+                    }
+                    
+                    // Cambiar al input de inicio
+                    activeInput = 'start';
+                }
+                
+                renderCalendar();
+            }
+            
+            // Actualizar el rango seleccionado en el calendario
+            function updateSelectedRange() {
+                const days = calendarDays.querySelectorAll('div');
+                
+                days.forEach(dayElement => {
+                    // Esta función ahora se maneja en createDayElement
+                });
+            }
+            
+            // Formatear fecha como string (versión larga)
+            function formatDate(date) {
+                if (!date) return '';
+                return `${date.getDate()} de ${monthNames[date.getMonth()]} de ${date.getFullYear()}`;
+            }
+            
+            // Formatear fecha como string (versión corta)
+            function formatShortDate(date) {
+                if (!date) return '';
+                return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+            }
+            
+            // Navegación entre meses
+            prevMonthButton.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+            
+            nextMonthButton.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+            
+            // Aplicar el rango seleccionado
+            applyButton.addEventListener('click', () => {
+                if (startDate && endDate) {
+                    calendarContainer.classList.remove('calendar-visible');
+                } else {
+                    alert('Por favor, selecciona un rango de fechas completo');
+                }
+            });
+            
+            // Inicializar el calendario
+            renderCalendar();
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

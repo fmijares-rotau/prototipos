@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - Gestión de Roles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <style>
+        .scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+        .scroll-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scroll-container::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .selected-item {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hs-select-dropdown {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease-out;
+        }
+        .hs-select-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .hs-select-option.selected {
+            background-color: #eff6ff;
+            border-left: 3px solid #3b82f6;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .card-hover:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+        .checkbox-item {
+            transition: all 0.2s ease;
+        }
+        .checkbox-item:hover {
+            background-color: #f8fafc;
+        }
+        .checkbox-item.selected {
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Encabezado -->
+        <header class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-800">Configuración</h1>
+            <h2 class="text-xl font-semibold text-gray-600">Gestión de Roles</h2>
+        </header>
+
+        <!-- Card de acciones y filtros -->
+        <div class="mx-auto mb-6">
+            <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm p-5 flex flex-col gap-5">
+                <!-- Fila 1: Acciones principales y exportación -->
+                <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                    <!-- Acciones principales -->
+                    <div class="flex flex-wrap gap-2" role="group" aria-label="Acciones principales">
+                        <button type="button" class="pl-4 pr-6 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1">
+                            <i class="ti ti-arrow-left mr-2"></i>Atras
+                        </button>
+                    </div>
+
+                    <!-- Exportar -->
+                    <div class="flex items-center gap-3" role="group" aria-label="Descargar archivos">
+                        <span class="text-sm text-gray-600 font-medium">Descargar archivos:</span>
+                        <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-sm transition focus:ring-2 focus:ring-green-500 focus:ring-offset-1">
+                            <i class="text-lg ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Separación visual -->
+                <div class="border-t border-dashed border-gray-300 w-full"></div>
+
+                <!-- Fila 2: Filtros principales -->
+                <div class="flex flex-col xl:flex-row gap-4 items-start xl:items-center justify-between w-full">
+                    <!-- Filtros principales -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full xl:w-auto items-stretch sm:items-center">
+                        <!-- Empresas -->
+                        <div class="flex-shrink-0 w-36 sm:w-32 lg:w-36">
+                            <div class="relative">
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                    <option value="">Empresas</option>
+                                    <option value="1">1159-ASON Test ELECTRÓNICA AERO</option>
+                                    <option value="2">1159-ASON ELECTRÓNICA AERONAUTIC</option>
+                                </select>
+                                <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Centro -->
+                        <div class="flex-shrink-0 w-36 sm:w-32 lg:w-36">
+                            <div class="relative">
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                    <option value="">Centros</option>
+                                    <option value="1">Centro Madrid</option>
+                                    <option value="2">Centro Barcelona</option>
+                                    <option value="3">Centro Valencia</option>
+                                </select>
+                                <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Departamento -->
+                        <div class="flex-shrink-0 w-36 sm:w-32 lg:w-36">
+                            <div class="relative">
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                    <option value="">Departamentos</option>
+                                    <option value="1">Recursos Humanos</option>
+                                    <option value="2">Tecnología</option>
+                                    <option value="3">Operaciones</option>
+                                    <option value="4">Finanzas</option>
+                                </select>
+                                <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Buscador de Empleados con Select Desplegable -->
+                        <div class="flex-shrink-0 w-60 sm:w-42 lg:w-80">
+                            <div class="relative">
+                                <button
+                                    type="button"
+                                    id="employee-select-toggle"
+                                    class="hs-select-toggle w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-left flex items-center gap-2 cursor-pointer hover:border-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-colors"
+                                    aria-expanded="false"
+                                    aria-haspopup="listbox"
+                                >
+                                    <span class="me-2" data-icon>
+                                        <i class="ti ti-user text-gray-500"></i>
+                                    </span>
+                                    <span class="text-gray-800 flex-1 truncate text-sm" id="employee-select-title">Buscar empleado...</span>
+                                    <div class="absolute top-1/2 right-3 -translate-y-1/2">
+                                        <svg
+                                            class="hs-select-chevron w-3.5 h-3.5 text-gray-500 transition-transform"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="m7 15 5 5 5-5" />
+                                            <path d="m7 9 5-5 5 5" />
+                                        </svg>
+                                    </div>
+                                </button>
+
+                                <div class="hs-select-dropdown absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-hidden mt-1" role="listbox" id="employee-select-dropdown">
+                                    <div class="bg-white p-2 sticky top-0 z-10 border-b border-gray-200">
+                                        <input
+                                            type="text"
+                                            id="employee-search-input"
+                                            class="hs-select-search w-full px-3 py-2 border border-gray-300 rounded-md text-sm bg-gray-50 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200"
+                                            placeholder="Buscar empleado por nombre, ID o empresa..."
+                                        />
+                                    </div>
+                                    <div class="max-h-64 overflow-y-auto p-1 scroll-container" id="employee-options-container">
+                                        <!-- Las opciones de empleados se cargarán aquí dinámicamente -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-4 xl:mt-0">
+                        <button id="limpiarFiltros" type="button" class="w-full sm:w-auto px-4 py-2 border border-gray-300 bg-gray-100 text-gray-700 text-sm rounded-lg flex items-center justify-center hover:bg-gray-200 transition">
+                            <i class="ti ti-broom mr-1"></i> Limpiar
+                        </button>
+
+                        <button type="button" class="w-full sm:w-auto px-4 py-2 bg-indigo-700 text-white text-sm rounded-lg flex items-center justify-center hover:bg-indigo-800 focus-visible:ring-2 focus-visible:ring-indigo-400 transition">
+                            <i class="ti ti-search mr-1"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empleado seleccionado -->
+                <div id="selected-employee-card" class="mt-2 p-4 bg-blue-50 border border-blue-200 rounded-lg hidden">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-circle text-blue-500 text-2xl mr-3"></i>
+                            <div>
+                                <h4 class="text-lg font-medium text-blue-800" id="selected-employee-name">Nombre del empleado</h4>
+                                <p class="text-sm text-blue-600" id="selected-employee-id">ID: 000000</p>
+                                <p class="text-sm text-blue-600" id="selected-employee-company">Empresa</p>
+                            </div>
+                        </div>
+                        <button id="deselect-employee" class="text-blue-500 hover:text-blue-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <!-- Panel de Empleados -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <!-- Pestañas -->
+                <div class="border-b border-gray-200">
+                    <nav class="flex -mb-px">
+                        <button id="tab-employees" class="tab-button active py-4 px-6 text-center border-b-2 border-blue-500 font-medium text-blue-600 w-full">
+                            <i class="fas fa-user-tie mr-2"></i>Información del Empleado
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Contenido de Empleados -->
+                <div id="content-employees" class="tab-content fade-in p-6">
+                    <div class="space-y-6">
+                        <!-- Información principal del empleado -->
+                        <div id="employee-info" class="hidden bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 card-hover">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-md" id="employee-avatar">
+                                        <!-- Iniciales se cargarán aquí -->
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2" id="info-employee-name">Seleccione un empleado</h3>
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <span class="text-gray-600 font-medium">ID:</span>
+                                            <span class="text-gray-800 ml-2" id="info-employee-id">-</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-600 font-medium">Empresa:</span>
+                                            <span class="text-gray-800 ml-2" id="info-employee-company">-</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-600 font-medium">Departamento:</span>
+                                            <span class="text-gray-800 ml-2" id="info-employee-department">-</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-600 font-medium">Personal a cargo:</span>
+                                            <span class="text-gray-800 ml-2" id="info-employee-subordinates">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal a cargo -->
+                        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden card-hover">
+                            <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-users mr-2 text-blue-500"></i>
+                                    Personal a cargo
+                                </h4>
+                            </div>
+                            <div id="subordinates-container" class="max-h-80 overflow-y-auto scroll-container">
+                                <div id="no-subordinates" class="text-center py-12 text-gray-500">
+                                    <i class="fas fa-users-slash text-4xl mb-3 text-gray-300"></i>
+                                    <p class="text-lg">No hay personal a cargo</p>
+                                    <p class="text-sm mt-1">Seleccione un empleado para ver su equipo</p>
+                                </div>
+                                <table class="min-w-full divide-y divide-gray-200 hidden">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cargo</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subordinates-table-body" class="bg-white divide-y divide-gray-200">
+                                        <!-- El personal a cargo se cargará aquí dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Roles -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <!-- Pestañas -->
+                <div class="border-b border-gray-200">
+                    <nav class="flex -mb-px">
+                        <button id="tab-delegation" class="tab-button active py-4 px-6 text-center border-b-2 border-blue-500 font-medium text-blue-600 flex-1">
+                            <i class="fas fa-building mr-2"></i>Delegación
+                        </button>
+                        <button id="tab-quotes" class="tab-button py-4 px-6 text-center border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 flex-1">
+                            <i class="fas fa-file-invoice-dollar mr-2"></i>Cotizaciones
+                        </button>
+                        <button id="tab-roles-employees" class="tab-button py-4 px-6 text-center border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 flex-1">
+                            <i class="fas fa-users mr-2"></i>Empleados
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Contenido de Roles -->
+                <div class="p-6">
+                    <!-- Contenido de Delegación -->
+                    <div id="content-delegation" class="tab-content fade-in">
+                        <div class="mb-4">
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Lista de Delegaciones</h3>
+                            <p class="text-sm text-gray-600">Seleccione las delegaciones que desea asignar</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden max-h-96 overflow-y-auto scroll-container">
+                            <div class="divide-y divide-gray-200">
+                                <!-- Elementos de delegación con checkbox -->
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div>
+                                        <div class="font-medium text-gray-800">Delegación Madrid Centro</div>
+                                        <div class="text-sm text-gray-500">Responsable: Ana García López</div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div>
+                                        <div class="font-medium text-gray-800">Delegación Barcelona Norte</div>
+                                        <div class="text-sm text-gray-500">Responsable: Carlos Méndez Ruiz</div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div>
+                                        <div class="font-medium text-gray-800">Delegación Valencia Sur</div>
+                                        <div class="text-sm text-gray-500">Responsable: María José Torres</div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div>
+                                        <div class="font-medium text-gray-800">Delegación Sevilla Este</div>
+                                        <div class="text-sm text-gray-500">Responsable: Roberto Jiménez</div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div>
+                                        <div class="font-medium text-gray-800">Delegación Bilbao Oeste</div>
+                                        <div class="text-sm text-gray-500">Responsable: Laura Martínez</div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div>
+                                        <div class="font-medium text-gray-800">Delegación Málaga Costa</div>
+                                        <div class="text-sm text-gray-500">Responsable: David Sánchez</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-gray-500">6 delegaciones disponibles</span>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-save mr-2"></i>Guardar Selección
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contenido de Cotizaciones -->
+                    <div id="content-quotes" class="tab-content hidden fade-in">
+                        <div class="mb-4">
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Lista de Cotizaciones</h3>
+                            <p class="text-sm text-gray-600">Seleccione las cotizaciones que desea asignar</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden max-h-96 overflow-y-auto scroll-container">
+                            <div class="divide-y divide-gray-200">
+                                <!-- Elementos de cotizaciones con checkbox -->
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-800">COT-2024-001 - Proyecto Aerodinámica</div>
+                                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                                            <span>Cliente: AeroTech Solutions</span>
+                                            <span>Vencimiento: 15/03/2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-800">COT-2024-002 - Sistema Navegación</div>
+                                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                                            <span>Cliente: NavAir Systems</span>
+                                            <span>Vencimiento: 20/03/2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-800">COT-2024-003 - Componentes Electrónicos</div>
+                                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                                            <span>Cliente: ElectroAviation</span>
+                                            <span>Vencimiento: 25/03/2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-800">COT-2024-004 - Software Control</div>
+                                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                                            <span>Cliente: ControlSystems S.L.</span>
+                                            <span>Vencimiento: 30/03/2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex-1">
+                                        <div class="font-medium text-gray-800">COT-2024-005 - Mantenimiento Flota</div>
+                                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                                            <span>Cliente: AirFleet Services</span>
+                                            <span>Vencimiento: 05/04/2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-gray-500">5 cotizaciones disponibles</span>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-save mr-2"></i>Guardar Selección
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contenido de Empleados para Roles -->
+                    <div id="content-roles-employees" class="tab-content hidden fade-in">
+                        <div class="mb-4">
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Lista de Empleados</h3>
+                            <p class="text-sm text-gray-600">Seleccione los empleados que desea asignar</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden max-h-96 overflow-y-auto scroll-container">
+                            <div class="divide-y divide-gray-200">
+                                <!-- Elementos de empleados con checkbox -->
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">GA</div>
+                                        <div>
+                                            <div class="font-medium text-gray-800">Guillermo Alonso Ramos</div>
+                                            <div class="text-sm text-gray-500">ID: 088388 - Dirección</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">MA</div>
+                                        <div>
+                                            <div class="font-medium text-gray-800">Mihail Eduard Angelov</div>
+                                            <div class="text-sm text-gray-500">ID: 050146 - Tecnología</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">JA</div>
+                                        <div>
+                                            <div class="font-medium text-gray-800">Jesus Aranguez Rodriguez</div>
+                                            <div class="text-sm text-gray-500">ID: 084434 - Operaciones</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">FB</div>
+                                        <div>
+                                            <div class="font-medium text-gray-800">Francisca Barquilla Gomez</div>
+                                            <div class="text-sm text-gray-500">ID: 084436 - Recursos Humanos</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs font-bold">DB</div>
+                                        <div>
+                                            <div class="font-medium text-gray-800">Dawid Grzegorz Bzikowski</div>
+                                            <div class="text-sm text-gray-500">ID: 086368 - Finanzas</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox-item p-4 flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-bold">JC</div>
+                                        <div>
+                                            <div class="font-medium text-gray-800">Jose Miguel Chumbas</div>
+                                            <div class="text-sm text-gray-500">ID: 084428 - Tecnología</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-gray-500">6 empleados disponibles</span>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-save mr-2"></i>Guardar Selección
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo
+        const employees = [
+            { 
+                id: '088388', 
+                name: 'Guillermo Alonso Ramos', 
+                company: '1159-ASON Test ELECTRÓNICA AERO', 
+                department: 'Dirección',
+                subordinates: 3,
+                initials: 'GA',
+                projects: 5
+            },
+            { 
+                id: '050146', 
+                name: 'Mihail Eduard Angelov', 
+                company: '1159-ASON ELECTRÓNICA AERONAUTIC', 
+                department: 'Tecnología',
+                subordinates: 0,
+                initials: 'MA',
+                projects: 3
+            },
+            { 
+                id: '084434', 
+                name: 'Jesus Aranguez Rodriguez', 
+                company: '1159-ASON ELECTRÓNICA AERONAUTIC', 
+                department: 'Operaciones',
+                subordinates: 1,
+                initials: 'JA',
+                projects: 2
+            },
+            { 
+                id: '084436', 
+                name: 'Francisca Barquilla Gomez', 
+                company: '1159-ASON ELECTRÓNICA AERONAUTIC', 
+                department: 'Recursos Humanos',
+                subordinates: 2,
+                initials: 'FB',
+                projects: 4
+            },
+            { 
+                id: '086368', 
+                name: 'Dawid Grzegorz Bzikowski', 
+                company: '1159-ASON ELECTRÓNICA AERONAUTIC', 
+                department: 'Finanzas',
+                subordinates: 0,
+                initials: 'DB',
+                projects: 1
+            },
+            { 
+                id: '084428', 
+                name: 'Jose Miguel Chumbas', 
+                company: '1159-ASON ELECTRÓNICA AERONAUTIC', 
+                department: 'Tecnología',
+                subordinates: 0,
+                initials: 'JC',
+                projects: 2
+            }
+        ];
+
+        // Datos de personal a cargo
+        const subordinatesData = {
+            '088388': [
+                { name: 'Mihail Eduard Angelov', position: 'Técnico Senior', status: 'Activo' },
+                { name: 'Jesus Aranguez Rodriguez', position: 'Analista Principal', status: 'Activo' },
+                { name: 'Francisca Barquilla Gomez', position: 'Supervisora RRHH', status: 'Activo' }
+            ],
+            '084434': [
+                { name: 'Dawid Grzegorz Bzikowski', position: 'Asistente Financiero', status: 'Activo' }
+            ],
+            '084436': [
+                { name: 'Jose Miguel Chumbas', position: 'Operario', status: 'Activo' },
+                { name: 'Ana María López', position: 'Operario', status: 'Vacaciones' }
+            ]
+        };
+
+        // Estado de la aplicación
+        let state = {
+            selectedEmployee: null,
+            filteredEmployees: [...employees],
+            searchQuery: '',
+            isDropdownOpen: false
+        };
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            renderEmployeeOptions();
+            setupEventListeners();
+            setupRolesTabs();
+            setupCheckboxInteractions();
+        });
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Toggle del dropdown de empleados
+            const toggleButton = document.getElementById('employee-select-toggle');
+            const dropdown = document.getElementById('employee-select-dropdown');
+            
+            toggleButton.addEventListener('click', function() {
+                state.isDropdownOpen = !state.isDropdownOpen;
+                if (state.isDropdownOpen) {
+                    dropdown.classList.add('open');
+                    document.getElementById('employee-search-input').focus();
+                } else {
+                    dropdown.classList.remove('open');
+                }
+            });
+            
+            // Buscador dentro del dropdown
+            const searchInput = document.getElementById('employee-search-input');
+            
+            searchInput.addEventListener('input', function() {
+                state.searchQuery = this.value.trim();
+                filterEmployeeOptions();
+            });
+            
+            // Cerrar dropdown al hacer clic fuera
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('#employee-select-toggle') && !event.target.closest('#employee-select-dropdown')) {
+                    state.isDropdownOpen = false;
+                    dropdown.classList.remove('open');
+                }
+            });
+            
+            // Limpiar todo
+            document.getElementById('limpiarFiltros').addEventListener('click', function() {
+                searchInput.value = '';
+                state.searchQuery = '';
+                filterEmployeeOptions();
+                deselectEmployee();
+            });
+            
+            // Deseleccionar empleado
+            document.getElementById('deselect-employee').addEventListener('click', function() {
+                deselectEmployee();
+            });
+        }
+
+        // Configurar pestañas de roles
+        function setupRolesTabs() {
+            const tabs = document.querySelectorAll('#tab-delegation, #tab-quotes, #tab-roles-employees');
+            const contents = document.querySelectorAll('#content-delegation, #content-quotes, #content-roles-employees');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Desactivar todas las pestañas
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'border-blue-500', 'text-blue-600');
+                        t.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    
+                    // Activar pestaña actual
+                    this.classList.add('active', 'border-blue-500', 'text-blue-600');
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    
+                    // Ocultar todos los contenidos
+                    contents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Mostrar contenido correspondiente
+                    const tabId = this.id.replace('tab-', 'content-');
+                    document.getElementById(tabId).classList.remove('hidden');
+                });
+            });
+        }
+
+        // Configurar interacciones de checkboxes
+        function setupCheckboxInteractions() {
+            // Delegación checkboxes
+            const delegationItems = document.querySelectorAll('#content-delegation .checkbox-item');
+            delegationItems.forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                item.addEventListener('click', function(e) {
+                    if (e.target !== checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    updateCheckboxItemState(item, checkbox.checked);
+                });
+            });
+
+            // Cotizaciones checkboxes
+            const quotesItems = document.querySelectorAll('#content-quotes .checkbox-item');
+            quotesItems.forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                item.addEventListener('click', function(e) {
+                    if (e.target !== checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    updateCheckboxItemState(item, checkbox.checked);
+                });
+            });
+
+            // Empleados checkboxes
+            const employeesItems = document.querySelectorAll('#content-roles-employees .checkbox-item');
+            employeesItems.forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                item.addEventListener('click', function(e) {
+                    if (e.target !== checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    updateCheckboxItemState(item, checkbox.checked);
+                });
+            });
+        }
+
+        // Actualizar estado visual del item con checkbox
+        function updateCheckboxItemState(item, isChecked) {
+            if (isChecked) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
+        }
+
+        // Renderizar opciones de empleados en el dropdown
+        function renderEmployeeOptions() {
+            const container = document.getElementById('employee-options-container');
+            container.innerHTML = '';
+            
+            employees.forEach(employee => {
+                const option = document.createElement('div');
+                option.className = 'hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5';
+                option.setAttribute('role', 'option');
+                option.setAttribute('data-value', employee.id);
+                option.innerHTML = `
+                    <div class="employee-avatar w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-semibold">${employee.initials}</div>
+                    <div class="employee-info flex-1">
+                        <div class="employee-name font-medium text-sm">${employee.name}</div>
+                        <div class="employee-details flex justify-between text-xs text-gray-500">
+                            <span>ID: ${employee.id}</span>
+                            <span>${employee.department}</span>
+                        </div>
+                    </div>
+                `;
+                option.addEventListener('click', function() {
+                    selectEmployee(employee.id);
+                    state.isDropdownOpen = false;
+                    dropdown.classList.remove('open');
+                });
+                container.appendChild(option);
+            });
+        }
+
+        // Filtrar opciones de empleados según la búsqueda
+        function filterEmployeeOptions() {
+            const container = document.getElementById('employee-options-container');
+            const options = container.querySelectorAll('.hs-select-option');
+            
+            if (!state.searchQuery) {
+                options.forEach(option => {
+                    option.style.display = 'flex';
+                });
+                return;
+            }
+            
+            const query = state.searchQuery.toLowerCase();
+            options.forEach(option => {
+                const employeeId = option.getAttribute('data-value');
+                const employee = employees.find(emp => emp.id === employeeId);
+                
+                if (employee && (
+                    employee.name.toLowerCase().includes(query) ||
+                    employee.id.includes(query) ||
+                    employee.company.toLowerCase().includes(query) ||
+                    employee.department.toLowerCase().includes(query)
+                )) {
+                    option.style.display = 'flex';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        }
+
+        // Seleccionar un empleado
+        function selectEmployee(employeeId) {
+            state.selectedEmployee = employeeId;
+            const employee = employees.find(emp => emp.id === employeeId);
+            
+            if (!employee) return;
+            
+            // Actualizar título del select
+            document.getElementById('employee-select-title').textContent = employee.name;
+            
+            // Actualizar tarjeta de empleado seleccionado
+            const selectedCard = document.getElementById('selected-employee-card');
+            document.getElementById('selected-employee-name').textContent = employee.name;
+            document.getElementById('selected-employee-id').textContent = `ID: ${employee.id}`;
+            document.getElementById('selected-employee-company').textContent = employee.company;
+            selectedCard.classList.remove('hidden');
+            
+            // Actualizar información en el panel principal
+            const employeeInfo = document.getElementById('employee-info');
+            document.getElementById('info-employee-name').textContent = employee.name;
+            document.getElementById('info-employee-id').textContent = employee.id;
+            document.getElementById('info-employee-company').textContent = employee.company;
+            document.getElementById('info-employee-department').textContent = employee.department;
+            document.getElementById('info-employee-subordinates').textContent = `${employee.subordinates} personas`;
+            document.getElementById('employee-avatar').textContent = employee.initials;
+            employeeInfo.classList.remove('hidden');
+            
+            // Actualizar personal a cargo
+            renderSubordinates(employeeId);
+            
+            // Marcar como seleccionado en el dropdown
+            const options = document.querySelectorAll('.hs-select-option');
+            options.forEach(option => {
+                if (option.getAttribute('data-value') === employeeId) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+
+        // Deseleccionar empleado
+        function deselectEmployee() {
+            state.selectedEmployee = null;
+            
+            // Restablecer título del select
+            document.getElementById('employee-select-title').textContent = 'Buscar empleado...';
+            
+            // Ocultar tarjeta de empleado seleccionado
+            document.getElementById('selected-employee-card').classList.add('hidden');
+            
+            // Ocultar información en el panel principal
+            document.getElementById('employee-info').classList.add('hidden');
+            
+            // Limpiar personal a cargo
+            document.getElementById('subordinates-table-body').innerHTML = '';
+            document.getElementById('no-subordinates').classList.remove('hidden');
+            document.querySelector('#subordinates-container table').classList.add('hidden');
+            
+            // Quitar selección en el dropdown
+            const options = document.querySelectorAll('.hs-select-option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+        }
+
+        // Renderizar personal a cargo
+        function renderSubordinates(employeeId) {
+            const subordinates = subordinatesData[employeeId] || [];
+            const tbody = document.getElementById('subordinates-table-body');
+            const noSubordinates = document.getElementById('no-subordinates');
+            const table = document.querySelector('#subordinates-container table');
+            
+            tbody.innerHTML = '';
+            
+            if (subordinates.length > 0) {
+                noSubordinates.classList.add('hidden');
+                table.classList.remove('hidden');
+                
+                subordinates.forEach(sub => {
+                    const statusColor = sub.status === 'Activo' ? 'text-green-600' : 'text-yellow-600';
+                    const bgColor = sub.status === 'Activo' ? 'bg-green-100' : 'bg-yellow-100';
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50 transition-colors';
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">${sub.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sub.position}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor} ${bgColor}">
+                                ${sub.status}
+                            </span>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } else {
+                noSubordinates.classList.remove('hidden');
+                table.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

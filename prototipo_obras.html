@@ -1,0 +1,3333 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Demo Visualpresencia Cloud</title>
+        <meta name="description" content="Demo Visualpresencia Cloud" />
+        <meta name="author" content="demo.vpcloud.es" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+        <!-- Google Fonts - DM Sans -->
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+        <!-- Tailwind CSS v3.3.5 via CDN -->
+        <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+
+        <!-- CSS Base -->
+        <link rel="stylesheet" href="css/zerogrid.css" />
+
+        <link rel="stylesheet" href="css/style_vp25.css" />
+        <link rel="stylesheet" href="css/colores_vp25.css" />
+
+        <!-- Icon Libraries -->
+        <link rel="stylesheet" href="css/tabler-icons.min.css" />
+        <link href="css/boxicons.min.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+        />
+
+        <!-- Component Libraries -->
+        <link rel="stylesheet" href="css/jquery-ui.css" />
+        <link href="css/pqselect.min.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/fullcalendar.css" />
+        <link href="css/fullcalendar.print.css" rel="stylesheet" media="print" />
+        <link rel="stylesheet" href="css/flipclock.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="css/responsive.dataTables.min.css" />
+        <link type="text/css" href="css/dataTables.checkboxes.css" rel="stylesheet" />
+
+        <!-- Tailwind Elements -->
+
+        <script src="js/flowbite.js"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/bootstrap-clockpicker.min.css" />
+        <link rel="stylesheet" href="css/proyectos.css" />
+        <link rel="stylesheet" href="css/novedades.css" />
+        <link rel="stylesheet" href="css/novedades_vp25.css" />
+        <link rel="stylesheet" href="css/soporte.css" />
+        <link rel="stylesheet" href="css/denuncias.css" />
+        <link rel="stylesheet" href="css/onboarding.css" />
+        <link rel="stylesheet" href="css/pagos.css" />
+        <link rel="stylesheet" href="css/modelo145.css" />
+        <link rel="stylesheet" href="css/modelo145_vp25.css" />
+        <link rel="stylesheet" href="css/morris.css" />
+        <link href="css/quill.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/style_pfizer.css" />
+        <link rel="stylesheet" href="css/responsive_pfizer.css" />
+
+        <!-- Google Maps API -->
+        <script async defer src="js/js"></script>
+        <script src="js/google.js"></script>
+
+        <!-- Estilos personalizados con DM Sans -->
+        <style>
+            body {
+                font-family: "DM Sans", sans-serif;
+            }
+
+            /* Estilos específicos que no están en Tailwind */
+            .drop-shadow-md {
+                --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+                filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate)
+                    var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+            }
+            .active,
+            .accordion:hover {
+                background-color: #ffffff !important;
+            }
+        </style>
+        <style>
+            .scroll-container {
+                scrollbar-width: thin;
+                scrollbar-color: #cbd5e1 #f1f5f9;
+            }
+            .scroll-container::-webkit-scrollbar {
+                width: 6px;
+            }
+            .scroll-container::-webkit-scrollbar-track {
+                background: #f1f5f9;
+                border-radius: 3px;
+            }
+            .scroll-container::-webkit-scrollbar-thumb {
+                background: #cbd5e1;
+                border-radius: 3px;
+            }
+            .scroll-container::-webkit-scrollbar-thumb:hover {
+                background: #94a3b8;
+            }
+            .selected-item {
+                background-color: #eff6ff;
+                border-left: 4px solid #4338ca;
+            }
+            .fade-in {
+                animation: fadeIn 0.3s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .hs-select-dropdown {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.2s ease-out;
+            }
+            .hs-select-dropdown.open {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            .hs-select-option.selected {
+                background-color: #eff6ff;
+                border-left: 3px solid #4338ca;
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+                border: 1px solid #e5e7eb;
+            }
+            .card-hover:hover {
+                border-color: #4338ca;
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+            }
+            .checkbox-item {
+                transition: all 0.2s ease;
+            }
+            .checkbox-item:hover {
+                background-color: #f8fafc;
+            }
+            .checkbox-item.selected {
+                background-color: #eff6ff;
+            }
+            .modal-overlay {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        </style>
+        <script type="text/javascript" charset="UTF-8" src="js/common.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="js/util.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="js/stats.js"></script>
+    </head>
+
+    <body class="bg-[#f2f2f2] section-container">
+        <!-- Marco con el texto de COOKIES -->
+
+        <div id="cookies" class="textos_cookies bg-[#2C2554]" style="display: none">
+            <div class="texto !w-[80%] flex flex-col justify-center items-start">
+                <h2>Uso de cookies</h2>
+                <p>
+                    Este servicio web utiliza cookies que permiten el funcionamiento y la prestación de servicios
+                    ofrecidos en el mismo
+                </p>
+            </div>
+            <div class="cerrar_cookies flex justify-center items-center">
+                <button
+                    type="button"
+                    class="text-center w-[84px] rounded-full border border-[#ffffff] hover:bg-[#2C2554] text-sm font-medium hover:text-[#ffffff] bg-[#ffffff] text-[#2C2554] mr-[1px]"
+                    onclick="cierraCookies();"
+                >
+                    Cerrar
+                </button>
+            </div>
+        </div>
+        <!--------------Header--------------->
+        <div id="loading" style="display: none">
+            <div class="row">
+                <div class="col-full">
+                    <div class="wrap-col">
+                        <img src="img/logo_vp.gif" alt="loading" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="z-50 !sticky !top-0 w-[100vw] lg:w-[101%]">
+            <div id="logo_vpd" class="hidden">
+                <img
+                    src="img/pfizer.png"
+                    alt="Demo Visualpresencia Cloud"
+                    onclick="javascript:window.location.reload();"
+                />
+            </div>
+
+            <div
+                id="sidebar_desktop"
+                class="border-r border-solid border-gray-200 sidebar fixed px-4 text-center bg-white text-gray-700 h-[100vh]"
+            >
+                <div class="bg-white pt-2 sticky top-0 z-[2] border-b border-[#D0D2DE] border-solid pb-5">
+                    <div
+                        id="logo_container"
+                        class="flex items-center text-gray-100 text-xl top-0 sticky bg-white p-[10px] border-b border-[#D0D2DE] border-solid pb-6"
+                    >
+                        <div class="flex h-[50px] items-center justify-center cursor-pointer">
+                            <img
+                                id="logoMenu"
+                                src="img/pfizer.png"
+                                style="max-width: 80%"
+                                alt="Logo"
+                                onclick="javascript:volverInicio();"
+                                src="img/pfizer.png"
+                            />
+                        </div>
+                        <div id="btnToggleMenu" class="cursor-pointer" onclick="toggleMenuDesktop();">
+                            <i class="ti ti-menu-2 text-[#D9D9D9] text-[24px]"></i>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <span class="flex titulo_sidebar text-[#83899F]">Inicio</span>
+                        <div
+                            class="p-2.5 mt-3 flex items-center icon-menu text-[#707070] rounded-md btn duration-300 cursor-pointer hover:bg-gray-100 top-[4rem] sticky bg-white"
+                        >
+                            <i class="ti ti-table-heart text-[#412DB6] text-[24px]"></i>
+                            <span class="text-sm text-gray-500 font-normal">Favoritos</span>
+                        </div>
+                        <div
+                            id="inicio"
+                            class="relative p-2 mt-3 flex items-center text-[#707070] icon-menu rounded-md duration-300 cursor-pointer hover:bg-gray-100 top-[8rem] sticky bg-white"
+                        >
+                            <i class="ti ti-dashboard text-[#412DB6] text-[24px]"></i>
+                            <span class="text-sm text-gray-500 font-normal">Inicio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <span class="flex mb-4 text-gray-500 text-xs font-medium uppercase tracking-wider">Menú</span>
+                    <div class="overflow-y-auto overflow-x-hidden lg:h-[25vh] 2xl:h-[35vh]">
+                        <a
+                            data-modulo="Presencia"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100 active"
+                        >
+                            <i class="ti ti-clock text-pink-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Presencia</span>
+                            <img
+                                id="sesi_1"
+                                data-tooltip-target="tooltip-sesi_1"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Configuración"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-settings text-pink-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Configuración</span>
+                            <img
+                                id="sesi_2"
+                                data-tooltip-target="tooltip-sesi_2"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Hardware"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-cpu-2 text-purple-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Hardware</span>
+                            <img
+                                id="sesi_3"
+                                data-tooltip-target="tooltip-sesi_3"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="RRHH"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-users text-purple-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">RRHH</span>
+                            <img
+                                id="sesi_4"
+                                data-tooltip-target="tooltip-sesi_4"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Mi_Portal"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-id-badge-2 text-purple-600 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Mi Portal</span>
+                            <img
+                                id="sesi_5"
+                                data-tooltip-target="tooltip-sesi_5"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Evaluación"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-checklist text-indigo-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Evaluación</span>
+                            <img
+                                id="sesi_6"
+                                data-tooltip-target="tooltip-sesi_6"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Portal_Candidato"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-package text-indigo-700 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Portal Candidato</span>
+                            <img
+                                id="sesi_7"
+                                data-tooltip-target="tooltip-sesi_7"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Colaboradores"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-friends text-teal-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Colaboradores</span>
+                            <img
+                                id="sesi_8"
+                                data-tooltip-target="tooltip-sesi_8"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Proyectos"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-stack-backward text-cyan-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Proyectos</span>
+                            <img
+                                id="sesi_9"
+                                data-tooltip-target="tooltip-sesi_9"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Equipamientos"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-cube text-cyan-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Equipamientos</span>
+                            <img
+                                id="sesi_10"
+                                data-tooltip-target="tooltip-sesi_10"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Gestión_Flotas"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-car-garage text-teal-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Gestión Flotas</span>
+                            <img
+                                id="sesi_11"
+                                data-tooltip-target="tooltip-sesi_11"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Básico"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-briefcase-2 text-green-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Básico</span>
+                            <img
+                                id="sesi_12"
+                                data-tooltip-target="tooltip-sesi_12"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Actividad_Teletrabajo"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-device-laptop text-green-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Teletrabajo</span>
+                            <img
+                                id="sesi_13"
+                                data-tooltip-target="tooltip-sesi_13"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="eCovid"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-virus text-lime-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">eCovid</span>
+                            <img
+                                id="sesi_14"
+                                data-tooltip-target="tooltip-sesi_14"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Gestión_de_Accesos"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-shield-lock text-yellow-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Accesos</span>
+                            <img
+                                id="sesi_16"
+                                data-tooltip-target="tooltip-sesi_16"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Auditoria"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-device-desktop-analytics text-green-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Auditoria</span>
+                            <img
+                                id="sesi_28"
+                                data-tooltip-target="tooltip-sesi_28"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Modelo_145"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-file-text text-green-600 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Modelo 145</span>
+                            <img
+                                id="sesi_32"
+                                data-tooltip-target="tooltip-sesi_32"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Comunicacion"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-messages text-yellow-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Comunicacion</span>
+                            <img
+                                id="sesi_33"
+                                data-tooltip-target="tooltip-sesi_33"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                        <a
+                            data-modulo="Onboarding"
+                            href="#"
+                            class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100"
+                        >
+                            <i class="ti ti-rotate-clockwise-2 text-teal-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Onboarding</span>
+                            <img
+                                id="sesi_40"
+                                data-tooltip-target="tooltip-sesi_40"
+                                class="hidden ml-auto"
+                                src="img/indicadorMenu.svg"
+                            />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="border-t border-[#D0D2DE] border-solid">
+                        <span class="flex mt-3 text-[#83899F] titulo_sidebar">Soporte</span>
+                        <div
+                            onclick="agregarOverlay();abrirSubmenu(&#39;Soporte&#39;);"
+                            class="flex items-center mt-3 justify-evenly cursor-pointer bg-[#F5F6F8] hover:bg-gray-200 border border-solid border-[#E6E7EC] p-[10px] rounded-lg"
+                        >
+                            <div class="flex items-center justify-center bg-[#ffffff] rounded-full p-[3px]">
+                                <i class="ti ti-headset text-[#412DB6] text-[24px]"></i>
+                            </div>
+                            <div class="flex items-center justify-center text-[14px] text-menu-icon">Soporte</div>
+                            <div class="flex items-center justify-center">
+                                <i class="ti ti-chevron-right text-[#9CA0B2] text-[24px] text-menu-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                id="Onboarding"
+                class="hidden rounded-xl bg-white sidebar-submenu top-0 h-full"
+                data-popper-reference-hidden=""
+                data-popper-escaped=""
+                data-popper-placement="right"
+            >
+                <div class="flex items-center justify-end pb-[0.25rem] text-[20px]">
+                    <span
+                        class="flex justify-center items-center cursor-pointer"
+                        onclick="toggleMenu(Onboarding);eliminarOverlay();"
+                        ><i class="ti ti-x-circle"></i
+                    ></span>
+                </div>
+                <div class="flex w-full flex-col md:flex-row min-h-[100px]">
+                    <span class="flex items-center justify-center flex-col w-[100%] md:w-[20%] bg-[#74CEC4] rounded-xl">
+                        <i
+                            class="ti ti-rotate-clockwise-2 text-[#74CEC4] !text-[#ffffff] text-[24px] bg-[#FFFFFF29] p-[3px] rounded-full"
+                        ></i>
+                        <h5 class="text-[#ffffff] text-[15px] xl:text-[20px] text-center">Onboarding</h5>
+                    </span>
+                    <ul
+                        class="submenu-items w-full py-1 px-1 text-sm text-gray-700 dark:text-gray-200 grid gap-x-[10px] gap-y-[3px] grid-cols-2 xl:grid-cols-4 max-h-[60vh] overflow-x-hidden overflow-y-auto items-start"
+                        aria-labelledby="dropdownRightButton"
+                    >
+                        <li
+                            data-modulo="Onboarding"
+                            class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg"
+                        >
+                            <a
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                data-submenu="Tareas"
+                                onclick="reseteaPagina();irAContenido(this,40,329);eliminarOverlay();"
+                            >
+                                <i
+                                    class="ti ti-brand-stackshare text-[#74CEC4] bg-[#74CEC429] rounded-full p-[3px] text-[24px]"
+                                ></i
+                                ><span class="ml-2">Tareas</span>
+                            </a>
+                            <img
+                                id="elem_329"
+                                data-tooltip-target="tooltip-elem_329"
+                                data-tooltip-style="light"
+                                class="hidden mr-1"
+                                src="img/indicadorMenu.svg"
+                            />
+                            <div
+                                onclick="guardaFavoritos(40,329,0);rechargeFav(this,40,329);"
+                                class="flex items-center hover:text-[#707070] text-[20px] cursor-pointer"
+                            >
+                                <i class="ti ti-bookmark"></i>
+                            </div>
+                        </li>
+                        <li
+                            data-modulo="Onboarding"
+                            class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg"
+                        >
+                            <a
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                data-submenu="Grupo tareas"
+                                onclick="reseteaPagina();irAContenido(this,40,330);eliminarOverlay();"
+                            >
+                                <i
+                                    class="ti ti-box-multiple text-[#74CEC4] bg-[#74CEC429] rounded-full p-[3px] text-[24px]"
+                                ></i
+                                ><span class="ml-2">Grupo tareas</span>
+                            </a>
+                            <img
+                                id="elem_330"
+                                data-tooltip-target="tooltip-elem_330"
+                                data-tooltip-style="light"
+                                class="hidden mr-1"
+                                src="img/indicadorMenu.svg"
+                            />
+                            <div
+                                onclick="guardaFavoritos(40,330,0);rechargeFav(this,40,330);"
+                                class="flex items-center hover:text-[#707070] text-[20px] cursor-pointer"
+                            >
+                                <i class="ti ti-bookmark"></i>
+                            </div>
+                        </li>
+                        <li
+                            data-modulo="Onboarding"
+                            class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg"
+                        >
+                            <a
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                data-submenu="Procesos"
+                                onclick="reseteaPagina();irAContenido(this,40,331);eliminarOverlay();"
+                            >
+                                <i
+                                    class="ti ti-progress-check text-[#74CEC4] bg-[#74CEC429] rounded-full p-[3px] text-[24px]"
+                                ></i
+                                ><span class="ml-2">Procesos</span>
+                            </a>
+                            <img
+                                id="elem_331"
+                                data-tooltip-target="tooltip-elem_331"
+                                data-tooltip-style="light"
+                                class="hidden mr-1"
+                                src="img/indicadorMenu.svg"
+                            />
+                            <div
+                                onclick="guardaFavoritos(40,331,0);rechargeFav(this,40,331);"
+                                class="flex items-center hover:text-[#707070] text-[20px] cursor-pointer"
+                            >
+                                <i class="ti ti-bookmark"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                id="Soporte"
+                class="hidden rounded-xl bg-white sidebar-submenu h-full"
+                data-popper-reference-hidden=""
+                data-popper-escaped=""
+                data-popper-placement="right"
+            >
+                <div class="flex items-center justify-end pb-[0.25rem] text-[20px]">
+                    <span
+                        class="flex justify-center items-center cursor-pointer"
+                        onclick="toggleMenu(Soporte);eliminarOverlay();"
+                        ><i class="ti ti-x-circle"></i
+                    ></span>
+                </div>
+                <div class="flex w-full flex-col md:flex-row min-h-[100px]">
+                    <span class="flex items-center justify-center flex-col w-[100%] md:w-[20%] bg-[#5947BF] rounded-xl">
+                        <i class="ti ti-headset !text-[#ffffff] text-[24px] bg-[#FFFFFF29] p-[3px] rounded-full"></i>
+                        <h5 class="text-[#ffffff] text-[15px] xl:text-[20px] text-center">Soporte</h5>
+                    </span>
+                    <ul
+                        class="submenu-items w-full py-1 px-1 text-sm text-gray-700 dark:text-gray-200 grid gap-x-[10px] gap-y-[3px] grid-cols-2 xl:grid-cols-4 max-h-[60vh] overflow-x-hidden overflow-y-auto items-start"
+                        aria-labelledby="dropdownRightButton"
+                    >
+                        <li class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a
+                                id="soporte"
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                onclick="irASoporte();toggleMenu(Soporte);eliminarOverlay();"
+                            >
+                                <i
+                                    class="ti ti-ticket !text-[#412DB6] text-[24px] bg-[#5947BF29] p-[3px] rounded-full"
+                                ></i
+                                ><span class="ml-2">Tickets</span>
+                            </a>
+                        </li>
+                        <li class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a
+                                href="https://ayuda.vpcloud.es/enlace.php?datos=7x0matNGpEA3SM11DbXYehWucGCmrjaL8ASY8e8EO9tpD6MIpNBIC358liR4iFxUWZAw5pnlMAStgioU0kdGnqHKJfD3pvlri/9XtQjvnySDOowhTboPj4TsTxF7vU8vJdGXMqwRX/BuDZSKFXhrLOYChRCQv1Cm5tseupM8jIBm7JJhHFIUra+z9Zih9DLr"
+                                target="_blank"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                            >
+                                <i
+                                    class="ti ti-help !text-[#412DB6] text-[24px] bg-[#5947BF29] p-[3px] rounded-full"
+                                ></i>
+                                <span class="ml-2">Ayuda</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                id="barraCabecera"
+                class="border-b border-solid border-gray-300 bg-white/95 backdrop-blur-sm w-full flex items-center justify-between px-6 py-3 sticky top-0 z-50"
+            >
+                <!-- Contenido de la barra -->
+
+                <!-- Menú hamburguesa y breadcrumbs -->
+                <div class="flex items-center">
+                    <!-- Botón hamburguesa con animación -->
+                    <button
+                        id="logoCabecera"
+                        class="md:hidden text-gray-700 hover:text-indigo-700 transition-all duration-300"
+                        onclick="toggleMenu()"
+                        aria-label="Toggle menu"
+                        aria-expanded="false"
+                    >
+                        <div class="w-6 flex flex-col items-center space-y-1.5">
+                            <span
+                                id="hamburgerTop"
+                                class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center"
+                            ></span>
+                            <span
+                                id="hamburgerMiddle"
+                                class="block w-6 h-0.5 bg-current transition-all duration-300"
+                            ></span>
+                            <span
+                                id="hamburgerBottom"
+                                class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center"
+                            ></span>
+                        </div>
+                    </button>
+
+                   <div class="flex items-center">
+                <div class="flex items-center space-x-2 mr-4">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#38BDF8]/20 text-[#38BDF8]">
+                        <i class="ti ti-stack-backward text-[16px]"></i>
+                    </span>
+                    <span class="text-lg font-medium">Gestión de Proyectos</span>
+                </div>
+
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-1 shadow-sm">
+                    <ol class="flex items-center space-x-3 text-sm text-gray-500">
+                        <li class="flex items-center">
+                            <a href="#" class="hover:text-blue-600 flex items-center">
+                                <i class="ti ti-dashboard mr-1.5 text-[#412DB6]"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="text-gray-400">
+                            <i class="ti ti-chevron-right"></i>
+                        </li>
+                        <li class="flex items-center font-medium text-gray-700">
+                            <i class="ti ti-stack-backward mr-1.5 text-[#38BDF8]"></i> Proyectos
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+                </div>
+
+                <!-- Controles de usuario (manteniendo el código original) -->
+                <div class="flex items-center space-x-3">
+                    <!-- Botón de ayuda con tooltip -->
+                    <div class="relative group" x-data="{ helpOpen: false }">
+                        <button
+                            @click="helpOpen = !helpOpen"
+                            @keydown.escape="helpOpen = false"
+                            class="px-3 py-2 rounded-full text-gray-500 hover:text-indigo-700 hover:bg-blue-50 transition-all"
+                            aria-label="Ayuda"
+                            aria-haspopup="true"
+                            :aria-expanded="helpOpen"
+                        >
+                            <i class="ti ti-help text-xl"></i>
+                        </button>
+
+                        <div
+                            x-show="helpOpen"
+                            @click.away="helpOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="p-4 border-b border-gray-100">
+                                <h3 class="font-medium text-gray-900 flex items-center">
+                                    <i class="ti ti-lifebuoy mr-2 text-indigo-700"></i>
+                                    ¿Necesitas ayuda?
+                                </h3>
+                            </div>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="mb-3">
+                                    Consulta nuestra documentación o contacta con nuestro equipo de soporte.
+                                </p>
+                                <div class="flex flex-col space-y-2">
+                                    <a
+                                        href="#"
+                                        class="flex items-center px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                                    >
+                                        <i class="ti ti-book mr-2"></i>
+                                        Documentación
+                                    </a>
+                                    <a
+                                        href="#"
+                                        class="flex items-center px-3 py-2 bg-blue-50 text-indigo-700 hover:bg-blue-100 rounded-lg transition-colors"
+                                    >
+                                        <i class="ti ti-headset mr-2"></i>
+                                        Soporte en vivo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buscador -->
+                    <div class="relative" x-data="{ searchOpen: false, query: '' }">
+                        <button
+                            @click="searchOpen = true; $nextTick(() => $refs.searchInput.focus())"
+                            x-show="!searchOpen"
+                            class="px-3 py-2 rounded-full text-gray-500 hover:text-indigo-700 hover:bg-gray-100 transition-all"
+                            aria-label="Abrir búsqueda"
+                        >
+                            <i class="ti ti-search text-xl"></i>
+                        </button>
+
+                        <div
+                            x-show="searchOpen"
+                            @click.away="searchOpen = false; query = ''"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-95"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-95"
+                            class="absolute right-0 mt-1 w-80 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="relative p-3 border-b border-gray-100">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="ti ti-search text-gray-400"></i>
+                                </div>
+                                <input
+                                    x-ref="searchInput"
+                                    type="text"
+                                    x-model="query"
+                                    class="block w-full pl-10 pr-10 py-2 border-0 text-gray-900 placeholder-gray-400 focus:ring-0 focus:outline-none"
+                                    placeholder="Buscar personas, documentos..."
+                                    @keydown.escape="searchOpen = false; query = ''"
+                                />
+                                <button
+                                    @click="searchOpen = false; query = ''"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                >
+                                    <i class="ti ti-x"></i>
+                                </button>
+                            </div>
+
+                            <!-- Resultados de búsqueda -->
+                            <div x-show="query.length > 0" class="max-h-96 overflow-y-auto">
+                                <div class="px-3 py-2 text-xs font-medium text-gray-500 bg-gray-50">
+                                    Resultados recientes
+                                </div>
+                                <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-50 transition-colors">
+                                    <div
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-indigo-700"
+                                    >
+                                        <i class="ti ti-user"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Juan Pérez</p>
+                                        <p class="text-xs text-gray-500">Empleado - Departamento de Ventas</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-50 transition-colors">
+                                    <div
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600"
+                                    >
+                                        <i class="ti ti-file-text"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Informe Q2 2023</p>
+                                        <p class="text-xs text-gray-500">Documento - 15 Jun 2023</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="px-3 py-2 border-t border-gray-100 text-xs text-gray-500 bg-gray-50">
+                                Presiona
+                                <kbd class="px-1.5 py-0.5 border border-gray-200 rounded bg-white">ESC</kbd> para cerrar
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selector de idiomas mejorado -->
+                    <div class="relative group" x-data="{ langOpen: false }">
+                        <button
+                            @click="langOpen = !langOpen"
+                            @keydown.escape="langOpen = false"
+                            class="flex items-center space-x-1.5 px-3 py-1.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            aria-label="Idioma"
+                            aria-haspopup="true"
+                            :aria-expanded="langOpen"
+                        >
+                            <img src="img/es.png" alt="Español" class="w-5 h-5 rounded-full" />
+                            <span class="text-sm hidden sm:inline">ES</span>
+                            <i
+                                class="ti ti-chevron-down text-xs transition-transform duration-200"
+                                :class="{ 'rotate-180': langOpen }"
+                            ></i>
+                        </button>
+
+                        <div
+                            x-show="langOpen"
+                            @click.away="langOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-48 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="py-2 max-h-96 overflow-y-auto">
+                                <div class="px-3 py-1.5 text-xs font-medium text-gray-500">Seleccionar idioma</div>
+                                <a
+                                    href="#"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                                    @click="langOpen = false; switchLang('es')"
+                                >
+                                    <img src="img/es.png" alt="Español" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>Español</span>
+                                    <i
+                                        class="ti ti-check ml-auto text-indigo-700"
+                                        :class="{ 'invisible': currentLang !== 'es' }"
+                                    ></i>
+                                </a>
+                                <a
+                                    href="#"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                                    @click="langOpen = false; switchLang('en')"
+                                >
+                                    <img src="img/en.png" alt="English" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>English</span>
+                                    <i
+                                        class="ti ti-check ml-auto text-indigo-700"
+                                        :class="{ 'invisible': currentLang !== 'en' }"
+                                    ></i>
+                                </a>
+                                <a
+                                    href="#"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                                    @click="langOpen = false; switchLang('eu')"
+                                >
+                                    <img src="img/eu.png" alt="Euskara" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>Euskara</span>
+                                    <i
+                                        class="ti ti-check ml-auto text-indigo-700"
+                                        :class="{ 'invisible': currentLang !== 'eu' }"
+                                    ></i>
+                                </a>
+                                <a
+                                    href="#"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                                    @click="langOpen = false; switchLang('ca')"
+                                >
+                                    <img src="img/ca.png" alt="Català" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>Català</span>
+                                    <i
+                                        class="ti ti-check ml-auto text-indigo-700"
+                                        :class="{ 'invisible': currentLang !== 'ca' }"
+                                    ></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notificaciones -->
+                    <div class="relative" x-data="{ notifOpen: false, activeTab: 'notificaciones' }">
+                        <button
+                            @click="notifOpen = !notifOpen"
+                            @keydown.escape="notifOpen = false"
+                            class="bg-gray-50 px-3 py-2 rounded-full text-gray-500 hover:text-indigo-700 hover:bg-gray-100 transition-all relative"
+                            aria-label="Notificaciones"
+                            aria-haspopup="true"
+                            :aria-expanded="notifOpen"
+                        >
+                            <i class="ti ti-bell text-xl"></i>
+                            <span
+                                class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"
+                            ></span>
+                        </button>
+
+                        <div
+                            x-show="notifOpen"
+                            @click.away="notifOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-80 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <!-- Tabs Header -->
+                            <div class="flex border-b">
+                                <button
+                                    class="flex-1 py-3 text-sm font-medium text-center"
+                                    :class="activeTab === 'notificaciones' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500 hover:text-gray-700'"
+                                    @click="activeTab = 'notificaciones'"
+                                >
+                                    <i class="ti ti-alert-square-rounded mr-1"></i>Notificaciones
+                                </button>
+                                <button
+                                    class="flex-1 py-2 text-sm font-medium text-center"
+                                    :class="activeTab === 'novedades' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500 hover:text-gray-700'"
+                                    @click="activeTab = 'novedades'"
+                                >
+                                    <i class="ti ti-news"></i> Novedades
+                                </button>
+                            </div>
+
+                            <!-- Contenido: Notificaciones -->
+
+                            <div
+                                x-show="activeTab === 'notificaciones'"
+                                class="max-h-[calc(3.5rem*4)] overflow-y-auto divide-y divide-gray-100 thin-scrollbar"
+                            >
+                                <!-- Notificación 1 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-bell"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Tienes 3 nuevas alertas</p>
+                                        <p class="text-xs text-gray-500">Revisa tu bandeja de notificaciones</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 10 min</p>
+                                    </div>
+                                    <!-- Botón eliminar -->
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar notificación"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Notificación 2 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-message"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nuevo mensaje en el chat</p>
+                                        <p class="text-xs text-gray-500">De: Juan Pérez</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 30 min</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar notificación"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Notificación 3 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-indigo-700 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-user"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nueva solicitud de amistad</p>
+                                        <p class="text-xs text-gray-500">Carlos Gómez quiere conectarse</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 1 hora</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar notificación"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Notificación 4 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-calendar"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Evento programado</p>
+                                        <p class="text-xs text-gray-500">Reunión con el equipo de diseño</p>
+                                        <p class="text-xs text-gray-400 mt-1">Mañana a las 10:00 AM</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar notificación"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <!-- Contenido: Novedades -->
+                            <div
+                                x-show="activeTab === 'novedades'"
+                                class="max-h-[calc(3.5rem*4)] overflow-y-auto divide-y divide-gray-100 thin-scrollbar"
+                            >
+                                <!-- Novedad 1 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-indigo-700 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-puzzle"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nuevo Módulo Disponible</p>
+                                        <p class="text-xs text-gray-500">Analíticas Avanzadas</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 20 min</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar novedad"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Novedad 2 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-plug"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nueva Integración</p>
+                                        <p class="text-xs text-gray-500">Zapier conectado</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 1 hora</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar novedad"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Novedad 3 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-rocket"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Funcionalidad Mejorada</p>
+                                        <p class="text-xs text-gray-500">Dashboards más rápidos</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 3 horas</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar novedad"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Novedad 4 -->
+                                <a
+                                    href="#"
+                                    class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group"
+                                >
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 flex-shrink-0"
+                                    >
+                                        <i class="ti ti-star"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Versión 2.5 Lanzada</p>
+                                        <p class="text-xs text-gray-500">Nuevas APIs y seguridad mejorada</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 5 horas</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded"
+                                        aria-label="Eliminar novedad"
+                                    >
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <!-- Footer dinámico -->
+                            <div class="p-1.5 border-t border-gray-200 text-center">
+                                <a
+                                    href="#"
+                                    class="text-sm text-indigo-600 hover:text-indigo-800"
+                                    x-text="activeTab === 'notificaciones' ? 'Ver todas las notificaciones' : 'Ver todas las novedades'"
+                                >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perfil premium mejorado -->
+                    <div class="relative" x-data="{ profileOpen: false }">
+                        <button
+                            @click="profileOpen = !profileOpen"
+                            @keydown.escape="profileOpen = false"
+                            class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-indigo-700 relative"
+                            aria-label="Perfil de usuario"
+                            aria-haspopup="true"
+                            :aria-expanded="profileOpen"
+                        >
+                            <span class="font-medium text-sm">PP</span>
+                            <span
+                                class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"
+                            ></span>
+                        </button>
+
+                        <!-- Dropdown perfil light con iconos a color -->
+                        <div
+                            x-show="profileOpen"
+                            @click.away="profileOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-64 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="p-4 bg-gray-50 text-gray-800">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center"
+                                    >
+                                        <span class="text-indigo-700 font-medium">PP</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium truncate">Pedro Perez</p>
+                                        <p class="text-xs text-gray-500 flex items-center">
+                                            <span class="inline-block w-2 h-2 bg-green-400 rounded-full mr-1.5"></span>
+                                            Administrador
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="py-2">
+                                    <a
+                                        href="#"
+                                        class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group"
+                                    >
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-blue-50 text-indigo-700 flex items-center justify-center mr-3 group-hover:bg-blue-100 transition-colors"
+                                        >
+                                            <i class="ti ti-user"></i>
+                                        </div>
+                                        <span>Mi perfil</span>
+                                    </a>
+                                    <a
+                                        href="#"
+                                        class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group"
+                                    >
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mr-3 group-hover:bg-purple-100 transition-colors"
+                                        >
+                                            <i class="ti ti-key"></i>
+                                        </div>
+                                        <span>Seguridad</span>
+                                    </a>
+                                    <a
+                                        href="#"
+                                        class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group"
+                                    >
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center mr-3 group-hover:bg-yellow-100 transition-colors"
+                                        >
+                                            <i class="ti ti-settings"></i>
+                                        </div>
+                                        <span>Configuración</span>
+                                    </a>
+                                </div>
+                                <div class="py-2">
+                                    <a
+                                        href="#"
+                                        class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group"
+                                        @click="logout(); eliminarLocalStorageWidget();"
+                                    >
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center mr-3 group-hover:bg-red-100 transition-colors"
+                                        >
+                                            <i class="ti ti-logout"></i>
+                                        </div>
+                                        <span>Cerrar sesión</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alpine JS para interacciones -->
+            <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+            <script>
+                // Animación del menú hamburguesa
+                function toggleMenu() {
+                    const btn = document.getElementById("logoCabecera");
+                    const isExpanded = btn.getAttribute("aria-expanded") === "true";
+                    btn.setAttribute("aria-expanded", !isExpanded);
+
+                    // Animación de las líneas del menú
+                    const top = document.getElementById("hamburgerTop");
+                    const middle = document.getElementById("hamburgerMiddle");
+                    const bottom = document.getElementById("hamburgerBottom");
+
+                    if (!isExpanded) {
+                        top.style.transform = "translateY(6px) rotate(45deg)";
+                        middle.style.opacity = "0";
+                        bottom.style.transform = "translateY(-6px) rotate(-45deg)";
+                    } else {
+                        top.style.transform = "";
+                        middle.style.opacity = "";
+                        bottom.style.transform = "";
+                    }
+                }
+            </script>
+        </header>
+        <!--------------Tabla Principal--------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--------------Content--------------->
+        <section id="content" class="font-sans">
+
+
+
+
+            <div class="top-16 z-10 pt-5 pb-2 px-4">
+
+
+
+                <div class="mx-auto">
+
+
+
+
+                    <!-- Card de acciones -->
+               <!-- Card de acciones -->
+        <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm p-5 flex flex-col gap-5 mb-6">
+            <!-- Fila 1: Acciones principales y exportación -->
+            <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                <!-- Acciones principales -->
+                <div class="flex flex-wrap gap-2" role="group" aria-label="Acciones principales">
+                    <button type="button" onclick="openProjectModal()"
+                        class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm">
+                        <i class="ti ti-plus mr-2"></i>Nuevo Proyecto
+                    </button>
+                    <button type="button" onclick="openCuadrillaModal()"
+                        class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm">
+                        <i class="ti ti-plus mr-2"></i>Nueva Cuadrilla
+                    </button>
+                    <button type="button" onclick="openFaseModal()"
+                        class="px-4 py-2 bg-obra-orange text-white rounded-lg text-sm font-medium flex items-center hover:bg-orange-600 transition shadow-sm">
+                        <i class="ti ti-plus mr-2"></i>Nueva Fase
+                    </button>
+                </div>
+
+                <!-- Exportar -->
+                <div class="flex items-center gap-3" role="group" aria-label="Descargar archivos">
+                    <span class="text-sm text-gray-600 font-medium">Descargar:</span>
+                    <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-sm transition">
+                        <i class="text-lg ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel
+                    </button>
+                    <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-red-50 flex items-center text-sm transition">
+                        <i class="text-lg ti ti-file-type-pdf text-red-600 mr-2"></i>PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fila 2: Filtros y búsqueda -->
+            <div class="flex-1 flex flex-wrap gap-2 w-full min-w-0">
+                <!-- Búsqueda -->
+                <div class="flex-1 min-w-[200px]">
+                    <div class="relative">
+                        <input type="text" placeholder="Buscar proyectos..." class="w-full pl-10 pr-3 py-2 rounded-lg text-sm border border-solid border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        <i class="ti ti-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-base"></i>
+                    </div>
+                </div>
+
+                <!-- Filtro de estado -->
+                <div class="flex-1 min-w-[150px]">
+                    <div class="relative">
+                        <select class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">Todos los estados</option>
+                            <option value="activo">Activo</option>
+                            <option value="pausado">Pausado</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                        <i class="ti ti-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Botón buscar -->
+                <button type="button" class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition">
+                    <i class="ti ti-search mr-2"></i>Buscar
+                </button>
+
+                <!-- Botón limpiar -->
+                <button type="button" class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg text-sm font-medium flex items-center hover:bg-gray-50 transition">
+                    <i class="ti ti-broom mr-2"></i>Limpiar
+                </button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="wrap-content mx-auto pt-2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="mx-auto py-6 px-4">
+                    <!-- Título principal con borde visible -->
+
+
+
+    <!-- Contenido principal -->
+    <section id="content" class="font-sans ">
+
+
+
+
+    
+
+        <!-- Tabs de navegación -->
+        <div class="flex gap-1 bg-white rounded-lg p-1 border border-gray-200 mb-6">
+            <button onclick="showTab('proyectos')" id="tabProyectosBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-indigo-700 text-white">
+                <i class="ti ti-stack-backward"></i>
+                Proyectos
+            </button>
+            <button onclick="showTab('cuadrillas')" id="tabCuadrillasBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-users"></i>
+                Cuadrillas
+            </button>
+            <button onclick="showTab('fases')" id="tabFasesBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-list-details"></i>
+                Fases
+            </button>
+            <button onclick="showTab('tareas')" id="tabTareasBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-checklist"></i>
+                Tareas
+            </button>
+        </div>
+
+        <!-- Tabla de Proyectos -->
+        <div id="tabProyectos" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllProyectos" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Código</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Cliente</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Encargado</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Presupuesto</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Progreso</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="proyectosTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">5</span> de <span class="font-medium" id="totalProyectos">0</span> proyectos
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm">
+                            Anterior
+                        </button>
+                        <span class="text-sm text-gray-500">Página 1 de 1</span>
+                        <button class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Cuadrillas -->
+        <div id="tabCuadrillas" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllCuadrillas" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Miembros</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Color</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyectos Asignados</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="cuadrillasTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium" id="totalCuadrillas">0</span> cuadrillas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Fases -->
+        <div id="tabFases" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllFases" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Progreso</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Tareas</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="fasesTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium" id="totalFases">0</span> fases
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Tareas -->
+        <div id="tabTareas" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllTareas" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fase</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Cuadrilla</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="tareasTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">5</span> de <span class="font-medium" id="totalTareas">0</span> tareas
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Proyectos -->
+    <div id="projectModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-5">
+        <div class="bg-white rounded-2xl w-full max-w-lg max-h-[85vh] overflow-auto shadow-2xl">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-gray-100 sticky top-0 bg-white z-10 rounded-t-2xl">
+                <h3 id="modalTitle" class="text-base font-bold text-gray-900">Nuevo Proyecto</h3>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">
+                    <i class="ti ti-x text-gray-500"></i>
+                </button>
+            </div>
+            <div class="p-5">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Nombre del proyecto</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Ej: Residencial Las Palmeras" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Código</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Ej: RLP-2026" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Encargado</label>
+                        <select class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition">
+                            <option>Ana García</option>
+                            <option>Roberto Díaz</option>
+                            <option>Manuel López</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Cliente</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Nombre del cliente" />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Dirección</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Dirección de la obra" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Presupuesto (€)</label>
+                        <input type="number" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="0" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Estado</label>
+                        <select class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition">
+                            <option value="activo">Activo</option>
+                            <option value="pausado">Pausado</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha inicio</label>
+                        <input type="date" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha fin</label>
+                        <input type="date" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" />
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 mt-5">
+                    <button onclick="closeModal()" class="px-5 py-2.5 rounded-lg border border-gray-200 bg-white text-sm font-bold text-gray-500 hover:bg-gray-50 transition">Cancelar</button>
+                    <button onclick="saveProject()" class="px-6 py-2.5 rounded-lg bg-indigo-700 text-white text-sm font-bold shadow-md hover:bg-indigo-900 transition flex items-center gap-1.5">
+                        <i class="ti ti-device-floppy"></i>
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Datos de ejemplo
+        const proyectos = [
+            {
+                id: 1,
+                code: "RM-2026",
+                name: "Residencial Mirador",
+                cliente: "Grupo Inmobiliario Levante S.L.",
+                encargado: "Ana García",
+                presupuesto: 2450000,
+                fechaInicio: "2026-01-15",
+                fechaFin: "2026-09-30",
+                progreso: 42,
+                estado: "activo",
+                color: "#E8752A"
+            },
+            {
+                id: 2,
+                code: "NIG-2026",
+                name: "Nave Industrial Getafe",
+                cliente: "LogiTrans España S.A.",
+                encargado: "Roberto Díaz",
+                presupuesto: 890000,
+                fechaInicio: "2026-02-01",
+                fechaFin: "2026-07-15",
+                progreso: 15,
+                estado: "activo",
+                color: "#2A7DE8"
+            },
+            {
+                id: 3,
+                code: "EP-2026",
+                name: "Edificio Panorama",
+                cliente: "Constructora Moderna S.A.",
+                encargado: "Manuel López",
+                presupuesto: 1850000,
+                fechaInicio: "2026-03-01",
+                fechaFin: "2026-11-30",
+                progreso: 8,
+                estado: "activo",
+                color: "#7E2AE8"
+            },
+            {
+                id: 4,
+                code: "CP-2025",
+                name: "Centro Comercial Plaza",
+                cliente: "Inversiones Urbanas S.L.",
+                encargado: "Ana García",
+                presupuesto: 3200000,
+                fechaInicio: "2025-11-01",
+                fechaFin: "2026-05-30",
+                progreso: 78,
+                estado: "activo",
+                color: "#16a34a"
+            },
+            {
+                id: 5,
+                code: "RP-2025",
+                name: "Reforma Hospital Provincial",
+                cliente: "Servicios de Salud",
+                encargado: "Roberto Díaz",
+                presupuesto: 1250000,
+                fechaInicio: "2025-09-15",
+                fechaFin: "2026-02-28",
+                progreso: 92,
+                estado: "finalizado",
+                color: "#dc2626"
+            }
+        ];
+
+        const cuadrillas = [
+            {
+                id: 1,
+                name: "Cuadrilla Alfa",
+                miembros: 3,
+                color: "#E8752A",
+                proyectosAsignados: 2
+            },
+            {
+                id: 2,
+                name: "Cuadrilla Beta",
+                miembros: 2,
+                color: "#2A7DE8",
+                proyectosAsignados: 3
+            },
+            {
+                id: 3,
+                name: "Cuadrilla Gamma",
+                miembros: 4,
+                color: "#7E2AE8",
+                proyectosAsignados: 1
+            }
+        ];
+
+        const fases = [
+            {
+                id: 1,
+                proyecto: "Residencial Mirador",
+                nombre: "Fase 1 — Cimentación",
+                fechaInicio: "2026-01-15",
+                fechaFin: "2026-03-15",
+                progreso: 85,
+                tareas: 6
+            },
+            {
+                id: 2,
+                proyecto: "Residencial Mirador",
+                nombre: "Fase 2 — Estructura",
+                fechaInicio: "2026-03-10",
+                fechaFin: "2026-06-30",
+                progreso: 0,
+                tareas: 5
+            },
+            {
+                id: 3,
+                proyecto: "Nave Industrial Getafe",
+                nombre: "Fase 1 — Movimiento de tierras",
+                fechaInicio: "2026-02-01",
+                fechaFin: "2026-03-01",
+                progreso: 40,
+                tareas: 3
+            }
+        ];
+
+        const tareas = [
+            {
+                id: 1,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 1 — Cimentación",
+                nombre: "Excavación",
+                cuadrilla: "Cuadrilla Alfa",
+                estado: "completada",
+                fechaInicio: "2026-01-15",
+                fechaFin: "2026-02-10"
+            },
+            {
+                id: 2,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 1 — Cimentación",
+                nombre: "Hormigonado",
+                cuadrilla: "Cuadrilla Beta",
+                estado: "en_curso",
+                fechaInicio: "2026-02-10",
+                fechaFin: "2026-03-05"
+            },
+            {
+                id: 3,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 1 — Cimentación",
+                nombre: "Curado y desencofrado",
+                cuadrilla: null,
+                estado: "pendiente",
+                fechaInicio: "2026-03-01",
+                fechaFin: "2026-03-15"
+            },
+            {
+                id: 4,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 2 — Estructura",
+                nombre: "Armado pilares",
+                cuadrilla: null,
+                estado: "pendiente",
+                fechaInicio: "2026-03-10",
+                fechaFin: "2026-04-20"
+            },
+            {
+                id: 5,
+                proyecto: "Nave Industrial Getafe",
+                fase: "Fase 1 — Movimiento de tierras",
+                nombre: "Desbroce",
+                cuadrilla: "Cuadrilla Gamma",
+                estado: "completada",
+                fechaInicio: "2026-02-01",
+                fechaFin: "2026-02-20"
+            }
+        ];
+
+        // Funciones utilitarias
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        function getEstadoBadge(estado) {
+            const estados = {
+                'activo': { color: 'bg-green-100 text-green-800', text: 'Activo' },
+                'pausado': { color: 'bg-yellow-100 text-yellow-800', text: 'Pausado' },
+                'finalizado': { color: 'bg-gray-100 text-gray-800', text: 'Finalizado' },
+                'completada': { color: 'bg-green-100 text-green-800', text: 'Completada' },
+                'en_curso': { color: 'bg-yellow-100 text-yellow-800', text: 'En curso' },
+                'pendiente': { color: 'bg-gray-100 text-gray-800', text: 'Pendiente' }
+            };
+            const estadoObj = estados[estado] || estados['pendiente'];
+            return `<span class="px-2.5 py-1 rounded-full text-xs font-medium ${estadoObj.color}">${estadoObj.text}</span>`;
+        }
+
+        // Renderizar tablas
+        function renderProyectosTable() {
+            const tbody = document.getElementById('proyectosTableBody');
+            const totalElement = document.getElementById('totalProyectos');
+            
+            tbody.innerHTML = proyectos.map(proyecto => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${proyecto.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-extrabold" style="background:${proyecto.color}12;border:1.5px solid ${proyecto.color}25;color:${proyecto.color}">
+                                ${proyecto.code.split('-')[0]}
+                            </div>
+                            <span class="ml-3 font-mono font-bold">${proyecto.code}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">${proyecto.name}</div>
+                        <div class="text-xs text-gray-500">${proyecto.cliente}</div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${proyecto.cliente}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${proyecto.encargado}</td>
+                    <td class="px-6 py-4 text-sm font-medium">${formatCurrency(proyecto.presupuesto)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(proyecto.fechaInicio)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(proyecto.fechaFin)}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full" style="width: ${proyecto.progreso}%; background: ${proyecto.color};"></div>
+                            </div>
+                            <span class="ml-2 text-xs font-bold" style="color: ${proyecto.color}">${proyecto.progreso}%</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">${getEstadoBadge(proyecto.estado)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button onclick="editProject(${proyecto.id})" class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button onclick="deleteProject(${proyecto.id})" class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = proyectos.length;
+        }
+
+        function renderCuadrillasTable() {
+            const tbody = document.getElementById('cuadrillasTableBody');
+            const totalElement = document.getElementById('totalCuadrillas');
+            
+            tbody.innerHTML = cuadrillas.map(cuadrilla => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${cuadrilla.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-2.5 h-2.5 rounded-full mr-2" style="background: ${cuadrilla.color}"></div>
+                            <div class="text-sm font-medium text-gray-900">${cuadrilla.name}</div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            ${cuadrilla.miembros} <span class="text-gray-500 ml-1">miembros</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded border" style="background: ${cuadrilla.color}"></div>
+                            <span class="ml-2 text-xs font-mono">${cuadrilla.color}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${cuadrilla.proyectosAsignados} proyectos</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> Ver
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = cuadrillas.length;
+        }
+
+        function renderFasesTable() {
+            const tbody = document.getElementById('fasesTableBody');
+            const totalElement = document.getElementById('totalFases');
+            
+            tbody.innerHTML = fases.map(fase => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${fase.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">${fase.proyecto}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${fase.nombre}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(fase.fechaInicio)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(fase.fechaFin)}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full" style="width: ${fase.progreso}%; background: ${fase.progreso > 66 ? '#16a34a' : fase.progreso > 33 ? '#f59e0b' : '#E8752A'};"></div>
+                            </div>
+                            <span class="ml-2 text-xs font-bold">${fase.progreso}%</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${fase.tareas} tareas</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> Ver
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = fases.length;
+        }
+
+        function renderTareasTable() {
+            const tbody = document.getElementById('tareasTableBody');
+            const totalElement = document.getElementById('totalTareas');
+            
+            tbody.innerHTML = tareas.map(tarea => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${tarea.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">${tarea.proyecto}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${tarea.fase}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${tarea.nombre}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${tarea.cuadrilla || '<span class="text-gray-400 italic">Sin asignar</span>'}</td>
+                    <td class="px-6 py-4">${getEstadoBadge(tarea.estado)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(tarea.fechaInicio)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(tarea.fechaFin)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> Ver
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = tareas.length;
+        }
+
+        // Funciones de UI
+        function showTab(tabName) {
+            // Ocultar todas las tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Mostrar la tab seleccionada
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).classList.remove('hidden');
+            
+            // Actualizar botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-700', 'text-white');
+                btn.classList.add('bg-transparent', 'text-gray-500');
+            });
+            
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Btn`).classList.add('bg-indigo-700', 'text-white');
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Btn`).classList.remove('bg-transparent', 'text-gray-500');
+        }
+
+        function openProjectModal() {
+            document.getElementById('modalTitle').textContent = 'Nuevo Proyecto';
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function openCuadrillaModal() {
+            // Similar a openProjectModal pero para cuadrillas
+            alert('Funcionalidad de Nueva Cuadrilla');
+        }
+
+        function openFaseModal() {
+            // Similar a openProjectModal pero para fases
+            alert('Funcionalidad de Nueva Fase');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function saveProject() {
+            // Aquí iría la lógica para guardar el proyecto
+            alert('Proyecto guardado (funcionalidad simulada)');
+            closeModal();
+        }
+
+        function editProject(id) {
+            const proyecto = proyectos.find(p => p.id === id);
+            if (proyecto) {
+                document.getElementById('modalTitle').textContent = `Editar ${proyecto.name}`;
+                document.getElementById('projectModal').classList.remove('hidden');
+                // Aquí cargaríamos los datos del proyecto en el formulario
+            }
+        }
+
+        function deleteProject(id) {
+            if (confirm('¿Estás seguro de eliminar este proyecto?')) {
+                alert(`Proyecto ${id} eliminado (funcionalidad simulada)`);
+            }
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProyectosTable();
+            renderCuadrillasTable();
+            renderFasesTable();
+            renderTareasTable();
+            
+            // Mostrar tab de proyectos por defecto
+            showTab('proyectos');
+        });
+    </script>
+
+
+
+
+
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            // Datos de ejemplo
+            const employees = [
+                {
+                    id: "088388",
+                    name: "Guillermo Alonso Ramos",
+                    company: "1159-ASON Test ELECTRÓNICA AERO",
+                    department: "Dirección",
+                    subordinates: 3,
+                    initials: "GA",
+                    projects: 5,
+                },
+                {
+                    id: "050146",
+                    name: "Mihail Eduard Angelov",
+                    company: "1159-ASON ELECTRÓNICA AERONAUTIC",
+                    department: "Tecnología",
+                    subordinates: 0,
+                    initials: "MA",
+                    projects: 3,
+                },
+                {
+                    id: "084434",
+                    name: "Jesus Aranguez Rodriguez",
+                    company: "1159-ASON ELECTRÓNICA AERONAUTIC",
+                    department: "Operaciones",
+                    subordinates: 1,
+                    initials: "JA",
+                    projects: 2,
+                },
+                {
+                    id: "084436",
+                    name: "Francisca Barquilla Gomez",
+                    company: "1159-ASON ELECTRÓNICA AERONAUTIC",
+                    department: "Recursos Humanos",
+                    subordinates: 2,
+                    initials: "FB",
+                    projects: 4,
+                },
+            ];
+
+            // Roles específicos por empleado
+            const employeeRoles = {
+                "088388": [
+                    { name: "Rolcomparafichajes", color: "blue" },
+                    { name: "Roladministracion", color: "indigo" },
+                    { name: "Rolventasglobales", color: "sky" },
+                    { name: "Rolmarketing", color: "rose" },
+                ],
+                "050146": [
+                    { name: "Roltestdoc", color: "yellow" },
+                    { name: "Rolgrupo", color: "purple" },
+                    { name: "Rolcomparafichajes", color: "blue" },
+                ],
+                "084434": [
+                    { name: "Rolgrupo", color: "purple" },
+                    { name: "Rolventasglobales", color: "sky" },
+                    { name: "Rolrecursoshumanos", color: "emerald" },
+                ],
+                "084436": [
+                    { name: "Rolrecursoshumanos", color: "emerald" },
+                    { name: "Rolmarketing", color: "rose" },
+                    { name: "Roltestdoc", color: "yellow" },
+                    { name: "Rolgrupo", color: "purple" },
+                    { name: "Rolcomparafichajes", color: "blue" },
+                ],
+            };
+
+            // Datos relacionados por empleado
+            const employeeRelatedData = {
+                "088388": {
+                    delegations: [
+                        {
+                            id: "1",
+                            name: "Delegación Madrid Centro",
+                            responsible: "Ana García López",
+                            relation: "Supervisa",
+                        },
+                        {
+                            id: "2",
+                            name: "Delegación Barcelona Norte",
+                            responsible: "Carlos Méndez Ruiz",
+                            relation: "Coordina",
+                        },
+                        {
+                            id: "3",
+                            name: "Delegación Valencia Sur",
+                            responsible: "María José Torres",
+                            relation: "Administra",
+                        },
+                    ],
+                    quotes: [
+                        {
+                            id: "1",
+                            code: "COT-2024-001",
+                            project: "Proyecto Aerodinámica",
+                            client: "AeroTech Solutions",
+                            dueDate: "15/03/2024",
+                            status: "Pendiente",
+                        },
+                        {
+                            id: "2",
+                            code: "COT-2024-002",
+                            project: "Sistema Navegación",
+                            client: "NavAir Systems",
+                            dueDate: "20/03/2024",
+                            status: "Aprobada",
+                        },
+                        {
+                            id: "3",
+                            code: "COT-2024-003",
+                            project: "Componentes Electrónicos",
+                            client: "ElectroAviation",
+                            dueDate: "25/03/2024",
+                            status: "En revisión",
+                        },
+                    ],
+                    teamMembers: [
+                        {
+                            id: "1",
+                            name: "Ana Rodríguez",
+                            department: "Recursos Humanos",
+                            initials: "AR",
+                            role: "Asistente",
+                        },
+                        {
+                            id: "2",
+                            name: "Carlos Méndez",
+                            department: "Tecnología",
+                            initials: "CM",
+                            role: "Coordinador",
+                        },
+                        {
+                            id: "3",
+                            name: "Laura Martínez",
+                            department: "Operaciones",
+                            initials: "LM",
+                            role: "Supervisora",
+                        },
+                    ],
+                },
+                "050146": {
+                    delegations: [
+                        {
+                            id: "4",
+                            name: "Delegación Sevilla Este",
+                            responsible: "Roberto Jiménez",
+                            relation: "Gestiona",
+                        },
+                        {
+                            id: "5",
+                            name: "Delegación Bilbao Oeste",
+                            responsible: "Laura Martínez",
+                            relation: "Supervisa",
+                        },
+                    ],
+                    quotes: [
+                        {
+                            id: "4",
+                            code: "COT-2024-004",
+                            project: "Software Control",
+                            client: "ControlSystems S.L.",
+                            dueDate: "30/03/2024",
+                            status: "Completada",
+                        },
+                        {
+                            id: "5",
+                            code: "COT-2024-005",
+                            project: "Mantenimiento Flota",
+                            client: "AirFleet Services",
+                            dueDate: "05/04/2024",
+                            status: "Pendiente",
+                        },
+                    ],
+                    teamMembers: [
+                        { id: "4", name: "David Sánchez", department: "Finanzas", initials: "DS", role: "Analista" },
+                        {
+                            id: "5",
+                            name: "Elena Torres",
+                            department: "Marketing",
+                            initials: "ET",
+                            role: "Especialista",
+                        },
+                    ],
+                },
+                "084434": {
+                    delegations: [
+                        {
+                            id: "2",
+                            name: "Delegación Barcelona Norte",
+                            responsible: "Carlos Méndez Ruiz",
+                            relation: "Coordina",
+                        },
+                        {
+                            id: "6",
+                            name: "Delegación Málaga Costa",
+                            responsible: "David Sánchez",
+                            relation: "Supervisa",
+                        },
+                    ],
+                    quotes: [
+                        {
+                            id: "6",
+                            code: "COT-2024-006",
+                            project: "Sistema Comunicaciones",
+                            client: "ComTech Solutions",
+                            dueDate: "10/04/2024",
+                            status: "En proceso",
+                        },
+                    ],
+                    teamMembers: [
+                        {
+                            id: "6",
+                            name: "Miguel Ángel López",
+                            department: "Operaciones",
+                            initials: "ML",
+                            role: "Operario",
+                        },
+                    ],
+                },
+                "084436": {
+                    delegations: [
+                        {
+                            id: "1",
+                            name: "Delegación Madrid Centro",
+                            responsible: "Ana García López",
+                            relation: "Administra",
+                        },
+                        {
+                            id: "3",
+                            name: "Delegación Valencia Sur",
+                            responsible: "María José Torres",
+                            relation: "Coordina",
+                        },
+                        {
+                            id: "5",
+                            name: "Delegación Bilbao Oeste",
+                            responsible: "Laura Martínez",
+                            relation: "Supervisa",
+                        },
+                    ],
+                    quotes: [
+                        {
+                            id: "7",
+                            code: "COT-2024-007",
+                            project: "Capacitación Personal",
+                            client: "HR Development",
+                            dueDate: "12/04/2024",
+                            status: "Planificada",
+                        },
+                        {
+                            id: "8",
+                            code: "COT-2024-008",
+                            project: "Evaluación Desempeño",
+                            client: "Performance Corp",
+                            dueDate: "18/04/2024",
+                            status: "Pendiente",
+                        },
+                    ],
+                    teamMembers: [
+                        {
+                            id: "7",
+                            name: "Sofia Ramírez",
+                            department: "Recursos Humanos",
+                            initials: "SR",
+                            role: "Reclutadora",
+                        },
+                        {
+                            id: "8",
+                            name: "Javier Morales",
+                            department: "Recursos Humanos",
+                            initials: "JM",
+                            role: "Entrenador",
+                        },
+                    ],
+                },
+            };
+
+            // Datos de personal a cargo
+            const subordinatesData = {
+                "088388": [
+                    { name: "Mihail Eduard Angelov", position: "Técnico Senior", status: "Activo" },
+                    { name: "Jesus Aranguez Rodriguez", position: "Analista Principal", status: "Activo" },
+                    { name: "Francisca Barquilla Gomez", position: "Supervisora RRHH", status: "Activo" },
+                ],
+                "084434": [{ name: "Dawid Grzegorz Bzikowski", position: "Asistente Financiero", status: "Activo" }],
+                "084436": [
+                    { name: "Jose Miguel Chumbas", position: "Operario", status: "Activo" },
+                    { name: "Ana María López", position: "Operario", status: "Vacaciones" },
+                ],
+            };
+
+            // Estado de la aplicación
+            let state = {
+                selectedEmployee: null,
+                selectedDelegations: [],
+                selectedQuotes: [],
+                selectedRolesEmployees: [],
+                relatedEmployees: [],
+            };
+
+            // Inicialización
+            document.addEventListener("DOMContentLoaded", function () {
+                renderEmployeeOptions();
+                setupEventListeners();
+                setupRolesTabs();
+                setupModal();
+            });
+
+            // Configurar event listeners
+            function setupEventListeners() {
+                // Toggle del dropdown de empleados
+                const toggleButton = document.getElementById("employee-select-toggle");
+                const dropdown = document.getElementById("employee-select-dropdown");
+
+                toggleButton.addEventListener("click", function () {
+                    const isOpen = dropdown.classList.contains("open");
+                    if (isOpen) {
+                        dropdown.classList.remove("open");
+                    } else {
+                        dropdown.classList.add("open");
+                        document.getElementById("employee-search-input").focus();
+                    }
+                });
+
+                // Buscador dentro del dropdown
+                const searchInput = document.getElementById("employee-search-input");
+                searchInput.addEventListener("input", function () {
+                    filterEmployeeOptions(this.value.trim());
+                });
+
+                // Cerrar dropdown al hacer clic fuera
+                document.addEventListener("click", function (event) {
+                    if (
+                        !event.target.closest("#employee-select-toggle") &&
+                        !event.target.closest("#employee-select-dropdown")
+                    ) {
+                        dropdown.classList.remove("open");
+                    }
+                });
+
+                // Limpiar todo
+                document.getElementById("limpiarFiltros").addEventListener("click", function () {
+                    searchInput.value = "";
+                    filterEmployeeOptions("");
+                    deselectEmployee();
+                    clearAllSelections();
+                });
+
+                // Botón Guardar Todo
+                document.getElementById("guardar-todo").addEventListener("click", function () {
+                    showConfirmationModal();
+                });
+            }
+
+            // Configurar modal
+            function setupModal() {
+                const modal = document.getElementById("confirmation-modal");
+                const cancelBtn = document.getElementById("modal-cancel");
+                const confirmBtn = document.getElementById("modal-confirm");
+
+                cancelBtn.addEventListener("click", function () {
+                    modal.classList.add("hidden");
+                });
+
+                confirmBtn.addEventListener("click", function () {
+                    // Simular guardado exitoso
+                    modal.classList.add("hidden");
+                    alert("¡Todos los cambios han sido guardados exitosamente!");
+                    // Aquí iría la lógica real de guardado
+                });
+
+                // Cerrar modal al hacer clic fuera
+                modal.addEventListener("click", function (e) {
+                    if (e.target === modal) {
+                        modal.classList.add("hidden");
+                    }
+                });
+            }
+
+            // Mostrar modal de confirmación
+            function showConfirmationModal() {
+                const modal = document.getElementById("confirmation-modal");
+
+                // Actualizar información del modal
+                document.getElementById("modal-employee").textContent = state.selectedEmployee
+                    ? state.selectedEmployee.name
+                    : "No seleccionado";
+
+                // Contar roles del empleado seleccionado
+                const rolesCount = state.selectedEmployee
+                    ? employeeRoles[state.selectedEmployee.id]
+                        ? employeeRoles[state.selectedEmployee.id].length
+                        : 0
+                    : 0;
+                document.getElementById("modal-roles").textContent = rolesCount;
+
+                document.getElementById("modal-delegations").textContent = state.selectedDelegations.length;
+                document.getElementById("modal-quotes").textContent = state.selectedQuotes.length;
+                document.getElementById("modal-roles-employees").textContent = state.selectedRolesEmployees.length;
+                document.getElementById("modal-related").textContent = state.relatedEmployees.length;
+
+                modal.classList.remove("hidden");
+            }
+
+            // Configurar pestañas de roles
+            function setupRolesTabs() {
+                const tabs = document.querySelectorAll("#tab-delegation, #tab-quotes, #tab-roles-employees");
+                const contents = document.querySelectorAll(
+                    "#content-delegation, #content-quotes, #content-roles-employees"
+                );
+
+                tabs.forEach((tab) => {
+                    tab.addEventListener("click", function () {
+                        // Solo permitir cambiar pestañas si hay un empleado seleccionado
+                        if (!state.selectedEmployee) return;
+
+                        // Desactivar todas las pestañas
+                        tabs.forEach((t) => {
+                            t.classList.remove("active", "border-blue-500", "text-blue-600");
+                            t.classList.add("border-transparent", "text-gray-500");
+                        });
+
+                        // Activar pestaña actual
+                        this.classList.add("active", "border-blue-500", "text-blue-600");
+                        this.classList.remove("border-transparent", "text-gray-500");
+
+                        // Ocultar todos los contenidos
+                        contents.forEach((content) => {
+                            content.classList.add("hidden");
+                        });
+
+                        // Mostrar contenido correspondiente
+                        const tabId = this.id.replace("tab-", "content-");
+                        document.getElementById(tabId).classList.remove("hidden");
+                    });
+                });
+            }
+
+            // Cargar datos relacionados al empleado seleccionado
+            function loadEmployeeRelatedData(employeeId) {
+                const employeeData = employeeRelatedData[employeeId];
+
+                if (!employeeData) {
+                    // Si no hay datos específicos, usar datos genéricos
+                    loadDefaultData();
+                    return;
+                }
+
+                // Cargar delegaciones
+                loadDelegations(employeeData.delegations);
+
+                // Cargar cotizaciones
+                loadQuotes(employeeData.quotes);
+
+                // Cargar equipo de trabajo
+                loadTeamMembers(employeeData.teamMembers);
+
+                // Cargar roles del empleado
+                loadEmployeeRoles(employeeId);
+
+                // Mostrar contenido de roles y ocultar mensaje inicial
+                document.getElementById("no-employee-selected").classList.add("hidden");
+                document.getElementById("content-delegation").classList.remove("hidden");
+
+                // Actualizar nombres en los títulos
+                const employeeName = state.selectedEmployee.name;
+                document.getElementById("delegation-employee-name").textContent = employeeName;
+                document.getElementById("quotes-employee-name").textContent = employeeName;
+                document.getElementById("roles-employee-name").textContent = employeeName;
+            }
+
+            // Cargar roles del empleado
+            function loadEmployeeRoles(employeeId) {
+                const container = document.getElementById("roles-chips-container");
+                const rolesSection = document.getElementById("employee-roles");
+                const rolesCount = document.getElementById("roles-count");
+
+                const roles = employeeRoles[employeeId];
+
+                if (!roles || roles.length === 0) {
+                    rolesSection.classList.add("hidden");
+                    return;
+                }
+
+                container.innerHTML = "";
+
+                roles.forEach((role) => {
+                    const chip = document.createElement("span");
+                    chip.className = `inline-flex items-center px-3 py-1.5 text-sm font-normal rounded-full bg-${role.color}-100 text-${role.color}-700 hover:bg-${role.color}-200 transition cursor-pointer`;
+                    chip.textContent = role.name;
+
+                    // Agregar tooltip o funcionalidad adicional si es necesario
+                    chip.title = `Haz clic para más información sobre ${role.name}`;
+
+                    container.appendChild(chip);
+                });
+
+                rolesCount.textContent = `${roles.length} rol${roles.length !== 1 ? "es" : ""}`;
+                rolesSection.classList.remove("hidden");
+            }
+
+            // Cargar datos por defecto (si no hay datos específicos)
+            function loadDefaultData() {
+                const defaultDelegations = [
+                    {
+                        id: "1",
+                        name: "Delegación General Madrid",
+                        responsible: "Administración Central",
+                        relation: "Asignada",
+                    },
+                    {
+                        id: "2",
+                        name: "Delegación Operaciones",
+                        responsible: "Departamento Operativo",
+                        relation: "Coordinación",
+                    },
+                ];
+
+                const defaultQuotes = [
+                    {
+                        id: "1",
+                        code: "COT-GEN-001",
+                        project: "Proyecto General",
+                        client: "Cliente Corporativo",
+                        dueDate: "30/04/2024",
+                        status: "Pendiente",
+                    },
+                ];
+
+                const defaultTeam = [
+                    {
+                        id: "1",
+                        name: "Equipo General",
+                        department: "Varios Departamentos",
+                        initials: "EG",
+                        role: "Colaboradores",
+                    },
+                ];
+
+                loadDelegations(defaultDelegations);
+                loadQuotes(defaultQuotes);
+                loadTeamMembers(defaultTeam);
+
+                document.getElementById("no-employee-selected").classList.add("hidden");
+                document.getElementById("content-delegation").classList.remove("hidden");
+            }
+
+            function loadDelegations(delegations) {
+                const container = document.getElementById("delegation-list");
+                container.innerHTML = "";
+
+                delegations.forEach((delegation) => {
+                    const isSelected = state.selectedDelegations.includes(delegation.id);
+                    const item = document.createElement("div");
+                    item.className = `checkbox-item p-4 flex items-center space-x-3 cursor-pointer ${isSelected ? "selected" : ""}`;
+                    item.innerHTML = `
+                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500" ${isSelected ? "checked" : ""}>
+                    <div class="flex-1">
+                        <div class="font-medium text-gray-800">${delegation.name}</div>
+                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                            <span>Responsable: ${delegation.responsible}</span>
+                            <span class="text-blue-600 font-medium">${delegation.relation}</span>
+                        </div>
+                    </div>
+                `;
+
+                    const checkbox = item.querySelector("input");
+                    item.addEventListener("click", function (e) {
+                        if (e.target !== checkbox) {
+                            checkbox.checked = !checkbox.checked;
+                        }
+                        updateSelection("delegation", delegation.id, checkbox.checked);
+                    });
+
+                    container.appendChild(item);
+                });
+            }
+
+            function loadQuotes(quotes) {
+                const container = document.getElementById("quotes-list");
+                container.innerHTML = "";
+
+                quotes.forEach((quote) => {
+                    const isSelected = state.selectedQuotes.includes(quote.id);
+                    const statusColor = getStatusColor(quote.status);
+                    const item = document.createElement("div");
+                    item.className = `checkbox-item p-4 flex items-center space-x-3 cursor-pointer ${isSelected ? "selected" : ""}`;
+                    item.innerHTML = `
+                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500" ${isSelected ? "checked" : ""}>
+                    <div class="flex-1">
+                        <div class="font-medium text-gray-800">${quote.code} - ${quote.project}</div>
+                        <div class="text-sm text-gray-500 flex justify-between mt-1">
+                            <span>Cliente: ${quote.client}</span>
+                            <span class="${statusColor} font-medium">${quote.status}</span>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">Vencimiento: ${quote.dueDate}</div>
+                    </div>
+                `;
+
+                    const checkbox = item.querySelector("input");
+                    item.addEventListener("click", function (e) {
+                        if (e.target !== checkbox) {
+                            checkbox.checked = !checkbox.checked;
+                        }
+                        updateSelection("quote", quote.id, checkbox.checked);
+                    });
+
+                    container.appendChild(item);
+                });
+            }
+
+            function loadTeamMembers(teamMembers) {
+                const container = document.getElementById("roles-employees-list");
+                container.innerHTML = "";
+
+                teamMembers.forEach((member) => {
+                    const isSelected = state.selectedRolesEmployees.includes(member.id);
+                    const item = document.createElement("div");
+                    item.className = `checkbox-item p-4 flex items-center space-x-3 cursor-pointer ${isSelected ? "selected" : ""}`;
+                    item.innerHTML = `
+                    <input type="checkbox" class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500" ${isSelected ? "checked" : ""}>
+                    <div class="flex items-center space-x-3 flex-1">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">${member.initials}</div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-800">${member.name}</div>
+                            <div class="text-sm text-gray-500 flex justify-between">
+                                <span>${member.department}</span>
+                                <span class="text-blue-600">${member.role}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                    const checkbox = item.querySelector("input");
+                    item.addEventListener("click", function (e) {
+                        if (e.target !== checkbox) {
+                            checkbox.checked = !checkbox.checked;
+                        }
+                        updateSelection("rolesEmployee", member.id, checkbox.checked);
+                    });
+
+                    container.appendChild(item);
+                });
+            }
+
+            function getStatusColor(status) {
+                const colors = {
+                    Pendiente: "text-yellow-600",
+                    Aprobada: "text-green-600",
+                    "En revisión": "text-blue-600",
+                    Completada: "text-green-600",
+                    "En proceso": "text-orange-600",
+                    Planificada: "text-purple-600",
+                };
+                return colors[status] || "text-gray-600";
+            }
+
+            // Actualizar selecciones
+            function updateSelection(type, id, isSelected) {
+                let array, countElement;
+
+                switch (type) {
+                    case "delegation":
+                        array = state.selectedDelegations;
+                        countElement = document.getElementById("delegation-count");
+                        break;
+                    case "quote":
+                        array = state.selectedQuotes;
+                        countElement = document.getElementById("quotes-count");
+                        break;
+                    case "rolesEmployee":
+                        array = state.selectedRolesEmployees;
+                        countElement = document.getElementById("roles-employees-count");
+                        break;
+                }
+
+                if (isSelected) {
+                    if (!array.includes(id)) {
+                        array.push(id);
+                    }
+                } else {
+                    const index = array.indexOf(id);
+                    if (index > -1) {
+                        array.splice(index, 1);
+                    }
+                }
+
+                if (countElement) {
+                    countElement.textContent = array.length;
+                }
+
+                // Actualizar empleados relacionados SOLO si hay selecciones
+                updateRelatedEmployees();
+            }
+
+            // Actualizar empleados relacionados
+            function updateRelatedEmployees() {
+                const container = document.getElementById("related-employees-list");
+                const countElement = document.getElementById("related-count");
+
+                // Verificar si hay alguna selección en alguna de las categorías
+                const hasSelections =
+                    state.selectedDelegations.length > 0 ||
+                    state.selectedQuotes.length > 0 ||
+                    state.selectedRolesEmployees.length > 0;
+
+                if (!hasSelections) {
+                    // Si no hay selecciones, mostrar estado vacío
+                    container.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="ti ti-users text-4xl mb-3 text-gray-300"></i>
+                        <p class="text-lg">No hay empleados relacionados</p>
+                        <p class="text-sm mt-1">Seleccione delegaciones, cotizaciones o empleados en el panel de roles</p>
+                    </div>
+                `;
+                    countElement.textContent = "0";
+                    state.relatedEmployees = [];
+                    return;
+                }
+
+                // Solo cargar empleados relacionados si hay selecciones
+                state.relatedEmployees = [];
+
+                // Empleados relacionados con delegaciones seleccionadas
+                if (state.selectedDelegations.length > 0) {
+                    const employeeData = employeeRelatedData[state.selectedEmployee.id];
+                    if (employeeData && employeeData.teamMembers) {
+                        state.relatedEmployees.push(...employeeData.teamMembers.slice(0, 2));
+                    }
+                }
+
+                // Empleados relacionados con cotizaciones seleccionadas
+                if (state.selectedQuotes.length > 0) {
+                    const employeeData = employeeRelatedData[state.selectedEmployee.id];
+                    if (employeeData && employeeData.teamMembers) {
+                        state.relatedEmployees.push(...employeeData.teamMembers.slice(1, 3));
+                    }
+                }
+
+                // Empleados seleccionados directamente
+                if (state.selectedRolesEmployees.length > 0) {
+                    const employeeData = employeeRelatedData[state.selectedEmployee.id];
+                    if (employeeData && employeeData.teamMembers) {
+                        state.selectedRolesEmployees.forEach((id) => {
+                            const emp = employeeData.teamMembers.find((e) => e.id === id);
+                            if (emp && !state.relatedEmployees.some((re) => re.id === emp.id)) {
+                                state.relatedEmployees.push(emp);
+                            }
+                        });
+                    }
+                }
+
+                // Eliminar duplicados
+                state.relatedEmployees = state.relatedEmployees.filter(
+                    (emp, index, self) => index === self.findIndex((e) => e.id === emp.id)
+                );
+
+                // Renderizar lista
+                container.innerHTML = "";
+
+                if (state.relatedEmployees.length === 0) {
+                    container.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="ti ti-users text-4xl mb-3 text-gray-300"></i>
+                        <p class="text-lg">No hay empleados relacionados</p>
+                        <p class="text-sm mt-1">Seleccione delegaciones, cotizaciones o empleados en el panel de roles</p>
+                    </div>
+                `;
+                } else {
+                    state.relatedEmployees.forEach((emp) => {
+                        const item = document.createElement("div");
+                        item.className = "p-4 flex items-center space-x-3 border-b border-gray-200 last:border-b-0";
+                        item.innerHTML = `
+                        <div class="w-10 h-10 bg-indigo-200 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                            ${emp.initials}
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-medium text-gray-800">${emp.name}</div>
+                            <div class="text-sm text-gray-500">${emp.department} • ${emp.role}</div>
+                        </div>
+                    `;
+                        container.appendChild(item);
+                    });
+                }
+
+                countElement.textContent = state.relatedEmployees.length;
+            }
+
+            // Limpiar todas las selecciones
+            function clearAllSelections() {
+                state.selectedDelegations = [];
+                state.selectedQuotes = [];
+                state.selectedRolesEmployees = [];
+                state.relatedEmployees = [];
+
+                // Actualizar contadores
+                document.getElementById("delegation-count").textContent = "0";
+                document.getElementById("quotes-count").textContent = "0";
+                document.getElementById("roles-employees-count").textContent = "0";
+                document.getElementById("related-count").textContent = "0";
+
+                // Re-renderizar listas
+                if (state.selectedEmployee) {
+                    loadEmployeeRelatedData(state.selectedEmployee.id);
+                }
+
+                // Actualizar empleados relacionados (mostrar estado vacío)
+                updateRelatedEmployees();
+            }
+
+            // Renderizar opciones de empleados en el dropdown
+            function renderEmployeeOptions() {
+                const container = document.getElementById("employee-options-container");
+                container.innerHTML = "";
+
+                employees.forEach((employee) => {
+                    const option = document.createElement("div");
+                    option.className =
+                        "hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5";
+                    option.setAttribute("role", "option");
+                    option.setAttribute("data-value", employee.id);
+                    option.innerHTML = `
+                    <div class="employee-avatar w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-semibold">${employee.initials}</div>
+                    <div class="employee-info flex-1">
+                        <div class="employee-name font-medium text-sm">${employee.name}</div>
+                        <div class="employee-details flex justify-between text-xs text-gray-500">
+                            <span>ID: ${employee.id}</span>
+                            <span>${employee.department}</span>
+                        </div>
+                    </div>
+                `;
+                    option.addEventListener("click", function () {
+                        selectEmployee(employee.id);
+                        document.getElementById("employee-select-dropdown").classList.remove("open");
+                    });
+                    container.appendChild(option);
+                });
+            }
+
+            // Filtrar opciones de empleados según la búsqueda
+            function filterEmployeeOptions(query) {
+                const container = document.getElementById("employee-options-container");
+                const options = container.querySelectorAll(".hs-select-option");
+
+                if (!query) {
+                    options.forEach((option) => {
+                        option.style.display = "flex";
+                    });
+                    return;
+                }
+
+                const queryLower = query.toLowerCase();
+                options.forEach((option) => {
+                    const employeeId = option.getAttribute("data-value");
+                    const employee = employees.find((emp) => emp.id === employeeId);
+
+                    if (
+                        employee &&
+                        (employee.name.toLowerCase().includes(queryLower) ||
+                            employee.id.includes(query) ||
+                            employee.company.toLowerCase().includes(queryLower) ||
+                            employee.department.toLowerCase().includes(queryLower))
+                    ) {
+                        option.style.display = "flex";
+                    } else {
+                        option.style.display = "none";
+                    }
+                });
+            }
+
+            // Seleccionar un empleado
+            function selectEmployee(employeeId) {
+                state.selectedEmployee = employees.find((emp) => emp.id === employeeId);
+                const employee = state.selectedEmployee;
+
+                if (!employee) return;
+
+                // Actualizar título del select
+                document.getElementById("employee-select-title").textContent = employee.name;
+
+                // Actualizar información en el panel principal
+                const employeeInfo = document.getElementById("employee-info");
+                document.getElementById("info-employee-name").textContent = employee.name;
+                document.getElementById("info-employee-id").textContent = employee.id;
+                document.getElementById("info-employee-company").textContent = employee.company;
+                document.getElementById("info-employee-department").textContent = employee.department;
+                document.getElementById("info-employee-subordinates").textContent = `${employee.subordinates} personas`;
+                document.getElementById("employee-avatar").textContent = employee.initials;
+                employeeInfo.classList.remove("hidden");
+
+                // Actualizar personal a cargo
+                renderSubordinates(employeeId);
+
+                // Cargar datos relacionados en la segunda columna
+                loadEmployeeRelatedData(employeeId);
+
+                // Limpiar selecciones anteriores
+                clearAllSelections();
+
+                // Marcar como seleccionado en el dropdown
+                const options = document.querySelectorAll(".hs-select-option");
+                options.forEach((option) => {
+                    if (option.getAttribute("data-value") === employeeId) {
+                        option.classList.add("selected");
+                    } else {
+                        option.classList.remove("selected");
+                    }
+                });
+            }
+
+            // Deseleccionar empleado
+            function deselectEmployee() {
+                state.selectedEmployee = null;
+
+                // Restablecer título del select
+                document.getElementById("employee-select-title").textContent = "Buscar empleado...";
+
+                // Ocultar información en el panel principal
+                document.getElementById("employee-info").classList.add("hidden");
+                document.getElementById("employee-roles").classList.add("hidden");
+
+                // Limpiar personal a cargo
+                document.getElementById("subordinates-table-body").innerHTML = "";
+                document.getElementById("no-subordinates").classList.remove("hidden");
+                document.querySelector("#subordinates-container table").classList.add("hidden");
+
+                // Ocultar contenido de roles y mostrar mensaje inicial
+                document.getElementById("no-employee-selected").classList.remove("hidden");
+                document.getElementById("content-delegation").classList.add("hidden");
+                document.getElementById("content-quotes").classList.add("hidden");
+                document.getElementById("content-roles-employees").classList.add("hidden");
+
+                // Limpiar selecciones
+                clearAllSelections();
+
+                // Quitar selección en el dropdown
+                const options = document.querySelectorAll(".hs-select-option");
+                options.forEach((option) => {
+                    option.classList.remove("selected");
+                });
+            }
+
+            // Renderizar personal a cargo
+            function renderSubordinates(employeeId) {
+                const subordinates = subordinatesData[employeeId] || [];
+                const tbody = document.getElementById("subordinates-table-body");
+                const noSubordinates = document.getElementById("no-subordinates");
+                const table = document.querySelector("#subordinates-container table");
+
+                tbody.innerHTML = "";
+
+                if (subordinates.length > 0) {
+                    noSubordinates.classList.add("hidden");
+                    table.classList.remove("hidden");
+
+                    subordinates.forEach((sub) => {
+                        const statusColor = sub.status === "Activo" ? "text-green-600" : "text-yellow-600";
+                        const bgColor = sub.status === "Activo" ? "bg-green-100" : "bg-yellow-100";
+                        const row = document.createElement("tr");
+                        row.className = "hover:bg-gray-50 transition-colors";
+                        row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">${sub.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sub.position}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor} ${bgColor}">
+                                ${sub.status}
+                            </span>
+                        </td>
+                    `;
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    noSubordinates.classList.remove("hidden");
+                    table.classList.add("hidden");
+                }
+            }
+        </script>
+
+        <!-- JS libraries -->
+        <script type="text/JavaScript" src="js/chart.umd.js"></script>
+        <script>
+            const Chart4 = Chart;
+        </script>
+        <script type="text/JavaScript" src="js/funcionchart4.js"></script>
+        <script type="text/JavaScript" src="js/Chart.min.js"></script>
+        <script type="text/JavaScript" src="js/funcionchart.js"></script>
+
+        <script type="text/JavaScript" src="js/xrange.js"></script>
+        <script type="text/JavaScript" src="js/utils.js"></script>
+        <script type="text/JavaScript" src="js/sha512-min.js"></script>
+        <script type="text/JavaScript" src="js/forms.js"></script>
+
+        <!-- Org Chart JS Libs -->
+        <script type="text/JavaScript" src="js/orgchart.js"></script>
+
+        <!-- Highcharts Libs -->
+        <script type="text/JavaScript" src="js/highcharts.js"></script>
+        <script type="text/JavaScript" src="js/xrange(1).js"></script>
+        <script type="text/JavaScript" src="js/sankey.js"></script>
+        <script type="text/JavaScript" src="js/organization.js"></script>
+        <script type="text/JavaScript" src="js/exporting.js"></script>
+        <script type="text/JavaScript" src="js/accessibility.js"></script>
+        <!-- JQuery UI libs -->
+        <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script> -->
+        <link rel="stylesheet" href="js/jquery-ui(1).css" />
+        <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+        <script
+            src="js/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"
+        ></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery.ui.datepicker-es.js"></script>
+        <!-- Libreria jQuery pqSelect -->
+        <script src="js/pqselect.min.js" type="text/javascript"></script>
+        <!-- Libreria de FullCalendar -->
+        <script src="js/moment.min.js"></script>
+        <script src="js/fullcalendar.js"></script>
+        <script src="js/lang-all.js"></script>
+        <!-- Libreria de FlipClock -->
+        <script src="js/flipclock.min.js"></script>
+        <!-- Libreria para grabar voz -->
+        <script src="js/recorder.js"></script>
+        <!-- Factory libraries -->
+        <script type="text/javascript" src="js/animacionFichaje.js"></script>
+        <script type="text/javascript" src="js/AjaxController.js"></script>
+        <script type="text/javascript" src="js/funciones.js"></script>
+        <script type="text/javascript" src="js/funciones_vp25.js"></script>
+        <script type="text/javascript" src="js/solicitudes.js"></script>
+        <script type="text/javascript" src="js/solicitudes_vp25.js"></script>
+        <script type="text/JavaScript" src="js/checkVoxEnrolar.js"></script>
+        <script src="js/signature_pad.umd.min.js"></script>
+        <!--Datatable plugin JS library file -->
+        <script src="js/moment.min(1).js"></script>
+
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.responsive.min.js"></script>
+        <!-- <script type="text/javascript" src=".js/datatables/dataTables.fixedHeader.min.js"></script> -->
+        <script type="text/javascript" src="js/dataTables.checkboxes.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="js/jszip.min.js"></script>
+        <script type="text/javascript" src="js/pdfmake.min.js"></script>
+        <script type="text/javascript" src="js/vfs_fonts.js"></script>
+        <script type="text/javascript" src="js/buttons.html5.min.js"></script>
+        <script src="js/datetime-moment.js"></script>
+        <script src="js/bootstrap-clockpicker.min.js"></script>
+        <script type="text/javascript" src="js/sortable.js"></script>
+        <script type="text/javascript" src="js/tarjetasIndex.js"></script>
+        <script type="text/javascript" src="js/proyectos.js"></script>
+        <script type="text/javascript" src="js/visitas.js"></script>
+        <script type="text/javascript" src="js/novedades.js"></script>
+        <script type="text/javascript" src="js/novedades_vp25.js"></script>
+        <script type="text/javascript" src="js/denuncias.js"></script>
+        <script type="text/javascript" src="js/modelo145.js"></script>
+        <script type="text/javascript" src="js/modelo145_vp25.js"></script>
+        <script type="text/javascript" src="js/organigramas.js"></script>
+        <script type="text/javascript" src="js/indicadores_vp25.js"></script>
+        <script type="text/javascript" src="js/qrious.js"></script>
+        <script type="text/javascript" src="js/tarjetas.js"></script>
+        <script type="text/javascript" src="js/onboarding.js"></script>
+        <script type="text/javascript" src="js/pagos.js"></script>
+        <script type="text/javascript" src="js/reclutamiento.js"></script>
+        <script type="text/javascript" src="js/ciclos.js"></script>
+        <script type="text/javascript" src="js/turnos.js"></script>
+        <script type="text/javascript" src="js/index_fichaje.js"></script>
+        <!--Morris Chart-->
+        <script src="js/morris.min.js"></script>
+        <script src="js/raphael.min.js"></script>
+        <!--Quill-->
+        <script src="js/quill.js"></script>
+        <script src="js/quill-textarea.js"></script>
+        <!--<script src=".js/morris/morris.init.js"></script>-->
+        <!-- Html2Pdf JavaScript-->
+        <script src="js/es6-promise.auto.js"></script>
+        <script src="js/jspdf.min.js"></script>
+        <script src="js/html2canvas.js"></script>
+        <script src="js/html2pdf.bundle.min.js"></script>
+        <!-- Script para las funciones de Encuestas VP25 -->
+        <script type="text/javascript" src="js/encuestas_vp25.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                esperaRespuesta(true);
+            });
+            window.addEventListener("load", function () {
+                esperaRespuesta(false);
+                // Verifica si la página fue recargada
+                if (localStorage.getItem("recargada")) {
+                    // Si fue recargada, simula el clic en el botón
+                    document.getElementById("toggleButtonWidgets").click();
+                    // Limpia el almacenamiento local
+                    localStorage.removeItem("recargada");
+                }
+            });
+        </script>
+        <script
+            src="js/html2canvas.min.js"
+            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- Condicion para Modulo de Tickets -->
+        <script type="text/javascript" src="js/soporte.js"></script>
+        <script type="text/javascript" src="js/soporte_vp25.js"></script>
+        <!-- Libreria de PFIZER -->
+        <script type="text/javascript" src="js/pfizer.js"></script>
+
+        <div
+            id="ui-datepicker-div"
+            class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
+        ></div>
+    </body>
+</html>

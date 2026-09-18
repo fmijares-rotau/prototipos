@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Demo Visualpresencia Cloud - Gestión de Proyectos</title>
+    <meta name="description" content="Sistema completo de gestión de proyectos" />
+    <meta name="author" content="demo.vpcloud.es" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Google Fonts - DM Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS v3.3.5 via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        'indigo': {
+                            '700': '#412DB6',
+                            '900': '#2C2554',
+                        },
+                        'obra-orange': '#E8752A',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-in-out',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                        'slide-down': 'slideDown 0.2s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateY(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icon Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        /* Scrollbar personalizado */
+        .thin-scrollbar::-webkit-scrollbar {
+            height: 8px !important;
+            width: 6px !important;
+        }
+
+        .thin-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f9 !important;
+            border-radius: 3px !important;
+        }
+
+        .thin-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #94a3b8 !important;
+            border-radius: 3px !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+
+        /* Animaciones */
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-slide-down {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        /* Modal backdrop */
+        .modal-backdrop {
+            backdrop-filter: blur(4px);
+        }
+
+        /* Focus styles */
+        .focus-visible-ring:focus-visible {
+            outline: 2px solid #412DB6;
+            outline-offset: 2px;
+        }
+
+        /* Chevron rotation for expandable items */
+        .chevron-rotate {
+            transition: transform 0.2s ease;
+        }
+
+        .chevron-rotate.open {
+            transform: rotate(90deg);
+        }
+
+        /* Subtask row styling */
+        .subtask-row {
+            background-color: #f9fafb;
+            transition: background-color 0.2s;
+        }
+
+        .subtask-row:hover {
+            background-color: #f3f4f6;
+        }
+
+        /* Responsive table */
+        @media (max-width: 768px) {
+            .table-responsive {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#f2f2f2]">
+    <!-- Header simplificado -->
+    <header class="sticky top-0 z-50 w-full">
+        <div class="border-b border-solid border-gray-300 bg-white/95 backdrop-blur-sm w-full flex items-center justify-between px-4 sm:px-6 py-3">
+            <div class="flex items-center overflow-hidden">
+                <div class="flex items-center space-x-2 mr-2 sm:mr-4">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#38BDF8]/20 text-[#38BDF8]">
+                        <i class="ti ti-stack-backward text-[16px]"></i>
+                    </span>
+                    <span class="text-sm sm:text-lg font-medium truncate">Gestión de Proyectos</span>
+                </div>
+
+                <nav class="hidden sm:flex bg-gray-50 border border-gray-200 rounded-xl px-4 py-1 shadow-sm">
+                    <ol class="flex items-center space-x-3 text-sm text-gray-500">
+                        <li class="flex items-center">
+                            <a href="#" class="hover:text-blue-600 flex items-center">
+                                <i class="ti ti-dashboard mr-1.5 text-[#412DB6]"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="text-gray-400">
+                            <i class="ti ti-chevron-right"></i>
+                        </li>
+                        <li class="flex items-center font-medium text-gray-700">
+                            <i class="ti ti-stack-backward mr-1.5 text-[#38BDF8]"></i> Proyectos
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Controles de usuario -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <button id="notificationsBtn" class="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200 transition">
+                    <i class="ti ti-bell text-sm sm:text-base"></i>
+                    <span id="notificationBadge" class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center hidden">3</span>
+                </button>
+                
+                <div class="relative">
+                    <button id="userMenuBtn" class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition focus-visible-ring">
+                        <span class="font-medium text-xs sm:text-sm">PP</span>
+                    </button>
+                    <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 animate-slide-down">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+                            <i class="ti ti-user mr-2"></i> Mi perfil
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+                            <i class="ti ti-settings mr-2"></i> Configuración
+                        </a>
+                        <hr class="my-2 border-gray-200">
+                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center">
+                            <i class="ti ti-logout mr-2"></i> Cerrar sesión
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <section id="content" class="font-sans p-4 sm:p-6">
+        <!-- Notificaciones toast -->
+        <div id="toastContainer" class="fixed top-20 right-4 z-50 space-y-2 max-w-md"></div>
+
+        <!-- Card de acciones -->
+        <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm p-4 sm:p-5 flex flex-col gap-4 sm:gap-5 mb-6 animate-fade-in">
+            <!-- Fila 1: Acciones principales y exportación -->
+            <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                <!-- Acciones principales -->
+                <div class="flex flex-wrap gap-2" role="group" aria-label="Acciones principales">
+                    <button type="button" onclick="openProjectModal()"
+                        class="px-3 sm:px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm focus-visible-ring">
+                        <i class="ti ti-plus mr-2"></i>Nuevo Proyecto
+                    </button>
+                    <button type="button" onclick="openCuadrillaModal()"
+                        class="px-3 sm:px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm focus-visible-ring">
+                        <i class="ti ti-plus mr-2"></i>Nueva Cuadrilla
+                    </button>
+                    <button type="button" onclick="openFaseModal()"
+                        class="px-3 sm:px-4 py-2 bg-obra-orange text-white rounded-lg text-sm font-medium flex items-center hover:bg-orange-600 transition shadow-sm focus-visible-ring">
+                        <i class="ti ti-plus mr-2"></i>Nueva Fase
+                    </button>
+                </div>
+
+                <!-- Exportar -->
+                <div class="flex items-center gap-2 sm:gap-3" role="group" aria-label="Descargar archivos">
+                    <span class="text-xs sm:text-sm text-gray-600 font-medium">Descargar:</span>
+                    <button onclick="exportToExcel()" class="font-medium px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-xs sm:text-sm transition focus-visible-ring">
+                        <i class="text-base sm:text-lg ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel
+                    </button>
+                    <button onclick="exportToPDF()" class="font-medium px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-red-50 flex items-center text-xs sm:text-sm transition focus-visible-ring">
+                        <i class="text-base sm:text-lg ti ti-file-type-pdf text-red-600 mr-2"></i>PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fila 2: Filtros y búsqueda -->
+            <div class="flex-1 flex flex-wrap gap-2 w-full min-w-0">
+                <!-- Búsqueda -->
+                <div class="flex-1 min-w-[150px] sm:min-w-[200px]">
+                    <div class="relative">
+                        <input id="searchInput" type="text" placeholder="Buscar proyectos..." 
+                               class="w-full pl-9 sm:pl-10 pr-3 py-2 rounded-lg text-sm border border-solid border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus-visible-ring" />
+                        <i class="ti ti-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-base"></i>
+                    </div>
+                </div>
+
+                <!-- Filtro de estado -->
+                <div class="flex-1 min-w-[120px] sm:min-w-[150px]">
+                    <div class="relative">
+                        <select id="statusFilter" class="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus-visible-ring">
+                            <option value="">Todos los estados</option>
+                            <option value="activo">Activo</option>
+                            <option value="pausado">Pausado</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                        <i class="ti ti-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Botón buscar -->
+                <button id="searchBtn" type="button" class="px-3 sm:px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition focus-visible-ring">
+                    <i class="ti ti-search mr-2"></i>Buscar
+                </button>
+
+                <!-- Botón limpiar -->
+                <button id="clearBtn" type="button" class="px-3 sm:px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg text-sm font-medium flex items-center hover:bg-gray-50 transition focus-visible-ring">
+                    <i class="ti ti-broom mr-2"></i>Limpiar
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabs de navegación -->
+        <div class="flex flex-wrap gap-1 bg-white rounded-lg p-1 border border-gray-200 mb-6">
+            <button onclick="showTab('proyectos')" id="tabProyectosBtn" class="tab-btn px-3 sm:px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-indigo-700 text-white">
+                <i class="ti ti-stack-backward"></i>
+                <span class="hidden sm:inline">Proyectos</span>
+                <span class="sm:hidden">Proy.</span>
+            </button>
+            <button onclick="showTab('cuadrillas')" id="tabCuadrillasBtn" class="tab-btn px-3 sm:px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-users"></i>
+                <span class="hidden sm:inline">Cuadrillas</span>
+                <span class="sm:hidden">Cuad.</span>
+            </button>
+            <button onclick="showTab('fases')" id="tabFasesBtn" class="tab-btn px-3 sm:px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-list-details"></i>
+                <span class="hidden sm:inline">Fases</span>
+                <span class="sm:hidden">Fases</span>
+            </button>
+            <button onclick="showTab('tareas')" id="tabTareasBtn" class="tab-btn px-3 sm:px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-checklist"></i>
+                <span class="hidden sm:inline">Tareas</span>
+                <span class="sm:hidden">Tar.</span>
+            </button>
+        </div>
+
+        <!-- Tabla de Proyectos -->
+        <div id="tabProyectos" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden animate-fade-in">
+                <div class="overflow-x-auto thin-scrollbar table-responsive">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 sm:px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllProyectos" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus-visible-ring" />
+                                </th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Código</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Cliente</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Encargado</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Presupuesto</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Fecha Inicio</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Fecha Fin</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Progreso</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="proyectosTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-4 sm:px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-xs sm:text-sm text-gray-500">
+                        Mostrando <span class="font-medium" id="proyectosFrom">1</span> a <span class="font-medium" id="proyectosTo">5</span> de <span class="font-medium" id="totalProyectos">0</span> proyectos
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="prevPageBtn" class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Anterior
+                        </button>
+                        <span class="text-xs sm:text-sm text-gray-500">Página <span id="currentPage">1</span> de <span id="totalPages">1</span></span>
+                        <button id="nextPageBtn" class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Cuadrillas -->
+        <div id="tabCuadrillas" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden animate-fade-in">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 sm:px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllCuadrillas" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus-visible-ring" />
+                                </th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Miembros</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Color</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyectos Asignados</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="cuadrillasTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-4 sm:px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-xs sm:text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium" id="totalCuadrillas">0</span> cuadrillas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Fases - ACTUALIZADA con items desplegables -->
+        <div id="tabFases" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden animate-fade-in">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 sm:px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <!-- Checkbox removido para fases desplegables -->
+                                </th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fase</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Fecha Inicio</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Fecha Fin</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Progreso</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Tareas</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="fasesTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-4 sm:px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-xs sm:text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium" id="totalFases">0</span> fases
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Tareas -->
+        <div id="tabTareas" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden animate-fade-in">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 sm:px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllTareas" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus-visible-ring" />
+                                </th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fase</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Tarea</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">Cuadrilla</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Fecha Inicio</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Fecha Fin</th>
+                                <th class="px-4 sm:px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="tareasTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-4 sm:px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-xs sm:text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">5</span> de <span class="font-medium" id="totalTareas">0</span> tareas
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Proyectos -->
+    <div id="projectModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm modal-backdrop z-50 hidden flex items-center justify-center p-3 sm:p-5 animate-fade-in">
+        <div class="bg-white rounded-2xl w-full max-w-lg max-h-[85vh] overflow-auto shadow-2xl animate-slide-down">
+            <div class="flex justify-between items-center px-4 sm:px-5 py-4 border-b border-gray-100 sticky top-0 bg-white z-10 rounded-t-2xl">
+                <h3 id="modalTitle" class="text-base font-bold text-gray-900">Nuevo Proyecto</h3>
+                <button onclick="closeModal()" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition focus-visible-ring">
+                    <i class="ti ti-x text-gray-500"></i>
+                </button>
+            </div>
+            <div class="p-4 sm:p-5">
+                <form id="projectForm" onsubmit="return saveProject(event)">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Nombre del proyecto *</label>
+                            <input type="text" id="projectName" required
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                placeholder="Ej: Residencial Las Palmeras" />
+                            <p class="text-xs text-red-500 mt-1 hidden" id="nameError">El nombre del proyecto es requerido</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Código *</label>
+                            <input type="text" id="projectCode" required
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                placeholder="Ej: RLP-2026" />
+                            <p class="text-xs text-red-500 mt-1 hidden" id="codeError">El código es requerido</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Encargado *</label>
+                            <select id="projectManager" required
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring">
+                                <option value="">Seleccionar encargado</option>
+                                <option>Ana García</option>
+                                <option>Roberto Díaz</option>
+                                <option>Manuel López</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Cliente *</label>
+                            <input type="text" id="projectClient" required
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                placeholder="Nombre del cliente" />
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Dirección</label>
+                            <input type="text" id="projectAddress"
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                placeholder="Dirección de la obra" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Presupuesto (€) *</label>
+                            <input type="number" id="projectBudget" required min="0"
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                placeholder="0" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Color</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="color" id="projectColor" value="#E8752A"
+                                    class="w-10 h-10 rounded border border-gray-300 cursor-pointer" />
+                                <input type="text" id="projectColorText"
+                                    class="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                    placeholder="#E8752A" />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha inicio *</label>
+                            <input type="date" id="projectStartDate" required
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha fin *</label>
+                            <input type="date" id="projectEndDate" required
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring" />
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Estado</label>
+                            <select id="projectStatus"
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring">
+                                <option value="activo">Activo</option>
+                                <option value="pausado">Pausado</option>
+                                <option value="finalizado">Finalizado</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Descripción</label>
+                            <textarea id="projectDescription" rows="2"
+                                class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition focus-visible-ring"
+                                placeholder="Descripción del proyecto"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2 mt-5">
+                        <button type="button" onclick="closeModal()"
+                            class="px-4 sm:px-5 py-2.5 rounded-lg border border-gray-200 bg-white text-sm font-bold text-gray-500 hover:bg-gray-50 transition focus-visible-ring">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                            class="px-5 sm:px-6 py-2.5 rounded-lg bg-indigo-700 text-white text-sm font-bold shadow-md hover:bg-indigo-900 transition flex items-center gap-1.5 focus-visible-ring">
+                            <i class="ti ti-device-floppy"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="confirmModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-5">
+        <div class="bg-white rounded-2xl w-full max-w-md p-5 shadow-2xl animate-slide-down">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="ti ti-alert-triangle text-red-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-2" id="confirmTitle">¿Estás seguro?</h3>
+                <p class="text-gray-600 mb-6" id="confirmMessage">Esta acción no se puede deshacer.</p>
+                <div class="flex justify-center gap-3">
+                    <button onclick="closeConfirmModal()" class="px-5 py-2.5 rounded-lg border border-gray-200 bg-white text-sm font-bold text-gray-500 hover:bg-gray-50 transition">
+                        Cancelar
+                    </button>
+                    <button onclick="executeConfirmAction()" class="px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-bold shadow-md hover:bg-red-700 transition">
+                        Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================
+        // ESTADO DE LA APLICACIÓN
+        // ============================================
+        const state = {
+            proyectos: [],
+            cuadrillas: [],
+            fases: [],
+            tareas: [],
+            currentTab: 'proyectos',
+            currentPage: 1,
+            itemsPerPage: 5,
+            filteredProyectos: [],
+            editingProjectId: null,
+            confirmAction: null,
+            confirmData: null,
+            expandedFases: {}, // Nuevo: controla qué fases están expandidas
+            expandedTareas: {} // Nuevo: controla qué tareas están expandidas
+        };
+
+        // ============================================
+        // DATOS DE EJEMPLO MEJORADOS
+        // ============================================
+        const initialData = {
+            proyectos: [
+                {
+                    id: 1,
+                    code: "RM-2026",
+                    name: "Residencial Mirador",
+                    cliente: "Grupo Inmobiliario Levante S.L.",
+                    encargado: "Ana García",
+                    presupuesto: 2450000,
+                    fechaInicio: "2026-01-15",
+                    fechaFin: "2026-09-30",
+                    progreso: 42,
+                    estado: "activo",
+                    color: "#E8752A",
+                    descripcion: "Proyecto residencial de 20 viviendas"
+                },
+                {
+                    id: 2,
+                    code: "NIG-2026",
+                    name: "Nave Industrial Getafe",
+                    cliente: "LogiTrans España S.A.",
+                    encargado: "Roberto Díaz",
+                    presupuesto: 890000,
+                    fechaInicio: "2026-02-01",
+                    fechaFin: "2026-07-15",
+                    progreso: 15,
+                    estado: "activo",
+                    color: "#2A7DE8",
+                    descripcion: "Nave industrial de 1.500 m²"
+                },
+                {
+                    id: 3,
+                    code: "EP-2026",
+                    name: "Edificio Panorama",
+                    cliente: "Constructora Moderna S.A.",
+                    encargado: "Manuel López",
+                    presupuesto: 1850000,
+                    fechaInicio: "2026-03-01",
+                    fechaFin: "2026-11-30",
+                    progreso: 8,
+                    estado: "activo",
+                    color: "#7E2AE8",
+                    descripcion: "Edificio de oficinas de 8 plantas"
+                },
+                {
+                    id: 4,
+                    code: "CP-2025",
+                    name: "Centro Comercial Plaza",
+                    cliente: "Inversiones Urbanas S.L.",
+                    encargado: "Ana García",
+                    presupuesto: 3200000,
+                    fechaInicio: "2025-11-01",
+                    fechaFin: "2026-05-30",
+                    progreso: 78,
+                    estado: "activo",
+                    color: "#16a34a",
+                    descripcion: "Centro comercial con 50 locales"
+                },
+                {
+                    id: 5,
+                    code: "RP-2025",
+                    name: "Reforma Hospital Provincial",
+                    cliente: "Servicios de Salud",
+                    encargado: "Roberto Díaz",
+                    presupuesto: 1250000,
+                    fechaInicio: "2025-09-15",
+                    fechaFin: "2026-02-28",
+                    progreso: 92,
+                    estado: "finalizado",
+                    color: "#dc2626",
+                    descripcion: "Reforma integral de urgencias"
+                }
+            ],
+            cuadrillas: [
+                {
+                    id: 1,
+                    name: "Cuadrilla Alfa",
+                    miembros: 3,
+                    color: "#E8752A",
+                    proyectosAsignados: 2
+                },
+                {
+                    id: 2,
+                    name: "Cuadrilla Beta",
+                    miembros: 2,
+                    color: "#2A7DE8",
+                    proyectosAsignados: 3
+                },
+                {
+                    id: 3,
+                    name: "Cuadrilla Gamma",
+                    miembros: 4,
+                    color: "#7E2AE8",
+                    proyectosAsignados: 1
+                }
+            ],
+            fases: [
+                {
+                    id: 1,
+                    proyecto: "Residencial Mirador",
+                    proyectoId: 1,
+                    nombre: "Fase 1 — Cimentación",
+                    fechaInicio: "2026-01-15",
+                    fechaFin: "2026-03-15",
+                    progreso: 85,
+                    tareas: 6,
+                    descripcion: "Cimentación y base del edificio",
+                    color: "#E8752A"
+                },
+                {
+                    id: 2,
+                    proyecto: "Residencial Mirador",
+                    proyectoId: 1,
+                    nombre: "Fase 2 — Estructura",
+                    fechaInicio: "2026-03-10",
+                    fechaFin: "2026-06-30",
+                    progreso: 0,
+                    tareas: 5,
+                    descripcion: "Estructura principal del edificio",
+                    color: "#E8752A"
+                },
+                {
+                    id: 3,
+                    proyecto: "Nave Industrial Getafe",
+                    proyectoId: 2,
+                    nombre: "Fase 1 — Movimiento de tierras",
+                    fechaInicio: "2026-02-01",
+                    fechaFin: "2026-03-01",
+                    progreso: 40,
+                    tareas: 3,
+                    descripcion: "Preparación del terreno",
+                    color: "#2A7DE8"
+                }
+            ],
+            tareas: [
+                {
+                    id: 1,
+                    faseId: 1,
+                    proyecto: "Residencial Mirador",
+                    fase: "Fase 1 — Cimentación",
+                    nombre: "Excavación",
+                    cuadrilla: "Cuadrilla Alfa",
+                    estado: "completada",
+                    fechaInicio: "2026-01-15",
+                    fechaFin: "2026-02-10",
+                    subtareas: [
+                        {
+                            id: 1,
+                            nombre: "Desbroce y limpieza",
+                            fechaInicio: "2026-01-15",
+                            fechaFin: "2026-01-25",
+                            cuadrilla: "Cuadrilla Alfa",
+                            estado: "completada",
+                            notas: "Terreno limpio y preparado"
+                        },
+                        {
+                            id: 2,
+                            nombre: "Excavación de zanjas",
+                            fechaInicio: "2026-01-26",
+                            fechaFin: "2026-02-05",
+                            cuadrilla: "Cuadrilla Alfa",
+                            estado: "completada",
+                            notas: "Zanjas para cimentación completadas"
+                        },
+                        {
+                            id: 3,
+                            nombre: "Retirada de tierras",
+                            fechaInicio: "2026-02-01",
+                            fechaFin: "2026-02-10",
+                            cuadrilla: "Cuadrilla Gamma",
+                            estado: "completada",
+                            notas: "Tierras retiradas al vertedero autorizado"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    faseId: 1,
+                    proyecto: "Residencial Mirador",
+                    fase: "Fase 1 — Cimentación",
+                    nombre: "Hormigonado",
+                    cuadrilla: "Cuadrilla Beta",
+                    estado: "en_curso",
+                    fechaInicio: "2026-02-10",
+                    fechaFin: "2026-03-05",
+                    subtareas: [
+                        {
+                            id: 4,
+                            nombre: "Encofrado zapatas",
+                            fechaInicio: "2026-02-10",
+                            fechaFin: "2026-02-20",
+                            cuadrilla: "Cuadrilla Beta",
+                            estado: "en_curso",
+                            notas: "Encofrado al 70%"
+                        },
+                        {
+                            id: 5,
+                            nombre: "Vertido hormigón",
+                            fechaInicio: "2026-02-18",
+                            fechaFin: "2026-02-28",
+                            cuadrilla: "Cuadrilla Beta",
+                            estado: "pendiente",
+                            notas: "Esperando suministro de hormigón"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    faseId: 1,
+                    proyecto: "Residencial Mirador",
+                    fase: "Fase 1 — Cimentación",
+                    nombre: "Curado y desencofrado",
+                    cuadrilla: null,
+                    estado: "pendiente",
+                    fechaInicio: "2026-03-01",
+                    fechaFin: "2026-03-15",
+                    subtareas: [
+                        {
+                            id: 6,
+                            nombre: "Curado del hormigón",
+                            fechaInicio: "2026-03-01",
+                            fechaFin: "2026-03-10",
+                            cuadrilla: null,
+                            estado: "pendiente",
+                            notas: "Programado para marzo"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    faseId: 2,
+                    proyecto: "Residencial Mirador",
+                    fase: "Fase 2 — Estructura",
+                    nombre: "Armado pilares",
+                    cuadrilla: null,
+                    estado: "pendiente",
+                    fechaInicio: "2026-03-10",
+                    fechaFin: "2026-04-20",
+                    subtareas: []
+                },
+                {
+                    id: 5,
+                    faseId: 3,
+                    proyecto: "Nave Industrial Getafe",
+                    fase: "Fase 1 — Movimiento de tierras",
+                    nombre: "Desbroce",
+                    cuadrilla: "Cuadrilla Gamma",
+                    estado: "completada",
+                    fechaInicio: "2026-02-01",
+                    fechaFin: "2026-02-20",
+                    subtareas: [
+                        {
+                            id: 7,
+                            nombre: "Limpieza parcela",
+                            fechaInicio: "2026-02-01",
+                            fechaFin: "2026-02-10",
+                            cuadrilla: "Cuadrilla Gamma",
+                            estado: "completada",
+                            notas: "Parcela limpia de vegetación"
+                        },
+                        {
+                            id: 8,
+                            nombre: "Nivelación terreno",
+                            fechaInicio: "2026-02-10",
+                            fechaFin: "2026-02-20",
+                            cuadrilla: "Cuadrilla Gamma",
+                            estado: "completada",
+                            notas: "Terreno nivelado según planos"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // ============================================
+        // FUNCIONES UTILITARIAS
+        // ============================================
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        function formatDateShort(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                day: '2-digit',
+                month: 'short'
+            });
+        }
+
+        function getEstadoBadge(estado) {
+            const estados = {
+                'activo': { color: 'bg-green-100 text-green-800', text: 'Activo', icon: 'ti ti-circle-check' },
+                'pausado': { color: 'bg-yellow-100 text-yellow-800', text: 'Pausado', icon: 'ti ti-pause' },
+                'finalizado': { color: 'bg-gray-100 text-gray-800', text: 'Finalizado', icon: 'ti ti-flag' },
+                'completada': { color: 'bg-green-100 text-green-800', text: 'Completada', icon: 'ti ti-check' },
+                'en_curso': { color: 'bg-yellow-100 text-yellow-800', text: 'En curso', icon: 'ti ti-progress' },
+                'pendiente': { color: 'bg-gray-100 text-gray-800', text: 'Pendiente', icon: 'ti ti-clock' }
+            };
+            const estadoObj = estados[estado] || estados['pendiente'];
+            return `<span class="px-2.5 py-1 rounded-full text-xs font-medium ${estadoObj.color} flex items-center gap-1">
+                        <i class="${estadoObj.icon} text-xs"></i>
+                        ${estadoObj.text}
+                    </span>`;
+        }
+
+        function showNotification(type, message) {
+            const container = document.getElementById('toastContainer');
+            const id = 'toast-' + Date.now();
+            
+            const colors = {
+                success: { bg: 'bg-green-50', border: 'border-green-200', text: 'text-green-800', icon: 'ti ti-circle-check text-green-500' },
+                error: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-800', icon: 'ti ti-alert-circle text-red-500' },
+                info: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', icon: 'ti ti-info-circle text-blue-500' },
+                warning: { bg: 'bg-yellow-50', border: 'border-yellow-200', text: 'text-yellow-800', icon: 'ti ti-alert-triangle text-yellow-500' }
+            };
+            
+            const color = colors[type] || colors.info;
+            
+            const toast = document.createElement('div');
+            toast.id = id;
+            toast.className = `p-3 rounded-lg border ${color.bg} ${color.border} ${color.text} shadow-sm animate-slide-down max-w-xs`;
+            toast.innerHTML = `
+                <div class="flex items-start">
+                    <i class="${color.icon} text-lg mr-2 mt-0.5"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">${message}</p>
+                    </div>
+                    <button onclick="document.getElementById('${id}').remove()" class="ml-2 text-gray-400 hover:text-gray-600">
+                        <i class="ti ti-x"></i>
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateX(100%)';
+                    setTimeout(() => element.remove(), 300);
+                }
+            }, 5000);
+        }
+
+        function saveToLocalStorage() {
+            try {
+                const data = {
+                    proyectos: state.proyectos,
+                    cuadrillas: state.cuadrillas,
+                    fases: state.fases,
+                    tareas: state.tareas,
+                    lastUpdated: new Date().toISOString()
+                };
+                localStorage.setItem('projectManagementData', JSON.stringify(data));
+                return true;
+            } catch (error) {
+                console.error('Error saving to localStorage:', error);
+                showNotification('error', 'Error al guardar los datos');
+                return false;
+            }
+        }
+
+        function loadFromLocalStorage() {
+            try {
+                const saved = localStorage.getItem('projectManagementData');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    state.proyectos = data.proyectos || initialData.proyectos;
+                    state.cuadrillas = data.cuadrillas || initialData.cuadrillas;
+                    state.fases = data.fases || initialData.fases;
+                    state.tareas = data.tareas || initialData.tareas;
+                    return true;
+                }
+            } catch (error) {
+                console.error('Error loading from localStorage:', error);
+                showNotification('error', 'Error al cargar los datos guardados');
+            }
+            return false;
+        }
+
+        function generateNextProjectCode() {
+            const year = new Date().getFullYear();
+            const existingCodes = state.proyectos.map(p => p.code);
+            let count = 1;
+            
+            while (true) {
+                const newCode = `PROJ-${year}-${count.toString().padStart(3, '0')}`;
+                if (!existingCodes.includes(newCode)) {
+                    return newCode;
+                }
+                count++;
+            }
+        }
+
+        // ============================================
+        // FUNCIONES DE RENDERIZADO
+        // ============================================
+        function renderProyectosTable() {
+            const tbody = document.getElementById('proyectosTableBody');
+            const totalElement = document.getElementById('totalProyectos');
+            const fromElement = document.getElementById('proyectosFrom');
+            const toElement = document.getElementById('proyectosTo');
+            
+            // Filtrar proyectos
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            
+            let filtered = state.proyectos;
+            
+            if (searchTerm) {
+                filtered = filtered.filter(proyecto =>
+                    proyecto.name.toLowerCase().includes(searchTerm) ||
+                    proyecto.code.toLowerCase().includes(searchTerm) ||
+                    proyecto.cliente.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            if (statusFilter) {
+                filtered = filtered.filter(proyecto => proyecto.estado === statusFilter);
+            }
+            
+            state.filteredProyectos = filtered;
+            
+            // Paginación
+            const totalPages = Math.ceil(filtered.length / state.itemsPerPage);
+            const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+            const endIndex = Math.min(startIndex + state.itemsPerPage, filtered.length);
+            const paginated = filtered.slice(startIndex, endIndex);
+            
+            // Actualizar paginación
+            document.getElementById('totalPages').textContent = totalPages;
+            document.getElementById('currentPage').textContent = state.currentPage;
+            document.getElementById('prevPageBtn').disabled = state.currentPage === 1;
+            document.getElementById('nextPageBtn').disabled = state.currentPage === totalPages;
+            
+            // Renderizar filas
+            const fragment = document.createDocumentFragment();
+            
+            paginated.forEach(proyecto => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50';
+                tr.innerHTML = `
+                    <td class="px-4 sm:px-6 py-4">
+                        <input type="checkbox" value="${proyecto.id}" class="proyecto-checkbox rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus-visible-ring" />
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-extrabold" style="background:${proyecto.color}12;border:1.5px solid ${proyecto.color}25;color:${proyecto.color}">
+                                ${proyecto.code.split('-')[0]}
+                            </div>
+                            <span class="ml-3 font-mono font-bold text-sm">${proyecto.code}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">${proyecto.name}</div>
+                        <div class="text-xs text-gray-500 truncate max-w-[150px] lg:hidden">${proyecto.cliente}</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden lg:table-cell">${proyecto.cliente}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden md:table-cell">${proyecto.encargado}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm font-medium">${formatCurrency(proyecto.presupuesto)}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(proyecto.fechaInicio)}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(proyecto.fechaFin)}</td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-20 sm:w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full" style="width: ${proyecto.progreso}%; background: ${proyecto.color};"></div>
+                            </div>
+                            <span class="ml-2 text-xs font-bold" style="color: ${proyecto.color}">${proyecto.progreso}%</span>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">${getEstadoBadge(proyecto.estado)}</td>
+                    <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button onclick="editProject(${proyecto.id})" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors focus-visible-ring">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> <span class="hidden sm:inline">Editar</span>
+                            </button>
+                            <button onclick="showDeleteConfirm(${proyecto.id}, 'proyecto', '${proyecto.name}')" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors focus-visible-ring">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> <span class="hidden sm:inline">Eliminar</span>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                fragment.appendChild(tr);
+            });
+            
+            tbody.innerHTML = '';
+            tbody.appendChild(fragment);
+            
+            // Actualizar contadores
+            totalElement.textContent = filtered.length;
+            fromElement.textContent = filtered.length > 0 ? startIndex + 1 : 0;
+            toElement.textContent = endIndex;
+            
+            // Inicializar checkboxes
+            initCheckboxListeners('proyectos');
+        }
+
+        function renderCuadrillasTable() {
+            const tbody = document.getElementById('cuadrillasTableBody');
+            const totalElement = document.getElementById('totalCuadrillas');
+            
+            tbody.innerHTML = state.cuadrillas.map(cuadrilla => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 sm:px-6 py-4">
+                        <input type="checkbox" value="${cuadrilla.id}" class="cuadrilla-checkbox rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus-visible-ring" />
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-2.5 h-2.5 rounded-full mr-2" style="background: ${cuadrilla.color}"></div>
+                            <div class="text-sm font-medium text-gray-900">${cuadrilla.name}</div>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="flex items-center">
+                            <i class="ti ti-users mr-1 text-gray-400"></i>
+                            ${cuadrilla.miembros} <span class="text-gray-500 ml-1">miembros</span>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4 hidden sm:table-cell">
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded border" style="background: ${cuadrilla.color}"></div>
+                            <span class="ml-2 text-xs font-mono">${cuadrilla.color}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500">${cuadrilla.proyectosAsignados} proyectos</td>
+                    <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-2 sm:px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> <span class="hidden sm:inline">Editar</span>
+                            </button>
+                            <button class="px-2 sm:px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> <span class="hidden sm:inline">Ver</span>
+                            </button>
+                            <button onclick="showDeleteConfirm(${cuadrilla.id}, 'cuadrilla', '${cuadrilla.name}')" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> <span class="hidden sm:inline">Eliminar</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = state.cuadrillas.length;
+            initCheckboxListeners('cuadrillas');
+        }
+
+        // NUEVA FUNCIÓN: Renderizar tabla de fases con items desplegables
+        function renderFasesTable() {
+            const tbody = document.getElementById('fasesTableBody');
+            const totalElement = document.getElementById('totalFases');
+            
+            const fragment = document.createDocumentFragment();
+            
+            state.fases.forEach(fase => {
+                const isExpanded = state.expandedFases[fase.id] || false;
+                const tareasDeFase = state.tareas.filter(t => t.faseId === fase.id);
+                const proyecto = state.proyectos.find(p => p.id === fase.proyectoId);
+                const proyectoColor = proyecto?.color || fase.color || '#E8752A';
+                
+                // Fila principal de la fase
+                const faseRow = document.createElement('tr');
+                faseRow.className = 'hover:bg-gray-50';
+                faseRow.innerHTML = `
+                    <td class="px-4 sm:px-6 py-4">
+                        <button onclick="toggleFase(${fase.id})" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-700 focus-visible-ring">
+                            <i class="ti ti-chevron-right chevron-rotate ${isExpanded ? 'open' : ''}"></i>
+                        </button>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-2.5 h-2.5 rounded-full mr-2" style="background: ${proyectoColor}"></div>
+                            <div class="text-sm font-medium text-gray-900">${fase.proyecto}</div>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">${fase.nombre}</div>
+                        <div class="text-xs text-gray-500">${fase.descripcion || ''}</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(fase.fechaInicio)}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(fase.fechaFin)}</td>
+                    <td class="px-4 sm:px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-16 sm:w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full" style="width: ${fase.progreso}%; background: ${proyectoColor};"></div>
+                            </div>
+                            <span class="ml-2 text-xs font-bold" style="color: ${proyectoColor}">${fase.progreso}%</span>
+                        </div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500">${tareasDeFase.length} tareas</td>
+                    <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button onclick="openTareaModal(${fase.id})" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-obra-orange bg-white border border-gray-200 rounded-l-lg hover:bg-orange-50 flex items-center transition-colors">
+                                <i class="ti ti-plus mr-1 text-obra-orange text-sm"></i> <span class="hidden sm:inline">Tarea</span>
+                            </button>
+                            <button class="px-2 sm:px-3 py-1.5 text-xs font-medium text-green-600 bg-white border-t border-b border-gray-200 hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> <span class="hidden sm:inline">Editar</span>
+                            </button>
+                            <button onclick="showDeleteConfirm(${fase.id}, 'fase', '${fase.nombre}')" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> <span class="hidden sm:inline">Eliminar</span>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                fragment.appendChild(faseRow);
+                
+                // Filas de tareas (si la fase está expandida)
+                if (isExpanded && tareasDeFase.length > 0) {
+                    tareasDeFase.forEach(tarea => {
+                        const isTareaExpanded = state.expandedTareas[tarea.id] || false;
+                        
+                        // Fila de tarea
+                        const tareaRow = document.createElement('tr');
+                        tareaRow.className = 'subtask-row';
+                        tareaRow.innerHTML = `
+                            <td class="px-4 sm:px-6 py-4 pl-10">
+                                <button onclick="toggleTarea(${tarea.id})" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-700 focus-visible-ring">
+                                    <i class="ti ti-chevron-right chevron-rotate text-sm ${isTareaExpanded ? 'open' : ''}"></i>
+                                </button>
+                            </td>
+                            <td class="px-4 sm:px-6 py-4 pl-0" colspan="2">
+                                <div class="pl-4">
+                                    <div class="text-sm font-medium text-gray-900">${tarea.nombre}</div>
+                                    <div class="text-xs text-gray-500 flex items-center gap-2 mt-1">
+                                        <span>${formatDateShort(tarea.fechaInicio)} → ${formatDateShort(tarea.fechaFin)}</span>
+                                        ${tarea.cuadrilla ? `<span class="px-1.5 py-0.5 rounded text-xs" style="background: ${getCuadrillaColor(tarea.cuadrilla)}20; color: ${getCuadrillaColor(tarea.cuadrilla)}; border: 1px solid ${getCuadrillaColor(tarea.cuadrilla)}30">${tarea.cuadrilla}</span>` : ''}
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(tarea.fechaInicio)}</td>
+                            <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(tarea.fechaFin)}</td>
+                            <td class="px-4 sm:px-6 py-4">
+                                ${getEstadoBadge(tarea.estado)}
+                            </td>
+                            <td class="px-4 sm:px-6 py-4 text-sm text-gray-500">
+                                ${tarea.subtareas ? tarea.subtareas.length : 0} subtareas
+                            </td>
+                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <div class="inline-flex rounded-md shadow-sm">
+                                    <button onclick="openSubtareaModal(${tarea.id})" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border border-gray-200 rounded-l-lg hover:bg-blue-50 flex items-center transition-colors">
+                                        <i class="ti ti-plus mr-1 text-blue-500 text-sm"></i> <span class="hidden sm:inline">Subtarea</span>
+                                    </button>
+                                    <button class="px-2 sm:px-3 py-1.5 text-xs font-medium text-green-600 bg-white border-t border-b border-gray-200 hover:bg-green-50 flex items-center transition-colors">
+                                        <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> <span class="hidden sm:inline">Editar</span>
+                                    </button>
+                                    <button onclick="showDeleteConfirm(${tarea.id}, 'tarea', '${tarea.nombre}')" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                        <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> <span class="hidden sm:inline">Eliminar</span>
+                                    </button>
+                                </div>
+                            </td>
+                        `;
+                        fragment.appendChild(tareaRow);
+                        
+                        // Filas de subtareas (si la tarea está expandida)
+                        if (isTareaExpanded && tarea.subtareas && tarea.subtareas.length > 0) {
+                            tarea.subtareas.forEach(subtarea => {
+                                const subtareaRow = document.createElement('tr');
+                                subtareaRow.className = 'subtask-row';
+                                subtareaRow.innerHTML = `
+                                    <td class="px-4 sm:px-6 py-4 pl-16">
+                                        <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-4" colspan="2">
+                                        <div class="pl-6">
+                                            <div class="text-sm font-medium text-gray-700">${subtarea.nombre}</div>
+                                            <div class="text-xs text-gray-500 flex items-center gap-2 mt-1">
+                                                <span>${formatDateShort(subtarea.fechaInicio)} → ${formatDateShort(subtarea.fechaFin)}</span>
+                                                ${subtarea.cuadrilla ? `<span class="px-1.5 py-0.5 rounded text-xs" style="background: ${getCuadrillaColor(subtarea.cuadrilla)}20; color: ${getCuadrillaColor(subtarea.cuadrilla)}; border: 1px solid ${getCuadrillaColor(subtarea.cuadrilla)}30">${subtarea.cuadrilla}</span>` : ''}
+                                                ${subtarea.notas ? `<span class="text-gray-400"><i class="ti ti-note mr-0.5"></i> ${subtarea.notas.substring(0, 30)}${subtarea.notas.length > 30 ? '...' : ''}</span>` : ''}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(subtarea.fechaInicio)}</td>
+                                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(subtarea.fechaFin)}</td>
+                                    <td class="px-4 sm:px-6 py-4">
+                                        ${getEstadoBadge(subtarea.estado)}
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500">
+                                        <button onclick="editSubtarea(${tarea.id}, ${subtarea.id})" class="text-xs text-blue-600 hover:text-blue-800">
+                                            <i class="ti ti-edit mr-1"></i>Editar
+                                        </button>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="inline-flex rounded-md shadow-sm">
+                                            <button onclick="editSubtarea(${tarea.id}, ${subtarea.id})" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> <span class="hidden sm:inline">Editar</span>
+                                            </button>
+                                            <button onclick="showDeleteSubtareaConfirm(${tarea.id}, ${subtarea.id}, '${subtarea.nombre}')" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> <span class="hidden sm:inline">Eliminar</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                `;
+                                fragment.appendChild(subtareaRow);
+                            });
+                        }
+                    });
+                }
+            });
+            
+            tbody.innerHTML = '';
+            tbody.appendChild(fragment);
+            
+            totalElement.textContent = state.fases.length;
+        }
+
+        function renderTareasTable() {
+            const tbody = document.getElementById('tareasTableBody');
+            const totalElement = document.getElementById('totalTareas');
+            
+            tbody.innerHTML = state.tareas.map(tarea => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 sm:px-6 py-4">
+                        <input type="checkbox" value="${tarea.id}" class="tarea-checkbox rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus-visible-ring" />
+                    </td>
+                    <td class="px-4 sm:px-6 py-4 text-sm font-medium text-gray-900">${tarea.proyecto}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-900 truncate max-w-[150px]">${tarea.fase}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-900">${tarea.nombre}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden md:table-cell">${tarea.cuadrilla || '<span class="text-gray-400 italic">Sin asignar</span>'}</td>
+                    <td class="px-4 sm:px-6 py-4">${getEstadoBadge(tarea.estado)}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(tarea.fechaInicio)}</td>
+                    <td class="px-4 sm:px-6 py-4 text-sm text-gray-500 hidden sm:table-cell">${formatDate(tarea.fechaFin)}</td>
+                    <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-2 sm:px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> <span class="hidden sm:inline">Editar</span>
+                            </button>
+                            <button class="px-2 sm:px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> <span class="hidden sm:inline">Ver</span>
+                            </button>
+                            <button onclick="showDeleteConfirm(${tarea.id}, 'tarea', '${tarea.nombre}')" class="px-2 sm:px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> <span class="hidden sm:inline">Eliminar</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = state.tareas.length;
+            initCheckboxListeners('tareas');
+        }
+
+        // ============================================
+        // FUNCIONES DE INTERACCIÓN CON ITEMS DESPLEGABLES
+        // ============================================
+        function toggleFase(faseId) {
+            state.expandedFases[faseId] = !state.expandedFases[faseId];
+            renderFasesTable();
+        }
+
+        function toggleTarea(tareaId) {
+            state.expandedTareas[tareaId] = !state.expandedTareas[tareaId];
+            renderFasesTable();
+        }
+
+        function getCuadrillaColor(cuadrillaName) {
+            const cuadrilla = state.cuadrillas.find(c => c.name === cuadrillaName);
+            return cuadrilla ? cuadrilla.color : '#94a3b8';
+        }
+
+        function openTareaModal(faseId) {
+            showNotification('info', `Añadiendo nueva tarea a la fase ${faseId}`);
+            // En una implementación completa, aquí abrirías un modal
+        }
+
+        function openSubtareaModal(tareaId) {
+            showNotification('info', `Añadiendo nueva subtarea a la tarea ${tareaId}`);
+            // En una implementación completa, aquí abrirías un modal
+        }
+
+        function editSubtarea(tareaId, subtareaId) {
+            showNotification('info', `Editando subtarea ${subtareaId} de la tarea ${tareaId}`);
+            // En una implementación completa, aquí abrirías un modal de edición
+        }
+
+        function showDeleteSubtareaConfirm(tareaId, subtareaId, subtareaName) {
+            state.confirmAction = () => deleteSubtarea(tareaId, subtareaId);
+            state.confirmData = { tareaId, subtareaId, subtareaName };
+            
+            document.getElementById('confirmTitle').textContent = `¿Eliminar subtarea?`;
+            document.getElementById('confirmMessage').textContent = `¿Estás seguro de eliminar la subtarea "${subtareaName}"? Esta acción no se puede deshacer.`;
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function deleteSubtarea(tareaId, subtareaId) {
+            try {
+                const tareaIndex = state.tareas.findIndex(t => t.id === tareaId);
+                if (tareaIndex !== -1 && state.tareas[tareaIndex].subtareas) {
+                    const subtareaIndex = state.tareas[tareaIndex].subtareas.findIndex(s => s.id === subtareaId);
+                    if (subtareaIndex !== -1) {
+                        state.tareas[tareaIndex].subtareas.splice(subtareaIndex, 1);
+                        saveToLocalStorage();
+                        renderFasesTable();
+                        showNotification('success', 'Subtarea eliminada correctamente');
+                    }
+                }
+            } catch (error) {
+                console.error('Error deleting subtarea:', error);
+                showNotification('error', 'Error al eliminar la subtarea');
+            }
+        }
+
+        // ============================================
+        // FUNCIONES DE UI
+        // ============================================
+        function showTab(tabName) {
+            state.currentTab = tabName;
+            
+            // Ocultar todas las tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Mostrar la tab seleccionada
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).classList.remove('hidden');
+            
+            // Actualizar botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-700', 'text-white');
+                btn.classList.add('bg-transparent', 'text-gray-500');
+            });
+            
+            const activeBtn = document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Btn`);
+            activeBtn.classList.add('bg-indigo-700', 'text-white');
+            activeBtn.classList.remove('bg-transparent', 'text-gray-500');
+        }
+
+        function openProjectModal(projectId = null) {
+            state.editingProjectId = projectId;
+            const modal = document.getElementById('projectModal');
+            const title = document.getElementById('modalTitle');
+            const form = document.getElementById('projectForm');
+            
+            if (projectId) {
+                // Modo edición
+                const project = state.proyectos.find(p => p.id === projectId);
+                if (project) {
+                    title.textContent = `Editar ${project.name}`;
+                    
+                    document.getElementById('projectName').value = project.name;
+                    document.getElementById('projectCode').value = project.code;
+                    document.getElementById('projectManager').value = project.encargado;
+                    document.getElementById('projectClient').value = project.cliente;
+                    document.getElementById('projectAddress').value = project.direccion || '';
+                    document.getElementById('projectBudget').value = project.presupuesto;
+                    document.getElementById('projectColor').value = project.color;
+                    document.getElementById('projectColorText').value = project.color;
+                    document.getElementById('projectStartDate').value = project.fechaInicio;
+                    document.getElementById('projectEndDate').value = project.fechaFin;
+                    document.getElementById('projectStatus').value = project.estado;
+                    document.getElementById('projectDescription').value = project.descripcion || '';
+                }
+            } else {
+                // Modo nuevo
+                title.textContent = 'Nuevo Proyecto';
+                form.reset();
+                document.getElementById('projectCode').value = generateNextProjectCode();
+                document.getElementById('projectColor').value = '#E8752A';
+                document.getElementById('projectColorText').value = '#E8752A';
+                document.getElementById('projectStartDate').value = new Date().toISOString().split('T')[0];
+                
+                // Set end date to 6 months from now
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 6);
+                document.getElementById('projectEndDate').value = endDate.toISOString().split('T')[0];
+            }
+            
+            modal.classList.remove('hidden');
+            document.getElementById('projectName').focus();
+            
+            // Trap focus en el modal
+            trapFocus(modal);
+        }
+
+        function openCuadrillaModal() {
+            showNotification('info', 'Funcionalidad de Nueva Cuadrilla en desarrollo');
+        }
+
+        function openFaseModal() {
+            showNotification('info', 'Funcionalidad de Nueva Fase en desarrollo');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.getElementById('projectForm').reset();
+            state.editingProjectId = null;
+        }
+
+        function saveProject(event) {
+            event.preventDefault();
+            
+            // Validación básica
+            const name = document.getElementById('projectName').value.trim();
+            const code = document.getElementById('projectCode').value.trim();
+            
+            if (!name || !code) {
+                showNotification('error', 'Nombre y código son campos requeridos');
+                return false;
+            }
+            
+            const projectData = {
+                name: name,
+                code: code,
+                encargado: document.getElementById('projectManager').value,
+                cliente: document.getElementById('projectClient').value.trim(),
+                direccion: document.getElementById('projectAddress').value.trim(),
+                presupuesto: parseFloat(document.getElementById('projectBudget').value) || 0,
+                color: document.getElementById('projectColor').value,
+                fechaInicio: document.getElementById('projectStartDate').value,
+                fechaFin: document.getElementById('projectEndDate').value,
+                estado: document.getElementById('projectStatus').value,
+                descripcion: document.getElementById('projectDescription').value.trim(),
+                progreso: state.editingProjectId ? 
+                    state.proyectos.find(p => p.id === state.editingProjectId)?.progreso || 0 : 0
+            };
+            
+            try {
+                if (state.editingProjectId) {
+                    // Actualizar proyecto existente
+                    const index = state.proyectos.findIndex(p => p.id === state.editingProjectId);
+                    if (index !== -1) {
+                        state.proyectos[index] = {
+                            ...state.proyectos[index],
+                            ...projectData,
+                            id: state.editingProjectId
+                        };
+                    }
+                    showNotification('success', 'Proyecto actualizado correctamente');
+                } else {
+                    // Crear nuevo proyecto
+                    const newId = Math.max(...state.proyectos.map(p => p.id), 0) + 1;
+                    state.proyectos.push({
+                        ...projectData,
+                        id: newId,
+                        progreso: 0
+                    });
+                    showNotification('success', 'Proyecto creado correctamente');
+                }
+                
+                saveToLocalStorage();
+                closeModal();
+                renderProyectosTable();
+                
+            } catch (error) {
+                console.error('Error saving project:', error);
+                showNotification('error', 'Error al guardar el proyecto');
+            }
+            
+            return false;
+        }
+
+        function showDeleteConfirm(id, type, name) {
+            state.confirmAction = () => deleteItem(id, type);
+            state.confirmData = { id, type, name };
+            
+            document.getElementById('confirmTitle').textContent = `¿Eliminar ${type}?`;
+            document.getElementById('confirmMessage').textContent = `¿Estás seguro de eliminar "${name}"? Esta acción no se puede deshacer.`;
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+            state.confirmAction = null;
+            state.confirmData = null;
+        }
+
+        function executeConfirmAction() {
+            if (state.confirmAction) {
+                state.confirmAction();
+            }
+            closeConfirmModal();
+        }
+
+        function deleteItem(id, type) {
+            try {
+                let arrayName, renderFunction, message;
+                
+                switch(type) {
+                    case 'proyecto':
+                        arrayName = 'proyectos';
+                        renderFunction = renderProyectosTable;
+                        message = 'Proyecto eliminado correctamente';
+                        break;
+                    case 'cuadrilla':
+                        arrayName = 'cuadrillas';
+                        renderFunction = renderCuadrillasTable;
+                        message = 'Cuadrilla eliminada correctamente';
+                        break;
+                    case 'fase':
+                        arrayName = 'fases';
+                        renderFunction = renderFasesTable;
+                        message = 'Fase eliminada correctamente';
+                        break;
+                    case 'tarea':
+                        arrayName = 'tareas';
+                        renderFunction = renderFasesTable; // Actualiza la tabla de fases también
+                        message = 'Tarea eliminada correctamente';
+                        break;
+                    default:
+                        return;
+                }
+                
+                const index = state[arrayName].findIndex(item => item.id === id);
+                if (index !== -1) {
+                    state[arrayName].splice(index, 1);
+                    saveToLocalStorage();
+                    renderFunction();
+                    showNotification('success', message);
+                }
+            } catch (error) {
+                console.error('Error deleting item:', error);
+                showNotification('error', 'Error al eliminar el elemento');
+            }
+        }
+
+        function editProject(id) {
+            openProjectModal(id);
+        }
+
+        function initCheckboxListeners(type) {
+            const checkAllId = `checkAll${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            const checkAll = document.getElementById(checkAllId);
+            const checkboxes = document.querySelectorAll(`.${type}-checkbox`);
+            
+            if (checkAll) {
+                checkAll.onchange = function() {
+                    checkboxes.forEach(cb => cb.checked = this.checked);
+                };
+                
+                checkboxes.forEach(cb => {
+                    cb.onchange = function() {
+                        const allChecked = Array.from(checkboxes).every(c => c.checked);
+                        const someChecked = Array.from(checkboxes).some(c => c.checked);
+                        checkAll.checked = allChecked;
+                        checkAll.indeterminate = someChecked && !allChecked;
+                    };
+                });
+            }
+        }
+
+        function searchProjects() {
+            state.currentPage = 1;
+            renderProyectosTable();
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = '';
+            state.currentPage = 1;
+            renderProyectosTable();
+            showNotification('info', 'Filtros limpiados');
+        }
+
+        function exportToExcel() {
+            showNotification('info', 'Exportando a Excel... (simulación)');
+            // En una implementación real, usarías una librería como SheetJS
+        }
+
+        function exportToPDF() {
+            showNotification('info', 'Exportando a PDF... (simulación)');
+            // En una implementación real, usarías una librería como jsPDF
+        }
+
+        function trapFocus(element) {
+            const focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    return;
+                }
+                
+                if (e.key !== 'Tab') return;
+                
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            });
+            
+            firstElement.focus();
+        }
+
+        // ============================================
+        // EVENT LISTENERS Y INICIALIZACIÓN
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cargar datos
+            if (!loadFromLocalStorage()) {
+                state.proyectos = [...initialData.proyectos];
+                state.cuadrillas = [...initialData.cuadrillas];
+                state.fases = [...initialData.fases];
+                state.tareas = [...initialData.tareas];
+            }
+            
+            // Renderizar tablas
+            renderProyectosTable();
+            renderCuadrillasTable();
+            renderFasesTable(); // Esta es la tabla con items desplegables
+            renderTareasTable();
+            
+            // Configurar event listeners
+            document.getElementById('searchBtn').addEventListener('click', searchProjects);
+            document.getElementById('clearBtn').addEventListener('click', clearFilters);
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') searchProjects();
+            });
+            document.getElementById('statusFilter').addEventListener('change', searchProjects);
+            
+            // Paginación
+            document.getElementById('prevPageBtn').addEventListener('click', () => {
+                if (state.currentPage > 1) {
+                    state.currentPage--;
+                    renderProyectosTable();
+                }
+            });
+            
+            document.getElementById('nextPageBtn').addEventListener('click', () => {
+                const totalPages = Math.ceil(state.filteredProyectos.length / state.itemsPerPage);
+                if (state.currentPage < totalPages) {
+                    state.currentPage++;
+                    renderProyectosTable();
+                }
+            });
+            
+            // Menú de usuario
+            document.getElementById('userMenuBtn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const menu = document.getElementById('userMenu');
+                menu.classList.toggle('hidden');
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', () => {
+                document.getElementById('userMenu').classList.add('hidden');
+            });
+            
+            // Notificaciones
+            document.getElementById('notificationsBtn').addEventListener('click', () => {
+                document.getElementById('notificationBadge').classList.add('hidden');
+                showNotification('info', 'No hay nuevas notificaciones');
+            });
+            
+            // Sincronizar color picker
+            const colorPicker = document.getElementById('projectColor');
+            const colorText = document.getElementById('projectColorText');
+            
+            colorPicker.addEventListener('input', () => {
+                colorText.value = colorPicker.value;
+            });
+            
+            colorText.addEventListener('input', () => {
+                const color = colorText.value;
+                if (/^#[0-9A-F]{6}$/i.test(color)) {
+                    colorPicker.value = color;
+                }
+            });
+            
+            // Cerrar modal con Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (!document.getElementById('projectModal').classList.contains('hidden')) {
+                        closeModal();
+                    }
+                    if (!document.getElementById('confirmModal').classList.contains('hidden')) {
+                        closeConfirmModal();
+                    }
+                }
+            });
+            
+            // Mostrar notificación de bienvenida
+            setTimeout(() => {
+                showNotification('success', 'Sistema de gestión cargado correctamente');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

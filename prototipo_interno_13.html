@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Demo Visualpresencia Cloud</title>
+        <meta name="description" content="Demo Visualpresencia Cloud" />
+        <meta name="author" content="demo.vpcloud.es" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+        <!-- Google Fonts - DM Sans -->
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+        <!-- Tailwind CSS v3.3.5 via CDN -->
+        <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+
+        <!-- CSS Base -->
+        <link rel="stylesheet" href="css/zerogrid.css" />
+
+        <link rel="stylesheet" href="css/style_vp25.css" />
+        <link rel="stylesheet" href="css/colores_vp25.css" />
+
+        <!-- Icon Libraries -->
+        <link rel="stylesheet" href="css/tabler-icons.min.css" />
+        <link href="css/boxicons.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+        <!-- Component Libraries -->
+        <link rel="stylesheet" href="css/jquery-ui.css" />
+        <link href="css/pqselect.min.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/fullcalendar.css" />
+        <link href="css/fullcalendar.print.css" rel="stylesheet" media="print" />
+        <link rel="stylesheet" href="css/flipclock.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="css/responsive.dataTables.min.css" />
+        <link type="text/css" href="css/dataTables.checkboxes.css" rel="stylesheet" />
+
+        <!-- Tailwind Elements -->
+
+        <script src="js/flowbite.js"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/bootstrap-clockpicker.min.css" />
+        <link rel="stylesheet" href="css/proyectos.css" />
+        <link rel="stylesheet" href="css/novedades.css" />
+        <link rel="stylesheet" href="css/novedades_vp25.css" />
+        <link rel="stylesheet" href="css/soporte.css" />
+        <link rel="stylesheet" href="css/denuncias.css" />
+        <link rel="stylesheet" href="css/onboarding.css" />
+        <link rel="stylesheet" href="css/pagos.css" />
+        <link rel="stylesheet" href="css/modelo145.css" />
+        <link rel="stylesheet" href="css/modelo145_vp25.css" />
+        <link rel="stylesheet" href="css/morris.css" />
+        <link href="css/quill.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/style_pfizer.css" />
+        <link rel="stylesheet" href="css/responsive_pfizer.css" />
+
+        <!-- Google Maps API -->
+        <script async defer src="js/js"></script>
+        <script src="js/google.js"></script>
+
+        <!-- Estilos personalizados con DM Sans -->
+        <style>
+            body {
+                font-family: "DM Sans", sans-serif;
+            }
+
+            /* Estilos específicos que no están en Tailwind */
+            .drop-shadow-md {
+                --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+                filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+            }
+            .active,
+            .accordion:hover {
+                border-radius: 20px;
+                background-color: #f1f1f1 !important;
+            }
+        </style>
+        <script type="text/javascript" charset="UTF-8" src="js/common.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="js/util.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="js/stats.js"></script>
+    </head>
+
+    <body class="bg-[#f2f2f2] section-container">
+        <!-- Marco con el texto de COOKIES -->
+
+        <div id="cookies" class="textos_cookies bg-[#2C2554]" style="display: none;">
+            <div class="texto !w-[80%] flex flex-col justify-center items-start">
+                <h2>Uso de cookies</h2>
+                <p>Este servicio web utiliza cookies que permiten el funcionamiento y la prestación de servicios ofrecidos en el mismo</p>
+            </div>
+            <div class="cerrar_cookies flex justify-center items-center">
+                <button type="button" class="text-center w-[84px] rounded-full border border-[#ffffff] hover:bg-[#2C2554] text-sm font-medium hover:text-[#ffffff] bg-[#ffffff] text-[#2C2554] mr-[1px]" onclick="cierraCookies();">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+        <!--------------Header--------------->
+        <div id="loading" style="display: none;">
+            <div class="row">
+                <div class="col-full">
+                    <div class="wrap-col">
+                        <img src="img/logo_vp.gif" alt="loading" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="z-50 !sticky !top-0 w-[100vw] lg:w-[101%]">
+            <div id="logo_vpd" class="hidden">
+                <img src="img/pfizer.png" alt="Demo Visualpresencia Cloud" onclick="javascript:window.location.reload();" />
+            </div>
+
+            <div id="sidebar_desktop" class="border-r border-solid border-gray-200 sidebar fixed px-4 text-center bg-white text-gray-700 h-[100vh]">
+                <div class="bg-white pt-2 sticky top-0 z-[2] border-b border-[#D0D2DE] border-solid pb-5">
+                    <div id="logo_container" class="flex items-center text-gray-100 text-xl top-0 sticky bg-white p-[10px] border-b border-[#D0D2DE] border-solid pb-6">
+                        <div class="flex h-[50px] items-center justify-center cursor-pointer">
+                            <img id="logoMenu" src="img/pfizer.png" style="max-width: 80%;" alt="Logo" onclick="javascript:volverInicio();" src="img/pfizer.png" />
+                        </div>
+                        <div id="btnToggleMenu" class="cursor-pointer" onclick="toggleMenuDesktop();">
+                            <i class="ti ti-menu-2 text-[#D9D9D9] text-[24px]"></i>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <span class="flex titulo_sidebar text-[#83899F]">Inicio</span>
+                        <div class="p-2.5 mt-3 flex items-center icon-menu text-[#707070] rounded-md btn duration-300 cursor-pointer hover:bg-gray-100 top-[4rem] sticky bg-white">
+                            <i class="ti ti-table-heart text-[#412DB6] text-[24px]"></i>
+                            <span class="text-sm text-gray-500 font-normal">Favoritos</span>
+                        </div>
+                        <div id="inicio" class="relative p-2 mt-3 flex items-center text-[#707070] icon-menu rounded-md duration-300 cursor-pointer hover:bg-gray-100 top-[8rem] sticky bg-white">
+                            <i class="ti ti-dashboard text-[#412DB6] text-[24px]"></i>
+                            <span class="text-sm text-gray-500 font-normal">Inicio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <span class="flex mb-4 text-gray-500 text-xs font-medium uppercase tracking-wider">Menú</span>
+                    <div class="overflow-y-auto overflow-x-hidden lg:h-[25vh] 2xl:h-[35vh]">
+                        <a data-modulo="Presencia" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100 active">
+                            <i class="ti ti-clock text-pink-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Presencia</span>
+                            <img id="sesi_1" data-tooltip-target="tooltip-sesi_1" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Configuración" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-settings text-pink-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Configuración</span>
+                            <img id="sesi_2" data-tooltip-target="tooltip-sesi_2" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Hardware" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-cpu-2 text-purple-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Hardware</span>
+                            <img id="sesi_3" data-tooltip-target="tooltip-sesi_3" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="RRHH" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-users text-purple-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">RRHH</span>
+                            <img id="sesi_4" data-tooltip-target="tooltip-sesi_4" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Mi_Portal" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-id-badge-2 text-purple-600 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Mi Portal</span>
+                            <img id="sesi_5" data-tooltip-target="tooltip-sesi_5" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Evaluación" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-checklist text-indigo-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Evaluación</span>
+                            <img id="sesi_6" data-tooltip-target="tooltip-sesi_6" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Portal_Candidato" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-package text-blue-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Portal Candidato</span>
+                            <img id="sesi_7" data-tooltip-target="tooltip-sesi_7" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Colaboradores" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-friends text-teal-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Colaboradores</span>
+                            <img id="sesi_8" data-tooltip-target="tooltip-sesi_8" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Proyectos" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-stack-backward text-cyan-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Proyectos</span>
+                            <img id="sesi_9" data-tooltip-target="tooltip-sesi_9" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Equipamientos" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-cube text-cyan-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Equipamientos</span>
+                            <img id="sesi_10" data-tooltip-target="tooltip-sesi_10" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Gestión_Flotas" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-car-garage text-teal-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Gestión Flotas</span>
+                            <img id="sesi_11" data-tooltip-target="tooltip-sesi_11" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Básico" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-briefcase-2 text-green-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Básico</span>
+                            <img id="sesi_12" data-tooltip-target="tooltip-sesi_12" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Actividad_Teletrabajo" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-device-laptop text-green-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Teletrabajo</span>
+                            <img id="sesi_13" data-tooltip-target="tooltip-sesi_13" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="eCovid" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-virus text-lime-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">eCovid</span>
+                            <img id="sesi_14" data-tooltip-target="tooltip-sesi_14" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Gestión_de_Accesos" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-shield-lock text-yellow-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Accesos</span>
+                            <img id="sesi_16" data-tooltip-target="tooltip-sesi_16" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Auditoria" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-device-desktop-analytics text-green-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Auditoria</span>
+                            <img id="sesi_28" data-tooltip-target="tooltip-sesi_28" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Modelo_145" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-file-text text-green-600 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Modelo 145</span>
+                            <img id="sesi_32" data-tooltip-target="tooltip-sesi_32" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Comunicacion" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-messages text-yellow-500 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Comunicacion</span>
+                            <img id="sesi_33" data-tooltip-target="tooltip-sesi_33" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                        <a data-modulo="Onboarding" href="#" class="relative p-2 mt-3 flex text-gray-500 items-center rounded-lg transition-all duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-rotate-clockwise-2 text-teal-400 text-2xl mr-3"></i>
+                            <span class="text-sm text-gray-500 font-normal">Onboarding</span>
+                            <img id="sesi_40" data-tooltip-target="tooltip-sesi_40" class="hidden ml-auto" src="img/indicadorMenu.svg" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="border-t border-[#D0D2DE] border-solid">
+                        <span class="flex mt-3 text-[#83899F] titulo_sidebar">Soporte</span>
+                        <div onclick="agregarOverlay();abrirSubmenu(&#39;Soporte&#39;);" class="flex items-center mt-3 justify-evenly cursor-pointer bg-[#F5F6F8] hover:bg-gray-200 border border-solid border-[#E6E7EC] p-[10px] rounded-lg">
+                            <div class="flex items-center justify-center bg-[#ffffff] rounded-full p-[3px]"><i class="ti ti-headset text-[#412DB6] text-[24px]"></i></div>
+                            <div class="flex items-center justify-center text-[14px] text-menu-icon">Soporte</div>
+                            <div class="flex items-center justify-center"><i class="ti ti-chevron-right text-[#9CA0B2] text-[24px] text-menu-icon"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Onboarding" class="hidden rounded-xl bg-white sidebar-submenu top-0 h-full" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="right">
+                <div class="flex items-center justify-end pb-[0.25rem] text-[20px]">
+                    <span class="flex justify-center items-center cursor-pointer" onclick="toggleMenu(Onboarding);eliminarOverlay();"><i class="ti ti-x-circle"></i></span>
+                </div>
+                <div class="flex w-full flex-col md:flex-row min-h-[100px]">
+                    <span class="flex items-center justify-center flex-col w-[100%] md:w-[20%] bg-[#74CEC4] rounded-xl">
+                        <i class="ti ti-rotate-clockwise-2 text-[#74CEC4] !text-[#ffffff] text-[24px] bg-[#FFFFFF29] p-[3px] rounded-full"></i>
+                        <h5 class="text-[#ffffff] text-[15px] xl:text-[20px] text-center">Onboarding</h5>
+                    </span>
+                    <ul
+                        class="submenu-items w-full py-1 px-1 text-sm text-gray-700 dark:text-gray-200 grid gap-x-[10px] gap-y-[3px] grid-cols-2 xl:grid-cols-4 max-h-[60vh] overflow-x-hidden overflow-y-auto items-start"
+                        aria-labelledby="dropdownRightButton"
+                    >
+                        <li data-modulo="Onboarding" class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                data-submenu="Tareas"
+                                onclick="reseteaPagina();irAContenido(this,40,329);eliminarOverlay();"
+                            >
+                                <i class="ti ti-brand-stackshare text-[#74CEC4] bg-[#74CEC429] rounded-full p-[3px] text-[24px]"></i><span class="ml-2">Tareas</span>
+                            </a>
+                            <img id="elem_329" data-tooltip-target="tooltip-elem_329" data-tooltip-style="light" class="hidden mr-1" src="img/indicadorMenu.svg" />
+                            <div onclick="guardaFavoritos(40,329,0);rechargeFav(this,40,329);" class="flex items-center hover:text-[#707070] text-[20px] cursor-pointer"><i class="ti ti-bookmark"></i></div>
+                        </li>
+                        <li data-modulo="Onboarding" class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                data-submenu="Grupo tareas"
+                                onclick="reseteaPagina();irAContenido(this,40,330);eliminarOverlay();"
+                            >
+                                <i class="ti ti-box-multiple text-[#74CEC4] bg-[#74CEC429] rounded-full p-[3px] text-[24px]"></i><span class="ml-2">Grupo tareas</span>
+                            </a>
+                            <img id="elem_330" data-tooltip-target="tooltip-elem_330" data-tooltip-style="light" class="hidden mr-1" src="img/indicadorMenu.svg" />
+                            <div onclick="guardaFavoritos(40,330,0);rechargeFav(this,40,330);" class="flex items-center hover:text-[#707070] text-[20px] cursor-pointer"><i class="ti ti-bookmark"></i></div>
+                        </li>
+                        <li data-modulo="Onboarding" class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a
+                                href="https://demo.vpcloud.es/gest/index.php#"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                                data-submenu="Procesos"
+                                onclick="reseteaPagina();irAContenido(this,40,331);eliminarOverlay();"
+                            >
+                                <i class="ti ti-progress-check text-[#74CEC4] bg-[#74CEC429] rounded-full p-[3px] text-[24px]"></i><span class="ml-2">Procesos</span>
+                            </a>
+                            <img id="elem_331" data-tooltip-target="tooltip-elem_331" data-tooltip-style="light" class="hidden mr-1" src="img/indicadorMenu.svg" />
+                            <div onclick="guardaFavoritos(40,331,0);rechargeFav(this,40,331);" class="flex items-center hover:text-[#707070] text-[20px] cursor-pointer"><i class="ti ti-bookmark"></i></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="Soporte" class="hidden rounded-xl bg-white sidebar-submenu h-full" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="right">
+                <div class="flex items-center justify-end pb-[0.25rem] text-[20px]">
+                    <span class="flex justify-center items-center cursor-pointer" onclick="toggleMenu(Soporte);eliminarOverlay();"><i class="ti ti-x-circle"></i></span>
+                </div>
+                <div class="flex w-full flex-col md:flex-row min-h-[100px]">
+                    <span class="flex items-center justify-center flex-col w-[100%] md:w-[20%] bg-[#5947BF] rounded-xl">
+                        <i class="ti ti-headset !text-[#ffffff] text-[24px] bg-[#FFFFFF29] p-[3px] rounded-full"></i>
+                        <h5 class="text-[#ffffff] text-[15px] xl:text-[20px] text-center">Soporte</h5>
+                    </span>
+                    <ul
+                        class="submenu-items w-full py-1 px-1 text-sm text-gray-700 dark:text-gray-200 grid gap-x-[10px] gap-y-[3px] grid-cols-2 xl:grid-cols-4 max-h-[60vh] overflow-x-hidden overflow-y-auto items-start"
+                        aria-labelledby="dropdownRightButton"
+                    >
+                        <li class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a id="soporte" href="https://demo.vpcloud.es/gest/index.php#" class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]" onclick="irASoporte();toggleMenu(Soporte);eliminarOverlay();">
+                                <i class="ti ti-ticket !text-[#412DB6] text-[24px] bg-[#5947BF29] p-[3px] rounded-full"></i><span class="ml-2">Tickets</span>
+                            </a>
+                        </li>
+                        <li class="flex relative hover:bg-[#F7F7F7] px-[0px] md:px-[10px] rounded-lg">
+                            <a
+                                href="https://ayuda.vpcloud.es/enlace.php?datos=7x0matNGpEA3SM11DbXYehWucGCmrjaL8ASY8e8EO9tpD6MIpNBIC358liR4iFxUWZAw5pnlMAStgioU0kdGnqHKJfD3pvlri/9XtQjvnySDOowhTboPj4TsTxF7vU8vJdGXMqwRX/BuDZSKFXhrLOYChRCQv1Cm5tseupM8jIBm7JJhHFIUra+z9Zih9DLr"
+                                target="_blank"
+                                class="w-full flex items-center text-[16px] py-2 px-0 text-[#707070]"
+                            >
+                                <i class="ti ti-help !text-[#412DB6] text-[24px] bg-[#5947BF29] p-[3px] rounded-full"></i>
+                                <span class="ml-2">Ayuda</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="barraCabecera" class="border-b border-solid border-gray-300 bg-white/95 backdrop-blur-sm w-full flex items-center justify-between px-6 py-3 sticky top-0 z-50">
+                <!-- Contenido de la barra -->
+
+                <!-- Menú hamburguesa y breadcrumbs -->
+                <div class="flex items-center">
+                    <!-- Botón hamburguesa con animación -->
+                    <button id="logoCabecera" class="md:hidden text-gray-700 hover:text-blue-600 transition-all duration-300" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+                        <div class="w-6 flex flex-col items-center space-y-1.5">
+                            <span id="hamburgerTop" class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+                            <span id="hamburgerMiddle" class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                            <span id="hamburgerBottom" class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+                        </div>
+                    </button>
+
+                    <div id="breadcrumbs_header" class="flex items-center justify-between py-3">
+                        <!-- Título -->
+                        <h1 class="text-gray-800 flex items-center space-x-2 mr-4">
+                            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#F472B6]/20 text-[#F472B6]">
+                                <i class="ti ti-users text-[16px]"></i>
+                            </span>
+                            <span class="text-lg font-medium">Gestión de Equipo</span>
+                        </h1>
+
+                        <!-- Breadcrumbs con fondo -->
+                        <nav class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-1 shadow-sm">
+                            <ol id="breadcrumbs_list" class="flex items-center space-x-3 text-sm text-gray-500">
+                                <li class="flex items-center">
+                                    <a href="#" class="hover:text-blue-600 flex items-center"> <i class="ti ti-dashboard mr-1.5 text-[#412DB6]"></i> Inicio </a>
+                                </li>
+                                <li class="text-gray-400">
+                                    <i class="ti ti-chevron-right"></i>
+                                </li>
+                                <li class="flex items-center">
+                                    <a href="#" class="hover:text-blue-600 flex items-center"> <i class="ti ti-settings mr-1.5 text-[#F472B6]"></i> Configuración </a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Controles de usuario (manteniendo el código original) -->
+                <div class="flex items-center space-x-3">
+                    <!-- Botón de ayuda con tooltip -->
+                    <div class="relative group" x-data="{ helpOpen: false }">
+                        <button
+                            @click="helpOpen = !helpOpen"
+                            @keydown.escape="helpOpen = false"
+                            class="px-3 py-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-all"
+                            aria-label="Ayuda"
+                            aria-haspopup="true"
+                            :aria-expanded="helpOpen"
+                        >
+                            <i class="ti ti-help text-xl"></i>
+                        </button>
+
+                        <div
+                            x-show="helpOpen"
+                            @click.away="helpOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="p-4 border-b border-gray-100">
+                                <h3 class="font-medium text-gray-900 flex items-center">
+                                    <i class="ti ti-lifebuoy mr-2 text-blue-500"></i>
+                                    ¿Necesitas ayuda?
+                                </h3>
+                            </div>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="mb-3">Consulta nuestra documentación o contacta con nuestro equipo de soporte.</p>
+                                <div class="flex flex-col space-y-2">
+                                    <a href="#" class="flex items-center px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <i class="ti ti-book mr-2"></i>
+                                        Documentación
+                                    </a>
+                                    <a href="#" class="flex items-center px-3 py-2 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors">
+                                        <i class="ti ti-headset mr-2"></i>
+                                        Soporte en vivo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buscador -->
+                    <div class="relative" x-data="{ searchOpen: false, query: '' }">
+                        <button
+                            @click="searchOpen = true; $nextTick(() => $refs.searchInput.focus())"
+                            x-show="!searchOpen"
+                            class="px-3 py-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-100 transition-all"
+                            aria-label="Abrir búsqueda"
+                        >
+                            <i class="ti ti-search text-xl"></i>
+                        </button>
+
+                        <div
+                            x-show="searchOpen"
+                            @click.away="searchOpen = false; query = ''"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-95"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-95"
+                            class="absolute right-0 mt-1 w-80 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="relative p-3 border-b border-gray-100">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="ti ti-search text-gray-400"></i>
+                                </div>
+                                <input
+                                    x-ref="searchInput"
+                                    type="text"
+                                    x-model="query"
+                                    class="block w-full pl-10 pr-10 py-2 border-0 text-gray-900 placeholder-gray-400 focus:ring-0 focus:outline-none"
+                                    placeholder="Buscar personas, documentos..."
+                                    @keydown.escape="searchOpen = false; query = ''"
+                                />
+                                <button @click="searchOpen = false; query = ''" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
+                                    <i class="ti ti-x"></i>
+                                </button>
+                            </div>
+
+                            <!-- Resultados de búsqueda -->
+                            <div x-show="query.length > 0" class="max-h-96 overflow-y-auto">
+                                <div class="px-3 py-2 text-xs font-medium text-gray-500 bg-gray-50">
+                                    Resultados recientes
+                                </div>
+                                <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-50 transition-colors">
+                                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                        <i class="ti ti-user"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Juan Pérez</p>
+                                        <p class="text-xs text-gray-500">Empleado - Departamento de Ventas</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-50 transition-colors">
+                                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <i class="ti ti-file-text"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Informe Q2 2023</p>
+                                        <p class="text-xs text-gray-500">Documento - 15 Jun 2023</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="px-3 py-2 border-t border-gray-100 text-xs text-gray-500 bg-gray-50">Presiona <kbd class="px-1.5 py-0.5 border border-gray-200 rounded bg-white">ESC</kbd> para cerrar</div>
+                        </div>
+                    </div>
+
+                    <!-- Selector de idiomas mejorado -->
+                    <div class="relative group" x-data="{ langOpen: false }">
+                        <button
+                            @click="langOpen = !langOpen"
+                            @keydown.escape="langOpen = false"
+                            class="flex items-center space-x-1.5 px-3 py-1.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                            aria-label="Idioma"
+                            aria-haspopup="true"
+                            :aria-expanded="langOpen"
+                        >
+                            <img src="img/es.png" alt="Español" class="w-5 h-5 rounded-full" />
+                            <span class="text-sm hidden sm:inline">ES</span>
+                            <i class="ti ti-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180': langOpen }"></i>
+                        </button>
+
+                        <div
+                            x-show="langOpen"
+                            @click.away="langOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-48 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="py-2 max-h-96 overflow-y-auto">
+                                <div class="px-3 py-1.5 text-xs font-medium text-gray-500">
+                                    Seleccionar idioma
+                                </div>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors" @click="langOpen = false; switchLang('es')">
+                                    <img src="img/es.png" alt="Español" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>Español</span>
+                                    <i class="ti ti-check ml-auto text-blue-500" :class="{ 'invisible': currentLang !== 'es' }"></i>
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors" @click="langOpen = false; switchLang('en')">
+                                    <img src="img/en.png" alt="English" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>English</span>
+                                    <i class="ti ti-check ml-auto text-blue-500" :class="{ 'invisible': currentLang !== 'en' }"></i>
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors" @click="langOpen = false; switchLang('eu')">
+                                    <img src="img/eu.png" alt="Euskara" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>Euskara</span>
+                                    <i class="ti ti-check ml-auto text-blue-500" :class="{ 'invisible': currentLang !== 'eu' }"></i>
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors" @click="langOpen = false; switchLang('ca')">
+                                    <img src="img/ca.png" alt="Català" class="w-5 h-5 mr-3 rounded-full" />
+                                    <span>Català</span>
+                                    <i class="ti ti-check ml-auto text-blue-500" :class="{ 'invisible': currentLang !== 'ca' }"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notificaciones -->
+                    <div class="relative" x-data="{ notifOpen: false, activeTab: 'notificaciones' }">
+                        <button
+                            @click="notifOpen = !notifOpen"
+                            @keydown.escape="notifOpen = false"
+                            class="bg-gray-50 px-3 py-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-100 transition-all relative"
+                            aria-label="Notificaciones"
+                            aria-haspopup="true"
+                            :aria-expanded="notifOpen"
+                        >
+                            <i class="ti ti-bell text-xl"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+                        </button>
+
+                        <div
+                            x-show="notifOpen"
+                            @click.away="notifOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-80 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <!-- Tabs Header -->
+                            <div class="flex border-b">
+                                <button
+                                    class="flex-1 py-3 text-sm font-medium text-center"
+                                    :class="activeTab === 'notificaciones' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500 hover:text-gray-700'"
+                                    @click="activeTab = 'notificaciones'"
+                                >
+                                    <i class="ti ti-alert-square-rounded mr-1"></i>Notificaciones
+                                </button>
+                                <button
+                                    class="flex-1 py-2 text-sm font-medium text-center"
+                                    :class="activeTab === 'novedades' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500 hover:text-gray-700'"
+                                    @click="activeTab = 'novedades'"
+                                >
+                                    <i class="ti ti-news"></i> Novedades
+                                </button>
+                            </div>
+
+                            <!-- Contenido: Notificaciones -->
+
+                            <div x-show="activeTab === 'notificaciones'" class="max-h-[calc(3.5rem*4)] overflow-y-auto divide-y divide-gray-100 thin-scrollbar">
+                                <!-- Notificación 1 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
+                                        <i class="ti ti-bell"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Tienes 3 nuevas alertas</p>
+                                        <p class="text-xs text-gray-500">Revisa tu bandeja de notificaciones</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 10 min</p>
+                                    </div>
+                                    <!-- Botón eliminar -->
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar notificación">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Notificación 2 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 flex-shrink-0">
+                                        <i class="ti ti-message"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nuevo mensaje en el chat</p>
+                                        <p class="text-xs text-gray-500">De: Juan Pérez</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 30 min</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar notificación">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Notificación 3 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+                                        <i class="ti ti-user"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nueva solicitud de amistad</p>
+                                        <p class="text-xs text-gray-500">Carlos Gómez quiere conectarse</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 1 hora</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar notificación">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Notificación 4 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
+                                        <i class="ti ti-calendar"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Evento programado</p>
+                                        <p class="text-xs text-gray-500">Reunión con el equipo de diseño</p>
+                                        <p class="text-xs text-gray-400 mt-1">Mañana a las 10:00 AM</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar notificación">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <!-- Contenido: Novedades -->
+                            <div x-show="activeTab === 'novedades'" class="max-h-[calc(3.5rem*4)] overflow-y-auto divide-y divide-gray-100 thin-scrollbar">
+                                <!-- Novedad 1 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+                                        <i class="ti ti-puzzle"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nuevo Módulo Disponible</p>
+                                        <p class="text-xs text-gray-500">Analíticas Avanzadas</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 20 min</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar novedad">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Novedad 2 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+                                        <i class="ti ti-plug"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Nueva Integración</p>
+                                        <p class="text-xs text-gray-500">Zapier conectado</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 1 hora</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar novedad">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Novedad 3 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
+                                        <i class="ti ti-rocket"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Funcionalidad Mejorada</p>
+                                        <p class="text-xs text-gray-500">Dashboards más rápidos</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 3 horas</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar novedad">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Novedad 4 -->
+                                <a href="#" class="flex items-start px-4 py-3 hover:bg-gray-50 transition-colors relative group">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 flex-shrink-0">
+                                        <i class="ti ti-star"></i>
+                                    </div>
+                                    <div class="ml-3 flex-1">
+                                        <p class="text-sm font-medium text-gray-900">Versión 2.5 Lanzada</p>
+                                        <p class="text-xs text-gray-500">Nuevas APIs y seguridad mejorada</p>
+                                        <p class="text-xs text-gray-400 mt-1">Hace 5 horas</p>
+                                    </div>
+                                    <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded" aria-label="Eliminar novedad">
+                                        <i class="ti ti-x"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <!-- Footer dinámico -->
+                            <div class="p-1.5 border-t border-gray-200 text-center">
+                                <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800" x-text="activeTab === 'notificaciones' ? 'Ver todas las notificaciones' : 'Ver todas las novedades'"> </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perfil premium mejorado -->
+                    <div class="relative" x-data="{ profileOpen: false }">
+                        <button
+                            @click="profileOpen = !profileOpen"
+                            @keydown.escape="profileOpen = false"
+                            class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 relative"
+                            aria-label="Perfil de usuario"
+                            aria-haspopup="true"
+                            :aria-expanded="profileOpen"
+                        >
+                            <span class="font-medium text-sm">PP</span>
+                            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"></span>
+                        </button>
+
+                        <!-- Dropdown perfil light con iconos a color -->
+                        <div
+                            x-show="profileOpen"
+                            @click.away="profileOpen = false"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-1"
+                            class="absolute right-0 mt-2 w-64 origin-top-right bg-white rounded-xl shadow-xl ring-1 ring-gray-200 z-50 overflow-hidden"
+                            x-cloak
+                        >
+                            <div class="p-4 bg-gray-50 text-gray-800">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <span class="text-blue-600 font-medium">PP</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium truncate">Pedro Perez</p>
+                                        <p class="text-xs text-gray-500 flex items-center">
+                                            <span class="inline-block w-2 h-2 bg-green-400 rounded-full mr-1.5"></span>
+                                            Administrador
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divide-y divide-gray-200">
+                                <div class="py-2">
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group">
+                                        <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mr-3 group-hover:bg-blue-100 transition-colors">
+                                            <i class="ti ti-user"></i>
+                                        </div>
+                                        <span>Mi perfil</span>
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group">
+                                        <div class="w-8 h-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center mr-3 group-hover:bg-purple-100 transition-colors">
+                                            <i class="ti ti-key"></i>
+                                        </div>
+                                        <span>Seguridad</span>
+                                    </a>
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group">
+                                        <div class="w-8 h-8 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center mr-3 group-hover:bg-yellow-100 transition-colors">
+                                            <i class="ti ti-settings"></i>
+                                        </div>
+                                        <span>Configuración</span>
+                                    </a>
+                                </div>
+                                <div class="py-2">
+                                    <a href="#" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors group" @click="logout(); eliminarLocalStorageWidget();">
+                                        <div class="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center mr-3 group-hover:bg-red-100 transition-colors">
+                                            <i class="ti ti-logout"></i>
+                                        </div>
+                                        <span>Cerrar sesión</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alpine JS para interacciones -->
+            <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+            <script>
+                // Animación del menú hamburguesa
+                function toggleMenu() {
+                    const btn = document.getElementById("logoCabecera");
+                    const isExpanded = btn.getAttribute("aria-expanded") === "true";
+                    btn.setAttribute("aria-expanded", !isExpanded);
+
+                    // Animación de las líneas del menú
+                    const top = document.getElementById("hamburgerTop");
+                    const middle = document.getElementById("hamburgerMiddle");
+                    const bottom = document.getElementById("hamburgerBottom");
+
+                    if (!isExpanded) {
+                        top.style.transform = "translateY(6px) rotate(45deg)";
+                        middle.style.opacity = "0";
+                        bottom.style.transform = "translateY(-6px) rotate(-45deg)";
+                    } else {
+                        top.style.transform = "";
+                        middle.style.opacity = "";
+                        bottom.style.transform = "";
+                    }
+                }
+            </script>
+        </header>
+        <!--------------Tabla Principal--------------->
+
+        <!--------------Content--------------->
+        <section id="content" class="font-sans">
+            <div class="sticky top-16 z-10 pt-5 pb-2 px-4">
+                <div class="mx-auto">
+                    <!-- Card de acciones -->
+                    <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm p-5 flex flex-col gap-5">
+                        <!-- Fila 1: Acciones principales y exportación -->
+                        <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                            <!-- Acciones principales -->
+                            <div class="flex flex-wrap gap-2" role="group" aria-label="Acciones principales">
+                                <button
+                                    type="button"
+                                    class="pl-4 pr-6 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
+                                >
+                                    <i class="ti ti-arrow-left mr-2"></i>Atras
+                                </button>
+
+                                <!--<button type="button" class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm focus:ring-2 focus:ring-sky-500 focus:ring-offset-1">
+                                    <i class="ti ti-file-import mr-2"></i>Importar
+                                </button>
+                                <button
+                                    type="button"
+                                    class="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-700 transition shadow-sm focus:ring-2 focus:ring-amber-400 focus:ring-offset-1"
+                                >
+                                    <i class="ti ti-user-off mr-2"></i>Sin Fichajes
+                                </button>
+                                <button type="button" class="px-4 py-2 bg-amber-500 text-white rounded-lg text-sm font-medium flex items-center hover:bg-amber-600 transition shadow-sm focus:ring-2 focus:ring-amber-400 focus:ring-offset-1">
+                                    <i class="ti ti-alert-triangle mr-2"></i>Incidencias
+                                </button>-->
+                            </div>
+
+                            <!-- Exportar -->
+                            <div class="flex items-center gap-3" role="group" aria-label="Descargar archivos">
+                                <span class="text-sm text-gray-600 font-medium">Descargar archivos:</span>
+                                <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-sm transition focus:ring-2 focus:ring-green-500 focus:ring-offset-1">
+                                    <i class="text-lg ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel
+                                </button>
+                                <!--<button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-red-50 flex items-center text-sm transition focus:ring-2 focus:ring-red-500 focus:ring-offset-1">
+                                    <i class="text-lg ti ti-file-type-pdf text-red-600 mr-2"></i>PDF
+                                </button>-->
+                            </div>
+                        </div>
+
+                        <!-- Separación visual -->
+                        <div class="border-t border-dashed border-gray-300 w-full"></div>
+
+
+
+
+
+
+<!-- Fila 2: Filtros y búsqueda -->
+<div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+    <!-- Fila única: Selector de fecha y navegación -->
+    <div class="flex items-center gap-2 w-full">
+        <!-- Empresas -->
+        <div class="flex-1 w-full">
+            <div class="relative">
+                <select class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Seleccionar Empresas</option>
+                    <option value="1">Empresa 01</option>
+                    <option value="2">Empresa 02</option>
+                    <option value="3">Empresa 03</option>
+                </select>
+                <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full">
+            <div class="relative">
+                <select class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Seleccionar Centro</option>
+                    <option value="1">Centro 01</option>
+                    <option value="2">Centro 02</option>
+                    <option value="3">Centro 03</option>
+                    <option value="4">Centro 04</option>
+                </select>
+                <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full">
+            <div class="relative">
+                <select class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Seleccionar Departamento</option>
+                    <option value="1">Departamento 01</option>
+                    <option value="2">Departamento 02</option>
+                    <option value="3">Departamento 03</option>
+                    <option value="4">Departamento 04</option>
+                </select>
+                <i class="ti ti-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full">
+            <div class="relative">
+                <button
+                    type="button"
+                    class="hs-select-toggle w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-left flex items-center gap-2 cursor-pointer hover:border-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-colors"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                >
+                    <span class="me-2" data-icon>
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="text-gray-800 flex-1 truncate" data-title>Seleccione un empleado</span>
+                    <div class="absolute top-1/2 right-3 -translate-y-1/2">
+                        <svg
+                            class="hs-select-chevron w-3.5 h-3.5 text-gray-500 transition-transform"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="m7 15 5 5 5-5" />
+                            <path d="m7 9 5-5 5 5" />
+                        </svg>
+                    </div>
+                </button>
+
+                <div class="hs-select-dropdown absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-hidden hidden mt-1" role="listbox">
+                    <div class="bg-white p-2 sticky top-0 z-10 border-b border-gray-200">
+                        <input
+                            type="text"
+                            class="hs-select-search w-full px-3 py-2 border border-gray-300 rounded-md text-sm bg-gray-50 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200"
+                            placeholder="Buscar empleado..."
+                            data-twe-select-filter="true"
+                        />
+                    </div>
+                    <div class="max-h-64 overflow-y-auto p-1">
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="1">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-semibold">AR</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">Ana Rodríguez</div>
+                                <div class="employee-department text-xs text-gray-500">Recursos Humanos</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="2">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-semibold">CM</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">Carlos Méndez</div>
+                                <div class="employee-department text-xs text-gray-500">Tecnología</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="3">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-semibold">ML</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">María López</div>
+                                <div class="employee-department text-xs text-gray-500">Ventas</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="4">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-semibold">JG</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">José García</div>
+                                <div class="employee-department text-xs text-gray-500">Marketing</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="5">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-semibold">LM</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">Laura Martínez</div>
+                                <div class="employee-department text-xs text-gray-500">Recursos Humanos</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="6">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xs font-semibold">PS</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">Pedro Sánchez</div>
+                                <div class="employee-department text-xs text-gray-500">Tecnología</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="7">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-semibold">SH</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">Sofía Hernández</div>
+                                <div class="employee-department text-xs text-gray-500">Ventas</div>
+                            </div>
+                        </div>
+                        <div class="hs-select-option p-3 cursor-pointer rounded-md flex items-center gap-2 hover:bg-gray-100 mb-0.5" role="option" data-value="8">
+                            <div class="employee-avatar w-6 h-6 rounded-full bg-lime-500 text-white flex items-center justify-center text-xs font-semibold">DR</div>
+                            <div class="employee-info">
+                                <div class="employee-name font-medium">Diego Ramírez</div>
+                                <div class="employee-department text-xs text-gray-500">Marketing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Botones Limpiar y Buscar -->
+    <div class="flex items-center gap-3">
+        <button id="limpiarFiltros" type="button" disabled class="px-3 py-2 border border-indigo-700 bg-indigo-700 text-white text-sm rounded-lg opacity-50 cursor-not-allowed flex items-center">
+            <i class="ti ti-broom mr-1"></i> Limpiar
+        </button>
+
+        <button type="button" class="px-3 py-2 bg-indigo-700 text-white text-sm rounded-lg flex items-center hover:bg-indigo-800 focus-visible:ring-2 focus-visible:ring-indigo-400"><i class="ti ti-search mr-1"></i> Buscar</button>
+    </div>
+</div>
+
+
+
+
+
+                      
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="wrap-content mx-auto py-4">
+                    <!-- Card contenedora -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                        <!-- Encabezado el Willias -->
+                        <div class="px-6 py-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white rounded-t-lg">
+                            <div>
+                                <h2 class="text-lg font-medium text-gray-800 flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Control de horario por horas
+                                </h2>
+                                <p class="text-sm text-gray-500">Total: <span class="font-medium text-gray-700">20 empleados</span></p>
+                            </div>
+
+                            <!-- icono con tooltip -->
+                            <div class="relative group">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-info-circle w-5 h-5 text-gray-500 cursor-pointer"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                    <path d="M12 9h.01" />
+                                    <path d="M11 12h1v4h1" />
+                                </svg>
+
+                                <!-- Tooltip -->
+                                <div class="absolute right-0 mt-2 w-48 p-2 text-sm text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none">
+                                    info del tooltips
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+<!-- JS opcional--->
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del selector personalizado
+            const selectToggle = document.querySelector('.hs-select-toggle');
+            const selectDropdown = document.querySelector('.hs-select-dropdown');
+            const selectSearch = document.querySelector('.hs-select-search');
+            const selectOptions = document.querySelectorAll('.hs-select-option');
+            const selectTitle = document.querySelector('[data-title]');
+            const limpiarBtn = document.getElementById('limpiarFiltros');
+            const buscarBtn = document.getElementById('buscarBtn');
+            
+            // Alternar visibilidad del dropdown
+            selectToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                
+                if (!isExpanded) {
+                    selectDropdown.classList.remove('hidden');
+                    selectDropdown.classList.add('block');
+                    selectSearch.focus();
+                } else {
+                    selectDropdown.classList.remove('block');
+                    selectDropdown.classList.add('hidden');
+                }
+            });
+            
+            // Cerrar dropdown al hacer clic fuera
+            document.addEventListener('click', function() {
+                selectToggle.setAttribute('aria-expanded', 'false');
+                selectDropdown.classList.remove('block');
+                selectDropdown.classList.add('hidden');
+            });
+            
+            // Evitar que el dropdown se cierre al hacer clic dentro
+            selectDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Filtrar opciones mientras se escribe
+            selectSearch.addEventListener('input', function() {
+                const filter = this.value.toLowerCase();
+                
+                selectOptions.forEach(option => {
+                    const text = option.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        option.classList.remove('hidden');
+                    } else {
+                        option.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Seleccionar una opción
+            selectOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remover selección previa
+                    selectOptions.forEach(opt => {
+                        opt.classList.remove('selected', 'bg-indigo-50', 'text-indigo-600');
+                    });
+                    
+                    // Marcar como seleccionado
+                    this.classList.add('selected', 'bg-indigo-50', 'text-indigo-600');
+                    
+                    // Actualizar texto del toggle
+                    const employeeName = this.querySelector('.employee-name').textContent;
+                    selectTitle.textContent = employeeName;
+                    
+                    // Cerrar dropdown
+                    selectToggle.setAttribute('aria-expanded', 'false');
+                    selectDropdown.classList.remove('block');
+                    selectDropdown.classList.add('hidden');
+                    
+                    // Limpiar búsqueda
+                    selectSearch.value = '';
+                    selectOptions.forEach(opt => {
+                        opt.classList.remove('hidden');
+                    });
+                    
+                    // Habilitar botón limpiar
+                    limpiarBtn.disabled = false;
+                    limpiarBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    limpiarBtn.classList.add('opacity-100', 'cursor-pointer');
+                });
+            });
+            
+            // Botón limpiar
+            limpiarBtn.addEventListener('click', function() {
+                // Limpiar selects estándar
+                document.querySelectorAll('.standard-select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+                
+                // Limpiar selector personalizado
+                selectOptions.forEach(opt => {
+                    opt.classList.remove('selected', 'bg-indigo-50', 'text-indigo-600');
+                });
+                selectTitle.textContent = 'Seleccione un empleado';
+                selectSearch.value = '';
+                selectOptions.forEach(opt => {
+                    opt.classList.remove('hidden');
+                });
+                
+                // Deshabilitar botón limpiar
+                this.disabled = true;
+                this.classList.add('opacity-50', 'cursor-not-allowed');
+                this.classList.remove('opacity-100', 'cursor-pointer');
+            });
+            
+            // Botón buscar
+            buscarBtn.addEventListener('click', function() {
+                alert('Búsqueda realizada con los filtros seleccionados');
+            });
+            
+            // Estilos para selects estándar
+            const standardSelects = document.querySelectorAll('.standard-select');
+            standardSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    limpiarBtn.disabled = false;
+                    limpiarBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    limpiarBtn.classList.add('opacity-100', 'cursor-pointer');
+                });
+            });
+        });
+    </script>
+
+
+
+
+<!-- fin JS opcional--->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- Tabla con scroll -->
+                        <div class="overflow-x-auto thin-scrollbar" id="scrollableTable">
+                            <table class="w-full text-sm text-left text-gray-500">
+                                <thead class="text-xs text-gray-700 uppercase bg-indigo-50">
+                                    <tr>
+                                        <th scope="col" class="fixed-total-header px-6 py-3 w-8 text-center bg-indigo-100">TOTAL</th>
+                                        <!-- Horas desde 00:00 hasta 23:00 -->
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Lunes</th>
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Martes</th>
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Miércoles</th>
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Jueves</th>
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Viernes</th>
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Sábado</th>
+                                        <th class="p-3 text-center text-xs font-medium uppercase text-gray-700 border-b border-r border-gray-200">Domingo</th>
+                                    </tr>
+                                </thead>
+
+                                 <tbody class="border-0">
+                                    <!-- Empleado 1 - Primera fila: Horario real -->
+                                    <tr class="bg-white ">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            00:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            01:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+                                    <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            02:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+                                    <!-- Segunda fila: Horario preestablecido en verde -->
+
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            03:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+                                    <!-- Empleado 4 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            04:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+                                    <!-- Segunda fila: Horario preestablecido en verde -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            05:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid">
+                                            <div class="employee-blocks">
+                                                <div class="multiple-blocks flex flex-wrap gap-1">
+                                                    <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+ <div class="time-block  bg-blue-50 h-6 px-1 compact-block"></div>
+                                                   
+                                                    <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid">
+                                            <div class="multiple-blocks flex flex-wrap gap-1">
+                                                <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid">
+                                            <div class="multiple-blocks flex flex-wrap gap-1">
+                                                <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid">
+                                            <div class="multiple-blocks flex flex-wrap gap-1">
+                                                <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid">
+                                            <div class="multiple-blocks flex flex-wrap gap-1">
+                                                <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"> <div class="multiple-blocks flex flex-wrap gap-1">
+                                                <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                </div>
+
+                                                <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                    <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                    <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                </div>
+
+                                               
+                                            </div> </td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+                                    <!-- Empleado 4 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            06:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid">
+                                             <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">7:00-9:00</div>
+                                                    </div>
+
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid">
+                                             <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid">
+                                             <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid">
+                                             <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid">
+                                             <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div>
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid">
+                                            <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                           
+                                        </div> 
+                                        </td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid">
+                                            
+                                        </td>
+                                    </tr>
+                                    <!-- Segunda fila: Horario preestablecido en verde -->
+
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            07:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"> <div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                           
+                                        </div> </td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+ <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            08:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            09:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            10:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            11:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+<!-- LÍNEA ROJA - HORA ACTUAL -->
+<tr style="border-top: 2px solid #dc2626;">
+    <td colspan="8" style="height: 0; padding: 0;"></td>
+</tr>
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            12:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                      <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+ 
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            13:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+                                      
+
+                                     <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            14:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="employee-blocks">
+                                                <div class="multiple-blocks flex flex-wrap gap-1">
+                                                    <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="employee-blocks">
+                                                <div class="multiple-blocks flex flex-wrap gap-1">
+                                                    <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="employee-blocks">
+                                                <div class="multiple-blocks flex flex-wrap gap-1">
+                                                    <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="employee-blocks">
+                                                <div class="multiple-blocks flex flex-wrap gap-1">
+                                                    <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="employee-blocks">
+                                                <div class="multiple-blocks flex flex-wrap gap-1">
+                                                    <div class="time-block bg-blue-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-purple-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Javier M.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-9:00</div>
+                                                    </div>
+
+                                                    <div class="time-block bg-indigo-500 h-5 w-[64px] p-0.5 rounded-t-md compact-block">
+                                                        <div class="text-md text-white font-medium truncate">Carlos R.</div>
+                                                        <div class="time-range text-white text-[0.8rem]">6:00-10:00</div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            15:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            16:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            17:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md  compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"><div class="multiple-blocks">
+                                            <div class="time-block bg-blue-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-purple-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                            <div class="time-block bg-indigo-500 h-6 px-1 rounded-b-md compact-block"></div>
+                                        </div></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            18:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            19:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            20:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            21:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            22:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+                                     <!-- Empleado 3 - Primera fila: Horario real -->
+                                    <tr class="bg-white">
+                                        <td class="fixed-total-column p-2 border-b border-r border-solid px-2 text-center font-semibold text-gray-600 align-top bg-white">
+                                            23:00
+                                        </td>
+
+                                        <!-- Fila de horario real (marcado por el empleado) -->
+
+                                        <td class="px-1 py-0 text-center bg-blue-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-green-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-yellow-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-teal-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-purple-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-orange-50 border-r border-solid"></td>
+                                        <td class="px-1 py-0 text-center bg-emerald-50 border-r border-solid"></td>
+                                    </tr>
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pie de tabla -->
+                        <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                            <div class="text-sm text-gray-500">Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium">150</span> resultados</div>
+                            <div class="flex items-center gap-2">
+                                <button class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm">Mostrar más</button>
+                                <button class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm">Mostrar todos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Función para el scroll con arrastre
+            const slider = document.getElementById("scrollableTable");
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener("mousedown", (e) => {
+                isDown = true;
+                slider.style.cursor = "grabbing";
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener("mouseleave", () => {
+                isDown = false;
+                slider.style.cursor = "default";
+            });
+
+            slider.addEventListener("mouseup", () => {
+                isDown = false;
+                slider.style.cursor = "default";
+            });
+
+            slider.addEventListener("mousemove", (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+
+            // Funciones para checkboxes y acciones múltiples
+            function toggleAllCheckboxes(checkbox) {
+                const checkboxes = document.querySelectorAll(".employee-checkbox");
+                checkboxes.forEach((cb) => (cb.checked = checkbox.checked));
+                toggleAccionMultiple();
+            }
+
+            function toggleAccionMultiple() {
+                const checkedCount = document.querySelectorAll(".employee-checkbox:checked").length;
+                // Puedes agregar lógica adicional aquí si es necesario
+            }
+        </script>
+
+        <style>
+            .thin-scrollbar::-webkit-scrollbar {
+                height: 6px;
+                width: 6px;
+            }
+            .thin-scrollbar::-webkit-scrollbar-track {
+                background: #f1f5f9;
+                border-radius: 3px;
+            }
+            .thin-scrollbar::-webkit-scrollbar-thumb {
+                background-color: #cbd5e1;
+                border-radius: 3px;
+            }
+            @supports (scrollbar-color: auto) {
+                .thin-scrollbar {
+                    scrollbar-color: #cbd5e1 #f1f5f9;
+                    scrollbar-width: thin;
+                }
+            }
+
+            .fixed-checkbox-header {
+                position: sticky;
+                left: 0;
+                top: 0;
+                z-index: 20;
+                min-width: 30px;
+            }
+            .fixed-employee-header {
+                position: sticky;
+                left: 30px;
+                top: 0;
+                z-index: 20;
+                min-width: 200px;
+            }
+            .fixed-total-header {
+                position: sticky;
+                left: 0;
+                top: 0;
+                z-index: 20;
+                min-width: 80px;
+            }
+            .fixed-checkbox-column {
+                position: sticky;
+                left: 0;
+                z-index: 10;
+                min-width: 30px;
+            }
+            .fixed-employee-column {
+                position: sticky;
+                left: 30px;
+                z-index: 10;
+                min-width: 200px;
+            }
+            .fixed-total-column {
+                /*height: 3.2em;*/
+                position: sticky;
+                left: 0;
+                z-index: 10;
+                min-width: 80px;
+            }
+
+            .hour-cell {
+                min-width: 60px;
+                text-align: center;
+                padding: 0.25rem;
+                position: relative;
+            }
+
+            .hour-header {
+                min-width: 60px;
+                text-align: center;
+                font-size: 0.75rem;
+                padding: 0.5rem 0.25rem;
+            }
+
+            .schedule-predefined {
+                background-color: #f0fdf4;
+            }
+
+            .schedule-actual {
+                background-color: #f8fafc;
+            }
+
+            .schedule-cell {
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+            }
+
+          
+
+            .hour-missed {
+                background-color: #ef4444;
+                color: white;
+                border-radius: 4px;
+                padding: 2px 4px;
+                font-weight: 500;
+                z-index: 5;
+                position: relative;
+                font-size: 0.7rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Estilos para rangos horarios - Barra Continua */
+
+            .bg-green-600 {
+                background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.3));
+                border-radius: 0;
+            }
+
+            .schedule-range {
+                background: linear-gradient(90deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.3));
+                border-radius: 0;
+            }
+
+            .break-range {
+                background: linear-gradient(90deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.3));
+                border-radius: 0;
+            }
+
+            .range-start {
+                border-top-left-radius: 12px;
+                border-bottom-left-radius: 12px;
+            }
+
+            .range-end {
+                border-top-right-radius: 12px;
+                border-bottom-right-radius: 12px;
+            }
+
+            .employee-avatar {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 600;
+                font-size: 0.875rem;
+            }
+
+            .current-time-indicator {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background-color: #ef4444;
+                z-index: 15;
+            }
+
+            .current-time-label {
+                position: absolute;
+                top: -18px;
+                background-color: #ef4444;
+                color: white;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-size: 0.7rem;
+                white-space: nowrap;
+                z-index: 15;
+            }
+
+            /* Mejoras visuales para la barra continua */
+            .timeline-connector {
+                position: absolute;
+                top: 30%;
+                height: 40%;
+                width: 100%;
+                z-index: 0;
+            }
+
+            .time-dot {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: #3b82f6;
+                z-index: 5;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .break-dot {
+                background-color: #f59e0b;
+            }
+
+            .schedule-dot {
+                background-color: #22c55e;
+            }
+
+            .hour-cell {
+                height: 45px;
+                min-width: 60px;
+                position: relative;
+            }
+        </style>
+
+        <style>
+            .multiple-blocks {
+                display: flex;
+                gap: 4px;
+                justify-content: flex-start; /* o center, pero nunca importa tanto */
+                flex-wrap: nowrap; /*  no permite que salten a otra línea */
+                overflow-x: auto; /*  activa el scroll horizontal */
+            }
+            .multiple-blocks .time-block {
+                flex-shrink: 0; /*  no se encoge */
+                flex-grow: 0; /*  no se expande */
+                width: 100px; /* ancho fijo */
+            }
+            .compact-block {
+                height: 40px;
+            }
+            .time-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 500;
+                cursor: pointer;
+                overflow: hidden;
+                height: 48px; /* si quieres, ponlo igual que .compact-block */
+                transition: all 0.2s ease; /* corregido */
+                padding: 4px;
+                text-align: center;
+            }
+
+            .rest-time {
+                background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 5px, #e5e7eb 5px, #e5e7eb 10px);
+                color: #9ca3af;
+                font-style: italic;
+            }
+        </style>
+
+       
+
+        <!---//////////////CSS Js Calendario////////////////////--->
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Elementos del DOM
+                const fechaInput = document.getElementById("fecha_seleccionada");
+                const calendar = document.getElementById("calendar");
+                const calendarDays = document.getElementById("calendar-days");
+                const currentMonthYear = document.getElementById("current-month-year");
+                const prevMonthBtn = document.getElementById("prev-month");
+                const nextMonthBtn = document.getElementById("next-month");
+                const prevDayBtn = document.getElementById("prev-day");
+                const nextDayBtn = document.getElementById("next-day");
+
+                let currentDate = new Date();
+                let selectedDate = new Date();
+                let today = new Date();
+                let calendarVisible = false;
+
+                // Formatear fecha como DD/MM/YYYY
+                function formatDate(date) {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, "0");
+                    const day = String(date.getDate()).padStart(2, "0");
+                    return `${day}/${month}/${year}`;
+                }
+
+                // Mostrar fecha en el input
+                function updateInputDate() {
+                    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+                    fechaInput.value = selectedDate.toLocaleDateString("es-ES", options);
+                }
+
+                // Posicionar el calendario debajo del input
+                function positionCalendar() {
+                    const inputRect = fechaInput.getBoundingClientRect();
+                    calendar.style.top = `${fechaInput.offsetTop + fechaInput.offsetHeight + 5}px`;
+                    calendar.style.left = `${fechaInput.offsetLeft}px`;
+                }
+
+                // Mostrar/ocultar calendario
+                function toggleCalendar() {
+                    calendarVisible = !calendarVisible;
+
+                    if (calendarVisible) {
+                        positionCalendar();
+                        calendar.style.display = "block";
+                    } else {
+                        calendar.style.display = "none";
+                    }
+                }
+
+                // Generar calendario
+                function generateCalendar() {
+                    // Limpiar días existentes
+                    calendarDays.innerHTML = "";
+
+                    const year = currentDate.getFullYear();
+                    const month = currentDate.getMonth();
+
+                    // Actualizar encabezado del mes/año
+                    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                    currentMonthYear.textContent = `${monthNames[month]} ${year}`;
+
+                    // Primer y último día del mes
+                    const firstDay = new Date(year, month, 1);
+                    const lastDay = new Date(year, month + 1, 0);
+
+                    const prevMonthLastDay = new Date(year, month, 0).getDate();
+                    const firstDayIndex = firstDay.getDay(); // 0 (Dom) a 6 (Sáb)
+                    const daysInMonth = lastDay.getDate();
+                    const lastDayIndex = lastDay.getDay();
+
+                    // Días del mes anterior
+                    for (let i = firstDayIndex; i > 0; i--) {
+                        const day = document.createElement("div");
+                        day.classList.add("calendar-day", "other-month");
+                        day.textContent = prevMonthLastDay - i + 1;
+                        calendarDays.appendChild(day);
+                    }
+
+                    // Días del mes actual
+                    for (let i = 1; i <= daysInMonth; i++) {
+                        const day = document.createElement("div");
+                        day.classList.add("calendar-day");
+                        day.textContent = i;
+
+                        const isToday = i === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+
+                        if (isToday) day.classList.add("today");
+
+                        const isSelected = i === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear();
+
+                        if (isSelected) day.classList.add("selected");
+
+                        day.addEventListener("click", function () {
+                            selectedDate = new Date(year, month, i);
+                            updateInputDate();
+                            generateCalendar();
+                            toggleCalendar();
+                        });
+
+                        calendarDays.appendChild(day);
+                    }
+
+                    // Días del próximo mes
+                    const nextMonthDays = 6 - lastDayIndex;
+                    for (let i = 1; i <= nextMonthDays; i++) {
+                        const day = document.createElement("div");
+                        day.classList.add("calendar-day", "other-month");
+                        day.textContent = i;
+                        calendarDays.appendChild(day);
+                    }
+                }
+
+                // Event Listeners
+                fechaInput.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    toggleCalendar();
+                });
+
+                prevMonthBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    currentDate.setMonth(currentDate.getMonth() - 1);
+                    generateCalendar();
+                });
+
+                nextMonthBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    generateCalendar();
+                });
+
+                prevDayBtn.addEventListener("click", function () {
+                    selectedDate.setDate(selectedDate.getDate() - 1);
+                    updateInputDate();
+                    generateCalendar();
+                });
+
+                nextDayBtn.addEventListener("click", function () {
+                    selectedDate.setDate(selectedDate.getDate() + 1);
+                    updateInputDate();
+                    generateCalendar();
+                });
+
+                // Cerrar calendario al hacer clic fuera
+                document.addEventListener("click", function (e) {
+                    if (calendarVisible && !calendar.contains(e.target) && e.target !== fechaInput) {
+                        toggleCalendar();
+                    }
+                });
+
+                // Reposicionar el calendario al redimensionar la ventana
+                window.addEventListener("resize", function () {
+                    if (calendarVisible) {
+                        positionCalendar();
+                    }
+                });
+
+                // Inicializar
+                updateInputDate();
+                generateCalendar();
+            });
+        </script>
+
+        <style>
+            /* Estilos corregidos para el calendario */
+            .calendar-container {
+                display: none;
+                position: absolute;
+                z-index: 9999;
+                width: 100%;
+                max-width: 300px;
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                border: 1px solid #e5e7eb;
+                border-radius: 0.5rem;
+                background: white;
+            }
+
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(7, minmax(0, 1fr));
+                gap: 4px;
+            }
+
+            .calendar-day {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 2.25rem;
+                width: 2.25rem;
+                border-radius: 9999px;
+                font-size: 0.875rem;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .calendar-day:hover {
+                background-color: #e5e7eb;
+            }
+
+            .calendar-day.selected {
+                background-color: #4f46e5;
+                color: white;
+            }
+
+            .calendar-day.other-month {
+                color: #9ca3af;
+            }
+
+            .calendar-day.today {
+                background-color: #ddd6fe;
+                color: #4f46e5;
+                font-weight: 500;
+            }
+
+            .calendar-day.today.selected {
+                background-color: #4f46e5;
+                color: white;
+            }
+
+            /* Asegurar que el input de fecha tenga un z-index adecuado */
+            .date-input-container {
+                position: relative;
+                z-index: 10000; /* Mayor que el calendario cuando está cerrado */
+            }
+
+            /* Estilos para posicionar el calendario correctamente */
+            .calendar-position-helper {
+                position: relative;
+                display: inline-block;
+                width: 100%;
+            }
+
+            /* Mejorar la apariencia del input */
+            .date-input {
+                cursor: pointer;
+                background-color: white;
+            }
+        </style>
+
+        <!-- JS libraries -->
+        <script type="text/JavaScript" src="js/chart.umd.js"></script>
+        <script>
+            const Chart4 = Chart;
+        </script>
+        <script type="text/JavaScript" src="js/funcionchart4.js"></script>
+        <script type="text/JavaScript" src="js/Chart.min.js"></script>
+        <script type="text/JavaScript" src="js/funcionchart.js"></script>
+
+        <script type="text/JavaScript" src="js/xrange.js"></script>
+        <script type="text/JavaScript" src="js/utils.js"></script>
+        <script type="text/JavaScript" src="js/sha512-min.js"></script>
+        <script type="text/JavaScript" src="js/forms.js"></script>
+
+        <!-- Org Chart JS Libs -->
+        <script type="text/JavaScript" src="js/orgchart.js"></script>
+
+        <!-- Highcharts Libs -->
+        <script type="text/JavaScript" src="js/highcharts.js"></script>
+        <script type="text/JavaScript" src="js/xrange(1).js"></script>
+        <script type="text/JavaScript" src="js/sankey.js"></script>
+        <script type="text/JavaScript" src="js/organization.js"></script>
+        <script type="text/JavaScript" src="js/exporting.js"></script>
+        <script type="text/JavaScript" src="js/accessibility.js"></script>
+        <!-- JQuery UI libs -->
+        <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script> -->
+        <link rel="stylesheet" href="js/jquery-ui(1).css" />
+        <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+        <script src="js/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery.ui.datepicker-es.js"></script>
+        <!-- Libreria jQuery pqSelect -->
+        <script src="js/pqselect.min.js" type="text/javascript"></script>
+        <!-- Libreria de FullCalendar -->
+        <script src="js/moment.min.js"></script>
+        <script src="js/fullcalendar.js"></script>
+        <script src="js/lang-all.js"></script>
+        <!-- Libreria de FlipClock -->
+        <script src="js/flipclock.min.js"></script>
+        <!-- Libreria para grabar voz -->
+        <script src="js/recorder.js"></script>
+        <!-- Factory libraries -->
+        <script type="text/javascript" src="js/animacionFichaje.js"></script>
+        <script type="text/javascript" src="js/AjaxController.js"></script>
+        <script type="text/javascript" src="js/funciones.js"></script>
+        <script type="text/javascript" src="js/funciones_vp25.js"></script>
+        <script type="text/javascript" src="js/solicitudes.js"></script>
+        <script type="text/javascript" src="js/solicitudes_vp25.js"></script>
+        <script type="text/JavaScript" src="js/checkVoxEnrolar.js"></script>
+        <script src="js/signature_pad.umd.min.js"></script>
+        <!--Datatable plugin JS library file -->
+        <script src="js/moment.min(1).js"></script>
+
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.responsive.min.js"></script>
+        <!-- <script type="text/javascript" src=".js/datatables/dataTables.fixedHeader.min.js"></script> -->
+        <script type="text/javascript" src="js/dataTables.checkboxes.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="js/jszip.min.js"></script>
+        <script type="text/javascript" src="js/pdfmake.min.js"></script>
+        <script type="text/javascript" src="js/vfs_fonts.js"></script>
+        <script type="text/javascript" src="js/buttons.html5.min.js"></script>
+        <script src="js/datetime-moment.js"></script>
+        <script src="js/bootstrap-clockpicker.min.js"></script>
+        <script type="text/javascript" src="js/sortable.js"></script>
+        <script type="text/javascript" src="js/tarjetasIndex.js"></script>
+        <script type="text/javascript" src="js/proyectos.js"></script>
+        <script type="text/javascript" src="js/visitas.js"></script>
+        <script type="text/javascript" src="js/novedades.js"></script>
+        <script type="text/javascript" src="js/novedades_vp25.js"></script>
+        <script type="text/javascript" src="js/denuncias.js"></script>
+        <script type="text/javascript" src="js/modelo145.js"></script>
+        <script type="text/javascript" src="js/modelo145_vp25.js"></script>
+        <script type="text/javascript" src="js/organigramas.js"></script>
+        <script type="text/javascript" src="js/indicadores_vp25.js"></script>
+        <script type="text/javascript" src="js/qrious.js"></script>
+        <script type="text/javascript" src="js/tarjetas.js"></script>
+        <script type="text/javascript" src="js/onboarding.js"></script>
+        <script type="text/javascript" src="js/pagos.js"></script>
+        <script type="text/javascript" src="js/reclutamiento.js"></script>
+        <script type="text/javascript" src="js/ciclos.js"></script>
+        <script type="text/javascript" src="js/turnos.js"></script>
+        <script type="text/javascript" src="js/index_fichaje.js"></script>
+        <!--Morris Chart-->
+        <script src="js/morris.min.js"></script>
+        <script src="js/raphael.min.js"></script>
+        <!--Quill-->
+        <script src="js/quill.js"></script>
+        <script src="js/quill-textarea.js"></script>
+        <!--<script src=".js/morris/morris.init.js"></script>-->
+        <!-- Html2Pdf JavaScript-->
+        <script src="js/es6-promise.auto.js"></script>
+        <script src="js/jspdf.min.js"></script>
+        <script src="js/html2canvas.js"></script>
+        <script src="js/html2pdf.bundle.min.js"></script>
+        <!-- Script para las funciones de Encuestas VP25 -->
+        <script type="text/javascript" src="js/encuestas_vp25.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                esperaRespuesta(true);
+            });
+            window.addEventListener("load", function () {
+                esperaRespuesta(false);
+                // Verifica si la página fue recargada
+                if (localStorage.getItem("recargada")) {
+                    // Si fue recargada, simula el clic en el botón
+                    document.getElementById("toggleButtonWidgets").click();
+                    // Limpia el almacenamiento local
+                    localStorage.removeItem("recargada");
+                }
+            });
+        </script>
+        <script src="js/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Condicion para Modulo de Tickets -->
+        <script type="text/javascript" src="js/soporte.js"></script>
+        <script type="text/javascript" src="js/soporte_vp25.js"></script>
+        <!-- Libreria de PFIZER -->
+        <script type="text/javascript" src="js/pfizer.js"></script>
+
+        <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+    </body>
+</html>

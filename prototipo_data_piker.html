@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timepicker 24h Sin AM/PM</title>
+  <!-- CDN de Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <div class="relative w-full max-w-xs" id="tp-container">
+    <label for="time-input" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+      Hora (HH:MM:SS) - 24 Horas
+    </label>
+    
+    <!-- Input de Texto con formato forzado 24h -->
+    <div class="relative flex items-center">
+      <input 
+        type="text" 
+        id="time-input" 
+        value="14:30:00"
+        maxlength="8"
+        placeholder="HH:MM:SS"
+        autocomplete="off"
+        class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xl font-mono tracking-widest text-indigo-400 font-bold cursor-pointer hover:border-indigo-500 focus:outline-none focus:border-indigo-500 transition-colors shadow-lg"
+      >
+      <svg class="w-5 h-5 text-slate-400 absolute right-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+    </div>
+
+    <!-- Dropdown Modal -->
+    <div id="tp-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 p-4 bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl z-50">
+      
+      <!-- Indicadores -->
+      <div class="flex justify-between text-center text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">
+        <span class="flex-1">Horas</span>
+        <span class="w-3"></span>
+        <span class="flex-1">Minutos</span>
+        <span class="w-3"></span>
+        <span class="flex-1">Segundos</span>
+      </div>
+
+      <!-- Listas de selección -->
+      <div class="flex justify-between items-center gap-1 h-40 my-2 relative">
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-10 bg-indigo-500/10 border-y border-indigo-500/30 rounded-lg pointer-events-none"></div>
+
+        <!-- Columna Horas (00 a 23) -->
+        <div class="flex-1 h-full overflow-y-auto snap-y snap-mandatory no-scrollbar py-16" id="col-hours"></div>
+        <span class="text-xl font-bold text-slate-500 z-10">:</span>
+        
+        <!-- Columna Minutos (00 a 59) -->
+        <div class="flex-1 h-full overflow-y-auto snap-y snap-mandatory no-scrollbar py-16" id="col-minutes"></div>
+        <span class="text-xl font-bold text-slate-500 z-10">:</span>
+        
+        <!-- Columna Segundos (00 a 59) -->
+        <div class="flex-1 h-full overflow-y-auto snap-y snap-mandatory no-scrollbar py-16" id="col-seconds"></div>
+      </div>
+
+      <!-- Acciones -->
+      <div class="flex items-center justify-between pt-3 border-t border-slate-700/60 mt-2">
+        <button id="btn-now" type="button" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">
+          Ahora
+        </button>
+        <button id="btn-accept" type="button" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition-colors shadow-md">
+          Aceptar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let selectedTime = { hours: 14, minutes: 30, seconds: 0 };
+
+    const input = document.getElementById('time-input');
+    const dropdown = document.getElementById('tp-dropdown');
+    const container = document.getElementById('tp-container');
+    const colHours = document.getElementById('col-hours');
+    const colMinutes = document.getElementById('col-minutes');
+    const colSeconds = document.getElementById('col-seconds');
+
+    const pad = (num) => String(num).padStart(2, '0');
+
+    // Parsear string HH:MM:SS
+    function syncFromInput() {
+      const parts = input.value.split(':');
+      if (parts.length === 3) {
+        const h = parseInt(parts[0], 10);
+        const m = parseInt(parts[1], 10);
+        const s = parseInt(parts[2], 10);
+
+        if (!isNaN(h) && h >= 0 && h < 24) selectedTime.hours = h;
+        if (!isNaN(m) && m >= 0 && m < 60) selectedTime.minutes = m;
+        if (!isNaN(s) && s >= 0 && s < 60) selectedTime.seconds = s;
+      }
+    }
+
+    function updateInput() {
+      input.value = `${pad(selectedTime.hours)}:${pad(selectedTime.minutes)}:${pad(selectedTime.seconds)}`;
+    }
+
+    function populateColumn(colContainer, max, type) {
+      colContainer.innerHTML = '';
+      for (let i = 0; i < max; i++) {
+        const item = document.createElement('div');
+        item.className = `h-10 flex items-center justify-center font-mono text-lg cursor-pointer snap-center rounded-md transition-colors text-slate-400 hover:text-white`;
+        item.textContent = pad(i);
+        
+        item.addEventListener('click', () => {
+          selectedTime[type] = i;
+          scrollToValue(colContainer, i);
+          updateActiveStyles(colContainer, i);
+          updateInput();
+        });
+
+        colContainer.appendChild(item);
+      }
+    }
+
+    function scrollToValue(colContainer, value) {
+      const target = colContainer.children[value];
+      if (target) {
+        colContainer.scrollTo({
+          top: target.offsetTop - colContainer.offsetTop - 48,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function updateActiveStyles(colContainer, activeValue) {
+      Array.from(colContainer.children).forEach((child, idx) => {
+        if (idx === activeValue) {
+          child.className = 'h-10 flex items-center justify-center font-mono text-xl font-bold text-indigo-400 snap-center rounded-md';
+        } else {
+          child.className = 'h-10 flex items-center justify-center font-mono text-lg text-slate-500 hover:text-slate-300 snap-center rounded-md';
+        }
+      });
+    }
+
+    function refreshDropdownUI() {
+      scrollToValue(colHours, selectedTime.hours);
+      scrollToValue(colMinutes, selectedTime.minutes);
+      scrollToValue(colSeconds, selectedTime.seconds);
+
+      updateActiveStyles(colHours, selectedTime.hours);
+      updateActiveStyles(colMinutes, selectedTime.minutes);
+      updateActiveStyles(colSeconds, selectedTime.seconds);
+    }
+
+    function setNow() {
+      const now = new Date();
+      selectedTime = {
+        hours: now.getHours(),
+        minutes: now.getMinutes(),
+        seconds: now.getSeconds()
+      };
+      updateInput();
+      refreshDropdownUI();
+    }
+
+    // Inicializar columnas de 0 a 23 y 0 a 59
+    populateColumn(colHours, 24, 'hours');
+    populateColumn(colMinutes, 60, 'minutes');
+    populateColumn(colSeconds, 60, 'seconds');
+
+    // Eventos
+    input.addEventListener('click', () => {
+      syncFromInput();
+      dropdown.classList.remove('hidden');
+      refreshDropdownUI();
+    });
+
+    input.addEventListener('blur', () => {
+      // Re-formatear si el usuario escribió manualmente al salir del input
+      syncFromInput();
+      updateInput();
+    });
+
+    document.getElementById('btn-now').addEventListener('click', setNow);
+    document.getElementById('btn-accept').addEventListener('click', () => {
+      dropdown.classList.add('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    // Carga inicial
+    syncFromInput();
+    updateInput();
+  </script>
+</body>
+</html>

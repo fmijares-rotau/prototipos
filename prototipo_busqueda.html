@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VisualPresencia Cloud — Buscador de módulos</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fonts: Manrope (labels / eyebrows), Inter (body / UI), JetBrains Mono (shortcuts / data) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<script>
+  // ---------------------------------------------------------------------
+  // Tailwind theme tokens
+  // Palette built for VisualPresencia: a deep "control room" navy instead
+  // of pure black, with a teal-cyan "presence" accent (nods to the
+  // product's own name) rather than the usual acid-green/terracotta.
+  // ---------------------------------------------------------------------
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          canvas:        '#0A0E16', // page backdrop behind the modal
+          surface:       '#12161F', // palette panel
+          surfaceRaised: '#1B2130', // hovered / selected row
+          edge:          '#242B3B', // hairline borders
+          ink:           '#E8EAF0', // primary text
+          mute:          '#8B93A6', // secondary text
+          faint:         '#5B6478', // tertiary / placeholders
+          accent:        '#4FD1C5', // presence teal — signature color
+          accentDim:     '#4FD1C51f',
+        },
+        fontFamily: {
+          label: ['Manrope', 'sans-serif'],
+          body:  ['Inter', 'sans-serif'],
+          mono:  ['JetBrains Mono', 'monospace'],
+        },
+        boxShadow: {
+          panel: '0 24px 60px -12px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  /* Base */
+  html, body { background: #0A0E16; }
+  body { font-family: 'Inter', sans-serif; }
+
+  /* Thin, quiet scrollbar for the results list */
+  .vp-scroll::-webkit-scrollbar { width: 8px; }
+  .vp-scroll::-webkit-scrollbar-track { background: transparent; }
+  .vp-scroll::-webkit-scrollbar-thumb { background: #242B3B; border-radius: 999px; }
+  .vp-scroll::-webkit-scrollbar-thumb:hover { background: #2E3648; }
+
+  /* Visible keyboard focus everywhere (accessibility) */
+  .vp-focusable:focus-visible {
+    outline: 2px solid #4FD1C5;
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+
+  /* Smooth, restrained transitions — ~200ms per brief */
+  .vp-transition { transition: all 200ms ease; }
+
+  /* Signature element: a slow "presence" pulse — the product is literally
+     named after "presencia" (presence/attendance), so a breathing status
+     dot is a deliberate, on-brief signature rather than decoration. */
+  @keyframes vp-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(0.85); }
+    50%      { opacity: 1;    transform: scale(1.15); }
+  }
+  .vp-pulse-dot { animation: vp-pulse 2.4s ease-in-out infinite; }
+
+  /* Signature element part 2: a thin gradient line that sweeps across the
+     top edge of the palette while it's focused — a quiet "scanning" cue,
+     not a flashy border-glow. Respects reduced motion. */
+  @keyframes vp-scan {
+    0%   { transform: translateX(-40%); }
+    100% { transform: translateX(140%); }
+  }
+  .vp-scan-line {
+    position: absolute; top: 0; left: 0; height: 2px; width: 40%;
+    background: linear-gradient(90deg, transparent, #4FD1C5, transparent);
+    animation: vp-scan 2.6s linear infinite;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .vp-focused .vp-scan-line { opacity: 0.9; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vp-pulse-dot, .vp-scan-line { animation: none !important; }
+  }
+
+  mark.vp-match {
+    background: transparent;
+    color: #4FD1C5;
+    font-weight: 600;
+  }
+
+  /* Simple fade/scale-in for the palette on open */
+  @keyframes vp-in {
+    from { opacity: 0; transform: translateY(-6px) scale(0.99); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .vp-enter { animation: vp-in 200ms ease; }
+</style>
+</head>
+
+<body class="min-h-screen bg-white text-ink font-body">
+
+  <!-- ============================================================
+       Demo shell: a stand-in for the VisualPresencia Cloud modal.
+       Everything below the mock chrome is the component itself.
+  ============================================================ -->
+  <div class="min-h-screen flex flex-col items-center justify-center p-6">
+
+    
+
+    <!-- Reopen button, shown only when the palette has been dismissed with Esc -->
+    <button id="reopenBtn"
+      class="hidden vp-focusable px-4 py-2 rounded-lg bg-white border border-edge text-sm text-mute hover:text-ink hover:border-accent vp-transition"
+      onclick="openPalette()">
+      Abrir buscador de módulos
+    </button>
+
+    <!-- ============================================================
+         COMMAND PALETTE COMPONENT
+    ============================================================ -->
+    <div id="palette" class="w-full max-w-2xl vp-enter" role="dialog" aria-label="Buscador de módulos" aria-modal="true">
+
+      <div id="paletteShell" class="relative rounded-2xl bg-surface border border-edge overflow-hidden">
+
+        <!-- Signature scan line -->
+        <div class="vp-scan-line"></div>
+
+        <!-- Search bar -->
+        <div class="flex items-center gap-3 px-5" style="height:52px;">
+          <!-- Search icon -->
+          <svg class="w-5 h-5 text-faint shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+
+          <input
+            id="searchInput"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            class="flex-1 bg-transparent outline-none text-[15px] placeholder:text-faint text-ink"
+            placeholder="Buscar módulo, acción o configuración…"
+            aria-label="Buscar módulo, acción o configuración"
+            role="combobox"
+            aria-expanded="true"
+            aria-controls="resultsList"
+            aria-autocomplete="list"
+          />
+
+          <!-- Live presence dot + shortcut hint -->
+          <div class="flex items-center gap-2 shrink-0">
+           
+            <kbd id="shortcutHint" class="hidden sm:inline-block font-mono text-[11px] text-faint border border-edge rounded px-1.5 py-0.5">Buscar</kbd>
+          </div>
+        </div>
+
+        <div class="h-px bg-edge"></div>
+
+        <!-- Body: switches between (recent+tags) and (results) -->
+        <div id="paletteBody" class="vp-scroll max-h-[420px] overflow-y-auto">
+
+          <!-- INITIAL STATE -->
+          <div id="initialState" class="px-3 py-4">
+            <section class="mb-4">
+              <h2 class="font-label text-[11px] tracking-widest uppercase text-faint px-2 mb-2">Recientes</h2>
+              <ul id="recentList" class="space-y-0.5"></ul>
+              <p id="recentEmpty" class="hidden text-sm text-faint px-2 py-2">Aún no tienes búsquedas recientes.</p>
+            </section>
+
+        
+          </div>
+
+          <!-- RESULTS STATE -->
+          <div id="resultsState" class="hidden px-3 py-3">
+            <ul id="resultsList" role="listbox" aria-label="Resultados de búsqueda" class="space-y-4"></ul>
+            <div id="noResults" class="hidden flex-col items-center justify-center text-center py-10 px-4">
+              <svg class="w-8 h-8 text-faint mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <p class="text-sm text-mute">Sin resultados para "<span id="noResultsQuery" class="text-ink"></span>"</p>
+              <p class="text-xs text-faint mt-1">Prueba con otro término o revisa la ortografía.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="h-px bg-edge"></div>
+
+        <!-- Footer: keyboard legend -->
+      
+      </div>
+    </div>
+
+    <!-- Toast (execution feedback) -->
+    <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-lg bg-surfaceRaised border border-edge text-sm text-ink shadow-panel vp-transition"></div>
+
+    <!-- Shortcuts overlay (Ctrl+/) -->
+    <div id="shortcutsOverlay" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-6">
+      <div class="w-full max-w-sm rounded-2xl bg-surface border border-edge shadow-panel p-5">
+        <h3 class="font-label font-bold text-sm mb-4">Atajos de teclado</h3>
+        <ul class="space-y-2.5 text-sm text-mute">
+          <li class="flex justify-between"><span>Enfocar buscador</span><kbd class="kbd-key">Ctrl+K</kbd></li>
+          <li class="flex justify-between"><span>Mostrar/ocultar atajos</span><kbd class="kbd-key">Ctrl+/</kbd></li>
+          <li class="flex justify-between"><span>Navegar resultados</span><kbd class="kbd-key">↑ ↓ / Tab</kbd></li>
+          <li class="flex justify-between"><span>Abrir módulo</span><kbd class="kbd-key">Enter</kbd></li>
+          <li class="flex justify-between"><span>Limpiar / cerrar</span><kbd class="kbd-key">Esc</kbd></li>
+        </ul>
+        <button onclick="toggleShortcuts(false)" class="vp-focusable mt-5 w-full py-2 rounded-lg bg-surfaceRaised border border-edge text-sm text-mute hover:text-ink vp-transition">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+
+<style>
+  .kbd-key {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 1px 6px; border-radius: 5px;
+    background: #1B2130; border: 1px solid #242B3B; color: #C7CCDA;
+  }
+</style>
+
+<script>
+/* =====================================================================
+   DATA
+   ~40 sample modules for an HR-oriented ERP (VisualPresencia Cloud).
+   Each module carries synonym keywords so partial/typo-ish queries
+   ("vac", "hora", "empleado") still surface the right results.
+===================================================================== */
+const modules = [
+  // Configuración
+  { id: 1,  title: "Vacaciones Permisos",        category: "Configuración", icon: "calendar", keywords: ["vacaciones","permisos","ausencias","descanso"] },
+  { id: 2,  title: "Calendario Laboral",         category: "Configuración", icon: "calendar", keywords: ["calendario","festivos","dias laborables","laboral"] },
+  { id: 3,  title: "Turnos de Trabajo",          category: "Configuración", icon: "clock",    keywords: ["turnos","shifts","rotacion"] },
+  { id: 4,  title: "Horarios",                   category: "Configuración", icon: "clock",    keywords: ["horario","jornada","entrada","salida"] },
+  { id: 5,  title: "Días Festivos",               category: "Configuración", icon: "calendar", keywords: ["festivos","feriados","calendario"] },
+  { id: 6,  title: "Políticas de Empresa",       category: "Configuración", icon: "shield",   keywords: ["politicas","normativa","reglamento"] },
+
+  // Usuarios y Accesos
+  { id: 7,  title: "Usuarios",                   category: "Usuarios y Accesos", icon: "users",  keywords: ["empleado","empleados","personal","cuentas"] },
+  { id: 8,  title: "Roles y Permisos",           category: "Usuarios y Accesos", icon: "shield", keywords: ["roles","permisos","accesos","seguridad"] },
+  { id: 9,  title: "Empresas",                   category: "Usuarios y Accesos", icon: "building", keywords: ["empresas","organizaciones","sedes"] },
+  { id: 10, title: "Departamentos",              category: "Usuarios y Accesos", icon: "layers", keywords: ["departamentos","areas","equipos"] },
+  { id: 11, title: "Organigramas",               category: "Usuarios y Accesos", icon: "chart",  keywords: ["organigrama","jerarquia","estructura"] },
+  { id: 12, title: "Perfiles de Empleado",       category: "Usuarios y Accesos", icon: "idcard", keywords: ["perfil","ficha","empleado","datos personales"] },
+
+  // RRHH y Solicitudes
+  { id: 13, title: "Solicitudes Vacaciones",     category: "RRHH", icon: "calendar", keywords: ["solicitud","vacaciones","peticion"] },
+  { id: 14, title: "Solicitudes Horas Extras",   category: "RRHH", icon: "clock",    keywords: ["horas extras","extra","solicitud","overtime","hora"] },
+  { id: 15, title: "Solicitudes de Permiso",     category: "RRHH", icon: "document", keywords: ["permiso","solicitud","ausencia"] },
+  { id: 16, title: "Aprobaciones Pendientes",    category: "RRHH", icon: "check",    keywords: ["aprobar","pendiente","solicitudes"] },
+  { id: 17, title: "Bajas Médicas",              category: "RRHH", icon: "document", keywords: ["baja","incapacidad","medica","enfermedad"] },
+  { id: 18, title: "Justificantes",              category: "RRHH", icon: "document", keywords: ["justificante","documento","ausencia"] },
+
+  // Fichajes y Asistencia
+  { id: 19, title: "Fichajes",                   category: "Fichajes y Asistencia", icon: "clock", keywords: ["fichaje","entrada","salida","reloj","control horario"] },
+  { id: 20, title: "Control de Presencia",       category: "Fichajes y Asistencia", icon: "presence", keywords: ["presencia","asistencia","control"] },
+  { id: 21, title: "Registro de Jornada",        category: "Fichajes y Asistencia", icon: "clock", keywords: ["jornada","registro","horas trabajadas","hora"] },
+  { id: 22, title: "Incidencias de Fichaje",     category: "Fichajes y Asistencia", icon: "alert", keywords: ["incidencia","fichaje","error"] },
+
+  // Nómina
+  { id: 23, title: "Nómina",                     category: "Nómina", icon: "coin", keywords: ["nomina","salario","pago","sueldo"] },
+  { id: 24, title: "Recibos de Sueldo",          category: "Nómina", icon: "document", keywords: ["recibo","nomina","pago"] },
+  { id: 25, title: "Conceptos Salariales",       category: "Nómina", icon: "coin", keywords: ["salario","concepto","bonos"] },
+  { id: 26, title: "Retenciones e Impuestos",    category: "Nómina", icon: "coin", keywords: ["impuestos","retencion","irpf"] },
+
+  // Formación
+  { id: 27, title: "Formación",                  category: "Formación", icon: "book", keywords: ["formacion","cursos","capacitacion"] },
+  { id: 28, title: "Cursos Disponibles",         category: "Formación", icon: "book", keywords: ["curso","capacitacion","aprendizaje"] },
+  { id: 29, title: "Certificaciones",            category: "Formación", icon: "badge", keywords: ["certificado","curso","formacion"] },
+  { id: 30, title: "Plan de Carrera",            category: "Formación", icon: "chart", keywords: ["carrera","desarrollo","promocion"] },
+
+  // Evaluación
+  { id: 31, title: "Evaluaciones de Desempeño",  category: "Evaluación", icon: "chart", keywords: ["evaluacion","desempeño","performance"] },
+  { id: 32, title: "Objetivos y Metas",          category: "Evaluación", icon: "target", keywords: ["objetivos","metas","kpis"] },
+  { id: 33, title: "Encuestas de Clima",         category: "Evaluación", icon: "document", keywords: ["encuesta","clima laboral","satisfaccion"] },
+
+  // Documentos
+  { id: 34, title: "Documentos",                 category: "Documentos", icon: "folder", keywords: ["documentos","archivos","contratos"] },
+  { id: 35, title: "Contratos",                  category: "Documentos", icon: "document", keywords: ["contrato","documento","legal"] },
+  { id: 36, title: "Plantillas de Documentos",   category: "Documentos", icon: "folder", keywords: ["plantilla","documento","formato"] },
+
+  // Viajes y Gastos
+  { id: 37, title: "Viajes de Empresa",          category: "Viajes y Gastos", icon: "plane", keywords: ["viaje","viajes","desplazamiento"] },
+  { id: 38, title: "Gastos y Reembolsos",        category: "Viajes y Gastos", icon: "coin",  keywords: ["gastos","reembolso","dietas"] },
+
+  // Reportes
+  { id: 39, title: "Reportes de RRHH",           category: "Reportes", icon: "chart", keywords: ["reporte","informe","estadisticas"] },
+  { id: 40, title: "Panel de Indicadores",       category: "Reportes", icon: "chart", keywords: ["dashboard","kpi","indicadores"] },
+];
+
+const POPULAR_TAGS = ["Vacaciones","Horarios","Solicitudes","Usuarios","Empresas","Calendarios"];
+const RECENTS_KEY = "vp_recent_modules";
+const MAX_RECENTS = 8;
+
+/* =====================================================================
+   ICONS — small inline SVG set, one path per module.icon key.
+   Keeping icons as data (not emoji) matches the "professional SaaS"
+   requirement and lets every icon share stroke weight/size.
+===================================================================== */
+const ICONS = {
+  calendar: '<rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>',
+  clock: '<circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15.5 14"></polyline>',
+  users: '<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
+  building: '<rect x="4" y="3" width="16" height="18" rx="1"></rect><line x1="9" y1="8" x2="9" y2="8"></line><line x1="9" y1="12" x2="9" y2="12"></line><line x1="9" y1="16" x2="9" y2="16"></line><line x1="15" y1="8" x2="15" y2="8"></line><line x1="15" y1="12" x2="15" y2="12"></line><line x1="15" y1="16" x2="15" y2="16"></line>',
+  layers: '<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>',
+  chart: '<line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line>',
+  idcard: '<rect x="2" y="5" width="20" height="14" rx="2"></rect><circle cx="8" cy="12" r="2"></circle><line x1="14" y1="10" x2="18" y2="10"></line><line x1="14" y1="14" x2="18" y2="14"></line>',
+  document: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+  check: '<polyline points="20 6 9 17 4 12"></polyline>',
+  presence: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"></circle>',
+  alert: '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12" y2="17"></line>',
+  coin: '<circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.1 1.3-2 3-2s3 .9 3 2-1.3 2-3 2-3 .9-3 2 1.3 2 3 2 3-.9 3-2"></path>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>',
+  badge: '<circle cx="12" cy="8" r="6"></circle><polyline points="9 13.5 7 22 12 19 17 22 15 13.5"></polyline>',
+  folder: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>',
+  plane: '<path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7z"></path>',
+  target: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle>',
+};
+
+function iconSvg(key, cls) {
+  const inner = ICONS[key] || ICONS.document;
+  return `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+}
+
+/* =====================================================================
+   SEARCH
+   - Accent/case-insensitive.
+   - Matches on title (highlighted) first, then on keyword synonyms
+     (unhighlighted, but still surfaces the module).
+   - Simple scoring: startsWith > contains > keyword match.
+===================================================================== */
+function normalize(str) {
+  return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function matchModule(mod, rawQuery) {
+  const q = normalize(rawQuery.trim());
+  if (!q) return { match: true, score: 0, highlightRange: null };
+
+  const title = normalize(mod.title);
+  const idx = title.indexOf(q);
+
+  if (idx === 0) return { match: true, score: 3, highlightRange: [0, q.length] };
+  if (idx > -1)   return { match: true, score: 2, highlightRange: [idx, idx + q.length] };
+
+  const kwHit = mod.keywords.some(k => normalize(k).includes(q));
+  if (kwHit) return { match: true, score: 1, highlightRange: null };
+
+  return { match: false };
+}
+
+function highlightTitle(title, range) {
+  if (!range) return escapeHtml(title);
+  const [start, end] = range;
+  return (
+    escapeHtml(title.slice(0, start)) +
+    `<mark class="vp-match">${escapeHtml(title.slice(start, end))}</mark>` +
+    escapeHtml(title.slice(end))
+  );
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+}
+
+function search(query) {
+  return modules
+    .map(mod => ({ mod, ...matchModule(mod, query) }))
+    .filter(r => r.match)
+    .sort((a, b) => b.score - a.score || a.mod.title.localeCompare(b.mod.title));
+}
+
+function groupByCategory(results) {
+  const order = [];
+  const groups = {};
+  for (const r of results) {
+    const cat = r.mod.category;
+    if (!groups[cat]) { groups[cat] = []; order.push(cat); }
+    groups[cat].push(r);
+  }
+  return order.map(cat => ({ category: cat, items: groups[cat] }));
+}
+
+/* =====================================================================
+   RECENTS (localStorage)
+===================================================================== */
+function getRecents() {
+  try { return JSON.parse(localStorage.getItem(RECENTS_KEY)) || []; }
+  catch { return []; }
+}
+
+function addRecent(mod) {
+  let recents = getRecents().filter(r => r.id !== mod.id);
+  recents.unshift({ id: mod.id, title: mod.title, category: mod.category, icon: mod.icon });
+  recents = recents.slice(0, MAX_RECENTS);
+  localStorage.setItem(RECENTS_KEY, JSON.stringify(recents));
+}
+
+/* =====================================================================
+   RENDERING
+===================================================================== */
+const el = {
+  input: document.getElementById("searchInput"),
+  shell: document.getElementById("paletteShell"),
+  body: document.getElementById("paletteBody"),
+  initialState: document.getElementById("initialState"),
+  resultsState: document.getElementById("resultsState"),
+  resultsList: document.getElementById("resultsList"),
+  noResults: document.getElementById("noResults"),
+  noResultsQuery: document.getElementById("noResultsQuery"),
+  recentList: document.getElementById("recentList"),
+  recentEmpty: document.getElementById("recentEmpty"),
+  tagList: document.getElementById("tagList"),
+  toast: document.getElementById("toast"),
+  reopenBtn: document.getElementById("reopenBtn"),
+  palette: document.getElementById("palette"),
+  shortcutHint: document.getElementById("shortcutHint"),
+};
+
+let flatResults = [];   // currently visible modules, in display order (for arrow nav)
+let selectedIndex = -1;
+
+function renderRecents() {
+  const recents = getRecents();
+  el.recentList.innerHTML = "";
+  el.recentEmpty.classList.toggle("hidden", recents.length > 0);
+
+  recents.forEach(r => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <button class="vp-focusable w-full flex items-center gap-3 px-2.5 py-2 rounded-lg hover:bg-surfaceRaised vp-transition text-left" data-recent-id="${r.id}">
+        ${iconSvg(r.icon, "w-4 h-4 text-mute shrink-0")}
+        <span class="text-sm text-ink">${escapeHtml(r.title)}</span>
+        <span class="ml-auto text-xs text-faint">${escapeHtml(r.category)}</span>
+      </button>`;
+    li.querySelector("button").addEventListener("click", () => {
+      const mod = modules.find(m => m.id === r.id);
+      if (mod) selectModule(mod);
+    });
+    el.recentList.appendChild(li);
+  });
+}
+
+function renderTags() {
+  el.tagList.innerHTML = "";
+  POPULAR_TAGS.forEach(tag => {
+    const btn = document.createElement("button");
+    btn.className = "vp-focusable px-3 py-1.5 rounded-full bg-surfaceRaised border border-edge text-xs text-mute hover:text-accent hover:border-accent vp-transition";
+    btn.textContent = "#" + tag;
+    btn.addEventListener("click", () => {
+      el.input.value = tag;
+      el.input.focus();
+      handleInput();
+    });
+    el.tagList.appendChild(btn);
+  });
+}
+
+function renderResults(query) {
+  const results = search(query);
+  const grouped = groupByCategory(results);
+  flatResults = results.map(r => r.mod);
+  selectedIndex = flatResults.length ? 0 : -1;
+
+  el.resultsList.innerHTML = "";
+  el.noResults.classList.toggle("hidden", results.length > 0);
+  el.noResults.classList.toggle("flex", results.length === 0);
+  el.noResultsQuery.textContent = query;
+
+  let runningIndex = 0;
+  grouped.forEach(group => {
+    const section = document.createElement("li");
+    const itemsHtml = group.items.map(({ mod, highlightRange }) => {
+      const i = runningIndex++;
+      return `
+        <li>
+          <button
+            class="vp-focusable vp-transition w-full flex items-center gap-3 px-2.5 py-2 rounded-lg text-left result-row"
+            data-index="${i}" role="option" id="result-${i}">
+            ${iconSvg(mod.icon, "w-4 h-4 text-mute shrink-0")}
+            <span class="text-sm text-ink">${highlightTitle(mod.title, highlightRange)}</span>
+            <span class="ml-auto text-xs text-faint">${escapeHtml(mod.category)}</span>
+          </button>
+        </li>`;
+    }).join("");
+
+    section.innerHTML = `
+      <h3 class="font-label text-[11px] tracking-widest uppercase text-faint px-2.5 mb-1">${escapeHtml(group.category)}</h3>
+      <ul class="space-y-0.5">${itemsHtml}</ul>`;
+    el.resultsList.appendChild(section);
+  });
+
+  // wire click handlers
+  el.resultsList.querySelectorAll(".result-row").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = Number(btn.dataset.index);
+      selectModule(flatResults[i]);
+    });
+  });
+
+  paintSelection();
+}
+
+function paintSelection() {
+  el.resultsList.querySelectorAll(".result-row").forEach((btn, i) => {
+    const active = i === selectedIndex;
+    btn.classList.toggle("bg-surfaceRaised", active);
+    btn.setAttribute("aria-selected", active ? "true" : "false");
+    if (active) btn.scrollIntoView({ block: "nearest" });
+  });
+}
+
+function handleInput() {
+  const query = el.input.value;
+  const hasQuery = query.trim().length > 0;
+
+  el.initialState.classList.toggle("hidden", hasQuery);
+  el.resultsState.classList.toggle("hidden", !hasQuery);
+
+  if (hasQuery) renderResults(query);
+}
+
+function selectModule(mod) {
+  addRecent(mod);
+  renderRecents();
+  showToast(`Abriendo “${mod.title}”…`);
+  el.input.value = "";
+  handleInput();
+}
+
+function showToast(msg) {
+  el.toast.textContent = msg;
+  el.toast.classList.remove("hidden");
+  el.toast.style.opacity = "1";
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => {
+    el.toast.style.opacity = "0";
+    setTimeout(() => el.toast.classList.add("hidden"), 200);
+  }, 1800);
+}
+
+/* =====================================================================
+   KEYBOARD NAVIGATION
+===================================================================== */
+function moveSelection(delta) {
+  if (!flatResults.length) return;
+  selectedIndex = (selectedIndex + delta + flatResults.length) % flatResults.length;
+  paintSelection();
+}
+
+el.input.addEventListener("input", handleInput);
+
+el.input.addEventListener("keydown", (e) => {
+  const hasQuery = el.input.value.trim().length > 0;
+
+  if (e.key === "ArrowDown" || (e.key === "Tab" && !e.shiftKey && hasQuery)) {
+    e.preventDefault();
+    moveSelection(1);
+  } else if (e.key === "ArrowUp" || (e.key === "Tab" && e.shiftKey && hasQuery)) {
+    e.preventDefault();
+    moveSelection(-1);
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    if (hasQuery && selectedIndex > -1) selectModule(flatResults[selectedIndex]);
+  } else if (e.key === "Escape") {
+    e.preventDefault();
+    if (hasQuery) {
+      el.input.value = "";
+      handleInput();
+    } else {
+      closePalette();
+    }
+  }
+});
+
+el.input.addEventListener("focus", () => el.shell.classList.add("vp-focused"));
+el.input.addEventListener("blur",  () => el.shell.classList.remove("vp-focused"));
+
+document.addEventListener("keydown", (e) => {
+  const cmd = e.ctrlKey || e.metaKey;
+  if (cmd && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    openPalette();
+    el.input.focus();
+  } else if (cmd && e.key === "/") {
+    e.preventDefault();
+    toggleShortcuts();
+  }
+});
+
+/* =====================================================================
+   OPEN / CLOSE (demo-level simulation of the modal lifecycle)
+===================================================================== */
+function openPalette() {
+  el.palette.classList.remove("hidden");
+  el.reopenBtn.classList.add("hidden");
+  el.palette.classList.remove("vp-enter");
+  void el.palette.offsetWidth; // restart animation
+  el.palette.classList.add("vp-enter");
+}
+
+function closePalette() {
+  el.palette.classList.add("hidden");
+  el.reopenBtn.classList.remove("hidden");
+}
+
+function toggleShortcuts(force) {
+  const overlay = document.getElementById("shortcutsOverlay");
+  const show = force !== undefined ? force : overlay.classList.contains("hidden");
+  overlay.classList.toggle("hidden", !show);
+}
+
+/* Detect platform for the visible shortcut hint (Ctrl vs ⌘) */
+if (navigator.platform.toUpperCase().includes("MAC")) {
+  el.shortcutHint.textContent = "⌘K";
+}
+
+/* =====================================================================
+   INIT
+===================================================================== */
+renderRecents();
+renderTags();
+handleInput();
+</script>
+</body>
+</html>

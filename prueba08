@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios de Limpieza - Timeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .thin-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .thin-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .thin-scrollbar::-webkit-scrollbar-thumb { background: #c5c5c5; border-radius: 3px; }
+        .thin-scrollbar::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        
+        .sticky-sidebar { position: sticky; left: 0; z-index: 5; background: white; }
+        .sticky-header { z-index: 20; }
+        
+        /* Estilos para los bloques de horario generados dinámicamente */
+        .time-block {
+            position: absolute;
+            border-radius: 4px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 0 5px; /* Agregado para mejor visualización de texto */
+        }
+        
+        .time-block:hover {
+            opacity: 0.9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        
+        .time-cell { min-height: 40px; position: relative; border-bottom: 1px solid #e5e7eb; }
+        .hour-marker {
+            position: relative;
+            border-bottom: 1px solid #e5e7eb;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 12px;
+            color: #6b7280;
+            background-color: #f9fafb;
+        }
+        
+        .hour-marker::after {
+            content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background-color: #e5e7eb;
+        }
+        
+        .tooltip-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            position: absolute;
+            bottom: calc(100% + 5px); /* Posición encima del elemento */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 10px;
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 100;
+            pointer-events: none; /* Ignora eventos de clic en el tooltip */
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(7, 1fr);
+            position: relative; /* Para que los bloques absolutos se posicionen correctamente */
+        }
+
+        /* Clases de color para los diferentes colegios */
+        .bg-colegio-central { background-color: #3B82F6; }
+        .bg-colegio-norte { background-color: #10B981; }
+        .bg-colegio-sur { background-color: #8B5CF6; }
+        .bg-colegio-este { background-color: #F59E0B; }
+        .bg-colegio-oeste { background-color: #EC4899; }
+
+        /* Clases para posicionar los bloques en la cuadrícula */
+        .day-column-1 { left: calc(80px + (100% - 80px) * 0/7); width: calc((100% - 80px) / 7); }
+        .day-column-2 { left: calc(80px + (100% - 80px) * 1/7); width: calc((100% - 80px) / 7); }
+        .day-column-3 { left: calc(80px + (100% - 80px) * 2/7); width: calc((100% - 80px) / 7); }
+        .day-column-4 { left: calc(80px + (100% - 80px) * 3/7); width: calc((100% - 80px) / 7); }
+        .day-column-5 { left: calc(80px + (100% - 80px) * 4/7); width: calc((100% - 80px) / 7); }
+        .day-column-6 { left: calc(80px + (100% - 80px) * 5/7); width: calc((100% - 80px) / 7); }
+        .day-column-7 { left: calc(80px + (100% - 80px) * 6/7); width: calc((100% - 80px) / 7); }
+
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">LIMPIEZA COLEGIOS AUTO INGENIO</h1>
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="text-sm text-gray-600">
+                    <span class="font-medium">Num. 1 di pagina (2013)</span>
+                    <span class="mx-2">|</span>
+                    <span>compreso 10 di luglio al 2013</span>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-medium">Leyenda:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-3 h-3 rounded bg-blue-500"></span>
+                                <span class="text-xs">Central</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-3 h-3 rounded bg-emerald-500"></span>
+                                <span class="text-xs">Norte</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-3 h-3 rounded bg-purple-500"></span>
+                                <span class="text-xs">Sur</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-3 h-3 rounded bg-amber-500"></span>
+                                <span class="text-xs">Este</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-3 h-3 rounded bg-pink-500"></span>
+                                <span class="text-xs">Oeste</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <button class="px-3 py-1 bg-gray-200 rounded text-sm hover:bg-gray-300">Semana anterior</button>
+                        <button class="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600">Hoy</button>
+                        <button class="px-3 py-1 bg-gray-200 rounded text-sm hover:bg-gray-300">Semana siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg border border-solid border-gray-300 overflow-hidden shadow-sm">
+            <div class="grid grid-cols-8 border-b bg-white text-xs font-medium uppercase sticky top-0 z-10">
+                <div class="p-3 border-r bg-white sticky-sidebar sticky-header">Horario</div>
+                <div class="p-3 border-r text-center">Lun 21</div>
+                <div class="p-3 border-r text-center">Mar 22</div>
+                <div class="p-3 border-r text-center">Mié 23</div>
+                <div class="p-3 border-r text-center">Jue 24</div>
+                <div class="p-3 border-r text-center">Vie 25</div>
+                <div class="p-3 border-r text-center">Sáb 26</div>
+                <div class="p-3 text-center">Dom 27</div>
+            </div>
+
+            <div class="overflow-auto thin-scrollbar h-[calc(100vh-250px)]">
+                <div class="timeline-grid">
+                    <div class="sticky-sidebar bg-gray-50 border-r" id="hour-column">
+                    </div>
+                    <div class="flex flex-col border-r"></div>
+                    <div class="flex flex-col border-r"></div>
+                    <div class="flex flex-col border-r"></div>
+                    <div class="flex flex-col border-r"></div>
+                    <div class="flex flex-col border-r"></div>
+                    <div class="flex flex-col border-r"></div>
+                    <div class="flex flex-col"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Datos de ejemplo para los horarios (aquí irían los 1000+ trabajadores)
+        const schedules = [
+            { id: 1, name: 'Carlos Ruiz', location: 'central', day: 1, start: 6, end: 10 },
+            { id: 2, name: 'Marta López', location: 'norte', day: 1, start: 7, end: 13 },
+            { id: 3, name: 'Ana Torres', location: 'este', day: 1, start: 16, end: 21 },
+            { id: 4, name: 'Carlos Ruiz', location: 'central', day: 2, start: 6, end: 10 },
+            { id: 5, name: 'Marta López', location: 'norte', day: 2, start: 7, end: 13 },
+            { id: 6, name: 'Javier Méndez', location: 'sur', day: 2, start: 14, end: 21 },
+            { id: 7, name: 'Ana Torres', location: 'este', day: 2, start: 16, end: 21 },
+            { id: 8, name: 'Carlos Ruiz', location: 'central', day: 3, start: 6, end: 10 },
+            { id: 9, name: 'Javier Méndez', location: 'sur', day: 3, start: 14, end: 21 },
+            { id: 10, name: 'Roberto Díaz', location: 'oeste', day: 3, start: 8, end: 17 },
+            { id: 11, name: 'Ana Torres', location: 'este', day: 3, start: 16, end: 21 },
+            { id: 12, name: 'Carlos Ruiz', location: 'central', day: 4, start: 6, end: 10 },
+            { id: 13, name: 'Marta López', location: 'norte', day: 4, start: 7, end: 13 },
+            { id: 14, name: 'Javier Méndez', location: 'sur', day: 4, start: 14, end: 21 },
+            { id: 15, name: 'Roberto Díaz', location: 'oeste', day: 4, start: 8, end: 17 },
+            { id: 16, name: 'Ana Torres', location: 'este', day: 4, start: 16, end: 21 },
+            { id: 17, name: 'Carlos Ruiz', location: 'central', day: 5, start: 6, end: 10 },
+            { id: 18, name: 'Marta López', location: 'norte', day: 5, start: 7, end: 13 },
+            { id: 19, name: 'Javier Méndez', location: 'sur', day: 5, start: 14, end: 21 },
+            { id: 20, name: 'Ana Torres', location: 'este', day: 5, start: 16, end: 21 },
+            { id: 21, name: 'Javier Méndez', location: 'sur', day: 6, start: 8, end: 13 },
+            { id: 22, name: 'Roberto Díaz', location: 'oeste', day: 6, start: 7, end: 14 },
+        ];
+
+        // Mapeo de días para obtener el nombre
+        const dayMap = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        // Mapeo de ubicación a clases de color de Tailwind
+        const locationColorMap = {
+            central: 'bg-colegio-central',
+            norte: 'bg-colegio-norte',
+            sur: 'bg-colegio-sur',
+            este: 'bg-colegio-este',
+            oeste: 'bg-colegio-oeste'
+        };
+
+        // Función para formatear la hora (ej: 6 -> 06:00)
+        function formatHour(hour) {
+            return String(hour).padStart(2, '0') + ':00';
+        }
+
+        // Función para calcular la posición y altura del bloque
+        const hourHeight = 40; // Altura de cada hora en píxeles
+
+        function calculateTop(startHour) {
+            return startHour * hourHeight;
+        }
+
+        function calculateHeight(startHour, endHour) {
+            const duration = endHour - startHour;
+            return duration * hourHeight;
+        }
+
+        // Función para renderizar los bloques de horario
+        function renderSchedules() {
+            const timelineGrid = document.querySelector('.timeline-grid');
+            const hourColumn = document.getElementById('hour-column');
+            const fragment = document.createDocumentFragment();
+
+            // Generar la columna de horas
+            for (let i = 0; i <= 24; i++) {
+                const hourDiv = document.createElement('div');
+                hourDiv.className = 'hour-marker';
+                hourDiv.textContent = formatHour(i);
+                hourColumn.appendChild(hourDiv);
+            }
+
+            // Generar los bloques de horario
+            schedules.forEach(schedule => {
+                const block = document.createElement('div');
+                const top = calculateTop(schedule.start);
+                const height = calculateHeight(schedule.start, schedule.end);
+                const colorClass = locationColorMap[schedule.location];
+
+                // Crear el contenido del tooltip
+                const tooltipText = `${schedule.location.charAt(0).toUpperCase() + schedule.location.slice(1)} - ${dayMap[schedule.day]}: ${formatHour(schedule.start)}-${formatHour(schedule.end)} - ${schedule.name}`;
+                
+                block.className = `time-block ${colorClass} tooltip-container day-column-${schedule.day}`;
+                block.style.top = `${top}px`;
+                block.style.height = `${height}px`;
+                block.innerHTML = `
+                    <span class="truncate">${formatHour(schedule.start)} - ${formatHour(schedule.end)}</span>
+                    <span class="tooltip-text">${tooltipText}</span>
+                `;
+                
+                fragment.appendChild(block);
+            });
+
+            // Agregar todos los bloques de una sola vez para mejorar el rendimiento
+            timelineGrid.appendChild(fragment);
+
+            console.log(`Se han renderizado ${schedules.length} horarios dinámicamente.`);
+        }
+
+        // Ejecutar la función cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', renderSchedules);
+
+    </script>
+</body>
+</html>

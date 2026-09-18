@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Demo Visualpresencia Cloud</title>
+    <meta name="description" content="Demo Visualpresencia Cloud" />
+    <meta name="author" content="demo.vpcloud.es" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Google Fonts - DM Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS v3.3.5 via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        'indigo': {
+                            '700': '#412DB6',
+                            '900': '#2C2554',
+                        },
+                        'obra-orange': '#E8752A',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icon Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        /* Scrollbar personalizado */
+        .thin-scrollbar::-webkit-scrollbar {
+            height: 8px !important;
+            width: 6px !important;
+        }
+
+        .thin-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f9 !important;
+            border-radius: 3px !important;
+        }
+
+        .thin-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #94a3b8 !important;
+            border-radius: 3px !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f2f2f2]">
+
+
+
+    
+    <!-- Header simplificado -->
+    <header class="sticky top-0 z-50 w-full">
+        <div class="border-b border-solid border-gray-300 bg-white/95 backdrop-blur-sm w-full flex items-center justify-between px-6 py-3">
+            <div class="flex items-center">
+                <div class="flex items-center space-x-2 mr-4">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#38BDF8]/20 text-[#38BDF8]">
+                        <i class="ti ti-stack-backward text-[16px]"></i>
+                    </span>
+                    <span class="text-lg font-medium">Gestión de Proyectos</span>
+                </div>
+
+                <nav class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-1 shadow-sm">
+                    <ol class="flex items-center space-x-3 text-sm text-gray-500">
+                        <li class="flex items-center">
+                            <a href="#" class="hover:text-blue-600 flex items-center">
+                                <i class="ti ti-dashboard mr-1.5 text-[#412DB6]"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="text-gray-400">
+                            <i class="ti ti-chevron-right"></i>
+                        </li>
+                        <li class="flex items-center font-medium text-gray-700">
+                            <i class="ti ti-stack-backward mr-1.5 text-[#38BDF8]"></i> Proyectos
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Controles de usuario simplificados -->
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 relative" aria-label="Perfil de usuario">
+                        <span class="font-medium text-sm">PP</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <section id="content" class="font-sans p-6">
+        <!-- Card de acciones -->
+        <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm p-5 flex flex-col gap-5 mb-6">
+            <!-- Fila 1: Acciones principales y exportación -->
+            <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                <!-- Acciones principales -->
+                <div class="flex flex-wrap gap-2" role="group" aria-label="Acciones principales">
+                    <button type="button" onclick="openProjectModal()"
+                        class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm">
+                        <i class="ti ti-plus mr-2"></i>Nuevo Proyecto
+                    </button>
+                    <button type="button" onclick="openCuadrillaModal()"
+                        class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm">
+                        <i class="ti ti-plus mr-2"></i>Nueva Cuadrilla
+                    </button>
+                    <button type="button" onclick="openFaseModal()"
+                        class="px-4 py-2 bg-obra-orange text-white rounded-lg text-sm font-medium flex items-center hover:bg-orange-600 transition shadow-sm">
+                        <i class="ti ti-plus mr-2"></i>Nueva Fase
+                    </button>
+                </div>
+
+                <!-- Exportar -->
+                <div class="flex items-center gap-3" role="group" aria-label="Descargar archivos">
+                    <span class="text-sm text-gray-600 font-medium">Descargar:</span>
+                    <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-sm transition">
+                        <i class="text-lg ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel
+                    </button>
+                    <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-red-50 flex items-center text-sm transition">
+                        <i class="text-lg ti ti-file-type-pdf text-red-600 mr-2"></i>PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fila 2: Filtros y búsqueda -->
+            <div class="flex-1 flex flex-wrap gap-2 w-full min-w-0">
+                <!-- Búsqueda -->
+                <div class="flex-1 min-w-[200px]">
+                    <div class="relative">
+                        <input type="text" placeholder="Buscar proyectos..." class="w-full pl-10 pr-3 py-2 rounded-lg text-sm border border-solid border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        <i class="ti ti-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-base"></i>
+                    </div>
+                </div>
+
+                <!-- Filtro de estado -->
+                <div class="flex-1 min-w-[150px]">
+                    <div class="relative">
+                        <select class="w-full px-2 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">Todos los estados</option>
+                            <option value="activo">Activo</option>
+                            <option value="pausado">Pausado</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                        <i class="ti ti-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Botón buscar -->
+                <button type="button" class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition">
+                    <i class="ti ti-search mr-2"></i>Buscar
+                </button>
+
+                <!-- Botón limpiar -->
+                <button type="button" class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg text-sm font-medium flex items-center hover:bg-gray-50 transition">
+                    <i class="ti ti-broom mr-2"></i>Limpiar
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabs de navegación -->
+        <div class="flex gap-1 bg-white rounded-lg p-1 border border-gray-200 mb-6">
+            <button onclick="showTab('proyectos')" id="tabProyectosBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-indigo-700 text-white">
+                <i class="ti ti-stack-backward"></i>
+                Proyectos
+            </button>
+            <button onclick="showTab('cuadrillas')" id="tabCuadrillasBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-users"></i>
+                Cuadrillas
+            </button>
+            <button onclick="showTab('fases')" id="tabFasesBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-list-details"></i>
+                Fases
+            </button>
+            <button onclick="showTab('tareas')" id="tabTareasBtn" class="tab-btn px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1.5 bg-transparent text-gray-500">
+                <i class="ti ti-checklist"></i>
+                Tareas
+            </button>
+        </div>
+
+        <!-- Tabla de Proyectos -->
+        <div id="tabProyectos" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllProyectos" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Código</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Cliente</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Encargado</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Presupuesto</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Progreso</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="proyectosTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">5</span> de <span class="font-medium" id="totalProyectos">0</span> proyectos
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm">
+                            Anterior
+                        </button>
+                        <span class="text-sm text-gray-500">Página 1 de 1</span>
+                        <button class="px-3 py-1 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 text-sm">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Cuadrillas -->
+        <div id="tabCuadrillas" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllCuadrillas" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Miembros</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Color</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyectos Asignados</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="cuadrillasTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium" id="totalCuadrillas">0</span> cuadrillas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Fases -->
+        <div id="tabFases" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllFases" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Progreso</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Tareas</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="fasesTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium" id="totalFases">0</span> fases
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Tareas -->
+        <div id="tabTareas" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm border border-solid border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto thin-scrollbar">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                    <input type="checkbox" id="checkAllTareas" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fase</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Cuadrilla</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Fecha Fin</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="tareasTableBody">
+                            <!-- Datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pie de tabla -->
+                <div class="px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-50">
+                    <div class="text-sm text-gray-500">
+                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">5</span> de <span class="font-medium" id="totalTareas">0</span> tareas
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Proyectos -->
+    <div id="projectModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-5">
+        <div class="bg-white rounded-2xl w-full max-w-lg max-h-[85vh] overflow-auto shadow-2xl">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-gray-100 sticky top-0 bg-white z-10 rounded-t-2xl">
+                <h3 id="modalTitle" class="text-base font-bold text-gray-900">Nuevo Proyecto</h3>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">
+                    <i class="ti ti-x text-gray-500"></i>
+                </button>
+            </div>
+            <div class="p-5">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Nombre del proyecto</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Ej: Residencial Las Palmeras" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Código</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Ej: RLP-2026" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Encargado</label>
+                        <select class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition">
+                            <option>Ana García</option>
+                            <option>Roberto Díaz</option>
+                            <option>Manuel López</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Cliente</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Nombre del cliente" />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Dirección</label>
+                        <input type="text" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="Dirección de la obra" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Presupuesto (€)</label>
+                        <input type="number" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" placeholder="0" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Estado</label>
+                        <select class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition">
+                            <option value="activo">Activo</option>
+                            <option value="pausado">Pausado</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha inicio</label>
+                        <input type="date" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha fin</label>
+                        <input type="date" class="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 bg-gray-50 focus:border-indigo-500 transition" />
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 mt-5">
+                    <button onclick="closeModal()" class="px-5 py-2.5 rounded-lg border border-gray-200 bg-white text-sm font-bold text-gray-500 hover:bg-gray-50 transition">Cancelar</button>
+                    <button onclick="saveProject()" class="px-6 py-2.5 rounded-lg bg-indigo-700 text-white text-sm font-bold shadow-md hover:bg-indigo-900 transition flex items-center gap-1.5">
+                        <i class="ti ti-device-floppy"></i>
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Datos de ejemplo
+        const proyectos = [
+            {
+                id: 1,
+                code: "RM-2026",
+                name: "Residencial Mirador",
+                cliente: "Grupo Inmobiliario Levante S.L.",
+                encargado: "Ana García",
+                presupuesto: 2450000,
+                fechaInicio: "2026-01-15",
+                fechaFin: "2026-09-30",
+                progreso: 42,
+                estado: "activo",
+                color: "#E8752A"
+            },
+            {
+                id: 2,
+                code: "NIG-2026",
+                name: "Nave Industrial Getafe",
+                cliente: "LogiTrans España S.A.",
+                encargado: "Roberto Díaz",
+                presupuesto: 890000,
+                fechaInicio: "2026-02-01",
+                fechaFin: "2026-07-15",
+                progreso: 15,
+                estado: "activo",
+                color: "#2A7DE8"
+            },
+            {
+                id: 3,
+                code: "EP-2026",
+                name: "Edificio Panorama",
+                cliente: "Constructora Moderna S.A.",
+                encargado: "Manuel López",
+                presupuesto: 1850000,
+                fechaInicio: "2026-03-01",
+                fechaFin: "2026-11-30",
+                progreso: 8,
+                estado: "activo",
+                color: "#7E2AE8"
+            },
+            {
+                id: 4,
+                code: "CP-2025",
+                name: "Centro Comercial Plaza",
+                cliente: "Inversiones Urbanas S.L.",
+                encargado: "Ana García",
+                presupuesto: 3200000,
+                fechaInicio: "2025-11-01",
+                fechaFin: "2026-05-30",
+                progreso: 78,
+                estado: "activo",
+                color: "#16a34a"
+            },
+            {
+                id: 5,
+                code: "RP-2025",
+                name: "Reforma Hospital Provincial",
+                cliente: "Servicios de Salud",
+                encargado: "Roberto Díaz",
+                presupuesto: 1250000,
+                fechaInicio: "2025-09-15",
+                fechaFin: "2026-02-28",
+                progreso: 92,
+                estado: "finalizado",
+                color: "#dc2626"
+            }
+        ];
+
+        const cuadrillas = [
+            {
+                id: 1,
+                name: "Cuadrilla Alfa",
+                miembros: 3,
+                color: "#E8752A",
+                proyectosAsignados: 2
+            },
+            {
+                id: 2,
+                name: "Cuadrilla Beta",
+                miembros: 2,
+                color: "#2A7DE8",
+                proyectosAsignados: 3
+            },
+            {
+                id: 3,
+                name: "Cuadrilla Gamma",
+                miembros: 4,
+                color: "#7E2AE8",
+                proyectosAsignados: 1
+            }
+        ];
+
+        const fases = [
+            {
+                id: 1,
+                proyecto: "Residencial Mirador",
+                nombre: "Fase 1 — Cimentación",
+                fechaInicio: "2026-01-15",
+                fechaFin: "2026-03-15",
+                progreso: 85,
+                tareas: 6
+            },
+            {
+                id: 2,
+                proyecto: "Residencial Mirador",
+                nombre: "Fase 2 — Estructura",
+                fechaInicio: "2026-03-10",
+                fechaFin: "2026-06-30",
+                progreso: 0,
+                tareas: 5
+            },
+            {
+                id: 3,
+                proyecto: "Nave Industrial Getafe",
+                nombre: "Fase 1 — Movimiento de tierras",
+                fechaInicio: "2026-02-01",
+                fechaFin: "2026-03-01",
+                progreso: 40,
+                tareas: 3
+            }
+        ];
+
+        const tareas = [
+            {
+                id: 1,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 1 — Cimentación",
+                nombre: "Excavación",
+                cuadrilla: "Cuadrilla Alfa",
+                estado: "completada",
+                fechaInicio: "2026-01-15",
+                fechaFin: "2026-02-10"
+            },
+            {
+                id: 2,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 1 — Cimentación",
+                nombre: "Hormigonado",
+                cuadrilla: "Cuadrilla Beta",
+                estado: "en_curso",
+                fechaInicio: "2026-02-10",
+                fechaFin: "2026-03-05"
+            },
+            {
+                id: 3,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 1 — Cimentación",
+                nombre: "Curado y desencofrado",
+                cuadrilla: null,
+                estado: "pendiente",
+                fechaInicio: "2026-03-01",
+                fechaFin: "2026-03-15"
+            },
+            {
+                id: 4,
+                proyecto: "Residencial Mirador",
+                fase: "Fase 2 — Estructura",
+                nombre: "Armado pilares",
+                cuadrilla: null,
+                estado: "pendiente",
+                fechaInicio: "2026-03-10",
+                fechaFin: "2026-04-20"
+            },
+            {
+                id: 5,
+                proyecto: "Nave Industrial Getafe",
+                fase: "Fase 1 — Movimiento de tierras",
+                nombre: "Desbroce",
+                cuadrilla: "Cuadrilla Gamma",
+                estado: "completada",
+                fechaInicio: "2026-02-01",
+                fechaFin: "2026-02-20"
+            }
+        ];
+
+        // Funciones utilitarias
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        function getEstadoBadge(estado) {
+            const estados = {
+                'activo': { color: 'bg-green-100 text-green-800', text: 'Activo' },
+                'pausado': { color: 'bg-yellow-100 text-yellow-800', text: 'Pausado' },
+                'finalizado': { color: 'bg-gray-100 text-gray-800', text: 'Finalizado' },
+                'completada': { color: 'bg-green-100 text-green-800', text: 'Completada' },
+                'en_curso': { color: 'bg-yellow-100 text-yellow-800', text: 'En curso' },
+                'pendiente': { color: 'bg-gray-100 text-gray-800', text: 'Pendiente' }
+            };
+            const estadoObj = estados[estado] || estados['pendiente'];
+            return `<span class="px-2.5 py-1 rounded-full text-xs font-medium ${estadoObj.color}">${estadoObj.text}</span>`;
+        }
+
+        // Renderizar tablas
+        function renderProyectosTable() {
+            const tbody = document.getElementById('proyectosTableBody');
+            const totalElement = document.getElementById('totalProyectos');
+            
+            tbody.innerHTML = proyectos.map(proyecto => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${proyecto.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-extrabold" style="background:${proyecto.color}12;border:1.5px solid ${proyecto.color}25;color:${proyecto.color}">
+                                ${proyecto.code.split('-')[0]}
+                            </div>
+                            <span class="ml-3 font-mono font-bold">${proyecto.code}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">${proyecto.name}</div>
+                        <div class="text-xs text-gray-500">${proyecto.cliente}</div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${proyecto.cliente}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${proyecto.encargado}</td>
+                    <td class="px-6 py-4 text-sm font-medium">${formatCurrency(proyecto.presupuesto)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(proyecto.fechaInicio)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(proyecto.fechaFin)}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full" style="width: ${proyecto.progreso}%; background: ${proyecto.color};"></div>
+                            </div>
+                            <span class="ml-2 text-xs font-bold" style="color: ${proyecto.color}">${proyecto.progreso}%</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">${getEstadoBadge(proyecto.estado)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button onclick="editProject(${proyecto.id})" class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button onclick="deleteProject(${proyecto.id})" class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = proyectos.length;
+        }
+
+        function renderCuadrillasTable() {
+            const tbody = document.getElementById('cuadrillasTableBody');
+            const totalElement = document.getElementById('totalCuadrillas');
+            
+            tbody.innerHTML = cuadrillas.map(cuadrilla => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${cuadrilla.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-2.5 h-2.5 rounded-full mr-2" style="background: ${cuadrilla.color}"></div>
+                            <div class="text-sm font-medium text-gray-900">${cuadrilla.name}</div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            ${cuadrilla.miembros} <span class="text-gray-500 ml-1">miembros</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded border" style="background: ${cuadrilla.color}"></div>
+                            <span class="ml-2 text-xs font-mono">${cuadrilla.color}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${cuadrilla.proyectosAsignados} proyectos</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> Ver
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = cuadrillas.length;
+        }
+
+        function renderFasesTable() {
+            const tbody = document.getElementById('fasesTableBody');
+            const totalElement = document.getElementById('totalFases');
+            
+            tbody.innerHTML = fases.map(fase => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${fase.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">${fase.proyecto}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${fase.nombre}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(fase.fechaInicio)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(fase.fechaFin)}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full" style="width: ${fase.progreso}%; background: ${fase.progreso > 66 ? '#16a34a' : fase.progreso > 33 ? '#f59e0b' : '#E8752A'};"></div>
+                            </div>
+                            <span class="ml-2 text-xs font-bold">${fase.progreso}%</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${fase.tareas} tareas</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> Ver
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = fases.length;
+        }
+
+        function renderTareasTable() {
+            const tbody = document.getElementById('tareasTableBody');
+            const totalElement = document.getElementById('totalTareas');
+            
+            tbody.innerHTML = tareas.map(tarea => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4"><input type="checkbox" value="${tarea.id}" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /></td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">${tarea.proyecto}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${tarea.fase}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">${tarea.nombre}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${tarea.cuadrilla || '<span class="text-gray-400 italic">Sin asignar</span>'}</td>
+                    <td class="px-6 py-4">${getEstadoBadge(tarea.estado)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(tarea.fechaInicio)}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${formatDate(tarea.fechaFin)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div class="inline-flex rounded-md shadow-sm">
+                            <button class="px-3 py-1.5 text-xs font-medium text-green-600 bg-white border border-gray-200 rounded-l-lg hover:bg-green-50 flex items-center transition-colors">
+                                <i class="ti ti-edit mr-1 text-green-500 text-sm"></i> Editar
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-blue-600 bg-white border-t border-b border-gray-200 hover:bg-blue-50 flex items-center transition-colors">
+                                <i class="ti ti-eye mr-1 text-blue-500 text-sm"></i> Ver
+                            </button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-white border border-gray-200 rounded-r-md hover:bg-red-50 flex items-center transition-colors">
+                                <i class="ti ti-trash mr-1 text-red-500 text-sm"></i> Eliminar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            totalElement.textContent = tareas.length;
+        }
+
+        // Funciones de UI
+        function showTab(tabName) {
+            // Ocultar todas las tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Mostrar la tab seleccionada
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).classList.remove('hidden');
+            
+            // Actualizar botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-700', 'text-white');
+                btn.classList.add('bg-transparent', 'text-gray-500');
+            });
+            
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Btn`).classList.add('bg-indigo-700', 'text-white');
+            document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Btn`).classList.remove('bg-transparent', 'text-gray-500');
+        }
+
+        function openProjectModal() {
+            document.getElementById('modalTitle').textContent = 'Nuevo Proyecto';
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function openCuadrillaModal() {
+            // Similar a openProjectModal pero para cuadrillas
+            alert('Funcionalidad de Nueva Cuadrilla');
+        }
+
+        function openFaseModal() {
+            // Similar a openProjectModal pero para fases
+            alert('Funcionalidad de Nueva Fase');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function saveProject() {
+            // Aquí iría la lógica para guardar el proyecto
+            alert('Proyecto guardado (funcionalidad simulada)');
+            closeModal();
+        }
+
+        function editProject(id) {
+            const proyecto = proyectos.find(p => p.id === id);
+            if (proyecto) {
+                document.getElementById('modalTitle').textContent = `Editar ${proyecto.name}`;
+                document.getElementById('projectModal').classList.remove('hidden');
+                // Aquí cargaríamos los datos del proyecto en el formulario
+            }
+        }
+
+        function deleteProject(id) {
+            if (confirm('¿Estás seguro de eliminar este proyecto?')) {
+                alert(`Proyecto ${id} eliminado (funcionalidad simulada)`);
+            }
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProyectosTable();
+            renderCuadrillasTable();
+            renderFasesTable();
+            renderTareasTable();
+            
+            // Mostrar tab de proyectos por defecto
+            showTab('proyectos');
+        });
+    </script>
+</body>
+</html>
