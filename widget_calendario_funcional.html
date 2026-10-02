@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Widget Calendario (funcional)</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+  <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+  <style>body{font-family:'DM Sans',sans-serif}</style>
+</head>
+<body class="bg-[#F4F5F8] p-6">
+
+<!-- ============================================================
+  WIDGET CALENDARIO
+  El HTML es el mismo del prototipo, pero los contenedores
+  dinámicos están vacíos y se rellenan desde el script.
+  Hooks (data-cal="..."):
+    month-label  -> texto "Abril 2025"
+    prev / next  -> semana anterior / siguiente
+    week         -> franja de 7 días
+    list         -> lista de eventos
+    filter-btn   -> botón "Filtrar"  |  filter-menu -> menú desplegable
+    open-full    -> botón ">" (abre el calendario completo)
+============================================================ -->
+<div id="calendar-widget" class="w-full max-w-[530px] bg-white rounded-2xl border border-gray-200 p-4 flex flex-col gap-4">
+
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <h2 class="text-lg font-medium text-[#412DB6]">Calendario</h2>
+    <div class="flex items-center gap-3 relative">
+      <button data-cal="filter-btn" aria-haspopup="true" aria-expanded="false"
+        class="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-500 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition whitespace-nowrap">
+        <span data-cal="filter-label">Filtrar</span><i class="ti ti-chevron-down text-sm"></i>
+      </button>
+      <div data-cal="filter-menu" class="hidden absolute right-10 top-full mt-1 z-10 w-48 bg-white border border-gray-200 rounded-lg shadow-lg p-1"></div>
+      <button data-cal="open-full" aria-label="Abrir calendario completo"
+        class="flex items-center justify-center w-8 h-8 shrink-0 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition">
+        <i class="ti ti-chevron-right text-sm text-slate-500"></i>
+      </button>
+    </div>
+  </div>
+
+  <hr class="border-gray-200" />
+
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+    <span data-cal="month-label" class="text-base font-medium text-gray-900"></span>
+    <div class="flex items-center gap-2">
+      <button data-cal="prev" aria-label="Semana anterior" class="w-7 h-7 flex items-center justify-center bg-black/[0.04] rounded-full"><i class="ti ti-chevron-left text-gray-900 text-xs"></i></button>
+      <button data-cal="next" aria-label="Semana siguiente" class="w-7 h-7 flex items-center justify-center bg-blue-600/[0.08] rounded-full"><i class="ti ti-chevron-right text-blue-600 text-xs"></i></button>
+    </div>
+  </div>
+
+  <div data-cal="week" class="flex justify-between gap-1 overflow-x-auto"></div>
+  <!-- Altura fija = 2 eventos del prototipo (2 x 72px + gap 4px = 148px). Si hay más, aparece scroll. -->
+  <div data-cal="list" class="flex flex-col gap-1 h-[148px] overflow-y-auto"></div>
+</div>
+
+<script>
+(() => {
+  /* ---------- 1. CONFIGURACIÓN ---------- */
+
+  // Categorías: id, nombre visible y color (se usa en el día y en la barra del evento).
+  const CATEGORIES = {
+    equipo:  { label: 'Equipo',   color: '#8488FF' },
+    cliente: { label: 'Clientes', color: '#1BA1EB' },
+    entrega: { label: 'Entregas', color: '#20CA9A' },
+    evento:  { label: 'Eventos',  color: '#FB9824' },
+  };
+
+  // Eventos. Formato que debe devolver el backend:
+  // { id, date: 'YYYY-MM-DD', start: 'HH:mm', end: 'HH:mm', title, category }
+  let events = [
+    { id: 1, date: '2025-04-23', start: '11:30', end: '12:00', title: 'Reunión del equipo de desarrollo', category: 'equipo' },
+    { id: 2, date: '2025-04-24', start: '11:30', end: '12:00', title: 'Reunión con el cliente Nestle',    category: 'cliente' },
+    { id: 3, date: '2025-04-25', start: '16:00', end: '17:00', title: 'Entrega del módulo de facturación', category: 'entrega' },
+    { id: 4, date: '2025-04-26', start: '10:00', end: '13:00', title: 'Jornada de puertas abiertas',       category: 'evento' },
+  ];
+
+  // Fecha inicial. En producción cambiar por: new Date()
+  const INITIAL_DATE = new Date(2025, 3, 23);
+
+  const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const DAYS   = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB']; // índice = Date.getDay()
+
+  /* ---------- 2. ESTADO ---------- */
+  const state = {
+    weekStart: startOfWeek(INITIAL_DATE), // lunes de la semana visible
+    selected: null,                       // 'YYYY-MM-DD' o null (= toda la semana)
+    filter: 'all',                        // 'all' o id de categoría
+  };
+
+  /* ---------- 3. UTILIDADES DE FECHA ---------- */
+  const pad = n => String(n).padStart(2, '0');
+  const toISO = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const addDays = (d, n) => { const r = new Date(d); r.setDate(r.getDate() + n); return r; };
+  function startOfWeek(d) {                 // semana empieza en lunes
+    const r = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    r.setDate(r.getDate() - ((r.getDay() + 6) % 7));
+    return r;
+  }
+  function fmtTime(t) {                     // '13:05' -> '1:05 pm'
+    const [h, m] = t.split(':').map(Number);
+    return `${h % 12 || 12}:${pad(m)} ${h >= 12 ? 'pm' : 'am'}`;
+  }
+
+  /* ---------- 4. REFERENCIAS DOM ---------- */
+  const root = document.getElementById('calendar-widget');
+  const $ = k => root.querySelector(`[data-cal="${k}"]`);
+  const el = { month: $('month-label'), week: $('week'), list: $('list'),
+               filterBtn: $('filter-btn'), filterMenu: $('filter-menu'), filterLabel: $('filter-label') };
+
+  /* ---------- 5. RENDER ---------- */
+  const visibleEvents = () => events.filter(e => state.filter === 'all' || e.category === state.filter);
+  const eventsOn = iso => visibleEvents().filter(e => e.date === iso);
+
+  function renderMonth() {
+    // Si la semana cruza dos meses se muestran ambos: "Abril - Mayo 2025"
+    const a = state.weekStart, b = addDays(a, 6);
+    el.month.textContent = a.getMonth() === b.getMonth()
+      ? `${MONTHS[a.getMonth()]} ${a.getFullYear()}`
+      : `${MONTHS[a.getMonth()]} - ${MONTHS[b.getMonth()]} ${b.getFullYear()}`;
+  }
+
+  function renderWeek() {
+    el.week.innerHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(state.weekStart, i), iso = toISO(d);
+      const first = eventsOn(iso)[0];                // el color del día lo da su primer evento
+      const color = first ? CATEGORIES[first.category].color : null;
+      const isSel = state.selected === iso;
+
+      const btn = document.createElement('button');
+      btn.className = 'flex flex-col items-center justify-center min-w-[40px] sm:w-[58px] h-[58px] border rounded-xl gap-1 transition ' +
+        (color ? '' : 'bg-slate-50 border-slate-100') + (isSel ? ' ring-2 ring-inset ring-[#412DB6]' : '');
+      if (color) { btn.style.background = color + '1F'; btn.style.borderColor = color; } // 1F ≈ 12% opacidad
+      btn.setAttribute('aria-pressed', isSel);
+      btn.innerHTML =
+        `<span class="text-[10px] font-bold tracking-wide ${color ? '' : 'text-slate-500'}" ${color ? `style="color:${color}"` : ''}>${DAYS[d.getDay()]}</span>` +
+        `<span class="text-[16px] font-bold ${color ? '' : 'text-slate-800'}" ${color ? `style="color:${color}"` : ''}>${d.getDate()}</span>`;
+      // Clic: selecciona el día; segundo clic sobre el mismo día quita la selección.
+      btn.addEventListener('click', () => { state.selected = isSel ? null : iso; render(); });
+      el.week.appendChild(btn);
+    }
+  }
+
+  function renderList() {
+    // Sin día seleccionado se muestran los eventos de toda la semana visible.
+    const weekDays = Array.from({ length: 7 }, (_, i) => toISO(addDays(state.weekStart, i)));
+    const list = visibleEvents()
+      .filter(e => state.selected ? e.date === state.selected : weekDays.includes(e.date))
+      .sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
+
+    if (!list.length) {
+      el.list.innerHTML = '<div class="h-full flex flex-col items-center justify-center gap-2 text-slate-500"><i class="ti ti-calendar-off text-4xl text-slate-400"></i><p class="text-base">No hay eventos para mostrar.</p></div>';
+      return;
+    }
+    el.list.innerHTML = list.map(e => {
+      const [y, m, d] = e.date.split('-').map(Number);
+      return `
+      <div class="shrink-0 flex flex-col sm:flex-row sm:items-start gap-3 bg-slate-50 border border-slate-200 rounded-xl p-3">
+        <div class="w-1 h-10 rounded-sm shrink-0 mt-0.5" style="background:${CATEGORIES[e.category].color}"></div>
+        <div class="flex flex-col gap-0.5">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="text-sm text-slate-600">${d} de ${MONTHS[m - 1].toLowerCase()}</span>
+            <div class="flex items-center gap-1 text-slate-500"><i class="ti ti-clock text-xs"></i><span class="text-xs">${fmtTime(e.start)} - ${fmtTime(e.end)}</span></div>
+          </div>
+          <p class="text-base font-medium text-slate-900">${escapeHTML(e.title)}</p>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderFilter() {
+    const opts = [['all', 'Todas las categorías'], ...Object.entries(CATEGORIES).map(([id, c]) => [id, c.label])];
+    el.filterMenu.innerHTML = opts.map(([id, label]) => `
+      <button data-filter="${id}" class="w-full flex items-center gap-2 px-3 py-2 text-sm text-left rounded-md hover:bg-gray-50 ${state.filter === id ? 'font-medium text-slate-900' : 'text-slate-600'}">
+        <span class="w-2 h-2 rounded-full" style="background:${CATEGORIES[id]?.color || '#CBD5E1'}"></span>${label}
+      </button>`).join('');
+    el.filterLabel.textContent = state.filter === 'all' ? 'Filtrar' : CATEGORIES[state.filter].label;
+  }
+
+  const escapeHTML = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function render() { renderMonth(); renderWeek(); renderList(); renderFilter(); }
+
+  /* ---------- 6. INTERACCIONES ---------- */
+  const goWeek = n => { state.weekStart = addDays(state.weekStart, 7 * n); state.selected = null; render(); };
+  $('prev').addEventListener('click', () => goWeek(-1));
+  $('next').addEventListener('click', () => goWeek(1));
+
+  // Filtro: abrir/cerrar menú, elegir categoría, cerrar al hacer clic fuera o con Esc.
+  const toggleMenu = open => {
+    el.filterMenu.classList.toggle('hidden', !open);
+    el.filterBtn.setAttribute('aria-expanded', open);
+  };
+  el.filterBtn.addEventListener('click', e => { e.stopPropagation(); toggleMenu(el.filterMenu.classList.contains('hidden')); });
+  el.filterMenu.addEventListener('click', e => {
+    const b = e.target.closest('[data-filter]');
+    if (!b) return;
+    state.filter = b.dataset.filter; state.selected = null; toggleMenu(false); render();
+  });
+  document.addEventListener('click', () => toggleMenu(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
+  // Botón ">": emite un evento para que la aplicación navegue al calendario completo.
+  //   document.addEventListener('calendar:open-full', () => location.href = '/calendario');
+  $('open-full').addEventListener('click', () =>
+    root.dispatchEvent(new CustomEvent('calendar:open-full', { bubbles: true, detail: { weekStart: toISO(state.weekStart) } })));
+
+  /* ---------- 7. API PÚBLICA (para integrar con el backend) ---------- */
+  // Ejemplo: fetch('/api/eventos').then(r => r.json()).then(CalendarWidget.setEvents)
+  window.CalendarWidget = {
+    setEvents(list) { events = list; render(); },
+    goToDate(date)  { state.weekStart = startOfWeek(new Date(date)); state.selected = null; render(); },
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
