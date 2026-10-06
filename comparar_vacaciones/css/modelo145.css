@@ -1,0 +1,186 @@
+/* Inicio de estilos para formulario Modelo145 */
+.wrap_frames_form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .frames_form{
+    display:flex;
+    flex-flow: row wrap;
+    border: 1px solid #bbb;
+    padding-top: 15px;
+    padding-bottom: 20px;
+  }
+  
+  .container_item_elemento_flex_nowrap{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 30px;
+    padding-top: 10px;
+  }
+  
+  .container_item_elemento_flex_wrap{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .container_item_elemento_flex_nowrap_padding_large{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 30px;
+    padding-left:70px;
+  }
+  
+  .container_item_elemento_flex_nowrap_right{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 30px;
+    padding-top: 10px;
+  }
+  
+  .container_item_elemento_flex_nowrap_start{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 30px;
+    padding-top: 10px;
+  }
+  
+  .container_item_elemento_flex_nowrap_space_evenly{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    min-height: 30px;
+    padding-top: 10px;
+  }
+  
+  .container_item_elemento_flex_nowrap_center{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 30px;
+    padding-top: 10px;
+  }
+  
+  #nif_conyuge{
+    display: none;
+  }
+  
+  #id_ayuda_movilidad_reducida{
+    visibility: hidden;
+  }
+  
+  /* #id_ayuda_movilidad_reducida_desc{
+    visibility: hidden;
+  } */
+  
+  .informacion_modelo_145{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .height30{
+    height: 30px;
+  }
+  
+  .middle{
+    text-align: center;
+  }
+  
+  #selectImpresionModelo145 {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex{float: left;margin-right: 20px; margin-left: 20px; line-height: 50px; min-height: 30px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex select.chequeo {width: 64px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex progress{float: left;width: 200%;margin: 0px 0px 0px 20px;border: solid 1pt black}
+  /* For Firefox */
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex progress::-moz-progress-bar {background-color: blue;}
+  /* For Chrome or Safari */
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex progress::-webkit-progress-bar {background: white;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex progress::-webkit-progress-value {background: blue;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex label{float: left; margin: 0px 5px 0px 20px;padding: 2px 0;line-height: 24px; font-weight: 600;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex label.label_font_normal{float: left; margin: 0px 5px 0px 20px;padding: 2px 0;line-height: 24px; font-weight: normal;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex label.moneda{float: left;margin: 5px 0px;padding: 2px 0;line-height: 24px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex p{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex #name {width:400px;}
+  .block02 .formulario form .wrap_frames_form .frames_form ol{list-style-type: decimal; }
+  .block02 .formulario form .wrap_frames_form .frames_form ol li{list-style-position: outside; float: center;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input:read-only {background-color: #EEEDED;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input.hasDatepicker{text-align: center;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input[type="button"]{float: left;width: 50%;margin: 0px 0px 0px 20px;border: solid 1px #bbb;line-height:10px;cursor: pointer;color: #303030;background: rgb(221,221,221);font-size: 100%;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex .grabando{width: 80px;height:18px; display:none}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex .info_voz{width: 18px;height:18px;cursor: pointer;margin: 0.8em}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input[type="checkbox"]{margin-top: 10px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input[type="file"]{border: none;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input[type="time"]{text-align: center;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex input[type="number"]{width: 100px;text-align: right;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex textarea{float: left;width:350px;height: 150px;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;text-align: left;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex textarea.grande{width: 98%;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex textarea.intermedio{width: 90%;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex textarea.medio{width: 45%;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex select{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;width: 250px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex select.select_xlargo{width: 300px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex select.select_corto{width: 120px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex select.select_medio{width: 170px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex .pq-select-button{line-height: 24px;padding: 0px 5px;margin: 5px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex .pq-select-item{line-height: 17px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex .force{font-weight: bolder;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex img{float: left;max-height: 100px;margin: 0 20px;}
+  .block02 .formulario form .wrap_frames_form .frames_form .item_elemento_flex .boton{float: left;margin: 5px 20px;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 20px; font-size: 12px;cursor: pointer;}
+  .block02 .formulario form .wrap_frames_form .frames_form  h3{font-size: 20px; margin-left: 20px;}
+  .block02 .formulario form .informacion_modelo_145 p {margin: 0px 0px 0px 0px; padding: 2px 0;line-height: 15px;}
+  
+  
+  .tabla_listado_modelo145{font-size: 14px; line-height: 20px; width: 100%;}
+  .tabla_listado_modelo145 thead{border-bottom: 1px solid #bbb;}
+  .tabla_listado_modelo145 thead th.font_normal{font-weight: normal; text-align: center; border-bottom: 1px solid #bbb;}
+  .tabla_listado_modelo145 tbody tr{border-bottom: 1px solid #bbb;}
+  .tabla_listado_modelo145 tbody tr.fila_responsable{font-weight: 600;}
+  .tabla_listado_modelo145 tbody tr td{line-height: 30px; text-align: center;}
+  .tabla_listado_modelo145 tbody tr td.grupo{font-weight: bold;}
+  .tabla_listado_modelo145 tbody tr td.click{cursor: pointer;}
+  .tabla_listado_modelo145 tbody tr td.nombre{width: 40%;}
+  .tabla_listado_modelo145 tbody tr td.celda_numero{padding: 0px 3%;text-align: right;}
+  .tabla_listado_modelo145 tbody tr td.celda_fecha{padding: 0px 1%;}
+  .tabla_listado_modelo145 tbody tr td.alinea_derecha{text-align: right;padding-right: 3%;}
+  /* .tabla_listado_modelo145 tbody tr td .ip_fichaje{float: left;height: 20px;cursor: pointer;font-weight: bold;} */
+  .tabla_listado_modelo145 tbody tr td img{float: center; margin: 5px; height: 20px;cursor: pointer;}
+  .tabla_listado_modelo145 tbody tr td input[type="text"]{margin: 4px; text-align: center; display: none;line-height: 22px;padding: 0 5px;border: 1px solid #949494;}
+  .tabla_listado_modelo145 tbody tr td input[type="checkbox"]{text-align: center ;margin: 0; line-height: 22px; padding: 0 5px; border: 1px solid #949494;}
+  .tabla_listado_modelo145 tbody tr td input[type="radio"]{text-align: center; margin: 0; line-height: 22px; padding: 0 5px; border: 1px solid #949494;}
+  .tabla_listado_modelo145 tbody tr:hover{background-color: #eee;}
+  .tabla_listado_modelo145 .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+  .tabla_listado_modelo145 .tabla_accion2{font-size: 12px;padding: 0 5px;color: #cc0000;cursor: pointer;}
+  .tabla_listado_modelo145 .tabla_separador{font-size: 16px;padding: 0 5px;}
+  
+  /* Fin de estilos para formulario Modelo145 */
