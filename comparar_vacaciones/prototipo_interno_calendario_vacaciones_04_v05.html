@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Demo Visualpresencia Cloud</title>
+    <meta name="description" content="Demo Visualpresencia Cloud" />
+    <meta name="author" content="demo.vpcloud.es" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Google Fonts - DM Sans (con peso 300 para font-light) -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS v3.3.5 via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+
+    <!-- CSS Base -->
+    <link rel="stylesheet" href="css/zerogrid.css" />
+    <link rel="stylesheet" href="css/style_vp25.css" />
+    <link rel="stylesheet" href="css/colores_vp25.css" />
+
+    <!-- Icon Libraries (solo Tabler Icons vía CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+    <!-- Component Libraries -->
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link href="css/pqselect.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/fullcalendar.css" />
+    <link href="css/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link rel="stylesheet" href="css/flipclock.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="css/responsive.dataTables.min.css" />
+    <link type="text/css" href="css/dataTables.checkboxes.css" rel="stylesheet" />
+
+    <!-- Tailwind Elements -->
+    <script src="js/flowbite.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet" href="css/proyectos.css" />
+    <link rel="stylesheet" href="css/novedades.css" />
+    <link rel="stylesheet" href="css/novedades_vp25.css" />
+    <link rel="stylesheet" href="css/soporte.css" />
+    <link rel="stylesheet" href="css/denuncias.css" />
+    <link rel="stylesheet" href="css/onboarding.css" />
+    <link rel="stylesheet" href="css/pagos.css" />
+    <link rel="stylesheet" href="css/modelo145.css" />
+    <link rel="stylesheet" href="css/modelo145_vp25.css" />
+    <link rel="stylesheet" href="css/morris.css" />
+    <link href="css/quill.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style_pfizer.css" />
+    <link rel="stylesheet" href="css/responsive_pfizer.css" />
+
+    <!-- Google Maps API -->
+    <script async defer src="js/js"></script>
+    <script src="js/google.js"></script>
+
+    <!-- Fuente DM Sans forzada al final, después de TODAS las librerías -->
+    <style>
+        html, body, h1, h2, h3, h4, h5, h6,
+        p, span, div, a, strong, em, small, label,
+        button, input, select, textarea, table, th, td {
+            font-family: "DM Sans", sans-serif !important;
+        }
+        /* Excepción: los iconos conservan su fuente SIEMPRE */
+        .ti, [class^="ti-"], [class*=" ti-"] {
+            font-family: "tabler-icons" !important;
+        }
+
+        .font-regular { font-weight: 400; }
+        .font-medium { font-weight: 500; }
+        .font-bold { font-weight: 700; }
+        .drop-shadow-md {
+            --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+        }
+    </style>
+
+    <script type="text/javascript" charset="UTF-8" src="js/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="js/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="js/stats.js"></script>
+</head>
+
+    <body class="bg-[#f2f2f2] section-container">
+        <div id="cookies" class="textos_cookies bg-[#2C2554]" style="display: none;">
+            <div class="texto !w-[80%] flex flex-col justify-center items-start">
+                <h2>Uso de cookies</h2>
+                <p>Este servicio web utiliza cookies que permiten el funcionamiento y la prestación de servicios ofrecidos en el mismo</p>
+            </div>
+            <div class="cerrar_cookies flex justify-center items-center">
+                <button type="button" class="text-center w-[84px] rounded-full border border-[#ffffff] hover:bg-[#2C2554] text-sm font-medium hover:text-[#ffffff] bg-[#ffffff] text-[#2C2554] mr-[1px]" onclick="cierraCookies();">Cerrar</button>
+            </div>
+        </div>
+
+        <div id="loading" style="display: none;">
+            <div class="row"><div class="col-full"><div class="wrap-col"><img src="img/logo_vp.gif" alt="loading" /></div></div></div>
+        </div>
+
+        <header class="z-50 !sticky !top-0 w-[100vw] lg:w-[101%]">
+            <div id="logo_vpd" class="hidden">
+                <img src="img/pfizer.png" alt="Demo Visualpresencia Cloud" onclick="javascript:window.location.reload();" />
+            </div>
+
+            <div id="sidebar_desktop" class="border-r border-solid border-gray-200 sidebar fixed px-4 text-center bg-white text-gray-700 h-[100vh]">
+                <div class="bg-white pt-2 sticky top-0 z-[2] border-b border-[#D0D2DE] border-solid pb-5">
+                    <div id="logo_container" class="flex items-center text-gray-100 text-xl top-0 sticky bg-white p-[10px] border-b border-[#D0D2DE] border-solid pb-6">
+                        <div class="flex h-[50px] items-center justify-center cursor-pointer">
+                            <img id="logoMenu" src="img/pfizer.png" style="max-width: 80%;" alt="Logo" onclick="javascript:volverInicio();" />
+                        </div>
+                        <div id="btnToggleMenu" class="cursor-pointer" onclick="toggleMenuDesktop();">
+                            <i class="ti ti-menu-2 text-[#D9D9D9] text-[24px]"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="flex titulo_sidebar text-[#83899F]">Inicio</span>
+                        <div onclick="agregarOverlay();abrirSubmenu(&#39;Favoritos&#39;);" class="p-2.5 mt-3 flex items-center icon-menu text-[#707070] rounded-md btn duration-300 cursor-pointer hover:bg-gray-100 top-[4rem] sticky bg-white">
+                            <i class="ti ti-table-heart text-[#412DB6] text-[24px]"></i>
+                            <span class="text-[13px] text-[#0A1B39] font-bold text-menu-icon">Favoritos</span>
+                        </div>
+                        <div id="inicio" class="relative p-2.5 mt-3 flex items-center text-[#707070] icon-menu rounded-md duration-300 cursor-pointer hover:bg-gray-100 top-[8rem] sticky bg-white" onclick="javascript:volverInicio();">
+                            <i class="ti ti-dashboard text-[#412DB6] text-[24px]"></i>
+                            <span class="text-[13px] text-[#0A1B39] font-bold text-menu-icon">Inicio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="flex mb-4 text-[#83899F] titulo_sidebar">Menú</span>
+                    <div class="overflow-y-auto overflow-x-hidden lg:h-[25vh] 2xl:h-[35vh] sidebarModulos">
+                        <a onclick="agregarOverlay();abrirSubmenu(&#39;Presencia&#39;);" data-modulo="Presencia" href="#" class="relative p-2.5 mt-3 flex text-[#707070] items-center icon-menu rounded-md duration-300 cursor-pointer hover:bg-gray-100 active">
+                            <i class="ti ti-clock text-[#FB7185] text-[24px]"></i><span class="text-[13px] text-[#0A1B39] font-bold text-menu-icon">Presencia</span>
+                        </a>
+                        <a onclick="agregarOverlay();abrirSubmenu(&#39;Configuración&#39;);" data-modulo="Configuración" href="#" class="relative p-2.5 mt-3 flex text-[#707070] items-center icon-menu rounded-md duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-settings text-[#F472B6] text-[24px]"></i><span class="text-[13px] text-[#0A1B39] font-bold text-menu-icon">Configuración</span>
+                        </a>
+                        <a onclick="agregarOverlay();abrirSubmenu(&#39;RRHH&#39;);" data-modulo="RRHH" href="#" class="relative p-2.5 mt-3 flex text-[#707070] items-center icon-menu rounded-md duration-300 cursor-pointer hover:bg-gray-100">
+                            <i class="ti ti-users text-[#C084FC] text-[24px]"></i><span class="text-[13px] text-[#0A1B39] font-bold text-menu-icon">RRHH</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="barraCabecera" class="border-b border-solid border-gray-300 bg-white/95 backdrop-blur-sm w-full flex items-center justify-between px-6 py-3 sticky top-0 z-50">
+                <div class="flex items-center">
+                    <button id="logoCabecera" class="md:hidden text-gray-700 hover:text-blue-600 transition-all duration-300" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+                        <div class="w-6 flex flex-col items-center space-y-1.5">
+                            <span id="hamburgerTop" class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+                            <span id="hamburgerMiddle" class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                            <span id="hamburgerBottom" class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+                        </div>
+                    </button>
+
+                    <div id="breadcrumbs_header" class="flex items-center justify-between py-3">
+                        <h1 class="text-gray-800 flex items-center space-x-2 mr-4">
+                            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#F472B6]/20 text-[#F472B6]">
+                                <i class="ti ti-users text-[16px]"></i>
+                            </span>
+                            <span class="text-lg font-medium">Gestión de Equipo</span>
+                        </h1>
+                        <nav class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-1 shadow-sm">
+                            <ol class="flex items-center space-x-3 text-sm text-gray-500">
+                                <li class="flex items-center"><a href="#" class="hover:text-blue-600 flex items-center"><i class="ti ti-dashboard mr-1.5 text-[#412DB6]"></i> Inicio</a></li>
+                                <li class="text-gray-400"><i class="ti ti-chevron-right"></i></li>
+                                <li class="flex items-center"><a href="#" class="hover:text-blue-600 flex items-center"><i class="ti ti-settings mr-1.5 text-[#F472B6]"></i> Configuración</a></li>
+                                <li class="text-gray-400"><i class="ti ti-chevron-right"></i></li>
+                                <li class="flex items-center font-medium text-gray-700"><i class="ti ti-users mr-1.5 text-[#F472B6]"></i> Equipo</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button class="px-3 py-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-all" aria-label="Ayuda">
+                        <i class="ti ti-help text-xl"></i>
+                    </button>
+                    <button class="bg-gray-50 px-3 py-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-100 transition-all relative" aria-label="Notificaciones">
+                        <i class="ti ti-bell text-xl"></i>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+                    </button>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 relative">
+                        <span class="font-medium text-sm">PP</span>
+                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="content" class="font-sans">
+            <!-- BARRA DE ACCIONES + FILTROS DEL MÓDULO VACACIONES (filtros arriba, como en el demo) -->
+            <div class="vac-noprint sticky top-16 z-10 pt-5 pb-2 px-4">
+                <div class="mx-auto max-w-[1800px]">
+                    <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm p-5 flex flex-col gap-5">
+
+                        <!-- Fila 1: Acciones principales y exportación -->
+                        <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between w-full">
+                            <div class="flex flex-wrap gap-2">
+                                <button type="button" class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm"><i class="ti ti-plus mr-2"></i>Nuevo</button>
+                                <button type="button" class="px-4 py-2 bg-indigo-700 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-900 transition shadow-sm"><i class="ti ti-file-import mr-2"></i>Importar</button>
+                                <button type="button" class="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-medium flex items-center hover:bg-indigo-700 transition shadow-sm"><i class="ti ti-user-off mr-2"></i>Sin Fichajes</button>
+                                <button type="button" class="px-4 py-2 bg-amber-500 text-white rounded-lg text-sm font-medium flex items-center hover:bg-amber-600 transition shadow-sm"><i class="ti ti-alert-triangle mr-2"></i>Incidencias</button>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-600 font-medium">Descargar archivos:</span>
+                                <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-green-50 flex items-center text-sm transition"><i class="text-lg ti ti-file-spreadsheet text-green-600 mr-2"></i>Excel</button>
+                                <button class="font-medium px-4 py-2 border border-gray-300 rounded-lg hover:bg-red-50 flex items-center text-sm transition"><i class="text-lg ti ti-file-type-pdf text-red-600 mr-2"></i>PDF</button>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-dashed border-gray-300 w-full"></div>
+
+                        <!-- Fila 2: Filtros (Empresa, Centro, Departamento = multiselección; los pinta el módulo) -->
+                        <div class="flex-1 flex flex-wrap gap-3 w-full min-w-0 items-center" id="vac-filtros">
+                            <div data-el="filters" class="contents"></div>
+
+                            <div class="relative">
+                                <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+                                <input data-ff="q" type="search" placeholder="Buscar empleado" class="text-sm border border-gray-200 rounded-lg pl-9 pr-3 py-2 w-52" />
+                            </div>
+
+                            <div class="flex gap-1 flex-wrap ml-auto">
+                                <button id="limpiarFiltros" type="button" data-act="clear-filters" class="px-2.5 py-1.5 border border-indigo-700 bg-indigo-700 text-white text-sm font-medium flex items-center rounded-lg hover:bg-indigo-900 transition"><i class="ti ti-broom mr-1"></i> Limpiar</button>
+                                <button type="button" data-act="apply-filters" class="px-3 py-1.5 border border-indigo-700 hover:bg-indigo-50 text-sm font-medium text-white bg-indigo-700 hover:text-indigo-700 transition-colors rounded-lg flex items-center justify-center"><i class="ti ti-search flex items-center"></i><span class="ml-1.5">Buscar</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-content mx-auto px-2 sm:px-6 lg:px-4 py-3">
+
+<!-- ===== INICIO · Módulo Compara Vacaciones (prototipo 6 · calendario tradicional estilo Apple) ===== -->
+<style>
+  .vac-print-only{display:none}
+  [data-ev]{cursor:pointer}
+  .modal-backdrop{background:rgba(15,23,42,.5);backdrop-filter:blur(4px);animation:vacFade .15s ease}
+  .modal-card{animation:vacPop .18s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes vacFade{from{opacity:0}to{opacity:1}}
+  @keyframes vacPop{from{opacity:0;transform:scale(.94) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  @page { size: landscape; margin: 1cm; }
+  @media print {
+    html, body { background:#fff !important; height:auto !important; overflow:visible !important; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    #sidebar_desktop, #barraCabecera, #logo_vpd, header { display:none !important; }
+    .vac-noprint, #vac-app .vac-noprint, #vac-app [data-el=pop], #vac-app #dpanel,
+    #vac-app [data-act], #vac-app [data-ms-panel] { display:none !important; }
+    .wrap-content { margin:0 !important; padding:0 !important; max-width:none !important; width:100% !important; }
+    #vac-app .vac-print-only { display:block !important; }
+    #vac-app section, #vac-app div[data-el] { max-height:none !important; height:auto !important; overflow:visible !important; box-shadow:none !important; }
+    #vac-app [data-el=cal] > div { break-inside:avoid; page-break-inside:avoid; }
+  }
+</style>
+
+<div id="vac-app" class="text-slate-800">
+
+  <div class="vac-print-only px-4 sm:px-6 pt-2">
+    <h1 class="text-xl font-medium text-[#412DB6]">Planificación de vacaciones</h1>
+    <p data-el="printmeta" class="text-sm text-slate-600"></p>
+  </div>
+
+  <div class="vac-wrap mx-auto">
+    <div class="bg-white rounded-lg border border-solid border-gray-200 shadow-sm">
+      <section class="p-4 flex flex-col gap-3 min-w-0">
+        <div data-el="head" class="flex flex-wrap items-center justify-between gap-3"></div>
+        <div data-el="legend" class="vac-noprint flex flex-wrap items-center gap-2 text-xs"></div>
+        <div data-el="cal" class="border border-slate-200 rounded-xl overflow-hidden bg-white"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Modal centrado: solicitud / viaje / festivo -->
+  <div data-el="pop" class="hidden fixed inset-0 z-[80] items-center justify-center p-4 modal-backdrop"></div>
+
+  <!-- Panel lateral: quién falta un día concreto -->
+  <aside id="dpanel" class="fixed top-0 right-0 h-full w-80 max-w-full bg-white shadow-xl z-[60] translate-x-full flex flex-col transition-transform">
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <div><h3 data-el="dptitle" class="text-base font-medium"></h3><p data-el="dpsub" class="text-xs text-slate-500"></p></div>
+      <button data-dpclose aria-label="Cerrar" class="w-8 h-8 rounded-full hover:bg-gray-100"><i class="ti ti-x"></i></button>
+    </div>
+    <div data-el="dpbody" class="p-4 overflow-y-auto flex flex-col gap-4"></div>
+  </aside>
+
+</div>
+
+<script>
+(() => {
+  /* ---------- 1. DATOS DE EJEMPLO (sustituir por la API) ---------- */
+  const SESSION = { name: 'Pedro Pérez', ini: 'P. P.' };
+  const STATUS = { pend: 'Pendiente', ok: 'Aceptado', rej: 'Rechazado' };
+  // Paleta visual por estado (fondo, texto, borde, icono, etiqueta) — reutilizada por el panel lateral y el modal
+  const STATUS_STYLE = {
+    ok:   { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', icon: 'ti-check', label: 'Aceptado' },
+    pend: { bg: 'bg-amber-50',   text: 'text-amber-700',   border: 'border-amber-200',   icon: 'ti-clock', label: 'Pendiente' },
+    rej:  { bg: 'bg-rose-50',    text: 'text-rose-700',    border: 'border-rose-200',    icon: 'ti-x',     label: 'Rechazado' },
+  };
+  const TODAY = '2026-10-06'; // sustituir por la fecha real
+  const VP = 'Visualpresencia', CN = 'Cloud Norte';
+  const EMPLOYEES = [
+    [1,'Javier Garín Macipe','Desarrollo','Indefinido',VP,'Madrid'], [2,'Ricardo Soto Hernández','Desarrollo','Indefinido',VP,'Madrid'],
+    [3,'Roberto Sequeiros Fortes','Desarrollo','Temporal',VP,'Madrid'], [4,'Ana Belen Carbone','Desarrollo','Indefinido',VP,'Valencia'],
+    [5,'Borja Mercador Mouce','Soporte','Indefinido',VP,'Valencia'], [6,'Camelia Constantinescu','Soporte','Temporal',VP,'Valencia'],
+    [7,'Cristian Busto Wente','Soporte','Prácticas',VP,'Madrid'], [8,'Emilio Clemente Castillo','Soporte','Indefinido',CN,'Bilbao'],
+    [9,'Antonio Pérez Sarabia','Administración','Indefinido',CN,'Bilbao'], [10,'Gloria Vilella','Administración','Temporal',CN,'Bilbao'],
+    [11,'Lara Ramos Martín','Administración','Indefinido',VP,'Madrid'], [12,'Marta Santos Vázquez','Administración','Prácticas',VP,'Madrid'],
+  ].map(([id, name, dept, type, company, center]) => ({ id, name, dept, type, company, center }));
+  const DEPT_LIST = ['Desarrollo', 'Soporte', 'Administración'];
+  const VACATIONS = [
+    { id: 1, emp: 1, from: '2026-09-01', to: '2026-09-30', status: 'ok' }, { id: 2, emp: 2, from: '2026-09-01', to: '2026-09-30', status: 'ok' },
+    { id: 3, emp: 3, from: '2026-09-01', to: '2026-09-30', status: 'ok' }, { id: 4, emp: 5, from: '2026-09-07', to: '2026-09-18', status: 'ok' },
+    { id: 5, emp: 6, from: '2026-09-10', to: '2026-09-22', status: 'ok' }, { id: 6, emp: 8, from: '2026-09-16', to: '2026-09-20', status: 'ok' },
+    { id: 7, emp: 9, from: '2026-09-02', to: '2026-09-08', status: 'ok' }, { id: 8, emp: 10, from: '2026-09-21', to: '2026-09-25', status: 'ok' },
+    { id: 9, emp: 11, from: '2026-09-23', to: '2026-10-02', status: 'ok' },
+    { id: 20, emp: 4, from: '2026-09-14', to: '2026-09-18', status: 'pend', sentAgo: 2 }, { id: 21, emp: 7, from: '2026-09-14', to: '2026-09-25', status: 'pend', sentAgo: 5 },
+    { id: 22, emp: 12, from: '2026-09-23', to: '2026-09-24', status: 'pend', sentAgo: 1 }, { id: 23, emp: 9, from: '2026-09-28', to: '2026-10-09', status: 'pend', sentAgo: 0 },
+    { id: 24, emp: 8, from: '2026-10-05', to: '2026-10-09', status: 'pend', sentAgo: 3 }, { id: 25, emp: 10, from: '2026-10-12', to: '2026-10-16', status: 'pend', sentAgo: 4 },
+  ];
+  const TRIPS = [ // viajes de trabajo
+    { id: 1, emp: 5, from: '2026-09-22', to: '2026-09-24', place: 'Barcelona' }, { id: 2, emp: 2, from: '2026-10-06', to: '2026-10-08', place: 'Bilbao' },
+    { id: 3, emp: 10, from: '2026-09-29', to: '2026-09-30', place: 'Sevilla' },
+  ];
+  const HOLIDAYS = [ // festivos (centers: null = todos). Revisar con el calendario laboral real
+    { date: '2026-10-09', name: 'Día de la Comunitat Valenciana', centers: ['Valencia'] }, { date: '2026-10-12', name: 'Fiesta Nacional', centers: null },
+    { date: '2026-12-08', name: 'Inmaculada Concepción', centers: null }, { date: '2026-12-25', name: 'Navidad', centers: null },
+  ];
+  // Colores por departamento [borde, fondo, texto]; el estado se distingue por el estilo (pendiente = borde discontinuo)
+  const C = { Desarrollo: ['#2563EB', '#DBEAFE', '#1E3A8A'], Soporte: ['#16A34A', '#DCFCE7', '#14532D'], 'Administración': ['#7C3AED', '#EDE9FE', '#4C1D95'],
+              trip: ['#0891B2', '#CFFAFE', '#164E63'], fest: ['#E11D48', '#FFE4E6', '#881337'], rej: ['#94A3B8', '#F1F5F9', '#64748B'] };
+
+  /* ---------- 2. ESTADO Y UTILIDADES ---------- */
+  const state = { view: 'month', cur: '2026-09-01', layers: { ok: 1, pend: 1, rej: 0, trip: 1, fest: 1 }, pop: null, rejecting: null, rejError: false, sugg: false, dp: null, open: null };
+  const $ = s => document.querySelector(s);
+  const EMP = Object.fromEntries(EMPLOYEES.map(e => [e.id, e]));
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const D = s => new Date(s + 'T00:00:00Z'), S = d => d.toISOString().slice(0, 10);
+  const add = (s, n) => S(new Date(D(s).getTime() + n * 864e5));
+  const diff = (a, b) => Math.round((D(b) - D(a)) / 864e5);
+  const dow = s => D(s).getUTCDay(), wk = s => dow(s) > 0 && dow(s) < 6, monday = s => add(s, -((dow(s) + 6) % 7));
+  const M3 = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const fmt = s => `${+s.slice(8)} ${M3[+s.slice(5, 7) - 1]}`;
+  const pad = n => String(n).padStart(2, '0');
+  const fdt = d => `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const initials = n => n.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const workdays = (a, b) => { let n = 0; for (let d = a; d <= b; d = add(d, 1)) if (wk(d)) n++; return n; };
+
+  /* ---------- 3. FILTROS MULTISELECCIÓN: OR dentro de un filtro, AND entre filtros ---------- */
+  const F = { company: new Set(), center: new Set(), dept: new Set() }; let Q = ''; // Q = búsqueda por nombre
+  const MS = [['company', 'ti-building', 'Todas las empresas', 'empresas'], ['center', 'ti-map-pin', 'Todos los centros', 'centros'],
+              ['dept', 'ti-sitemap', 'Todos los departamentos', 'departamentos']];
+  const val = (e, k) => e[k];
+  const inScope = (e, skip) => Object.keys(F).every(k => k === skip || !F[k].size || F[k].has(val(e, k))) && (!Q || e.name.toLowerCase().includes(Q));
+  // Cascada: Centro depende de las Empresas elegidas
+  const optsOf = k => {
+    const L = k === 'center' ? EMPLOYEES.filter(e => !F.company.size || F.company.has(e.company)) : EMPLOYEES;
+    return [...new Map(L.map(e => [val(e, k), val(e, k)]))].map(([v, l]) => ({ v, l })).sort((a, b) => a.l.localeCompare(b.l));
+  };
+  const prune = () => ['center'].forEach(k => { const ok = new Set(optsOf(k).map(o => o.v)); [...F[k]].forEach(v => { if (!ok.has(v)) F[k].delete(v); }); });
+
+  /* ---------- 4. EVENTOS DEL CALENDARIO ---------- */
+  const shareWork = (a1, a2, b1, b2) => { const lo = a1 > b1 ? a1 : b1, hi = a2 < b2 ? a2 : b2; for (let d = lo; d <= hi; d = add(d, 1)) if (wk(d)) return true; return false; };
+  // Compañeros del mismo departamento con vacaciones ACEPTADAS dentro del período (informativo)
+  const coincide = (emp, from, to) => [...new Set(VACATIONS.filter(v => v.status === 'ok' && v.emp !== emp && EMP[v.emp].dept === EMP[emp].dept && shareWork(v.from, v.to, from, to)).map(v => EMP[v.emp].name.split(' ')[0]))];
+  const coText = l => l.length ? `Coincide en el período con: ${l.join(', ')}` : 'Sin coincidencias en el período';
+  const pendingCount = () => VACATIONS.filter(v => v.status === 'pend' && inScope(EMP[v.emp])).length;
+
+  function events(from, to) {
+    const L = state.layers, out = [], ov = x => x.to >= from && x.from <= to;
+    if (L.fest) HOLIDAYS.forEach(h => { const x = { k: 'f' + h.date, t: 'fest', from: h.date, to: h.date, label: h.name }; if (ov(x) && (!h.centers || !F.center.size || h.centers.some(c => F.center.has(c)))) out.push(x); });
+    TRIPS.forEach(t => { const e = EMP[t.emp], x = { k: 't' + t.id, t: 'trip', from: t.from, to: t.to, emp: t.emp, label: `${e.name.split(' ')[0]} · ${t.place}` }; if (L.trip && ov(x) && inScope(e)) out.push(x); });
+    VACATIONS.forEach(v => { const e = EMP[v.emp], x = { k: 'v' + v.id, t: 'vac', from: v.from, to: v.to, emp: v.emp, status: v.status, label: e.name }; if (L[v.status] && ov(x) && inScope(e)) out.push(x); });
+    const rank = e => e.t === 'fest' ? 0 : e.status === 'pend' ? 1 : 2;
+    return out.sort((a, b) => rank(a) - rank(b) || a.from.localeCompare(b.from) || diff(b.from, b.to) - diff(a.from, a.to) || a.label.localeCompare(b.label));
+  }
+
+  /* ---------- 5. RENDER: FILTROS, CABECERA Y LEYENDA ---------- */
+  function renderFilters() {
+    const keep = document.querySelector('[data-ms-panel]:not(.hidden)')?.scrollTop || 0;
+    $('[data-el=filters]').innerHTML = MS.map(([k, ic, all, plural]) => {
+      const opts = optsOf(k), n = F[k].size, one = n === 1 ? opts.find(o => o.v === [...F[k]][0])?.l : '';
+      return `<div class="relative" data-ms="${k}"><button type="button" data-ms-btn="${k}" class="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white flex items-center gap-2 min-w-[180px] justify-between hover:bg-gray-50 ${n ? 'ring-1 ring-[#412DB6]/40' : ''}">
+        <span class="flex items-center gap-2 truncate"><i class="ti ${ic} text-slate-500"></i><span class="truncate max-w-[170px]">${n === 0 ? all : n === 1 ? esc(one) : `${n} ${plural}`}</span></span><i class="ti ti-chevron-down text-xs text-slate-500"></i></button>
+        <div data-ms-panel class="${state.open === k ? '' : 'hidden'} absolute left-0 top-full mt-1 z-40 w-72 max-h-72 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-lg p-2">
+        ${opts.map(o => `<label class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm cursor-pointer hover:bg-slate-50"><input type="checkbox" data-ms-opt="${k}" value="${esc(o.v)}" ${F[k].has(o.v) ? 'checked' : ''} class="accent-[#412DB6] w-4 h-4" /><span>${esc(o.l)}</span></label>`).join('')}
+        <button type="button" data-ms-clear="${k}" class="w-full text-left text-xs text-[#412DB6] hover:underline px-2 pt-2 mt-1 border-t border-slate-100">Limpiar selección</button></div></div>`;
+    }).join('') ;
+    const p = document.querySelector('[data-ms-panel]:not(.hidden)'); if (p) p.scrollTop = keep;
+  }
+
+  const range = () => state.view === 'year' ? [state.cur.slice(0, 4) + '-01-01', state.cur.slice(0, 4) + '-12-31'] : state.view === 'month' ? (() => { const f = state.cur.slice(0, 7) + '-01'; return [f, add(add(f, 31).slice(0, 7) + '-01', -1)]; })() : [monday(state.cur), add(monday(state.cur), 6)];
+
+  function renderHead() {
+    const [a, b] = range(), y = a.slice(0, 4);
+    const title = state.view === 'year' ? `<span class="font-medium">Año</span> <span class="font-light text-slate-400">${a.slice(0, 4)}</span>` : state.view === 'month' ? `<span class="font-medium">${MONTHS[+a.slice(5, 7) - 1]}</span> <span class="font-light text-slate-400">${y}</span>` : `<span class="font-medium">${fmt(a)} – ${fmt(b)}</span> <span class="font-light text-slate-400">${b.slice(0, 4)}</span>`;
+    const seg = [['week', 'Semana'], ['month', 'Mes'], ['year', 'Año']].map(([k, l]) => `<button data-view="${k}" class="text-sm px-4 py-1.5 rounded-full ${state.view === k ? 'bg-white shadow font-medium' : 'text-slate-600 hover:text-slate-900'}">${l}</button>`).join('');
+    $('[data-el=head]').innerHTML = `<h2 class="text-3xl text-slate-900">${title}</h2>
+      <div class="vac-noprint flex flex-wrap items-center gap-3"><div class="inline-flex bg-slate-100 rounded-full p-1">${seg}</div>
+        <div class="flex items-center gap-1"><button data-nav="-1" aria-label="Anterior" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200"><i class="ti ti-chevron-left text-sm"></i></button>
+        <button data-nav="0" class="text-sm px-4 h-8 rounded-full bg-slate-100 hover:bg-slate-200">Hoy</button>
+        <button data-nav="1" aria-label="Siguiente" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200"><i class="ti ti-chevron-right text-sm"></i></button></div></div>`;
+  }
+
+  function renderLegend() {
+    if (state.view === 'year') {
+      const sq = (bg, extra = '') => `<span class="w-4 h-4 rounded-sm inline-block ${extra}" style="background:${bg}"></span>`;
+      $('[data-el=legend]').innerHTML = `<span class="inline-flex items-center gap-1.5 text-slate-600">${sq('#F1F5F9')}Fin de semana</span><span class="inline-flex items-center gap-1.5 text-slate-600">${sq('#FFE4E6')}Festivo</span><span class="inline-flex items-center gap-1.5 text-slate-600">${sq('#fff', 'ring-2 ring-[#412DB6]')}Hoy</span><span class="mx-1 text-slate-300">|</span><span class="inline-flex items-center gap-1 text-slate-600">Menos ausencias ${[0, 1, 2, 3, 4].map(i => sq(i ? `rgba(65,45,182,${0.1 + i * 0.15})` : '#F8FAFC', 'border border-slate-200')).join('')} Más</span>`;
+      return;
+    }
+    const chip = (k, label, c, dashed) => `<button data-layer="${k}" aria-pressed="${!!state.layers[k]}" class="inline-flex items-center gap-1.5 border rounded-full px-2.5 py-1 ${state.layers[k] ? 'bg-white border-slate-300 text-slate-700' : 'bg-slate-50 border-slate-200 text-slate-400 line-through'}"><span class="w-3 h-3 rounded-sm" style="background:${dashed ? '#fff' : c[1]};border:${dashed ? '1px dashed' : '1px solid'} ${c[0]}"></span>${label}</button>`;
+    $('[data-el=legend]').innerHTML = chip('ok', 'Aceptadas', C.Desarrollo) + chip('pend', `Pendientes (${pendingCount()})`, C.Desarrollo, true) + chip('rej', 'Rechazadas', C.rej)
+      + chip('trip', 'Viajes', C.trip) + chip('fest', 'Festivos', C.fest) + '<span class="mx-1 text-slate-300">|</span>'
+      + DEPT_LIST.map(d => `<span class="inline-flex items-center gap-1.5 text-slate-600"><span class="w-2.5 h-2.5 rounded-full" style="background:${C[d][0]}"></span>${d}</span>`).join('');
+  }
+
+  /* ---------- 6. RENDER: CALENDARIO (mes / semana) ---------- */
+  function evHTML(e) {
+    const c = e.t === 'fest' ? C.fest : e.t === 'trip' ? C.trip : e.status === 'rej' ? C.rej : C[EMP[e.emp].dept];
+    const st = e.status === 'pend' ? `background:#fff;border:1px dashed ${c[0]};` : `background:${c[1]};`;
+    const ic = e.t === 'fest' ? 'ti-flag' : e.t === 'trip' ? 'ti-plane' : e.status === 'pend' ? 'ti-clock' : '';
+    return `<button data-ev="${e.k}" title="${esc(e.label)} · ${fmt(e.from)} – ${fmt(e.to)}" style="grid-column:${e.a + 1}/${e.b + 2};grid-row:${e.l + 2};${st}color:${c[2]}" class="my-[1px] mx-[3px] text-left text-[11px] leading-[18px] font-medium truncate rounded px-1.5 hover:brightness-95 ${e.status === 'rej' ? 'line-through' : ''}">${ic ? `<i class="ti ${ic} mr-1"></i>` : ''}${esc(e.label)}</button>`;
+  }
+
+  function weekHTML(ws, all, mFirst) {
+    const days = Array.from({ length: 7 }, (_, i) => add(ws, i)), evs = events(ws, days[6]), lanes = [], maxL = all ? 99 : 3, hid = Array(7).fill(0);
+    evs.forEach(e => { e.a = Math.max(0, diff(ws, e.from)); e.b = Math.min(6, diff(ws, e.to)); let l = 0; while ((lanes[l] || []).some(([x, y]) => !(e.b < x || e.a > y))) l++; (lanes[l] = lanes[l] || []).push([e.a, e.b]); e.l = l; if (l >= maxL) for (let d = e.a; d <= e.b; d++) hid[d]++; });
+    const fd = new Set(evs.filter(e => e.t === 'fest').map(e => e.from)), dim = d => mFirst && d.slice(0, 7) !== mFirst.slice(0, 7);
+    // Colores por día: festivo (rosa), fin de semana (gris), hoy (lila), días de otro mes atenuados
+    const bg = days.map((d, i) => `<div class="${i < 6 ? 'border-r' : ''} border-b border-slate-200 ${d === TODAY ? 'bg-[#412DB6]/[0.07]' : fd.has(d) ? 'bg-rose-50' : i >= 5 ? 'bg-slate-50' : 'bg-white'} ${dim(d) ? 'opacity-60' : ''}"></div>`).join('');
+    const nums = days.map((d, i) => `<div style="grid-column:${i + 1};grid-row:1" class="px-1.5 pt-1 pb-0.5 text-right"><button data-dday="${d}" class="text-xs min-w-[22px] h-[22px] px-1 rounded-full hover:ring-2 ring-[#412DB6]/30 ${d === TODAY ? 'bg-[#412DB6] text-white font-semibold' : dim(d) ? 'text-slate-400' : i >= 5 ? 'text-[#1BA1EB]' : 'text-slate-700'}">${+d.slice(8) === 1 && mFirst ? `1 ${M3[+d.slice(5, 7) - 1]}` : +d.slice(8)}</button></div>`).join('');
+    const more = hid.map((n, i) => n ? `<button data-dday="${days[i]}" style="grid-column:${i + 1};grid-row:${maxL + 2}" class="text-left text-[11px] text-slate-500 hover:text-[#412DB6] px-2">+${n} más</button>` : '').join('');
+    return `<div class="relative ${all ? 'min-h-[340px]' : 'min-h-[112px]'}"><div class="absolute inset-0 grid grid-cols-7">${bg}</div>
+      <div class="relative grid grid-cols-7 content-start pb-1" style="grid-auto-rows:minmax(22px,auto)">${nums}${evs.filter(e => e.l < maxL).map(evHTML).join('')}${more}</div></div>`;
+  }
+
+  // Vista Año: 12 meses con el día coloreado según las ausencias aceptadas (mapa de densidad neutro)
+  function renderYear() {
+    const y = +state.cur.slice(0, 4), hol = new Map(), emps = EMPLOYEES.filter(inScope);
+    HOLIDAYS.forEach(h => { if (!h.centers || !F.center.size || h.centers.some(c => F.center.has(c))) hol.set(h.date, h.name); });
+    let h = '<div class="p-4 grid gap-4" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">';
+    for (let m = 0; m < 12; m++) {
+      const first = `${y}-${pad(m + 1)}-01`, N = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+      h += `<div class="border border-gray-200 rounded-xl p-3 bg-white"><button data-month="${first}" class="text-sm font-semibold text-slate-700 mb-2 hover:text-[#412DB6]">${MONTHS[m]}</button><div class="grid grid-cols-7 gap-0.5">`
+        + ['L', 'M', 'X', 'J', 'V', 'S', 'D'].map(d => `<div class="text-[9px] font-semibold text-slate-400 text-center">${d}</div>`).join('') + '<div></div>'.repeat((dow(first) + 6) % 7);
+      for (let k = 0; k < N; k++) {
+        const d = add(first, k), n = emps.filter(e => VACATIONS.some(v => v.emp === e.id && v.status === 'ok' && v.from <= d && d <= v.to)).length;
+        const i = n === 0 ? 0 : n === 1 ? 1 : n <= 3 ? 2 : n <= 6 ? 3 : 4, isH = hol.has(d);
+        const bg = isH ? '#FFE4E6' : !wk(d) ? '#F1F5F9' : i ? `rgba(65,45,182,${0.1 + i * 0.15})` : '#F8FAFC';
+        h += `<button data-dday="${d}" title="${fmt(d)}${isH ? ' · ' + esc(hol.get(d)) : ''} · ${n} ausencia${n === 1 ? '' : 's'}" style="background:${bg}" class="aspect-square rounded-sm flex items-center justify-center text-[9px] font-medium ${i >= 3 && wk(d) && !isH ? 'text-white' : 'text-slate-600'} ${d === TODAY ? 'ring-2 ring-[#412DB6]' : ''} hover:ring-2 ring-[#412DB6]/40">${k + 1}</button>`;
+      }
+      h += '</div></div>';
+    }
+    $('[data-el=cal]').innerHTML = h + '</div>';
+  }
+
+  function renderCal() {
+    if (state.view === 'year') return renderYear();
+    const [a, b] = range(), head = ['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((d, i) => `<div class="py-2 text-center text-xs font-medium ${i >= 5 ? 'text-[#1BA1EB]' : 'text-slate-500'} border-b border-slate-200 bg-white">${d}</div>`).join('');
+    let h = `<div class="grid grid-cols-7">${head}</div>`;
+    if (state.view === 'month') for (let ws = monday(a); ws <= b; ws = add(ws, 7)) h += weekHTML(ws, false, a);
+    else h += weekHTML(a, true, null);
+    $('[data-el=cal]').innerHTML = h;
+  }
+
+  /* ---------- 7. FICHA EMERGENTE ---------- */
+  function suggestions(v) {
+    const len = diff(v.from, v.to), f = [];
+    for (let k = -60; k <= 60; k++) { const s = add(v.from, k); if (k && wk(s)) f.push({ f: s, t: add(s, len), k, n: coincide(v.emp, s, add(s, len)).length }); }
+    f.sort((x, y) => x.n - y.n || Math.abs(x.k) - Math.abs(y.k));
+    const p = []; f.forEach(w => { if (p.length < 3 && p.every(q => w.t < q.f || w.f > q.t)) p.push(w); });
+    return p;
+  }
+
+  function cardHTML(v) {
+    const e = EMP[v.emp], wd = workdays(v.from, v.to), rej = state.rejecting === v.id;
+    // Reutiliza la paleta centralizada
+    const s = STATUS_STYLE[v.status];
+    const ic = s.icon, chip = `${s.bg} ${s.text} ${s.border}`;
+    const sent = v.sentAgo == null ? '' : v.sentAgo === 0 ? 'Solicitud enviada hoy' : `Solicitud enviada hace ${v.sentAgo} día${v.sentAgo === 1 ? '' : 's'}`;
+    const dec = v.decision ? `<div class="text-xs text-slate-500 border-t border-slate-100 pt-2">${STATUS[v.status]} por ${esc(v.decision.by)} · ${fdt(v.decision.at)}${v.decision.reason ? `<p class="text-slate-700 mt-0.5">Motivo: ${esc(v.decision.reason)}</p>` : ''}</div>` : '';
+    const sg = v.status === 'pend' ? (state.sugg ? `<div class="mt-2 flex flex-col gap-1">${suggestions(v).map(w => `<button data-act="use-alt" data-id="${v.id}" data-f="${w.f}" data-t="${w.t}" class="text-left text-xs border border-slate-200 rounded-lg px-3 py-1.5 hover:border-[#412DB6]/40">Proponer ${fmt(w.f)} – ${fmt(w.t)} <span class="text-slate-500">· ${w.n ? `${w.n} coincidencia${w.n > 1 ? 's' : ''}` : 'sin coincidencias'}</span></button>`).join('')}</div>`
+      : `<button data-act="sugg" class="vac-noprint mt-1 text-xs text-[#412DB6] hover:underline flex items-center gap-1"><i class="ti ti-calendar-search"></i>Buscar fechas alternativas (±60 días)</button>`) : '';
+    const actions = v.status !== 'pend' ? '' : rej
+      ? `<div class="flex flex-col gap-2"><input data-reason placeholder="Motivo del rechazo (obligatorio)" class="text-sm border ${state.rejError ? 'border-red-500' : 'border-gray-300'} rounded-lg px-3 py-2 w-full" />
+          ${state.rejError ? '<p class="text-xs text-red-600">Indica un motivo para poder rechazar la solicitud.</p>' : ''}
+          <div class="flex gap-2"><button data-act="confirm-reject" data-id="${v.id}" class="flex-1 text-sm font-medium text-white bg-slate-700 rounded-lg py-2">Confirmar rechazo</button><button data-act="cancel-reject" class="text-sm font-medium border border-slate-200 rounded-lg px-4 py-2 bg-white hover:bg-slate-50">Cancelar</button></div></div>`
+      : `<div class="flex gap-2"><button data-act="approve" data-id="${v.id}" class="flex-1 inline-flex items-center justify-center gap-1.5 text-sm font-semibold rounded-lg py-2.5 text-white bg-[#412DB6] hover:bg-[#3423a0] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#412DB6]/40 transition"><i class="ti ti-check text-base"></i> Aceptar</button>
+          <button data-act="reject" data-id="${v.id}" class="inline-flex items-center justify-center gap-1.5 text-sm font-medium rounded-lg px-4 py-2.5 text-slate-600 bg-white border border-slate-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 transition"><i class="ti ti-x text-base"></i> Rechazar</button></div>`;
+    return `<article class="rounded-2xl bg-white overflow-hidden flex flex-col">
+      <div class="p-4 pb-3"><header class="flex items-center gap-3">
+        <span class="shrink-0 w-10 h-10 rounded-full bg-[#412DB6]/10 text-[#412DB6] text-xs font-bold flex items-center justify-center">${initials(e.name)}</span>
+        <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-900 truncate">${esc(e.name)}</p><p class="text-xs text-slate-500 mt-0.5 truncate">${e.dept} · ${esc(e.center)} · ${e.type}</p></div>
+        <span class="shrink-0 mr-3 inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-full border ${chip}"><i class="ti ${ic} text-[12px]"></i> ${STATUS[v.status]}</span></header></div>
+      ${sent ? `<div class="px-4 pb-3"><div class="flex items-center gap-1.5 text-[13px] text-slate-500"><i class="ti ti-history text-lg text-[#412DB6]"></i><span>${sent}</span></div></div>` : ''}
+      <div class="px-3 pb-2"><div class="rounded-xl border border-[#412DB6]/10 bg-[#412DB6]/[0.045] p-2"><div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-white border border-[#412DB6]/15 flex items-center justify-center shrink-0"><i class="ti ti-calendar-event text-[#412DB6] text-xl"></i></div>
+        <div class="min-w-0"><p class="text-base font-medium text-slate-900 truncate">${fmt(v.from)} – ${fmt(v.to)} · <span title="Días laborables" class="text-[13px] font-medium text-[#412DB6] bg-white border border-[#412DB6]/25 rounded-full px-2 py-0.5">${wd} día${wd === 1 ? '' : 's'}</span></p></div></div></div></div>
+      <div class="px-4 pb-3 text-xs text-slate-600">${esc(coText(coincide(v.emp, v.from, v.to)))}${sg}</div>
+      ${dec ? `<div class="px-4 pb-3">${dec}</div>` : ''}${actions ? `<div class="border-t border-slate-200 p-3">${actions}</div>` : ''}</article>`;
+  }
+
+  const infoCard = (ic, c, title, sub, line) => `<div class="p-4 flex gap-3 items-center"><span class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:${c[1]};color:${c[2]}"><i class="ti ${ic} text-xl"></i></span>
+    <div class="min-w-0 pr-4"><p class="text-sm font-semibold text-slate-900">${esc(title)}</p><p class="text-xs text-slate-500">${esc(sub)}</p><p class="text-sm mt-1">${esc(line)}</p></div></div>`;
+
+  function renderPop() {
+    const el = $('[data-el=pop]'), p = state.pop, hide = () => { el.classList.add('hidden'); el.classList.remove('flex'); };
+    if (!p) return hide();
+    const id = +p.k.slice(1); let body = '';
+    if (p.k[0] === 'v') { const v = VACATIONS.find(x => x.id === id); if (v) body = cardHTML(v); }
+    else if (p.k[0] === 't') { const t = TRIPS.find(x => x.id === id), e = EMP[t.emp]; body = infoCard('ti-plane', C.trip, e.name, `${e.dept} · ${e.center}`, `Viaje a ${t.place} · ${fmt(t.from)} – ${fmt(t.to)}`); }
+    else { const h = HOLIDAYS.find(x => 'f' + x.date === p.k); body = infoCard('ti-flag', C.fest, h.name, h.centers ? 'Festivo local: ' + h.centers.join(', ') : 'Festivo nacional', fmt(h.date) + ' ' + h.date.slice(0, 4)); }
+    if (!body) { state.pop = null; return hide(); }
+    el.innerHTML = `<div data-modal class="modal-card relative w-full max-w-[420px] max-h-full overflow-y-auto rounded-2xl shadow-2xl bg-white">${body}<button data-act="close-pop" aria-label="Cerrar" class="absolute top-2 right-2 w-6 h-6 rounded-full text-slate-400 hover:bg-slate-100"><i class="ti ti-x text-sm"></i></button></div>`;
+    el.classList.remove('hidden'); el.classList.add('flex');
+  }
+
+  /* ---------- 8. PANEL DE DÍA, META DE IMPRESIÓN Y MAPA ANUAL ---------- */
+  function renderDpanel() {
+    const dp = state.dp;
+    $('#dpanel').classList.toggle('translate-x-full', !dp);
+    if (!dp) return;
+
+    // Incluimos también los rechazados (aparecerán al final, tachados)
+    const abs = EMPLOYEES.filter(inScope).flatMap(e =>
+      VACATIONS.filter(v => v.emp === e.id && v.from <= dp && dp <= v.to).map(v => ({ e, v }))
+    );
+
+    const pendientes = abs.filter(x => x.v.status === 'pend').length;
+    $('[data-el=dptitle]').textContent = `${fmt(dp)} ${dp.slice(0, 4)}`;
+    $('[data-el=dpsub]').textContent =
+      `${abs.length} ausente(s)` +
+      (pendientes ? ` · ${pendientes} pendiente(s) de aprobar` : '') +
+      ` según los filtros`;
+
+    if (!abs.length) {
+      $('[data-el=dpbody]').innerHTML = '<p class="text-sm text-slate-500">Nadie ausente este día.</p>';
+      return;
+    }
+
+    // Orden: pendientes primero (para que el gestor los vea arriba), luego aceptados, luego rechazados
+    const rank = v => v.status === 'pend' ? 0 : v.status === 'ok' ? 1 : 2;
+    abs.sort((a, b) => rank(a.v) - rank(b.v) || a.e.name.localeCompare(b.e.name));
+
+    $('[data-el=dpbody]').innerHTML = `
+      <ul class="flex flex-col gap-2">
+        ${abs.map(({ e, v }) => {
+          const s = STATUS_STYLE[v.status];
+          const esPend = v.status === 'pend';
+          const tachado = v.status === 'rej' ? 'line-through opacity-70' : '';
+          return `
+            <li class="flex flex-col gap-2 bg-white border ${s.border} rounded-lg px-3 py-2.5 shadow-sm">
+              <div class="flex items-start justify-between gap-2">
+                <div class="min-w-0">
+                  <p class="text-sm font-medium text-slate-900 truncate ${tachado}">${esc(e.name)}</p>
+                  <p class="text-xs text-slate-500 truncate">${e.dept} · ${esc(e.center)}</p>
+                  <p class="text-[11px] text-slate-500 mt-0.5">${fmt(v.from)} – ${fmt(v.to)}</p>
+                </div>
+                <span class="shrink-0 inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full border ${s.bg} ${s.text} ${s.border}">
+                  <i class="ti ${s.icon} text-[12px]"></i>${s.label}
+                </span>
+              </div>
+              ${esPend ? `
+                <div class="flex gap-2 pt-1">
+                  <button data-act="dp-approve" data-id="${v.id}"
+                    class="flex-1 inline-flex items-center justify-center gap-1 text-xs font-semibold rounded-md py-1.5 text-white bg-[#412DB6] hover:bg-[#3423a0] transition">
+                    <i class="ti ti-check text-sm"></i> Aceptar
+                  </button>
+                  <button data-act="dp-open" data-id="${v.id}"
+                    class="inline-flex items-center justify-center gap-1 text-xs font-medium rounded-md px-3 py-1.5 text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 transition">
+                    <i class="ti ti-settings text-sm"></i> Procesar
+                  </button>
+                </div>` : ''}
+            </li>`;
+        }).join('')}
+      </ul>`;
+  }
+
+  function renderMeta() {
+    const names = { company: 'Empresa', center: 'Centro', dept: 'Departamento' };
+    const parts = Object.keys(F).filter(k => F[k].size).map(k => `${names[k]}: ${[...F[k]].join(' / ')}`), [a, b] = range(); if (Q) parts.push('Búsqueda: ' + Q);
+    $('[data-el=printmeta]').textContent = `Período: ${fmt(a)} – ${fmt(b)} ${b.slice(0, 4)} · ${parts.length ? parts.join(' · ') : 'Sin filtros'} · Impreso por ${SESSION.name} el ${fdt(new Date())}`;
+  }
+
+  const render = () => { renderFilters(); renderHead(); renderLegend(); renderCal(); renderPop(); renderDpanel(); renderMeta(); };
+
+  /* ---------- 9. ACCIONES ---------- */
+  const decide = (v, ok, reason = '') => { v.status = ok ? 'ok' : 'rej'; v.decision = { at: new Date(), by: SESSION.name, reason }; state.pop = null; state.rejecting = null; state.rejError = false; state.sugg = false; };
+
+  document.addEventListener('click', e => {
+    const t = e.target, mb = t.closest('[data-ms-btn]'), mc = t.closest('[data-ms-clear]');
+    if (mb) { state.open = state.open === mb.dataset.msBtn ? null : mb.dataset.msBtn; return renderFilters(); }
+    if (mc) { F[mc.dataset.msClear].clear(); prune(); return render(); }
+    if (t.closest('[data-act=clear-filters]')) { Object.values(F).forEach(s => s.clear()); Q = ''; const qi = $('[data-ff=q]'); if (qi) qi.value = ''; state.open = null; state.dp = null; return render(); }
+    if (t.closest('[data-act=apply-filters]')) return render(); // los filtros ya se aplican al instante
+    if (state.open && !t.closest('[data-ms]')) { state.open = null; renderFilters(); }
+
+    const ly = t.closest('[data-layer]'); if (ly) { state.layers[ly.dataset.layer] ^= 1; return render(); }
+    const nv = t.closest('[data-nav]');
+    if (nv) { const n = +nv.dataset.nav; if (!n) state.cur = TODAY; else if (state.view === 'year') { const d = D(state.cur); d.setUTCFullYear(d.getUTCFullYear() + n); state.cur = S(d); } else if (state.view === 'month') { const d = D(state.cur); d.setUTCMonth(d.getUTCMonth() + n, 1); state.cur = S(d); } else state.cur = add(state.cur, 7 * n); state.pop = null; return render(); }
+    const vw = t.closest('[data-view]'); if (vw) { state.view = vw.dataset.view; state.pop = null; return render(); }
+    const mo = t.closest('[data-month]'); if (mo) { state.cur = mo.dataset.month; state.view = 'month'; return render(); }
+    const dd = t.closest('[data-dday]'); if (dd) { state.dp = dd.dataset.dday; state.pop = null; return render(); }
+    if (t.closest('[data-dpclose]')) { state.dp = null; return renderDpanel(); }
+
+    const ev = t.closest('[data-ev]');
+    if (ev) { Object.assign(state, { pop: { k: ev.dataset.ev }, rejecting: null, rejError: false, sugg: false }); return render(); }
+
+    const a = t.closest('[data-act]');
+    if (a) {
+      const act = a.dataset.act, v = VACATIONS.find(x => x.id === +a.dataset.id);
+
+      // --- NUEVAS acciones del panel lateral ---
+      if (act === 'dp-approve') { decide(v, true); return render(); }
+      if (act === 'dp-open') {
+        Object.assign(state, { pop: { k: 'v' + v.id }, rejecting: null, rejError: false, sugg: false });
+        return render();
+      }
+
+      // --- acciones existentes ---
+      if (act === 'approve') decide(v, true);
+      else if (act === 'reject') { state.rejecting = v.id; state.rejError = false; }
+      else if (act === 'cancel-reject') { state.rejecting = null; state.rejError = false; }
+      else if (act === 'confirm-reject') { const i = $('[data-reason]'); if (!i.value.trim()) { state.rejError = true; render(); return $('[data-reason]')?.focus(); } decide(v, false, i.value.trim()); }
+      else if (act === 'sugg') state.sugg = true;
+      else if (act === 'use-alt') { v.from = a.dataset.f; v.to = a.dataset.t; state.sugg = false; state.cur = v.from; }
+      else if (act === 'close-pop') { state.pop = null; state.rejecting = null; }
+      return render();
+    }
+    if (state.pop && !t.closest('[data-modal]')) { state.pop = null; state.rejecting = null; renderPop(); }
+  });
+
+  document.addEventListener('change', e => {
+    const o = e.target.closest('[data-ms-opt]'); if (!o) return;
+    const s = F[o.dataset.msOpt]; o.checked ? s.add(o.value) : s.delete(o.value); prune(); state.dp = null; render();
+  });
+  document.addEventListener('input', e => { if (!e.target.matches || !e.target.matches('[data-ff=q]')) return; Q = e.target.value.trim().toLowerCase(); state.dp = null; render(); });
+  document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; Object.assign(state, { pop: null, dp: null, open: null, rejecting: null }); render(); });
+  window.addEventListener('beforeprint', renderMeta);
+  render();
+})();
+</script>
+<!-- ===== FIN · Módulo Compara Vacaciones ===== -->
+
+            </div>
+        </section>
+
+        <!-- JS libraries (referencias originales) -->
+        <script type="text/JavaScript" src="js/jquery-2.2.4.min.js"></script>
+        <script type="text/JavaScript" src="js/jquery-ui.js"></script>
+        <script type="text/JavaScript" src="js/funciones.js"></script>
+        <script type="text/JavaScript" src="js/funciones_vp25.js"></script>
+        <script type="text/JavaScript" src="js/pfizer.js"></script>
+        <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+    </body>
+</html>
