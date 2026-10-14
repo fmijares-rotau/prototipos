@@ -1,0 +1,3112 @@
+/*
+Free Html5 Responsive Templates
+Author: Kimmy
+Author URI: http://www.zerotheme.com/
+*/
+/* -------------------------------------------- */
+/* ------------------Reset--------------------- */
+a,abbr,acronym,address,applet,article,aside,audio,b,blockquote,big,body,center,canvas,caption,cite,code,command,datalist,dd,del,details,dfn,dl,div,dt,em,embed,fieldset,figcaption,figure,font,
+    footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,keygen,label,legend,li,meter,nav,object,ol,output,p,pre,progress,q,s,samp,section,small,span,source,strike,strong,
+    sub,sup,table,tbody,tfoot,thead,th,tr,tdvideo,tt,u,ul,var{background:transparent;border:0 none;font-size:100%;margin:0;padding:0;border:0;outline:0;vertical-align:top;}
+ol, ul {list-style:none;}
+blockquote, q {quotes:none;}
+table, table td {padding:0;border:none;border-collapse:collapse;}
+img {vertical-align:top;}
+embed {vertical-align:top;}
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+mark, rp, rt, ruby, summary, time {display:inline;}
+input, textarea {border:0; padding:0; margin:0; outline: 0;}
+iframe {border:0; margin:0; padding:0;}
+input, textarea, select {margin:0; padding:0px;}
+audio{display: none;}
+
+/* -------------------------------------------- */
+/* ------------------Font---------------------- */
+
+/*Add your font at here*/
+
+/* -------------------------------------------- */
+/* ------------------Style--------------------- */
+html, body {width:100%; height: 100%;padding:0; margin:0;}
+body {
+/*     background: #444444 url("../images/pattern.png"); */
+    background: #ffffff;
+    color: #736F6F;
+    font: 14px/25px Arial, Helvetica, sans-serif;
+    min-height: 100%;
+    clear: both;
+}
+
+a{color: #949494;text-decoration: none;}
+a:hover {color: #4AA9C3; text-decoration: none;}
+
+a.button{cursor: pointer;color: #ffffff; display: inline-block;padding: 6px 12px 6px 12px; font-size: 18px; background: #4AA9C3; font-family: Impact,Charcoal,sans-serif; font-weight: normal; text-transform: uppercase;}
+a.button:hover{}
+
+.clear{content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+.personal{float: left;width: 100%;margin: 0;}
+.contractual{float: left;width: 100%;margin: 0;display: none;}
+.recursos{float: left;width: 100%;margin: 0;display: none;}
+.directorio{float: left;width: 100%;margin: 0;display: none;}
+.seguridad{float: left;width: 100%;margin: 0;display: none;}
+.hardware{float: left;width: 100%;margin: 0;display: none;}
+.experiencia{float: left;width: 100%;margin: 0;display: none;}
+.formacion{float: left;width: 100%;margin: 0;display: none;}
+.certificados{float: left;width: 100%;margin: 0;display: none;}
+.idiomas{float: left;width: 100%;margin: 0;display: none;}
+.ResumenCV{float: left;width: 100%;margin: 0;display: none;}
+.centrocoste{float: left;width: 100%;margin: 0;display: none;}
+.asignaciones{float: left;width: 100%;margin: 0;display: none;}
+.componente{float: left;width: 100%;margin: 0;display: none;}
+.identificacion-comunicacion{float: left;width: 100%;margin: 0;display: none;}
+.entidad-adjudicatoria{float: left;width: 100%;margin: 0;display: none;}
+.accion-formativa{float: left;width: 100%;margin: 0;display: none;}
+.descendientes{float: left;width: 100%;margin: 0;display: none;}
+.ascendientes{float: left;width: 100%;margin: 0;display: none;}
+
+.bolsas{float: left;width: 100%;margin: 0;display: none;}
+
+
+.gallery img {width: 500%;height: auto;border-radius: 5px;cursor: pointer;transition: .3s;}
+.emergencias{float: left;width: 100%;margin: 0;display: none;}
+.sindicato{float: left;width: 100%;margin: 0;display: none;}
+.adicionales{float: left;width: 100%;margin: 0;display: none;}
+
+.prl_prp{float: left;width: 100%;margin: 0;display: none;}
+.roles_general{float: left;width: 100%;margin: 0;}
+.roles_menu{float: left;width: 100%;margin: 0;}
+.roles_gestion{float: left;width: 100%;margin: 0;}
+
+.tramos{float: left;width: 100%;margin: 0;}
+.diario{float: left;width: 100%;margin: 0;display: none;}
+.semanal{float: left;width: 100%;margin: 0;display: none;}
+.anual{float: left;width: 100%;margin: 0;display: none;}
+
+.fichaje{float: left;width: auto;margin: 40px 0 40px 20px;}
+.incidencia{float: left;width: 70%;margin:5px 0 40px 20px;display: none;}
+.trabajos_fuera_de_jornada{float: left;width: 70%;margin:5px 0 40px 20px;display: none;}
+
+.solicitadas{float: left;width: 100%;margin: 0;}
+.disponibles{float: left;width: 100%;margin: 0;display: none;}
+
+.enviados{float: left;width: 100%;margin: 0;}
+.recibidos{float: left;width: 100%;margin: 0;display: none;}
+
+.activos{float: left;width: 100%;margin: 0;}
+.terminados{float: left;width: 100%;margin: 0;display: none;}
+
+.puntuar{float: left;width: 100%;margin: 0;}
+.validar{float: left;width: 100%;margin: 0;display: none;}
+.tesoro{float: left;width: 100%;margin: 0;display: none;}
+.premios{float: left;width: 100%;margin: 0;display: none;}
+
+.empleos{float: left;width: 100%;margin: 0;display: none;}
+.experiencia{float: left;width: 100%;margin: 0;display: none;}
+.estudios{float: left;width: 100%;margin: 0;display: none;}
+.ofertas{float: left;width: 100%;margin: 0;display: none;}
+
+.empresas{float: left;width: 100%;margin: 0;}
+.trabajadores{float: left;width: 100%;margin: 0;display: none;}
+.autonomos{float: left;width: 100%;margin: 0;display: none;}
+
+.general{float: left;width: 100%;margin: 0;}
+.facturado{float: left;width: 100%;margin: 0;display: none;}
+.documentos{float: left;width: 100%;margin: 0;display: none;}
+.gdpr{float: left;width: 100%;margin: 0;display: none;}
+.ip{float: left;width: 100%;margin: 0;display: none;}
+.gratificacion{float: left;width: 100%;margin: 0;display: none;}
+
+.grupoempresa{float: left;width: 100%;margin: 0;}
+.botones{float: left;width: 100%;margin: 0;display: none;}
+
+.fechas{float: left;width: 100%;margin: 0;}
+.semanal{float: left;width: 100%;margin: 0;display: none;}
+.mensual{float: left;width: 100%;margin: 0;display: none;}
+.anual{float: left;width: 100%;margin: 0;display: none;}
+
+div.vacaciones{float: left;width: 100%;margin: 0;display: none;}
+div.fichajes{float: left;width: 100%;margin: 0;display: none;}
+
+.salta_linea{clear: both;}
+
+.temperatura_elevada{color: red;}
+.bolsa{color: red;}
+.asignado{color: red;}
+.entregado{color: blue;}
+.fichaje_entrada{color: green;}
+.fichaje_salida{color: red;}
+.fichaje_eliminado{color: #848484;font-weight: bold;background-color: #84848430;}
+.bolsa_a_vencer{color: #000000;font-weight: bold;background-color: #ffff00;}
+.permiso{color: blue;}
+
+.label-max{color: red !important;}
+
+
+.enlace{cursor: pointer;}
+
+.oculta_1366{}
+.oculta_1280{}
+.oculta_620{}
+.oculta_480{}
+
+.motivo{display: none;}
+
+span.estado_correcto{float: left;border: solid 1px #00FF00;height: 22px;width: 22px;margin: 2px 10px;border-radius: 50%;background-color: #00FF00;}
+span.estado_incorrecto{float: left;border: solid 1px #FF0000;height: 22px;width: 22px;margin: 3px 10px;border-radius: 50%;background-color: #FF0000;}
+
+/* -------------------------------------------- */
+/* ------------------Header-------------------- */
+header {background-color: #5889d6;}
+header .wrap-header{margin: 0;min-height: 120px;height: auto;}
+
+header #logo_vpd {float: left; margin:0;width: 15%;height: 100%;}
+header #logo_vpd_out {float: left; margin:0;width: 20%;height: 100%;}
+header #logo_vpd img{float: left; margin: 25px 20px;height: 70px;cursor: pointer;}
+header #logo_vpd_out img{float: left; margin: 25px 20px;height: 70px;cursor: pointer;}
+header #cabecera_movil{display: none;}
+
+
+header nav{float: left;margin: 5px 0 0;width: 100%;}
+header nav .wrap-nav{height: 110px;background: transparent; border: none;}
+header .menu{float: left; width: 100%;border-bottom: none;}
+header .menu ul {list-style: none;margin: 0;padding: 0;}
+header .menu  ul li{float: left;padding: 5px;width: 100px;height: 100px;color: white;cursor: pointer;border: 1px solid transparent; position: relative;}
+header .menu ul li.first{margin-left: 30px;}
+header .menu ul li.last{border-right: 1px solid #e3e5e5;}
+header .menu  ul li:hover{border: 1px solid #fff;background-color: transparent;}
+header .menu  ul li.activo {border: 1px solid #fff;background-color: transparent;}
+header .menu ul li img{float: left;height: 26px;width: auto;margin: 20px 38px 5px;}
+header .menu  ul li p {float: left;height: 40px;margin: 5px 0;width: 100%;text-align: center;}
+
+header nav .caja_quick{float: left;margin-left: 30%;height: 100%;width: 100%;}
+header nav .caja_quick .reloj_quick{float: left;margin-left: 1%;height: 100%;width: auto;}
+header nav .caja_quick .titulo_quick{float: left;margin-left: 10%;height: 100%;color: white;}
+header nav .caja_quick .titulo_quick label{float: left;height: 100%;font-size: 50px;line-height: 120px;}
+
+header #search {float:right;margin: 0;width: 25%;}
+header #search .bienvenido{float: right;color: #fff;width: 100%;}
+header #search .bienvenido span{float: right;margin: 5px 35px;}
+header #search .bienvenido span.datos_usuario{}
+header #search .bienvenido span.notificaciones{float: right;width: 28px;height: 28px;margin: 5px;border: 1px solid white;text-align:center;font-size: 24px;line-height: 28px;border-radius: 50%;cursor: pointer;display: none;}
+header #search .bienvenido span.salir{font-weight: bolder;cursor: pointer;}
+header #search .selector_idiomas{float: right;width: 100%;}
+header #search .selector_idiomas select{float: right;margin: 5px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;}
+header #search .selector_empresas{float: right;width: 100%;}
+header #search .selector_empresas select{float: right;margin: 5px 20px;}
+header #search .visor_puestos{float: right;width: 100%;}
+header #search .visor_puestos > span{color: #fff;margin: 2%;float: right;}
+
+header #search .selector_centros_puestos{float: right;width:200px;}
+header #search .selector_centros_puestos select{float: right;margin: 5px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-right: 30px;}
+    
+header #search .button-search{position: absolute; top: 32px;right: 25px; z-index: 15; width: 32px;height: 32px;cursor: pointer;}
+header #search input{float: right;margin: 5px 30px;background: #FFF url('../images/button-search.png') center right no-repeat;padding: 1px 33px 1px 5px;width: 182px;height: 32px;border: 1px solid #CCCCCC;    -webkit-border-radius: 3px;    -moz-border-radius: 3px; -khtml-border-radius: 3px;    border-radius: 3px;}
+
+/* -------------------------------------------- */
+/* ------------------Navigation---------------- */
+nav {margin: 0;}
+nav .wrap-nav{height: auto;background: #fff; border: none;}
+.submenu{float: left; width: 100%;border-bottom: solid 1px black;}
+.submenu ul {list-style: none;margin: 0;padding: 0;}
+/* .submenu  ul li{float: left;padding: 5px;width: 100px;height: 100px;border-left: 1px solid #e3e5e5;cursor: pointer;} */
+.submenu  ul li{float: left; padding: 5px; width: 100px; height: 100px; border-left: 1px solid #e3e5e5; cursor: pointer; position: relative;}
+.submenu ul li.first{margin-left: 30px;}
+.submenu ul li.last{border-right: 1px solid #e3e5e5;}
+.submenu  ul li:hover, .current {background-color: #e3e5e5;}
+.submenu ul li img{float: left;height: 26px;width: auto;margin: 20px 38px 5px;}
+.submenu  ul li p {float: left;height: 40px;margin: 5px 0;width: 100%;text-align: center;}
+
+.minimenu{display:none;}
+.minimenu{position: relative;margin: 0px;background:#333333; border: 1px solid #CCC;}
+.minimenu div{overflow: hidden;position: relative;font: 18px/40px 'PT Sans Narrow';color: #ffffff;text-align:center;text-transform:uppercase;font-weight:bold;}
+.minimenu select{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%; opacity: 0;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);    cursor: pointer;}
+
+/* -------------------------------------------- */
+/* ------------------Content------------------- */
+#content {margin-bottom: 60px;}
+#content .wrap-content{}
+
+#contenido {background-color: #fff;clear: inherit;margin: 0;min-height: 360px;padding: 5px;font-family: "Segoe UI","Helvetica","Trebuchet MS","Lucida Grande","verdana","arial","sans-serif";}
+#contenido .parrafoimagen {float: left;margin-left: 3px;margin-right: 15px;margin-top: 10px;}
+
+#loading{position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(100,100,100,0.5);z-index: 99999;display: none;}
+#loading img{position: absolute; top: 50%;left: 50%;margin: -21px 0 0 -191px;}
+
+.block01 {float: left;width: 40%;margin: 200px 30%;}
+.block01 h1{float: left; width: 100%;margin: 0;font-size: 30px; line-height:40px; color:red;font-weight: bolder;text-align: center;margin-bottom: 60px;display: none;}
+.block01 h2{float: left; width: 70%;margin: 0 15%;font-size: 20px; line-height:25px; color:#5889d6;font-weight: bolder;text-align: center;}
+.block01 h3{float: left; width: 80%;margin: 1% 10%;font-size: 30px; line-height:32px; color:black;font-weight: bolder;text-align: center;}
+.block01 form{float: left; width: 70%;margin: 2% 15%;}
+.block01 form label{float: left;width: 26%;margin: 2%;line-height:25px;}
+.block01 form input{float: left;width: 60%;margin: 2%;border: solid 1px black;line-height:25px;padding: 0 1%;}
+.block01 form input[type="button"]{float: right;width: 45%;margin: 5% 4% 5% 1%;border: solid 1px #bbb;line-height:25px;cursor: pointer;color: #303030;background: rgb(221,221,221);font-size: 100%;}
+.block01 .grabando{width: 100px;height:18px;display: none;margin-left: 60%}
+.block01 button{float: right;width: 45%;margin: 5% 4% 5% 1%;border: solid 1px #bbb;line-height:25px;cursor: pointer;color: #303030;background: rgb(221,221,221);font-size: 100%;}
+.block01 .caja_gris{}
+.block01 .entrar{}
+.block01 .recordar{}
+.block01 .language{}
+.row.block01.bannerLogin{margin:50px 30% 140px;}
+.block02 {text-align: left;}
+.block02 h2{float: left;width: 100%;font-size:24px; line-height:30px; color:#5889d6; font-weight: normal;}
+.block02 .botonera{float: left; width: 100%;height: 40px;line-height: 40px;border: 1px solid #bbb;margin-top: 10px;}
+.block02 .botonera .boton{float: left;margin: 5px 0;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .botonera .boton_activo{color: #fff;background: rgb(121,121,121);}
+.block02 .botonera .first{margin-left: 20px;}
+.block02 .botonera .tab{}
+.block02 .botonera .tab.first{margin-left: 50px;}
+.block02 .botonera .busqueda_elemento{float: left;margin: 5px 10px;padding: 0px 5px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 28px; font-size: 12px;}
+.block02 .botonera .busqueda_elemento label{float: left;margin: 0px 5px;}
+.block02 .botonera .busqueda_elemento input{float: left;margin: 3px 5px;line-height: 22px;padding: 0px 5px;text-align: center;}
+.block02 .seleccionar{float: left; width: 100%;min-height: 40px;line-height: 40px;border: none;margin: 0;background: #f5f5f5;}
+.block02 .seleccionar .titulo_seleccionar{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .seleccionar .titulo_aforo{float: right;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;font-weight: bold;}
+.block02 .seleccionar .accion_seleccionar{float: left;margin: 5px;padding: 3px 0;color: #5889d6;border: none;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .seleccionar .accion_seleccionar select{float: left;display: inline-block;width: 250px;}
+.block02 .seleccionar .accion_seleccionar select.select_corto{width: 120px;}
+.block02 .seleccionar .accion_seleccionar select.select_medio{width: 170px;}
+.block02 .seleccionar .accion_seleccionar .pq-select-button{line-height: 24px;padding: 0 5px;}
+.block02 .seleccionar .accion_seleccionar .pq-select-item{line-height: 17px;}
+.block02 .seleccionar .accion_seleccionar input{float: left; margin: 0px; padding: 0px 5px; line-height: 24px;}
+.block02 .seleccionar .accion_seleccionar .boton{float: left;margin: 0px 20px;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 20px; font-size: 12px;cursor: pointer;}
+.block02 .seleccionar .accion_seleccionar label{float: left;margin: 0px 5px 0px 20px;padding: 2px 0;line-height: 24px;color: #949494;font-size: 14px;}
+.block02 .seleccionar .accion_seleccionar select.select_ancho{width: 200px;height: 25px;margin: 0px 20px;}
+.block02 .seleccionar .accion_seleccionar .acronimos{float: left;}
+.block02 .seleccionar .accion_seleccionar .acronimos .acronimo{float: left;margin: 7px -15px 5px 20px;padding: 2px 0;line-height: 24px;color: #949494;font-size: 14px;}
+.block02 .tabla{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+.block02 .tabla table{float: left; width: 98%;margin: 1%}
+.block02 .tabla_comu{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+.block02 .tabla_comu table{float: left; width: 10%;margin: 1%}
+.block02 .tabla_m table{float: right; width: 42%;margin: 1%; border: 1px solid #bbb;}
+.block02 .tabla_2-3{float: left; width: 60%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 1%;background: transparent;}
+.block02 .tabla_2-3 table{float: left; width: 98%;margin: 1%;}
+.block02 .tabla_2-3 .seleccionar{float: left; width: 100%;min-height: 40px;line-height: 40px;border: none;margin: 0;background: #f5f5f5;}
+.block02 .tabla_2-3 .seleccionar .titulo_seleccionar{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .tabla_2-3 .seleccionar .accion_seleccionar{float: left;margin: 5px;padding: 3px 0;color: #5889d6;border: none;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .tabla_1-3{float: left; width: 34%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 1%;background: transparent;}
+.block02 .tabla_1-3 table{float: left; width: 98%;margin: 1%;}
+.block02 .tabla_1-3 .seleccionar{float: left; width: 100%;min-height: 40px;line-height: 40px;border: none;margin: 0;background: #f5f5f5;}
+.block02 .tabla_1-3 .seleccionar .titulo_seleccionar{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .tabla_1-3 .seleccionar .accion_seleccionar{float: left;margin: 5px;padding: 3px 0;color: #5889d6;border: none;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .tabla #map-canvas{float: left;width: 100%;height: 500px;margin: 0px;padding: 0px;transform: translateZ(0); }
+.block02 .tabla #map-canvas img{max-width: none;}
+.block02 .tabla .calendario{float: left;width: 73%;margin: 1%;}
+.block02 .tabla .calendario .year{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .tabla .calendario .year .left_year{font-size: 14px;text-align: right;margin-right:2%;cursor: pointer;}
+.block02 .tabla .calendario .year .right_year{font-size: 14px;text-align: left;margin-left:2%;cursor: pointer;}
+.block02 .tabla .calendario .cajames{float: left;width: 23%;margin: 1%;height:140px;}
+.block02 .tabla .calendario .cajames .mes{float: left;width: 100%;margin: 0px;line-height: 16px;font-size: 14px;text-align: left;text-transform: capitalize;color: #5889d6;}
+.block02 .tabla .calendario .cajames .dias_nombre{float: left;width: 100%;margin: 1% 0px;line-height: 16px;font-size: 12px;text-align: center;text-transform: uppercase;color: #5889d6;border-bottom: 1px solid #5889d6;}
+.block02 .tabla .calendario .cajames .dias_nombre tbody tr td{padding: 0;width: 14%;}
+.block02 .tabla .calendario .cajames .dias_mes{float: left;width: 100%;margin: 0px;line-height: 18px;font-size: 12px;text-align: center;height: 100px;}
+.block02 .tabla .calendario .cajames .dias_mes tbody tr td{padding: 0;color: #C0C0C0;width: 14%;}
+.block02 .tabla .calendario .cajames .dias_mes .activo{font-weight: bold;color: #949494;}
+.block02 .tabla .calendario .cajames .dias_mes .plan{border-radius: 10px;padding: 0 12%; -webkit-border-radius: 10px;-moz-border-radius: 10px;}
+.block02 .tabla .calendario .cajames .dias_mes .planMultiEvento{border-radius: 10px;padding: 0 12%; background-color: lightblue; border: 1px solid black; -webkit-border-radius: 10px;-moz-border-radius: 10px;}
+.block02 .tabla .calendario_educacion{float: left;width: 73%;margin: 1%;}
+.block02 .tabla .calendario_educacion .week{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .tabla .calendario_educacion .week .previa{font-size: 14px;text-align: right;margin-right:10%;cursor: pointer;}
+.block02 .tabla .calendario_educacion .week .proxima{font-size: 14px;text-align: left;margin-left:10%;cursor: pointer;}
+.block02 .tabla .calendario_educacion .semana{float: left;width: 98%;margin: 1%;height:auto;min-height: 380px;}
+.block02 .tabla .calendario_educacion .semana .tabla_semana{float: left;width: 100%;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+.block02 .tabla .calendario_educacion .semana .tabla_semana thead tr th{float: left;width: 10%;height:40px;text-align: center;padding: 10px; font-size: 11px; background: #5889d6; color: #FFF;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+.block02 .tabla .calendario_educacion .semana .tabla_semana tbody tr td{float:left;width: 9.80%;height:40px;line-height:40px;text-align: center;padding: 10px;font-size: 11px;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+/**  fila par **/
+.fila_par{background-color:#ddd;  border: 1px solid #FFFFFF;}
+
+
+/*.block02 .tabla .calendario_educacion .semana .tabla_semana tbody tr:nth-child(even){background: #ddd; width: 11%}
+.block02 .tabla .calendario_educacion .semana .tabla_semana tbody tr:nth-child(odd){background: #fff;}*/
+
+/***  electivas y no electivas***/
+
+.block02 .tabla .calendario_educacion .jornada{float: left;width: 100%;margin: 0%;height:auto;min-height: 380px;}
+.block02 .tabla .calendario_educacion .jornada .tabla_jornada thead tr th{float: left;width: 11%;height:40px;text-align: center;padding: 7px; font-size: 11px; background: #5889d6; color: #FFF;}
+.block02 .tabla .calendario_educacion .jornada .tabla_jornada tbody td{float: left;width: 11%;height:40px;line-height:40px;text-align: center;padding: 8.2px;font-size: 11px;}
+
+
+
+
+
+/****  css de horarios educacion ***/
+.block05 {margin:10px; text-align: left;}
+.block05 .tabla{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+.block05 .tabla .horarios_educacion{float: left;width: 100%;margin: 1%;text-align: center;}
+.block05 .tabla .horarios_educacion .boton_first{float: left;margin: 5px 10px;padding: 3px 15px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block05 .tabla .horarios_educacion .boton_first{margin-left: 20px;}
+.block05 .tabla .horarios_educacion .busqueda_elementos {margin-left: 100px;}
+.block05 .tabla .horarios_educacion .busqueda_elementos{float: left; margin: 5px 10px;padding: 0px 5px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 28px; font-size: 12px;}
+.block05 .tabla .horarios_educacion .busqueda_elementos label{float: left;margin: 0px 5px;}
+.block05 .tabla .horarios_educacion .busqueda_elementos input{float: left;margin: 3px 5px;line-height: 22px;padding: 0px 5px;text-align: center;}
+.block05 .tabla .horarios_educacion .semana{float: left;width: 98%;margin: 1%;height:auto;min-height: 380px;}
+.block05 .tabla .horarios_educacion .semana .tabla_semana{float: left;width: 100%;margin: 1px;border-spacing: 5px;border-collapse: separate; padding: 10px}
+.block05 .tabla .horarios_educacion .semana .tabla_semana thead tr th{float: left;width: 11%;height:40px;text-align: center;padding: 0px; font-size: 12px; background: #5889d6; color: #FFF;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+.block05 .tabla .horarios_educacion .semana .tabla_semana tbody tr:nth-child(even){background: #ddd; }
+.block05 .tabla .horarios_educacion .semana .tabla_semana tbody tr:nth-child(odd){background: #fff;}
+.block05 .tabla .horarios_educacion .semana .tabla_semana tbody td{float:left;width: 10.9%;height:55px;line-height:27px;text-align: left;padding: 1px;font-size: 12px;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+.block05 .tabla .horarios_educacion .semana .tabla_semana input, textarea {border: 1px solid #bbb; padding:1px; margin: 1px 0px 1px 10%; text-align: center; line-height: 2px;}
+.block05 .tabla .horarios_educacion .semana .tabla_semana .celda_educacion .sub_celda_educacion{float: left; width: 100%; margin: 0px; line-height: 25px;} 
+
+.block05 .tabla .horarios_educacion form .item_elemento {float: left;line-height: 50px; min-height: 60px;}
+.block05 .tabla .horarios_educacion form .item_elemento label {float: left;margin: 1px 5px 5px 10px;padding: 2px 0;line-height: 24px;}
+.block05 .tabla .horarios_educacion form .item_elemento  .pq-select-button{line-height: 24px;padding: 0px 5px;margin: 5px; max-width:250px;}
+.block05 .tabla .horarios_educacion form .item_elemento  .pq-select-item{line-height: 17px; max-width:250px;}
+.block05 .tabla .horarios_educacion form .item_elemento  .force{font-weight: bolder; margin: 5px 5px 5px 10px;}
+.block05 .tabla .horarios_educacion form .item_elemento .seleccionar .accion_seleccionar .pq-select-button{line-height: 24px;padding: 0 5px;max-width:250px;}
+.block05 .tabla .horarios_educacion form .item_elemento .seleccionar .accion_seleccionar .pq-select-item{line-height: 17px;max-width:250px;}
+
+/*.block05 .tabla .horarios_educacion .week{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block05 .tabla .horarios_educacion .week .previous{font-size: 14px;text-align: right;margin-right:10%;cursor: pointer;}
+.block05 .tabla .horarios_educacion .week .next{font-size: 14px;text-align: left;margin-left:10%;cursor: pointer;}
+.block05 .tabla .horarios_educacion .busqueda_elemento {float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}*/
+
+
+/****  estilo de galeria y modal de vehiculo****/
+.modalDialog .divActualizacionesVeh {width: 400px;height: 300px;position: relative;margin: 10% auto;padding: 5px 20px 13px 11px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.modalDialog .divActualizacionesVeh .buttonmodalActualizaciones {padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;bottom: 5%;right: 5%;position: absolute;}
+.modalDialog .divActualizacionesVeh .textoActualizaciones{overflow: hidden; height: 80px; max-height: 80px; inline-size: 400px; overflow-wrap: break-word;}
+.modalDialog .divActualizacionesVeh .divImagen {display: flex; justify-content: center}
+.modalDialog .divActualizacionesVeh .imgActualizaciones {top: 0;left: 0;right: 0;bottom: 15%;margin: auto;display: inline-block;width: auto;height: auto;max-width: 350px;max-height: 180px;}
+.modalDialog .divActualizacionesVeh .checkboxActualizaciones { vertical-align:middle;bottom: 7%;left: 5%;position: absolute; }
+.modalDialog .divActualizacionesVeh .labelActualizaciones { vertical-align:middle;bottom: 5%;left: 10%;position: absolute; }
+.modalDialog .divActualizacionesVeh .anterior {background: #606061;color: #FFFFFF;line-height: 25px;position: absolute;right: 430px;top: 50%;text-align: center;width: 24px;text-decoration: none;font-weight: bold;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;-moz-box-shadow: 1px 1px 3px #000;-webkit-box-shadow: 1px 1px 3px #000;box-shadow: 1px 1px 3px #000;cursor: pointer;}
+.modalDialog .divActualizacionesVeh .siguiente {background: #606061;color: #FFFFFF;line-height: 25px;position: absolute;left: 430px;top: 50%;text-align: center;width: 24px;text-decoration: none;font-weight: bold;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;-moz-box-shadow: 1px 1px 3px #000;-webkit-box-shadow: 1px 1px 3px #000;box-shadow: 1px 1px 3px #000;cursor: pointer;}
+.modalDialog .divContenido { min-width: 100%;max-width: 100%;min-height: 99%;max-height: 99%;overflow: hidden; }
+.modalDialog h7 {    position: absolute;top: 274px;right: 23px;width: auto;padding: 5px;border-radius: 50%;text-align: center;background: rgb(96 96 97);font-size: 13px;line-height: 18px;color: #ffffff;font-weight: normal;}
+#contenedor img{height: 100px;width: 100px; border: 3px solid grey;}
+#idVehiculo img{height: 100px;width: 100px; border: 3px solid grey;}
+.bggaleria{position: fixed;background: rgba(0,0,0,0.7);width: 100%;height: 100%;top: 0;left: 0;z-index: 1;display: none;}
+.galeria{position: absolute;background-color: #d3dce3;width: 550px;height: 453px;top: 50%;left: 50%;margin-top: -300px;margin-left: -250px;}
+/*.block02 .tabla  .tabla_listado tbody tr td .imagen2{float: left;width: 95%;height: 48%;margin: 1%;text-align: center;}
+.block02 .tabla  .tabla_listado tbody tr td .imagen2 img{width: auto;max-width: 100%;}
+.block02 .tabla  .tabla_listado tbody tr td .imagen2 img#img01 .modal {display: none; position: fixed; z-index: 1; padding-top: 100px; left: 0;top: 0;width: 100%; height: 100%;overflow: auto; background-color: rgb(0,0,0);background-color: rgba(0,0,0,0.9);}
+.block02 .tabla  .tabla_listado tbody tr td .imagen2 img#img01 .modal-content {margin: auto;display: block;width: 80%; max-width: 700px;}
+*/
+
+/****  estilo de switch****/
+
+.b {
+  display: block;
+}
+
+.toggle-1 {
+  position: absolute;
+  top: 43.5%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-2 {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-3 {
+  position: absolute;
+  top: 57%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-4 {
+  position: absolute;
+  top: 63.5%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-5 {
+  position: absolute;
+  top: 70.5%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-6 {
+  position: absolute;
+  top: 77.5%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-7 {
+  position: absolute;
+  top: 84%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.toggle-8 {
+  position: absolute;
+  top: 90.7%;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: #babdb6;
+  margin: -22px 110px;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px 1px rgba(0,0,0,.05);
+}
+.check {  
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 6;
+}
+   .check:checked ~ .track {
+    box-shadow: inset 0 0 0 20px #5889d6;
+  }
+  .check:checked ~ .switch {
+    right: 2px;
+    left: 22px;
+    transition: .35s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    transition-property: left, right;
+    transition-delay: .05s, 0s;
+  }
+.switch {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  bottom: 2px;
+  right: 22px;
+  background-color: #fff;
+  border-radius: 36px;
+  z-index: 1;
+  transition: .35s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+  transition-property: left, right;
+  transition-delay: 0s, .05s;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: .35s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+  border-radius: 40px;
+}
+
+
+/********switch de contratos**********/
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 47px;
+  height: 16px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 12px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/**** RECORRIDOS ****/
+
+.block02 .tabla-rec {float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+.block02 .tabla-rec table{float: left; width: 98%;margin: 1%;}
+.block02 .tabla-rec #map-information {float: left;width: 20%;height: 500px; max-height: 500px; margin: 0px;padding: 0px;transform: translateZ(0); overflow: auto;}
+.block02 .tabla-rec #map-canvas{float: left;width: 80%;height: 500px;margin: 0px;padding: 0px;transform: translateZ(0); }
+.block02 .tabla-rec #map-canvas img{max-width: none;}
+
+.block02 .botonera .accion_intervalo_texto_inicio{float: left;margin-left: 135px; margin-top: 5px;padding: 3px 0;color: #5889d6;border: none;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .botonera .accion_intervalo{float: left;margin-left: 10px; margin-top: 5px;padding: 3px 0;color: #5889d6;border: none;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .botonera .accion_intervalo input{float: left; margin: 0px; padding: 0px 5px; line-height: 24px; border: 1px solid #999999;}
+
+.onoffswitch {float: left; width: 70px; margin-top: 8px; margin-left: 10px;    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;}
+.onoffswitch-checkbox {display: none;}
+.onoffswitch-label {display: block; overflow: hidden; cursor: pointer; border: 2px solid #999999; border-radius: 16px;}
+.onoffswitch-inner {display: block; width: 200%; margin-left: -100%; transition: margin 0.3s ease-in 0s;}
+.onoffswitch-inner:before, .onoffswitch-inner:after {display: block; float: left; width: 50%; height: 22px; padding: 0; line-height: 22px; font-size: 10px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold; box-sizing: border-box;}
+.onoffswitch-inner:before {content: "ON"; padding-left: 10px; background-color: #5889d6; color: #FFFFFF;}
+.onoffswitch-inner:after {content: "OFF"; padding-right: 10px; background-color: #EEEEEE; color: #999999; text-align: right;}
+.onoffswitch-switch {display: block; width: 18px; min-height: 15px; margin-left: 38px; margin-top: 1px; background: #FFFFFF; position: relative; top: 5; bottom: 0; right: 36px; border: 2px solid #999999; border-radius: 20px; transition: all 0.3s ease-in 0s;}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {margin-left: 0;}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {right: 0px;}
+
+
+
+
+.festivo{border-radius: 10px;padding: 0 12%;-webkit-border-radius: 10px;-moz-border-radius: 10px;border: 1px solid black;}
+
+.block02 .tabla .calendarios_laborales{float: left;width: 73%;margin: 1%;}
+.block02 .tabla .calendarios_laborales .year{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .tabla .calendarios_laborales .year .left_year{font-size: 14px;text-align: right;margin-right:2%;cursor: pointer;}
+.block02 .tabla .calendarios_laborales .year .right_year{font-size: 14px;text-align: left;margin-left:2%;cursor: pointer;}
+.block02 .tabla .calendarios_laborales .cajames{float: left;width: 23%;margin: 1%;height:140px;}
+.block02 .tabla .calendarios_laborales .cajames .mes{float: left;width: 100%;margin: 0px;line-height: 16px;font-size: 14px;text-align: left;text-transform: capitalize;color: #5889d6;}
+.block02 .tabla .calendarios_laborales .cajames .dias_nombre{float: left;width: 100%;margin: 1% 0px;line-height: 16px;font-size: 12px;text-align: center;text-transform: uppercase;color: #5889d6;border-bottom: 1px solid #5889d6;}
+.block02 .tabla .calendarios_laborales .cajames .dias_nombre tbody tr td{padding: 0;width: 14%;}
+.block02 .tabla .calendarios_laborales .cajames .dias_mes{float: left;width: 100%;margin: 0px;line-height: 18px;font-size: 12px;text-align: center;height: 100px;}
+.block02 .tabla .calendarios_laborales .cajames .dias_mes tbody tr td{padding: 0;color: #C0C0C0;width: 14%;}
+.block02 .tabla .calendarios_laborales .cajames .dias_mes .activo{font-weight: bold;color: #949494;}
+.block02 .tabla .calendarios_laborales .cajames .dias_mes .plan{border-radius: 10px;padding: 0 12%;-webkit-border-radius: 10px;-moz-border-radius: 10px;}
+.block02 .tabla .leyenda{float: left;width: 22%;margin: 1%;border-right: solid 1px;height: auto;}
+.block02 .tabla .leyenda .titulo{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .tabla .leyenda .lista_horarios{float: left;width: 90%;margin: 5%;text-align: center;line-height: 24px;font-size: 20px;height: auto;}
+.block02 .tabla .leyenda .lista_horarios .horario{float: left;width: 100%;font-size: 14px; text-align: left;}
+.block02 .tabla .leyenda .lista_horarios .horario .plan{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .tabla .leyenda .lista_horarios .plancalendario{float: left;width: 100%;font-size: 18px; text-align: left;line-height: 40px;font-weight: bold;}
+.block02 .tabla .leyenda .lista_festivos{float: left;width: 90%;margin: 5%;text-align: center;line-height: 24px;font-size: 20px;height: 450px;}
+.block02 .tabla .leyenda .lista_festivos .horario{float: left;width: 100%;font-size: 14px; text-align: left;}
+.block02 .tabla .leyenda .lista_festivos .horario .plan{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .tabla .leyenda_configuracion{float: left;width: 22%;margin: 1%;border-left: solid 1px;height: auto;}
+.block02 .tabla .leyenda_configuracion .titulo{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .tabla .leyenda_configuracion .lista_horarios{float: left;width: 90%;margin: 5%;text-align: center;line-height: 24px;font-size: 20px;height: auto;}
+.block02 .tabla .leyenda_configuracion .lista_horarios .horario{float: left;width: 100%;font-size: 14px; text-align: left;}
+.block02 .tabla .leyenda_configuracion .lista_horarios .horario .plan{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .tabla .leyenda_configuracion .lista_festivos{float: left;width: 90%;margin: 5%;text-align: center;line-height: 24px;font-size: 20px;height: 450px;}
+.block02 .tabla .leyenda_configuracion .lista_festivos .horario{float: left;width: 100%;font-size: 14px; text-align: left;}
+.block02 .tabla .leyenda_configuracion .lista_festivos .horario .plan{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .formulario{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 1% 0;background: transparent;}
+
+.block02 .formulario form{float: left; width: 98%;margin: 1%;}
+.block02 .formulario form .fila_items{float: left;width: 100%;height: auto;margin: 10px 0;}
+.block02 .formulario form .item_elemento{float: left;margin-right: 30px;line-height: 50px;min-height: 60px;}
+.block02 .formulario form .item_elemento select.chequeo {width: 64px;}
+.block02 .formulario form .oculto{display:none;}
+.block02 .formulario form .ancho{width: 100%;margin: 0;}
+.block02 .formulario form .medio_ancho{width: 50%;}
+.block02 .formulario form .item_elemento progress{float: left;width: 200%;margin: 0px 0px 0px 20px;border: solid 1pt black}
+.block02 .formulario form .contenedor_gratificacion {display: flex; flex-direction: row;}
+.block02 .formulario form .contenedor_gratificacion .gratif {display: flex; flex-direction: column;}
+/* For Firefox */
+.block02 .formulario form .item_elemento progress::-moz-progress-bar {background-color: blue;}
+/* For Chrome or Safari */
+.block02 .formulario form .item_elemento progress::-webkit-progress-bar {background: white;}
+.block02 .formulario form .item_elemento progress::-webkit-progress-value {background: blue;}
+.block02 .formulario form .item_elemento label{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .item_elemento label.moneda{float: left;margin: 5px 0px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .item_elemento p{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .item_elemento input{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;}
+.block02 .formulario form .item_elemento input.hasDatepicker{text-align: center;}
+.block02 .formulario form .item_elemento input[type="button"]{float: left;width: 50%;margin: 0px 0px 0px 20px;border: solid 1px #bbb;line-height:10px;cursor: pointer;color: #303030;background: rgb(221,221,221);font-size: 100%;}
+.block02 .formulario form .item_elemento .grabando{width: 80px;height:18px; display:none}
+.block02 .formulario form .item_elemento .info_voz{width: 18px;height:18px;cursor: pointer;margin: 0.8em}
+.block02 .formulario form .item_elemento input[type="checkbox"]{margin-top: 10px;}
+.block02 .formulario form .item_elemento input[type="file"]{border: none;}
+.block02 .formulario form .item_elemento input[type="time"]{text-align: center;}
+.block02 .formulario form .item_elemento input[type="number"]{width: 100px;text-align: right;}
+.block02 .formulario form .item_elemento textarea{float: left;width:350px;height: 150px;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;text-align: left;}
+.block02 .formulario form .item_elemento textarea.grande{width: 98%;}
+.block02 .formulario form .item_elemento textarea.intermedio{width: 90%;}
+.block02 .formulario form .item_elemento textarea.medio{width: 45%;}
+.block02 .formulario form .item_elemento select{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;width: 250px;}
+.block02 .formulario form .item_elemento select.select_xlargo{width: 300px;}
+.block02 .formulario form .item_elemento select.select_corto{width: 120px;}
+.block02 .formulario form .item_elemento select.select_medio{width: 170px;}
+.block02 .formulario form .item_elemento .pq-select-button{line-height: 24px;padding: 0px 5px;margin: 5px;}
+.block02 .formulario form .item_elemento .pq-select-item{line-height: 17px;}
+.block02 .formulario form .item_elemento .force{font-weight: bolder;}
+.block02 .formulario form .item_elemento img{float: left;max-height: 100px;margin: 0 20px;}
+.block02 .formulario form .item_elemento .caracteristicas{float: left;line-height: 25px;height: 150px;width: 100px;}
+.block02 .formulario form .item_elemento .caracteristicas label{float: left;line-height: 25px;height: 25px;margin-left: 20px;}
+.block02 .formulario form .item_elemento .caracteristicas input{float: left;line-height: 25px;height: 25px;margin-left: 15px;}
+.block02 .formulario form .item_elemento .caracteristicas input[type="checkbox"]{margin-top: 8px;}
+.block02 .formulario form .item_elemento .categorias{float: left;line-height: 25px;height: 150px;width: 115px;}
+.block02 .formulario form .item_elemento .categorias label{float: left;line-height: 25px;height: 25px;margin-left: 20px;}
+.block02 .formulario form .item_elemento .categorias input{float: left;line-height: 25px;height: 25px;margin-left: 15px;}
+.block02 .formulario form .item_elemento .categorias input[type="checkbox"]{margin-top: 8px;}
+.block02 .formulario form .item_elemento .boton{float: left;margin: 5px 20px;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 20px; font-size: 12px;cursor: pointer;}
+.block02 .formulario form .listado{width: 98%;margin: 0 1%;}
+.block02 .formulario form .infoadicional{display: none;}
+.block02 .formulario form .ubicacion{display: none;}
+.block02 .formulario form .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .item_elemento span.accion_seleccionar{float: left;margin: 5px;padding: 3px 0;color: #5889d6;border: none;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .formulario form .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .item_elemento .fila_head .celda_head{float: left;width: 14%;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_head .celda_head_first{float: left;width: 30px;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_head .celda_head_devolucion{float: left;width: 10%;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_head .celda_head_pregunta{float: left;width: 90%;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_head .celda_head_pregunta_larga{float: left;width: 70%;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_head .celda_head_respuesta{float: left;width: 15%;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_head .celda_head_radio{float: left;width: 100%;margin: 0px;display: table-cell;}
+.block02 .formulario form .item_elemento .fila_body{float: left;width: 100%;margin: 1px 0px;padding: 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .item_elemento .fila_body .celda_body{float: left;width: 14%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body input[type="number"]{margin: 0px 5px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_first{float: left;width: 30px;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_pregunta{float: left;width: 90%;margin: 0px;font-weight: 700 ;display: table-cell;line-height: 25px;font-size:13px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_pregunta_larga{float: left;width: 69%;margin: 0px;display: table-cell;line-height: 25px;font-size:13px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_titulo_largo{float: left;width: 69%;margin: 0px;display: table-cell;line-height: 25px;font-weight: bold;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_radio{float: left;width: 95%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_radio input{margin: 5px 10px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_text{float: left;width: 10%;margin: 0px 15px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_text_respuesta{float: left;width: 15%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_devolucion{float: left;width: 10%;margin: 0px;display: table-cell;line-height: 35px;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_devolucion input[type="text"]{width: 90%;margin: 5px 5%;}
+.block02 .formulario form .item_elemento .fila_body .celda_body_devolucion select{width: auto;}
+.block02 .formulario form .item_elemento .fila_body .celda_body .tabla_accion2{font-size: 12px;padding: 0 5px;color: #cc0000;cursor: pointer;}
+.block02 .formulario form .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .item_elemento .boton_documento{float: left;margin: 5px;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .formulario form .recursos .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .recursos .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .recursos .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .recursos .item_elemento .fila_head .celda_head{float: left;width: 10%;margin: 0px;display: table-cell;}
+.block02 .formulario form .recursos .item_elemento .fila_body{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .recursos .item_elemento .fila_body .celda_body{float: left;width: 10%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .recursos .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .recursos .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .seguridad .item_elemento select[multiple="multiple"]{float: left;display: inline-block;width: 250px;}
+.block02 .formulario form .seguridad .item_elemento .pq-select-button{line-height: 24px;padding: 0 5px;margin: 5px;font-size: 12px;}
+.block02 .formulario form .experiencia .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .experiencia .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .experiencia .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .experiencia .item_elemento .fila_head .celda_head{float: left;width: 14%;margin: 0px;display: table-cell;}
+.block02 .formulario form .experiencia .item_elemento .fila_body{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .experiencia .item_elemento .fila_body .celda_body{float: left;width: 14%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .experiencia .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .experiencia .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .formacion .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .formacion .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .formacion .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .formacion .item_elemento .fila_head .celda_head{float: left;width: 14%;margin: 0px;display: table-cell;}
+.block02 .formulario form .formacion .item_elemento .fila_body{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .formacion .item_elemento .fila_body .celda_body{float: left;width: 14%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .formacion .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .formacion .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .certificados .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .certificados .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .certificados .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .certificados .item_elemento .fila_head .celda_head{float: left;width: 12%;margin: 0px;display: table-cell;}
+.block02 .formulario form .certificados .item_elemento .fila_body{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .certificados .item_elemento .fila_body .celda_body{float: left;width: 12%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .certificados .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .certificados .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .idiomas .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .idiomas .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .idiomas .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .idiomas .item_elemento .fila_head .celda_head{float: left;width: 12%;margin: 0px;display: table-cell;}
+.block02 .formulario form .idiomas .item_elemento .fila_body{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .idiomas .item_elemento .fila_body .celda_body{float: left;width: 12%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .idiomas .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .idiomas .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .ResumenCV .item_elemento h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.block02 .formulario form .ResumenCV .item_elemento .tabla{float: left;margin: 0 1%;width: 98%;display: table;border: none;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_head{float: left;width: 100%;margin: 0px;display: table-row;font-weight: bolder;line-height: 20px;border-bottom: 2px solid;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_head .celda_head{float: left;width: 25%;margin: 0px;display: table-cell;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_body{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_resumen{float: left;width: 100%;margin: 0px;padding: 0px;display: table-row;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_body .celda_body{float: left;width: 15%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_resumen .celda_resumen{float: left;width: 12%;margin: 0px;display: table-cell;line-height: 25px;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_body .celda_body .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .ResumenCV .item_elemento .fila_body .celda_body .tabla_separador{font-size: 16px;padding: 0 5px;}
+.block02 .formulario form .hardware .item_elemento select[multiple="multiple"]{float: left;display: inline-block;width: 250px;}
+.block02 .formulario form .hardware .item_elemento .pq-select-button{line-height: 24px;padding: 0 5px;margin: 5px;font-size: 12px;}
+.block02 .formulario form .tramos .item_elemento select[multiple="multiple"]{float: left;display: inline-block;width: 250px;}
+.block02 .formulario form .tramos .item_elemento input[type="number"]{text-align: right;}
+.block02 .formulario form .tramos .item_elemento .pq-select-button{line-height: 24px;padding: 0 5px;margin: 5px;font-size: 12px;}
+.block02 .formulario form .configuracion_horario{float: left;width: 100%;margin: 0px;}
+.block02 .formulario form .configuracion_horario label{float: left;width: 98%;margin: 1%;padding: 2px 0;line-height: 24px;font-size: 20px;}
+.block02 .formulario form .configuracion_horario .tabla_horario{float: left;width: 100%;margin: 0px;display: table;}
+.block02 .formulario form .configuracion_horario .header_horario{float: left;width: 100%;margin: 5px 0px;display: table-row;font-weight: bolder;text-align: center;line-height: 30px;border-bottom: 2px solid;}
+.block02 .formulario form .configuracion_horario .header_horario .celda_horario{float: left;width: 9%;margin: 0px;display: table-cell;}
+.block02 .formulario form .configuracion_horario .header_horario .celda_horario .linea_1{float: left;width: 100%;}
+.block02 .formulario form .configuracion_horario .header_horario .celda_horario .linea_2{float: left;width: 50%;}
+.block02 .formulario form .configuracion_horario .fila_horario{float: left;width: 100%;margin: 0px;padding: 5px 0px;display: table-row;border-bottom: 1px solid;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario{float: left;width: 9%;margin: 0px;display: table-cell;line-height: 50px;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario select {margin: 10px;width: 120px;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario input {margin: 10px 30%;text-align: center;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario input[type="checkbox"] {margin: 15px 45%;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario .subcelda_horario{float: left;width: 100%;margin: 0px;line-height: 25px;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario .subcelda_horario input {padding: 1px;margin: 1px 0px 1px 10%;text-align: center;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario .subcelda_horario input[type="checkbox"] {margin: 5px 10% 5px 12%;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario .subcelda_horario span{display: inline; width: auto; padding: 0; margin: 0px 1px 0px 1px; color: red;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario span{float: left;width: 40%;margin: 10px 30%;text-align: center;line-height: 30px;color: black;}
+.block02 .formulario form .configuracion_horario .fila_horario .celda_horario span.horas{float: left;width: 40%;margin: 10px 30%;text-align: center;line-height: 30px;color: #949494;}
+.block02 .formulario form .roles_menu .item_elemento label{width: 100%;}
+.block02 .formulario form .roles_menu .item_elemento .acceso_menu{float: left;line-height: 25px;height: 1830px;width: 200px;}
+.block02 .formulario form .roles_menu .item_elemento .acceso_menu label{float: left;width: 150px;margin-left: 10px;}
+.block02 .formulario form .roles_menu .item_elemento .acceso_menu input{float: left;line-height: 25px;height: 25px;margin-left: 15px;}
+.block02 .formulario form .roles_menu .item_elemento .acceso_menu input[type="checkbox"]{margin-top: 5px;}
+.block02 .formulario form .roles_gestion .item_elemento label{width: 100%;}
+.block02 .formulario form .roles_gestion .item_elemento .configura_gestion{float: left;line-height: 25px;height: auto;width: 250px;}
+.block02 .formulario form .roles_gestion .item_elemento .configura_gestion .force{width: 100%;}
+.block02 .formulario form .roles_gestion .item_elemento .configura_gestion label{float: left;width: 200px;margin-left: 10px;}
+.block02 .formulario form .roles_gestion .item_elemento .configura_gestion input{float: left;line-height: 25px;height: 25px;margin-left: 15px;}
+.block02 .formulario form .roles_gestion .item_elemento .configura_gestion input[type="checkbox"]{margin-top: 5px}
+
+.block02 .formulario form .conjuntos_general{float: left;width: 100%;}
+.block02 .formulario form .conjuntos_general .item_elemento{float: left;line-height: 25px;height: auto;width: auto;}
+.block02 .formulario form .conjuntos_empresa{float: left;width: 100%;}
+.block02 .formulario form .conjuntos_empresa .item_elemento{float: left;height: auto;width: 100%;margin: 0;}
+.block02 .formulario form .conjuntos_empresa .item_elemento label{width: 98%;}
+.block02 .formulario form .conjuntos_empresa .item_elemento .documentos_empresa{float: left;width: auto;display: table;}
+.block02 .formulario form .conjuntos_empresa .item_elemento .documentos_empresa .conjuntos_documentos_fila{display: table-row;}
+.block02 .formulario form .conjuntos_empresa .item_elemento .documentos_empresa .conjuntos_documentos_fila .conjuntos_documentos_celda{display: table-cell;}
+.block02 .formulario form .conjuntos_empresa .item_elemento .fecha{display: none;text-align: center;}
+.block02 .formulario form .conjuntos_empresa .item_elemento .titulo{width: 400px;}
+.block02 .formulario form .conjuntos_empleados{float: left;width: 100%;}
+.block02 .formulario form .conjuntos_empleados .item_elemento{float: left;height: auto;width: 100%;margin: 0;}
+.block02 .formulario form .conjuntos_empleados .item_elemento label{width: 98%;}
+.block02 .formulario form .conjuntos_empleados .item_elemento .documentos_empleado{float: left;width: auto;display: table;}
+.block02 .formulario form .conjuntos_empleados .item_elemento .documentos_empleado .conjuntos_documentos_fila{display: table-row;}
+.block02 .formulario form .conjuntos_empleados .item_elemento .documentos_empleado .conjuntos_documentos_fila .conjuntos_documentos_celda{display: table-cell;}
+.block02 .formulario form .conjuntos_empleados .item_elemento .fecha{display: none;text-align: center;}
+.block02 .formulario form .conjuntos_empleados .item_elemento .titulo{width: 400px;}
+.block02 .formulario form .conjuntos_autonomos{float: left;width: 100%;display: none;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento{float: left;height: auto;width: 100%;margin: 0;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento label{width: 98%;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento .documentos_autonomo{float: left;width: auto;display: table;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento .documentos_autonomo .conjuntos_documentos_fila{display: table-row;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento .documentos_autonomo .conjuntos_documentos_fila .conjuntos_documentos_celda{display: table-cell;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento .fecha{display: none;text-align: center;}
+.block02 .formulario form .conjuntos_autonomos .item_elemento .titulo{width: 400px;}
+
+.block02 .formulario form .conjuntos_compliance{float: left;width: 100%;}
+.block02 .formulario form .conjuntos_compliance .item_elemento{float: left;height: auto;width: 100%;margin: 0;}
+.block02 .formulario form .conjuntos_compliance .item_elemento label{width: 98%;}
+.block02 .formulario form .conjuntos_compliance .item_elemento .documentos_compliance{float: left;width: auto;display: table;}
+.block02 .formulario form .conjuntos_compliance .item_elemento .documentos_compliance .conjuntos_documentos_fila{display: table-row;}
+.block02 .formulario form .conjuntos_compliance .item_elemento .documentos_compliance .conjuntos_documentos_fila .conjuntos_documentos_celda{display: table-cell;}
+.block02 .formulario form .conjuntos_compliance .item_elemento .documentos_compliance .conjuntos_documentos_fila .conjuntos_documentos_celda input{float: left;margin-left: 30%;}
+.block02 .formulario form .conjuntos_compliance .item_elemento .fecha{text-align: center;}
+.block02 .formulario form .conjuntos_compliance .item_elemento .titulo{width: auto;text-transform: capitalize;}
+
+.block02 .formulario form .requerido{background-color: #ddd;}
+.block02 .formulario form .logotipo{clear: both;line-height: 100px;height: 100px;}
+
+.block02 .formulario form .calendarios_laborales{float: left;width: 73%;margin: 1%;}
+.block02 .formulario form .calendarios_laborales .year{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .formulario form .calendarios_laborales .year .left_year{font-size: 14px;text-align: right;margin-right:2%;cursor: pointer;}
+.block02 .formulario form .calendarios_laborales .year .right_year{font-size: 14px;text-align: left;margin-left:2%;cursor: pointer;}
+.block02 .formulario form .calendarios_laborales .cajames{float: left;width: 23%;margin: 1%;height:140px;}
+.block02 .formulario form .calendarios_laborales .cajames .mes{float: left;width: 100%;margin: 0px;line-height: 16px;font-size: 14px;text-align: left;text-transform: capitalize;color: #5889d6;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_nombre{float: left;width: 100%;margin: 1% 0px;line-height: 16px;font-size: 12px;text-align: center;text-transform: uppercase;color: #5889d6;border-bottom: 1px solid #5889d6;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_nombre tbody tr td{padding: 0;width: 14%;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_mes{float: left;width: 100%;margin: 0px;line-height: 18px;font-size: 12px;text-align: center;height: 100px;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_mes tbody tr td{padding: 0;color: #C0C0C0;width: 14%;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_mes .activo{font-weight: bold;color: #949494;cursor: pointer;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_mes .plan{border-radius: 10px;padding: 0 12%;-webkit-border-radius: 10px;-moz-border-radius: 10px;}
+.block02 .formulario form .calendarios_laborales .cajames .dias_mes .sol{border-radius: 10px;padding: 0 12%;-webkit-border-radius: 10px;-moz-border-radius: 10px;}
+.block02 .formulario form .leyenda{float: left;width: 22%;margin: 1%;border-left: solid 1px;height: auto;}
+.block02 .formulario form .leyenda .titulo{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .formulario form .leyenda .item_elemento{float: left;width: 80%;margin: 1% 10%;}
+.block02 .formulario form .leyenda .item_elemento select{float: left;margin: 1%;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;width: 98%;}
+.block02 .formulario form .leyenda .item_elemento .pq-select-button{line-height: 24px;padding: 0 5px;}
+.block02 .formulario form .leyenda .item_elemento .pq-select-item{line-height: 18px;}
+.block02 .formulario form .leyenda .lista_festivos{float: left;width: 90%;margin: 5%;text-align: center;line-height: 24px;font-size: 20px;height: 450px;}
+.block02 .formulario form .leyenda .lista_festivos .horario{float: left;width: 100%;font-size: 14px; text-align: left;cursor: pointer;}
+.block02 .formulario form .leyenda .lista_festivos .horario .plan{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .formulario form .leyenda .lista_festivos .estado{float: left;width: 100%;font-size: 14px; text-align: left;}
+.block02 .formulario form .leyenda .lista_festivos .estado .sol{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .formulario form .leyenda .lista_festivos .seleccionado{border: none;}
+.block02 .formulario form .planes_trabajo{float: left;width: 73%;margin: 1%;}
+.block02 .formulario form .planes_trabajo .year{float: left;width: 100%;margin: 5px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .formulario form .planes_trabajo .year span{cursor: pointer;}
+.block02 .formulario form .planes_trabajo .year  .tabla_separador{font-size: 22px ;padding: 0 8px; color:#5889d6;}
+.block02 .formulario form .planes_trabajo .year .left_year{font-size: 14px;text-align: right;margin-right:2%;}
+.block02 .formulario form .planes_trabajo .year .right_year{font-size: 14px;text-align: left;margin-left:2%;}
+.block02 .formulario form .planes_trabajo .cajames{float: left;width: 23%;margin: 1%;height:140px;}
+.block02 .formulario form .planes_trabajo .cajames .mes{float: left;width: 100%;margin: 0px;line-height: 16px;font-size: 14px;text-align: left;text-transform: capitalize;color: #5889d6;cursor: pointer;}
+.block02 .formulario form .planes_trabajo .cajames .dias_nombre{float: left;width: 100%;margin: 1% 0px;line-height: 16px;font-size: 12px;text-align: center;text-transform: uppercase;color: #5889d6;border-bottom: 1px solid #5889d6;}
+.block02 .formulario form .planes_trabajo .cajames .dias_nombre tbody tr td{padding: 0;width: 14%;cursor: pointer;}
+.block02 .formulario form .planes_trabajo .cajames .dias_mes{float: left;width: 100%;margin: 0px;line-height: 18px;font-size: 12px;text-align: center;height: 100px;}
+.block02 .formulario form .planes_trabajo .cajames .dias_mes tbody tr td{padding: 0;color: #C0C0C0;width: 14%;}
+.block02 .formulario form .planes_trabajo .cajames .dias_mes .activo{font-weight: bold;color: #949494;cursor: pointer;}
+.block02 .formulario form .planes_trabajo .cajames .dias_mes .plan{border-radius: 10px;padding: 0 12%;-webkit-border-radius: 10px;-moz-border-radius: 10px;}
+.block02 .formulario form .leyenda .listado_horarios{float: left;width: 90%;margin: 5%;text-align: center;line-height: 24px;font-size: 20px;height: auto;}
+.block02 .formulario form .leyenda .listado_horarios label{float: left;width: 100%;font-size: 14px; text-align: left;}
+.block02 .formulario form .leyenda .listado_horarios .horario{float: left;width: 100%;font-size: 14px; text-align: left;cursor: pointer;}
+.block02 .formulario form .leyenda .listado_horarios .horario .plan{border-radius: 10px;padding: 0px 5px;-webkit-border-radius: 10px;-moz-border-radius: 10px;margin-right: 5%;}
+.block02 .formulario form .leyenda .listado_horarios .seleccionado{border: none;}
+.block02 .formulario form #horas_grupos{float: left;width: 100%; margin: 1% 0px;}
+.block02 .formulario form .contenedor_reloj{float: left; width: auto;margin: 0 0 50px;}
+.block02 .formulario form .contenedor_reloj .flip-clock-wrapper{}
+.block02 .formulario form .item_elemento .boton_fichar{float: left;margin: 5px 10px;padding: 10px 20px;color: #949494;background: white;border: 1px solid #5889d6;line-height: 20px; font-size: 12px;cursor: pointer;border-radius: 10px;}
+.block02 .formulario form .item_elemento .boton_fichar:HOVER{background-color: #5889d6;color: white;}
+.block02 .formulario form .inc_botones{float: left;width: 50%;}
+.block02 .formulario form .inc_botones .item_elemento{float: left;width: 40%;margin: 0 5%;}
+.block02 .formulario form .inc_botones .boton_fichar{float: left;margin: 5px 10px;padding: 10px 20px;color: #949494;background: white;border: 1px solid #5889d6;line-height: 20px; font-size: 12px;cursor: pointer;border-radius: 10px;width: 75%;text-align: center}
+.block02 .formulario form .inc_botones .boton_fichar:HOVER{background-color: #5889d6;color: white;}
+.block02 .formulario form .inc_info{float: left;width: 50%;}
+.block02 .formulario form .inc_info .item_elemento{float: left;width: 90%;margin: 0 5%;}
+.block02 .formulario form .inc_bot_presencia {border-bottom: 1px solid #5889d6;margin-bottom: 20px;}
+
+.block02 .formulario form #nueva_regla{float: left;width: 100%;margin: 0%;}
+
+.block02 .formulario form .puntuar label{float: left; width: 98%;margin: 1%;font-size: 24px;line-height: 50px;font-weight: bolder;}
+.block02 .formulario form .puntuar .conocimiento{float: left; width: 24%; height: 121px; margin: 20px 2%; border: 1px solid #5889d6; border-radius: 32px;}
+.block02 .formulario form .puntuar .conocimiento h3{float: left;width: 100%;text-align: center;line-height: 39px;font-size: 35px;}
+.block02 .formulario form .puntuar .asignado{color: white;background-color: #5889d6;}
+.block02 .formulario form .puntuar .asignado label{float: left;width: 98%; margin: 1%;text-align: center;color: #0f0f0fa6;}
+.block02 .formulario form .puntuar .asignar{cursor: pointer;}
+.block02 .formulario form .validar .item_elemento{width: 30%;margin: 1% 10%;}
+.block02 .formulario form .validar .medio_ancho{width: 50%;margin: 1% 0;}
+.block02 .formulario form .validar .accion_moneda{float: left;width: 29.5%;height: 100px;margin: 2% 10%;border: 1px solid #5889d6;border-radius: 25px;cursor: pointer;}
+.block02 .formulario form .validar .accion_moneda h3{float: left;width: 100%;text-align: center;line-height: 50px;font-size: 35px;}
+.block02 .formulario form .tesoro label{float: left; width: 98%;margin: 1%;font-size: 24px;line-height: 50px;font-weight: bolder;}
+.block02 .formulario form .tesoro .bolsa_monedas{float: left;width: 49.5%;margin: 2% 25%;border: 1px solid #5889d6;border-radius: 25px;cursor: pointer;}
+.block02 .formulario form .tesoro .bolsa_monedas h3{float: left;width: 100%;text-align: center;line-height: 50px;font-size: 35px;}
+.block02 .formulario form .tesoro .bolsa_monedas label{float: left;width: 100%;margin: 2% 0;text-align: center;font-size: 50px;line-height: 60px;}
+.block02 .formulario form .premios label{float: left; width: 98%;margin: 1%;font-size: 24px;line-height: 50px;font-weight: bolder;}
+.block02 .formulario form .premios .fila_premio{float: left;width: 98%;margin: 10px 1%;}
+.block02 .formulario form .premios .fila_premio .premio_imagen{float: left;width:15%;height: 150px;margin: 0 2%;text-align: center;}
+.block02 .formulario form .premios .fila_premio .premio_imagen img{height: 100%;}
+.block02 .formulario form .premios .fila_premio .premio_texto{float: left;width:45%;height: 150px;margin: 0 2%;}
+.block02 .formulario form .premios .fila_premio .premio_texto h3{float: left;width: 100%;text-align: left;line-height: 35px;font-size: 25px;}
+.block02 .formulario form .premios .fila_premio .premio_texto p{float: left;width: 100%;text-align: left;line-height: 20px;font-size: 18px;}
+.block02 .formulario form .premios .fila_premio .premio_monedas{float: left;width: 7%;height: 150px;margin: 0 1%;border: solid 1px;border-radius: 20%;line-height: 150px;text-align: center;font-size: 22px;}
+.block02 .formulario form .premios .fila_premio .premio_monedas p{float: left;width: 100%;height: 50%;line-height: 75px;}
+.block02 .formulario form .premios .fila_premio .premio_pvp{float: left;width: 8%;height: 150px;margin: 0 1%;border: solid 1px;border-radius: 20%;line-height: 150px;text-align: center;font-size: 22px;}
+.block02 .formulario form .premios .fila_premio .premio_pvp p{float: left;width: 100%;height: 50%;line-height: 75px;}
+.block02 .formulario form .premios .fila_premio .premio_boton{float: left;width: 10%;height: 150px;margin: 0 1%;border: solid 1px;border-radius: 20%;line-height: 150px;text-align: center;font-size: 30px;cursor: pointer;}
+.block02 .formulario form .premios .fila_premio .premio_boton:HOVER{background-color: #949494;color: white;}
+
+.block02 .formulario form .no_activados{float: left;width: 49%; border: 1px solid;margin-right: 10px;}
+.block02 .formulario form .no_activados h3{float:left;width: 94%;margin: 0 3%;}
+.block02 .formulario form .no_activados .botonera{width: 98%;margin: 5px 1%;}
+.block02 .formulario form .no_activados .tabla_listado{width: 98%;margin: 1%;}
+.block02 .formulario form .activados{float: left;width: 49%; border: 1px solid;margin-left: 10px;}
+.block02 .formulario form .activados h3{float:left;width: 94%;margin: 0 3%;}
+.block02 .formulario form .activados .botonera{width: 98%;margin: 5px 1%;}
+.block02 .formulario form .activados .tabla_listado{width: 98%;margin: 1%;}
+
+.block02 .formulario form .no_activados_aforo{float: left;width: 45%; border: 1px solid;margin-right: 10px;}
+.block02 .formulario form .no_activados_aforo h3{float:left;width: 94%;margin: 0 3%;}
+.block02 .formulario form .no_activados_aforo .botonera{width: 98%;margin: 5px 1%;}
+.block02 .formulario form .no_activados_aforo .tabla_listado{width: 98%;margin: 1%;}
+.block02 .formulario form .activados_aforo{float: left;width: 45%; border: 1px solid;margin-left: 10px;}
+.block02 .formulario form .activados_aforo h3{float:left;width: 94%;margin: 0 3%;}
+.block02 .formulario form .activados_aforo .botonera{width: 98%;margin: 5px 1%;}
+.block02 .formulario form .activados_aforo .tabla_listado{width: 98%;margin: 1%;}
+
+
+.block02 .formulario form .no_activado{float: left;width: 39%; border: 1px solid;margin-right: 10px;}
+.block02 .formulario form .no_activado h3{float:left;width: 94%;margin: 0 3%;}
+.block02 .formulario form .no_activado .botonera{width: 98%;margin: 5px 1%;}
+.block02 .formulario form .no_activado .tabla_listado{width: 98%;margin: 1%;}
+.block02 .formulario form .activado{float: left;width: 39%; border: 1px solid;margin-left: 10px;}
+.block02 .formulario form .activado h3{float:left;width: 94%;margin: 0 3%;}
+.block02 .formulario form .activado .botonera{width: 98%;margin: 5px 1%;}
+.block02 .formulario form .activado .tabla_listado{width: 98%;margin: 1%;}
+.block02 .formulario form .tablabotones{float: left;width: 5%; margin: 50px 10px; text-align: center; align-content: center;}
+.block02 .formulario form .tablabotones .botoneraAgregar{width: 98%;margin: 20px 1%;}
+.block02 .formulario form .tablabotones .botoneraQuitar{width: 98%;margin: 20px 1%;}
+.block02 .formulario form .tablabotones .botoneraQuitar .boton{margin: 5px 0;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;}
+.block02 .formulario form .tablabotones .botoneraAgregar .boton{margin: 5px 0;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;}
+
+.block02 .formulario form .informacion_general{float: left;width: 100%;height: auto;margin: 10px 0;}
+.block02 .formulario form .informacion_general .oculto{display:none;}
+.block02 .formulario form .informacion_ropa{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form .informacion_tecnologia{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form .informacion_vehiculos{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form .informacion_herramientas{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form .informacion_epis{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form .informacion_mobiliario{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form .informacion_otros{float: left;width: 100%;height: auto;margin: 10px 0;display: none;}
+.block02 .formulario form embed{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;width: 99%;height: 600px;}
+
+.block02 .formulario form .centros .tabla_listado tbody tr td .input_tabla{float: left;margin: 4px;text-align: left;line-height: 20px;padding: 0 5px;border: 1px solid #949494 !important;-moz-appearance: textfield;}
+.block02 .formulario form .centros .tabla_listado tbody tr td .input_tabla::-webkit-outer-spin-button,
+.block02 .formulario form .centros .tabla_listado tbody tr td .input_tabla::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+.block02 .formulario form .centros .tabla_listado{float: left;width: 100%;height: auto;margin: 10px 0;}
+.block02 .formulario form .centros .tabla_listado tbody tr td input[type="text"]{border: none;display: flex; text-align: left; line-height: 20px;}
+
+.block02 .formulario form .comu .tabla_listado tbody tr{border-bottom: 1px solid #fff;}
+.block02 .formulario form .comu .tabla_listado tbody tr td .input_tabla{float: left;margin: 4px;text-align: left;line-height: 20px;padding: 0 5px;border: 1px solid #949494 !important;-moz-appearance: textfield;}
+.block02 .formulario form .comu .tabla_listado tbody tr td .input_tabla::-webkit-outer-spin-button,
+.block02 .formulario form .comu .tabla_listado tbody tr td .input_tabla::-webkit-inner-spin-button{-webkit-appearance: none;margin: 0;}
+.block02 .formulario form .comu .tabla_listado{float: left;width: 100%;height: auto;margin: 10px 0;}
+.block02 .formulario form .comu .tabla_listado tbody tr td input[type="text"]{border: none;display: flex; text-align: left; line-height: 20px;}
+.block02 .formulario form .comu .tabla_listado tbody tr td textarea{border: 1px solid #bbb;padding: 1px;margin: 1px 0px 1px 1%;text-align: left;line-height: 32px;width: 110%;}
+.block02 .formulario form .comu .tabla_listado tbody tr:hover{background-color: #ffffff;}
+.block02 .formulario form .comu input[type="file"]{border: none;}
+.block02 .formulario form .comu .tabla_listado tbody tr td input[type="number"] {border: 1px solid #949494 !important; padding: 4px; margin: 4px;width: 100%;}
+.block02 .formulario form .comu .tabla_listado tbody tr td select {width: 100%;padding: 4px;border: 1px solid #949494; margin: 4px; border-radius: 4px;background-color: #fff; font-size: 14px; appearance: none; -webkit-appearance: none; -moz-appearance: none;cursor: pointer; }
+
+
+
+.block02 .formulario form .asignacion_proyectos{float: none;margin-top: 120px;}
+.block02 .formulario form .asignacion_proyectos label{font-weight: bolder;}
+.block02 .formulario form .asignacion_proyectos .disponibles_proyectos{float: left;width: 45%;}
+.block02 .formulario form .asignacion_proyectos .disponibles_proyectos table{border-spacing: 10px;border-collapse: separate;border-spacing: 10px, 0px;line-height: 20px;}
+.block02 .formulario form .asignacion_proyectos .disponibles_proyectos table tr th{border-bottom: 2px solid;}
+.block02 .formulario form .asignacion_proyectos .disponibles_proyectos table tr td{border-bottom: 1px solid;}
+.block02 .formulario form .asignacion_proyectos .botones_proyectos{float: left;width: 10%;margin-top: 50px;}
+.block02 .formulario form .asignacion_proyectos .botones_proyectos button{display: block;margin-left: auto;margin-right: auto;margin-top: 5px;cursor: pointer}
+.block02 .formulario form .asignacion_proyectos .asignados_proyectos{float: left;width: 45%;}
+.block02 .formulario form .asignacion_proyectos .asignados_proyectos table{border-spacing: 10px;border-collapse: separate;border-spacing: 10px, 0px;line-height: 20px;}
+.block02 .formulario form .asignacion_proyectos .asignados_proyectos table tr th{border-bottom: 2px solid;}
+.block02 .formulario form .asignacion_proyectos .asignados_proyectos table tr td{border-bottom: 1px solid;}
+
+.block02 .formulario form .simulacion_turnos {overflow: auto}
+.block02 .formulario form .simulacion_turnos table {white-space: nowrap; text-align: center;}
+.block02 .formulario form .simulacion_turnos table tr th {border: 1px solid #bbb;padding-left: 2px;padding-right: 2px;}
+.block02 .formulario form .simulacion_turnos table tr td {border: 1px solid #bbb;padding-left: 2px;padding-right: 2px;}
+
+#area_seleccion{border: 1px solid;border-color: blue;background: rgba(0, 0, 255, 0.2);position: absolute;}
+.block02 .compara_calendarios{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+.block02 .compara_calendarios .listado_empleados{float: left; width: 15%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 1%;background: transparent;}
+.block02 .compara_calendarios .listado_empleados p{float: left;width: 95%;margin: 5px;line-height: 32px;text-align: center; cursor: pointer;}
+.block02 .compara_calendarios .listado_empleados p.titulo{line-height: 40px;font-weight: bold;font-size: 14px;margin-left: 10px;width: 94%;}
+.block02 .compara_calendarios .listado_empleados_centro{float: left; width: 15%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 1%;background: transparent;}
+.block02 .compara_calendarios .listado_empleados_centro p{float: left;width: 95%;margin: 5px;line-height: 61px;text-align: center; cursor: pointer;}
+.block02 .compara_calendarios .listado_empleados_centro p.titulo{line-height: 40px;font-weight: bold;font-size: 14px;margin-left: 10px;width: 94%;}
+.block02 .compara_calendarios .calendarios{float: left; width: 80%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 1%;background: transparent;}
+.block02 .compara_calendarios .calendarios table{float: left;width: 98%;margin: 10px 1%;font-size: 14px;line-height: 20px;user-select: none;}
+.block02 .compara_calendarios .calendarios table thead{font-weight: bolder;border-bottom: 1px solid #bbb;}
+.block02 .compara_calendarios .calendarios table thead tr th{padding: 5px 10px;text-align: center;min-width: 8%;}
+.block02 .compara_calendarios .calendarios table thead tr th.hoy{background-color: #f5f5f5;}
+.block02 .compara_calendarios .calendarios table tbody tr{border-bottom: 1px solid #bbb;}
+.block02 .compara_calendarios .calendarios table tbody tr td{line-height: 30px;padding: 5px 10px;}
+.block02 .compara_calendarios .calendarios table tbody tr td.hoy{background-color: #f5f5f5;}
+
+.block02 .informe{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+.block02 .informe .grafico{float: left; width: 59%;min-height: 40px;line-height: 40px;margin: 5px;background: transparent;}
+.block02 .informe .leyenda{float: left; width: 39%;min-height: 40px;line-height: 40px;margin: 100px 5px;background: transparent;}
+.block02 .informe .leyenda .click{cursor: pointer;}
+.block02 .informe .leyenda .cuadro{float: left; width: 20px;height: 20px;border: 1px solid #bbb;margin: 9px 10px;background: transparent;}
+.block02 .informe .leyenda .nombre{float: left; width: 93%;line-height: 40px;margin: 0;font-size: 14px;}
+.block02 .informe h3{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+
+.block02 .paginar{float: left; width: 20%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 10px 40%;background: rgb(221,221,221);text-align: center;font-size: 20px;cursor: pointer;}
+
+.block02 .panel_board_col{float: left;width: 33%;height: auto;min-height: 400px;margin: 10px 0;}
+.block02 .panel_board_col h3{float: left; width: 90%; margin: 0 5%;}
+.block02 .panel_board_col h4{float: left; width: 90%; margin: 0 5%;text-align: center;font-size: 80px; line-height: 90px;margin: 10px 0;}
+.block02 .panel_board_col h5{float: left; width: 90%; margin: 0 5%;text-align: center;font-size: 40px; line-height: 50px;margin: 20px 0;}
+.block02 .panel_board_col .botonera{float: left;width: 100%;height: 40px;line-height: 40px;margin-top: 10px;border: none;}
+.block02 .panel_board_col .botonera .first {margin-left: 5%;}
+.block02 .panel_board_col .grafico{float: left; width: 98%; margin: 50px 1%;}
+.block02 .panel_board_col .grafico img{cursor: pointer;}
+.block02 .separator_right{border-right: 2px #e3e5e5 solid;}
+.block02 .separator_left{border-left: 2px #e3e5e5 solid;}
+
+.block02 .panel_board_full{float: left;width: 98%;height: auto;min-height: 400px;margin: 10px 1%;}
+.block02 .panel_board_full h3{float: left; width: 90%; margin: 0 5%;font-size: 24px;}
+.block02 .panel_board_full .tablon_avisos{float: left; width: 98%; margin: 10px 1%;}
+.block02 .panel_board_full .tablon_avisos .fila_aviso{float: left;background-color: transparent;width: 90%; margin: 1px 5%;padding: 5px 1%;cursor: pointer;border: 1px solid #e3e5e5;border-radius: 10px;}
+.block02 .panel_board_full .tablon_avisos .fila_aviso:hover{background-color: #e3e5e5;}
+
+.block02 .tablon_noticias_marco{float: left;width: 80%;height: 500px;margin: 10px 10%;}
+.block02 .tablon_noticias_marco h3{float: left; width: 100%; margin: 0;font-size: 24px;line-height: 30px;text-align: center;}
+.block02 .tablon_noticias_marco .contenedor{float: left;width: 98%;height: 98%;margin: 1%;border: 5px dotted rgb(115, 111, 111);}
+.block02 .tablon_noticias_marco .contenedor .noticia{float: left;width: 23%;height: 48%;margin: 1%;}
+.block02 .tablon_noticias_marco .contenedor .click{cursor: pointer;}
+.block02 .tablon_noticias_marco .contenedor .noticia .imagen{float: left;width: 98%;height: 48%;margin: 1%;text-align: center;}
+.block02 .tablon_noticias_marco .contenedor .noticia .imagen img{width: auto;max-width: 100%;height: 100%;}
+.block02 .tablon_noticias_marco .contenedor .noticia .titulo{float: left;width: 98%;height: 8%;margin: 1%;}
+.block02 .tablon_noticias_marco .contenedor .noticia .titulo h4{float: left; width: 100%; margin: 0;font-size: 18px;line-height: 20px;text-align: left;}
+.block02 .tablon_noticias_marco .contenedor .noticia .texto{float: left;width: 98%;height: 38%;margin: 1%;}
+.block02 .tablon_noticias_marco .contenedor .noticia .texto p{float: left;width: 98%;height: 98%;margin: 1%;font-size: 14px;line-height: 18px;text-align: left;}
+
+
+/*css para modulo de galeria en teletrabajo en capturas*/
+.block02 .tablon_galeria_img{display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; width: 80%;height: auto; margin: 10px 10%;}
+.block02 .tablon_galeria_img .contenedor{float: left;border: 1px solid #bbb;margin-top: 10px;width:100%;}
+.block02 .tablon_galeria_img .contenedor .noticia{float: left;width: 20%; min-width: 240px;height: 20%;max-height: 170px;margin: 3% 2%;}
+.block02 .tablon_galeria_img .contenedor .click{cursor: pointer;}
+.block02 .tablon_galeria_img .contenedor .noticia .imagen{float: left;width: 100%;max-width: 240px;height: 100%; max-height: 150px;margin: 1%;text-align: center;}
+.block02 .tablon_galeria_img .contenedor .noticia .imagen img{width: auto;max-width: 100%;height: 100%;max-height: 200px;cursor: pointer; min-width: 250px;}
+.block02 .tablon_galeria_img .contenedor .noticia .imagen .DivTexto{width: auto;max-width: 100%;height: 100%;max-height: 135px; overflow: hidden; border: 1px solid #ccc; border-radius: 10px; cursor: pointer; min-width: 250px; padding: 0; font-size: 10px;}
+/* .block02 .tablon_galeria_img .contenedor .noticia .imagen .DivTexto p{font-size: 6px;}
+.block02 .tablon_galeria_img .contenedor .noticia .imagen .DivTexto h1,h2,h3,h4,h5,h6{font-size: 10px;} */
+.block02 .tablon_galeria_img .contenedor .noticia .titulo{float: left;width: 98%;height: 8%;margin: 1%;}
+.block02 .tablon_galeria_img .contenedor .noticia .titulo h4{float: left; width: 100%; margin: 0;font-size: 18px;line-height: 20px;text-align: left;}
+.block02 .tablon_galeria_img .contenedor .noticia .texto{float: left;width: 98%;height: 38%;margin: 1%;}
+.block02 .tablon_galeria_img .contenedor .noticia .texto p{float: left;width: 98%;height: 98%;margin: 1%;font-size: 14px;line-height: 18px;text-align: center;}
+.block02 .tablon_galeria_img .contenedor .noticia .imagen img:hover{opacity: 0.7;}
+.block02 .tablon_galeria_img .contenedor .noticia .imagen .DivTexto:hover{opacity: 0.7;}
+/*css para modulo de imagenes en teletrabajo en capturas*/
+.block02 .tablon_galeria{float: left;width: 80%;height: 500px;margin: 10px 10%;}
+.block02 .tablon_galeria .contenedor{float: left;border: 1px solid #bbb;margin-top: 10px;}
+.block02 .tablon_galeria .contenedor .gal{float: left;width: 100%;height: 100%;margin: 1%;}
+.block02 .tablon_galeria .contenedor .click{cursor: pointer;}
+.block02 .tablon_galeria .contenedor .gal .titulo{float: left;width: 98%;height: 8%;margin: 0.3%;}
+.block02 .tablon_galeria .contenedor .gal .titulo h4{float: left; width: 100%; margin: 0;font-size: 18px;line-height: 20px;text-align: left;}
+.block02 .tablon_galeria .contenedor .gal .texto{float: left;width: 98%;height: 38%;margin: 0.3%;}
+.block02 .tablon_galeria .contenedor .gal .texto p{float: left;width: 98%;height: 98%;margin: 0%;font-size: 14px;line-height: 18px;text-align: left;}
+.block02 .tablon_galeria .contenedor .gal .imagen{float: left;width: 95%;height: 48%;margin: 1%;text-align: center;}
+.block02 .tablon_galeria .contenedor .gal .imagen img{width: auto;max-width: 100%;height: 100%;}
+
+.InputFechaCaducidad{
+  width: 100px !important;
+  text-align: right !important;
+  float: left !important;
+  margin: 5px !important;
+  padding: 3px !important;
+  border: 1px solid #bbb !important;
+  line-height: 20px !important;
+  font-size: 12px !important;
+  display: block !important;
+}
+
+/* The Modal para capturas de pantallas en teletrabajo(background) */
+.modal {display: none; position: fixed; z-index: 1; padding-top: 100px; left: 0;top: 0;width: 100%; height: 100%;overflow: auto; background-color: rgb(0,0,0);background-color: rgba(0,0,0,0.9);}
+/* Modal Content (image)*/
+.modal-content {margin: auto;display: block;width: 80%;max-width: 700px;}
+/* Modal Content (text) */
+#modal_content {display: flex; flex-direction:column; gap: 10px; margin: auto;width: 80%;max-width: 700px; background-color: white; padding: 20px; border-radius: 10px;}
+/* Caption of Modal Image */
+#caption {margin: auto;display: block;width: 80%;max-width: 700px;text-align:center; color: #ccc;padding: 10px 0;height: 150px;}
+/* Add Animation */
+.modal-content, #caption, #modal_content {-webkit-animation-name: zoom;-webkit-animation-duration: 0.6s;animation-name: zoom;animation-duration: 0.6s;}
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+/* The Close Button */
+.closes {position: absolute;top: 15px;right: 35px;color: #f1f1f1;font-size: 40px;font-weight: bold;transition: 0.3s;}
+
+.closes:hover,
+.closes:focus {color: #bbb;text-decoration: none;cursor: pointer;}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {width: 100%;}
+}
+
+
+.block02 .contenedor_botones{float: left;width: 98%;height: auto;min-height: 400px;margin: 10px 1%;}
+.block02 .contenedor_botones .boton_inicio{float: left;width: 100px;height: 100px;margin: 1% 5%;border-radius: 10%;background-color: #5889d6;color: white;padding: 1%;line-height: 50px;text-align: center;font-size: 15px;cursor: pointer;}
+.block02 .contenedor_botones .boton_inicio:hover{background-color: #e3e5e5;color: rgb(115, 111, 111);}
+
+.block02 .kpmg_marco{float: left;width: 80%;min-height:500px;height: auto;margin: 1% 10%;}
+.block02 .kpmg_marco h3{float: left; width: 100%; margin: 0;font-size: 26px;line-height: 30px;text-align: center;}
+.block02 .kpmg_marco .acumulados{float: left;width: 48%;height: auto;margin: 1%;}
+.block02 .kpmg_marco .acumulados .titulo{float: left;width: 203%;margin: 1%;font-size: 24px;line-height: 30px;text-align: center;}
+.block02 .kpmg_marco .acumulados .texto{float: left;width: 203%;height: auto;margin: 2%;}
+.block02 .kpmg_marco .acumulados .texto p{float: left;width: 95%;height: auto;margin: 2%;font-size: 32px;line-height: 40px;text-align: center;}
+.block02 .kpmg_marco .acumulados .titulo2{float: left;width: 103%;margin: 1%;font-size: 24px;line-height: 30px;text-align: center;}
+.block02 .kpmg_marco .acumulados .texto2{float: left;width: 103%;height: auto;margin: 2%;}
+.block02 .kpmg_marco .acumulados .texto2 p{float: left;width: 95%;height: auto;margin: 2%;font-size: 32px;line-height: 40px;text-align: center;}
+.block02 .kpmg_marco .contenedor h4{float: left; width: 96%; margin: 1% 2%;font-size: 24px;line-height: 30px;text-align: left;}
+.block02 .kpmg_marco .contenedor .tabla_listado thead tr th.tiempo {text-align:right;padding-right: 5%;}
+.block02 .kpmg_marco .contenedor .tabla_listado tbody tr td.tiempo {text-align:right; padding-right: 5%;}
+
+.block02 .kpmg{float: left;width: 40%;min-height:300px;height: auto;margin: 1% 10%;margin-left: 30%; }
+.block02 .kpmg .contenedor h4{float: left; width: 96%; margin: 1% 2%;font-size: 24px;line-height: 30px;text-align: left;}
+.block02 .kpmg .contenedor .tabla_listado thead tr th {text-align: left;}
+.block02 .kpmg .contenedor .tabla_listado tbody tr td {text-align:left; padding-right: 17%; border-collapse: collapse;}
+
+
+.block03 {float: left;width: 50%;margin: 20px 25%;}
+.block03 form{float: left; width: 90%;margin: 2% 5%;}
+.block03 form input{float: left;width: 32%;margin: 2% 6%;border: solid 1px #4aa0e0;line-height:25px;padding: 0 1%;}
+.block03 form input[type="button"]{float: left;background: transparent;color: #4aa0e0;width: 37%;font-weight: bolder;cursor: pointer;}
+.block03 form input[type="button"]:hover {color: #ffffff; background: #4aa0e0;}
+.block03 form input[name="usuario"]{background-color: transparent;background-image: url('../images/quick/usuario.png');background-position: 5px;background-repeat: no-repeat;padding-left: 30px;}
+.block03 form input[name="password"]{background-color: transparent;background-image: url('../images/quick/candado.png');background-position: 5px;background-repeat: no-repeat;padding-left: 30px;}
+.block03 form input[name="tarjeta"]{background-color: transparent;background-image: url('../images/quick/tarjeta.png');background-position: 5px;background-repeat: no-repeat;padding-left: 40px;width: 30%}
+.block03 .caja_empresa{float:left; width: 80%;margin: 1% 10%;height: 30px;border-bottom: solid 1px black;}
+.block03 .caja_empresa .titulo_empresa{float: left;width: 40%;font-size: 24px; line-height: 25px;}
+.block03 .caja_empresa .texto_empresa{float: right;width: 60%;font-size: 20px; line-height: 24px;}
+.block03 .caja_empleado{float:left; width: 80%;margin: 1% 10%;height: 30px;border-bottom: solid 1px black;}
+.block03 .caja_empleado .titulo_empleado{float: left;font-size: 24px; line-height: 25px;}
+.block03 .caja_empleado .texto_empleado{float: right;width: 60%;font-size: 20px; line-height: 24px;}
+.block03 .formulario{float: left; width: 100%;min-height: 40px;line-height: 40px;border: none;margin: 1% 0;background: transparent;}
+.block03 .formulario form{float: left; width: 98%;margin: 1%;}
+.block03 .formulario form .contenedor_reloj{float: left; width: auto;margin: 1% 17%;}
+.block03 .formulario form .contenedor_reloj .flip-clock-wrapper{margin: 10px 0;}
+.block03 .formulario form .presencia{float: left; width: 100%;display: none;}
+.block03 .formulario form .presencia input[type="button"]{float: left;background: transparent;color: #4aa0e0;width: 30%;font-weight: bolder;margin: 2% 10%;font-size: 20px;line-height: 40px;cursor: pointer;}
+.block03 .formulario form .presencia input[type="button"]:hover {color: #ffffff; background: #4aa0e0;}
+.block03 .formulario form .incidencias{float: left; width: 100%;min-height: 50px;border: solid 1px #4aa0e0;margin-top: 5%;display: none;}
+.block03 .formulario form .incidencias label{float: left;color: #4aa0e0;width: 30%;font-weight: medium;margin: -3% 35% 2%;font-size: 22px;line-height: 40px;text-align: center;background-color: white;z-index: 10;}
+.block03 .formulario form .incidencias input[type="button"]{float: left;background: transparent;color: #4aa0e0;width: 30%;font-weight: bolder;margin: 2% 10%;font-size: 20px;line-height: 40px;border-radius: 10px;cursor: pointer;}
+.block03 .formulario form .incidencias input[type="button"]:hover {color: #ffffff; background: #4aa0e0;}
+
+.block04 {margin:10px 10px; text-align: left;}
+.block04 .caja_aceptacion{float: left;width: 30%;margin: 50px 35%;}
+.block04 .caja_aceptacion h2{float: left;width: 100%;font-size:24px; line-height:50px; color:#5889d6; font-weight: normal;text-align: center;}
+.block04 .caja_aceptacion form{float: left; width: 98%;margin: 1%;}
+.block04 .caja_aceptacion form input[type=checkbox] {float: left;margin: 5% 4%;transform: scale(2);}
+.block04 .caja_aceptacion form .texto_aceptacion{float: left;line-height: 70px;font-size: 18px;}
+.block04 .info_recurso{float: left;width: 30%;margin: 10px 35%;}
+.block04 .info_recurso .recurso_campo{float:  left;width: 35%;font-weight: bold;font-size: 18px;line-height: 40px;margin: 5px 5% 5px 0;}
+.block04 .info_recurso .recurso_valor{float: left;width: 60%;font-weight: normal;font-size: 18px;line-height: 40px;margin: 5px 0;height: 40px;}
+.block04 .info_recurso .recurso_comentario{float: left;width: 60%;font-weight: normal;font-size: 18px;line-height: 40px;margin: 5px 0;min-height: 40px;}
+
+.block06 {margin: 10px 10px; text-align: center;color: #01050d;font: 15px/33px Arial, Helvetica, sans-serif; font-size: x-large;}
+.block{ margin:10px;}
+.block06 .tabla{float: left; width: 100%;min-height: 40px;line-height: 40px;border: 1px solid #bbb;margin: 0;background: transparent;}
+
+#archivo_cambio{display: none;}
+
+
+/* -------------------------------------------- */
+/* ------------------Footer-------------------- */
+footer {background-color:#333; position: fixed;bottom: 0px;width: 100%;;z-index: 1;}
+.wrap-footer{}
+
+.copyright{text-align:center; background:#333333; padding:10px 0px;color:#ffffff; }
+.copyright a{text-decoration:underline; color:#ffffff; }
+
+
+/* -------------------------------------------- */
+/* ------------------Components-------------------- */
+.photos{}
+.photos:after{content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+.photos a{display: block; float:left; margin: 0px 4px 10px 4px;position: relative;}
+.photos a img{display:block; border:1px solid #CCC;}
+
+#pagi{margin: 50px auto; padding: 30px 0px;list-style: none;width: 250px;}
+#pagi li {float: left;margin-right: 10px;}
+#pagi li a {display: block;    text-decoration: none; color: #717171;font: bold 16px Arial, sans-serif;padding: 10px 13px; background: #ffffff;}
+#pagi li a.current, #pagi li a:hover {color: #ffffff;    background: #4AA9C3;}
+
+.textos_cookies{background: rgba(100,100,100,0.5);position: fixed;z-index: 100;width: 100%;height: 100px;bottom: 0;}
+.textos_cookies .texto{float: left;width: 90%;height: 100%; color: white; font-size: 14px;}
+.textos_cookies .texto h2{float: left; margin: 10px 0px 0px 200px;font-size: 20px;display: block;}
+.textos_cookies .texto p{float: left;margin: 0px 0px 0px 200px;width: 70%;}
+.textos_cookies .cerrar_cookies{float: left;width: 10%; height: 100%;}
+.textos_cookies .cerrar_cookies img{float: left;margin: 20% 40%;cursor: pointer;}
+
+.tabla_listado{font-size: 14px;line-height: 20px;}
+.tabla_listado thead{font-weight: bolder;border-bottom: 1px solid #bbb;}
+.tabla_listado tbody tr{border-bottom: 1px solid #bbb;}
+.tabla_listado tbody tr.fila_responsable{font-weight: 600;}
+.tabla_listado tbody tr.fila_comu{border-bottom: 1px solid #fff;}
+.tabla_listado tbody tr td{line-height: 30px;}
+.tabla_listado tbody tr td.grupo{font-weight: bold;}
+.tabla_listado tbody tr td.click{cursor: pointer;}
+.tabla_listado tbody tr td.nombre{width: 40%;}
+.tabla_listado tbody tr td.celda_numero{padding: 0px 3%;text-align: right;}
+.tabla_listado tbody tr td.celda_fecha{padding: 0px 1%;}
+.tabla_listado tbody tr td.alinea_derecha{text-align: right;padding-right: 3%;}
+.tabla_listado tbody tr td .ip_fichaje{float: left;height: 20px;cursor: pointer;font-weight: bold;}
+.tabla_listado tbody tr td img{float: left; margin: 5px; height: 20px;cursor: pointer;}
+.tabla_listado tbody tr td input[type="text"]{float: left;margin: 4px;text-align: center;display: none;line-height: 22px;padding: 0 5px;border: 1px solid #949494;}
+.tabla_listado tbody tr td span.fichajes{float: left;width: 70px;text-align: right;}
+.tabla_listado tbody tr:hover{background-color: #eee;}
+.tabla_listado tbody tr.fila_comu:hover{background-color: #fff;}
+.tabla_listado .tabla_accion{font-size: 12px;padding: 0 5px;color: #5889d6;cursor: pointer;}
+.tabla_listado .tabla_accion2{font-size: 12px;padding: 0 5px;color: #cc0000;cursor: pointer;}
+.tabla_listado .tabla_separador{font-size: 16px;padding: 0 5px;}
+.tabla_listado .tabla_accion3 {
+  font-size: 20px; /* Cambia el tamaño del símbolo "+" */
+  color: blue; /* Cambia el color del símbolo "+" */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del símbolo "+" */
+}
+.tabla_listado .tabla_accion4 {
+  font-size: 20px; /* Cambia el tamaño del símbolo "+" */
+  color: blue; /* Cambia el color del símbolo "+" */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del símbolo "+" */
+}
+
+.tabla_listado_saldo{font-size: 23px;line-height: 20px;}
+.tabla_listado_saldo tbody tr td{line-height: 30px;}
+
+.tablalist tbody tr:hover{background-color: #fff;}
+.pq-select-popup-cont {outline:none;}
+
+.modalDialog {position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(100,100,100,0.5);z-index: 99999;opacity:0;webkit-transition: opacity 400ms ease-in;-moz-transition: opacity 400ms ease-in;transition: opacity 400ms ease-in;pointer-events: none;}
+.modalDialog:target {opacity:1;pointer-events: auto;}
+.modalDialog > div {width:400px; position: relative;margin: 10% auto;padding: 5px 20px 13px 20px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.modalDialog  > div a.button{width: 17%;height: 30px;margin: 5% 13%;text-align: center;border-radius: 10px;background: #606061;color: #FFFFFF;padding: 1% 3%;line-height: 30px}
+.modalDialog  > div a.button.triple{width: 25%;height: 30px;margin: 5% 1%;text-align: center;border-radius: 10px;background: #606061;color: #FFFFFF;padding: 1% 3%;line-height: 30px;text-transform: none;}
+.buttonmodalDialog {margin: 5px 0;padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;}
+.textomodalDialog {width: 15%; margin: 4px;text-align: center;display: inline-block;line-height: 22px;padding: 0 5px;border: 1px solid #949494;}
+.close {background: #606061;color: #FFFFFF;line-height: 25px;position: absolute;right: -12px;text-align: center;top: -10px;width: 24px;text-decoration: none;font-weight: bold;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;-moz-box-shadow: 1px 1px 3px #000;-webkit-box-shadow: 1px 1px 3px #000;box-shadow: 1px 1px 3px #000;cursor: pointer;}
+.close:hover { background: #00d9ff; }
+
+.ventana_notificaciones {position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(100,100,100,0.5);z-index: 99998;opacity:0;webkit-transition: opacity 400ms ease-in;-moz-transition: opacity 400ms ease-in;transition: opacity 400ms ease-in;pointer-events: none;}
+.ventana_notificaciones:target {opacity:1;pointer-events: auto;}
+.ventana_notificaciones > div {width: 800px;position: relative;margin: 10% auto;padding: 5px 20px 13px 20px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.ventana_notificaciones > div h2 {width: 100%;height: 30px;cursor: pointer;}
+.ventana_notificaciones > div p {width: 100%;height: auto;cursor: pointer;}
+.ventana_agenda {position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(100,100,100,0.5);z-index: 99998;opacity:0;webkit-transition: opacity 400ms ease-in;-moz-transition: opacity 400ms ease-in;transition: opacity 400ms ease-in;pointer-events: none;}
+.ventana_agenda:target {opacity:1;pointer-events: auto;}
+.ventana_agenda > div {width: 900px;position: relative;margin: 10% auto;padding: 5px 20px 13px 20px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.ventana_agenda > div h2 {width: 100%;height: 30px;}
+.ventana_agenda > div p {width: auto;height: 40px;}
+.ventana_rgpd {position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(100,100,100,0.5);z-index: 99998;opacity:0;webkit-transition: opacity 400ms ease-in;-moz-transition: opacity 400ms ease-in;transition: opacity 400ms ease-in;pointer-events: none;}
+.ventana_rgpd {opacity:1;pointer-events: auto;}
+.ventana_rgpd > div {width: 800px;position: relative;margin: 2% auto;padding: 5px 20px 13px 20px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.ventana_rgpd > div h2 {width: 100%;height: 30px;}
+.ventana_rgpd > div p {width: auto;height: auto;margin: 1%;}
+.ventana_rgpd > div p.resaltar {text-align:center;font-weight: bold;}
+.ventana_rgpd > div a.button{width: 10%;height: 30px;margin: 5% 16%;text-align: center;border-radius: 10px;background: #606061;color: #FFFFFF;padding: 1% 3%;line-height: 30px}
+
+.ventana_contrato {position: fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(100,100,100,0.5);z-index: 99998;opacity:0;webkit-transition: opacity 400ms ease-in;-moz-transition: opacity 400ms ease-in;transition: opacity 400ms ease-in;pointer-events: none;}
+.ventana_contrato {opacity:1;pointer-events: auto;}
+.ventana_contrato > div {top: 25%;width: 400px;position: relative;margin: 2% auto;padding: 5px 20px 13px 20px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.ventana_contrato > div h2 {width: 100%;height: 30px;}
+.ventana_contrato > div p {width: auto;height: auto;margin: 1%;}
+.ventana_contrato > div p.resaltar {text-align:center;font-weight: bold;}
+.ventana_contrato > div a.button{width: 30%;height: 30px;margin: 5% 26%;text-align: center;border-radius: 10px;background: #606061;color: #FFFFFF;padding: 1% 3%;line-height: 30px}
+
+
+.close_not {background: #606061;color: #FFFFFF;line-height: 25px;position: absolute;right: -12px;text-align: center;top: -10px;width: 24px;text-decoration: none;font-weight: bold;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;-moz-box-shadow: 1px 1px 3px #000;-webkit-box-shadow: 1px 1px 3px #000;box-shadow: 1px 1px 3px #000;cursor: pointer;}
+.close_not:hover { background: #00d9ff; }
+.mark_all {background: #606061;color: #FFFFFF;line-height: 25px;position: absolute;right: 50px;text-align: center;top: -10px;width: auto;text-decoration: none;font-weight: bold;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;-moz-box-shadow: 1px 1px 3px #000;-webkit-box-shadow: 1px 1px 3px #000;box-shadow: 1px 1px 3px #000;cursor: pointer;padding: 0 5px;}
+.mark_all:hover { background: #00d9ff; }
+.caja_cal_ev{float: left;width: 20px;height: 20px;border-radius: 50%;margin: 5px 10px;}
+
+/*---------------CSS seguimiento-----------*/
+canvas {-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+/*.block02  .seguimiento{float: left;width: 73%;margin: 1%;}*/
+.block02  .seguimiento{float: left;width: 100%;margin: 1%;}
+.block02  .seguimiento .titulo{float: left;width: 100%;margin: 0px;text-align: center;line-height: 64px;font-size: 20px;color: #494949;}
+.block02  .seguimiento .week{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;color: #090909;}
+.block02  .seguimiento .week .previous{font-size: 14px;text-align: right;margin-right:10%;cursor: pointer;}
+.block02  .seguimiento .week .next{font-size: 14px;text-align: left;margin-left:10%;cursor: pointer;position: relative;}
+.block02  .seguimiento .month{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;color: #090909;}
+.block02  .seguimiento .month .previous{font-size: 14px;text-align: right;margin-right:10%;cursor: pointer;}
+.block02  .seguimiento .month .next{font-size: 14px;text-align: left;margin-left:10%;cursor: pointer;}
+
+.block02  .seguimiento .week .previous_title{font-size: 14px;text-align: right;margin-right:12%;font-weight: bold;}
+.block02  .seguimiento .week .next_title{font-size: 14px;text-align: left;margin-left:12%;font-weight: bold;}
+
+/*-- Css highcharts ---*/
+.highcharts-figure, .highcharts-data-table table {min-width: 320px; max-width: 800px;margin: 1em auto;}
+.highcharts-data-table table {font-family: Verdana, sans-serif;border-collapse: collapse;border: 1px solid #EBEBEB;margin:5px;text-align: center;width: 100%;max-width: 500px;}
+.highcharts-data-table caption { padding: 1em 0; font-size: 1.2em;color: #555;}
+.highcharts-data-table th {font-weight: 600;padding: 0.5em;}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {padding: 0.5em;}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {background: #f8f8f8;}
+.highcharts-data-table tr:hover {background: #f1f7ff;}
+
+/*-- Css Tooltip--*/
+.tooltip {
+  position: relative;
+  float:right;
+  display: inline-block;
+  color: #fff;
+  margin: 2px;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/**nota: caso especial para los tooltips para planos de reservas de puesto. cambio general*/
+#divisor_plano div .tooltip .tooltiptext {
+	bottom: 10%;
+	width: 170px;
+	z-index: 1000;
+}
+
+#divisor_plano div .tooltip .tooltiptext::after {
+  display:none;
+}
+
+.divisor_plano .tooltip .tooltiptext::after {
+  display:none !important;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*Calendario de reservas de puesto*/
+
+.calendar_header {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: 40%;
+}
+
+.calendar_header h1{
+  font-size: 1.5em;
+  color:#5889d6;
+  font-weight:bold;
+  width: 100%;
+}
+.calendar_header h2{
+  font-size: 1.0em;
+  color:#848484;
+  font-weight:bold;
+}
+
+.calendar_header h2:hover{
+  color:#5889d6;
+  cursor: pointer;
+}
+
+.calendar_tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #f9f9f9;
+  color: #666;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  box-shadow: 1px 2px;
+  
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  
+}
+
+.calendar_tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#calendar-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#calendar {
+  width: 90%;
+  height: 90%;
+  line-height: 100%;
+}
+
+#calendar a {
+  color: #f5f5f5;
+  text-decoration: none;
+}
+
+#calendar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+#calendar li {
+  display: block;
+  float: left;
+  width: 14%;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-right: -1px;
+  margin-bottom: -1px;
+}
+
+#calendar ul.weekdays {
+  height: 40px;
+  border-bottom: 1px solid #7797cb;
+}
+
+#calendar ul.weekdays li {
+  text-align: center;
+  line-height: 20px;
+  border: none !important;
+
+  padding: 10px 6px;
+  color:#5889d6;
+  font-size: 14px;
+}
+
+#calendar .days li {
+  height: 145px;
+} 
+
+#calendar .days li:hover {
+  background:#e0e0e0;
+}
+
+#calendar .days li:active{
+  background:#999;
+}
+
+#calendar .days li[data-status="deselected"]{
+  background:#fff!important;
+}
+
+/*diponibilidad*/
+
+#calendar .days li[data-availability="empty"]:active,#calendar .days li[data-hour_availability="empty"]:active{
+  background:#999;
+}
+
+#calendar .days li[data-availability="minimum"]:active,#calendar .days li[data-hour_availability="minimum"]:active{
+  background:#fd6389;
+}
+
+#calendar .days li[data-availability="half"]:active,#calendar .days li[data-hour_availability="half"]:active{
+  background:#ffbc41;
+}
+
+#calendar .days li[data-availability="almost_full"]:active,#calendar .days li[data-hour_availability="almost_full"]:active{
+  background:#dcdc91;
+}
+
+#calendar .days li[data-availability="full"]:active,#calendar .days li[data-hour_availability="full"]:active{
+  background:#6fbfa5;
+}
+
+#calendar .days li[data-status="selected"][data-availability="full"],#calendar .days li[data-status="selected"][data-hour_availability="full"]{
+  background:#cbeae0;
+}
+
+#calendar .days li[data-type="initial_selected"][data-availability="full"],#calendar .days li[data-type="initial_selected"][data-hour_availability="full"]{
+  background-image: url("../images/flecha_inicial2_verde.png")!important;
+}
+
+#calendar .days li[data-type="final_selected"][data-availability="full"],#calendar .days li[data-type="final_selected"][data-hour_availability="full"]{
+  background-image: url("../images/flecha_final2_verde.png")!important;
+}
+
+#calendar .days li[data-status="selected"][data-availability="almost_full"],#calendar .days li[data-status="selected"][data-hour_availability="almost_full"]{
+  background:#f2f2d8;
+}
+
+#calendar .days li[data-type="initial_selected"][data-availability="almost_full"],#calendar .days li[data-type="initial_selected"][data-hour_availability="almost_full"]{
+  background-image: url("../images/flecha_inicial2_amarrilla.png")!important;
+}
+
+#calendar .days li[data-type="final_selected"][data-availability="almost_full"],#calendar .days li[data-type="final_selected"][data-hour_availability="almost_full"]{
+  background-image: url("../images/flecha_final2_amarilla.png")!important;
+}
+
+#calendar .days li[data-status="selected"][data-availability="half"],#calendar .days li[data-status="selected"][data-hour_availability="half"]{
+  background:#ffe4b4;
+}
+
+#calendar .days li[data-type="initial_selected"][data-availability="half"],#calendar .days li[data-type="initial_selected"][data-hour_availability="half"]{
+  background-image: url("../images/flecha_inicial2_naranja.png")!important;
+}
+
+#calendar .days li[data-type="final_selected"][data-availability="half"],#calendar .days li[data-type="final_selected"][data-hour_availability="half"]{
+  background-image: url("../images/flecha_final2_naranja.png")!important;
+}
+
+#calendar .days li[data-status="selected"][data-availability="minimum"],#calendar .days li[data-status="selected"][data-hour_availability="minimum"]{
+  background:#ffdbe4;
+}
+
+#calendar .days li[data-type="initial_selected"][data-availability="minimum"],#calendar .days li[data-type="initial_selected"][data-hour_availability="minimum"]{
+  background-image: url("../images/flecha_inicial2_roja.png")!important;
+}
+
+#calendar .days li[data-type="final_selected"][data-availability="minimum"],#calendar .days li[data-type="final_selected"][data-hour_availability="minimum"]{
+  background-image: url("../images/flecha_final2_roja.png")!important;
+}
+
+#calendar .days li[data-status="selected"][data-availability="empty"],#calendar .days li[data-status="selected"][data-hour_availability="empty"]{
+  background:#ececec;
+}
+
+#calendar .days li[data-type="only_day_selected"]{
+  border-radius: 60px;
+}
+
+#calendar .date {
+  text-align: center;
+  margin-bottom: 5px;
+  padding: 4px;
+  background: #24b888;
+  color: #fff;
+  width: 20px;
+  border-radius: 50%;
+  float: right;
+}
+
+#calendar .date a:visited{
+	color: #fff;
+}
+
+/*diponibilidad de puestos*/
+#calendar .date[data-availability="empty"],#calendar .date[data-hour_availability="empty"]{
+  background: #848484;
+}
+
+#calendar .date[data-availability="minimum"],#calendar .date[data-hour_availability="minimum"]{
+  background: #f71950;
+}
+
+#calendar .date[data-availability="half"],#calendar .date[data-hour_availability="half"]{
+  background: orange;
+}
+
+#calendar .date[data-availability="almost_full"],#calendar .date[data-hour_availability="almost_full"]{
+  background: #cece20;
+}
+
+#calendar .other-month .date {
+  background: #848484;
+}
+
+#calendar .event {
+  clear: both;
+  display: block;
+  /*font-size: 13px;*/
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 2px;
+  /*line-height: 14px;*/
+  line-height: 12px;
+  background: #fff;
+  border: 1px solid #c1d6f8;
+  color: #009aaf;
+  text-decoration: none;
+}
+
+.calendar .event {
+  clear: both;
+  display: block;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 2px;
+  line-height: 14px;
+  background: #f2f2f2;
+  border: 1px solid #c1d6f8;
+  color: #009aaf;
+  text-decoration: none;
+}
+
+.calendar .event-desc {
+  color: #666;
+  text-decoration: none;
+}
+
+#calendar .event-desc {
+  color: #666;
+  text-decoration: none;
+}
+
+#calendar .event-overflow {
+  clear: both;
+  display: block;
+  width: 30px;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 0px;
+  margin: 0px;
+  line-height: 12px;
+  background: #fafcfc;
+  border: 1px solid #c1d6f8;
+  color: #009aaf;
+  text-decoration: none;
+}
+
+#calendar .event-plus-button {
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#calendar .event-plus-button a{
+  color: #666;
+}
+
+#calendar .event-plus-button:hover{
+  border-radius: 4px;
+  background: #f2f2f2;
+  cursor: pointer;
+  color: #666;
+}
+
+#calendar .event-plus-button:active{
+  border-radius: 4px;
+  background:#fff;
+  cursor: pointer;
+  color: #666;
+}
+
+#calendar .other-month {
+  background: #f5f5f5;
+  color: #666;
+}
+
+/* ============================
+       Optimitation
+   ============================*/
+
+#calendar .days li[data-type="initial_selected"][data-availability="minimum"],
+#calendar .days li[data-type="initial_selected"][data-availability="half"],
+#calendar .days li[data-type="initial_selected"][data-availability="almost_full"],
+#calendar .days li[data-type="initial_selected"][data-availability="full"]{
+  background-repeat: no-repeat;
+  background-size: 155px;
+}
+
+#calendar .days li[data-type="final_selected"][data-availability="minimum"],
+#calendar .days li[data-type="final_selected"][data-availability="half"],
+#calendar .days li[data-type="final_selected"][data-availability="almost_full"],
+#calendar .days li[data-type="final_selected"][data-availability="full"]{
+  background-repeat: no-repeat;
+  background-size: 155px;
+  background-position-x: right;
+}
+
+#calendar .days li[data-type="initial_selected"][data-availability="minimum"] .event,
+#calendar .days li[data-type="final_selected"][data-availability="minimum"] .event,
+#calendar .days li[data-type="initial_selected"][data-availability="half"] .event,
+#calendar .days li[data-type="final_selected"][data-availability="half"] .event,
+#calendar .days li[data-type="initial_selected"][data-availability="almost_full"] .event,
+#calendar .days li[data-type="final_selected"][data-availability="almost_full"] .event,
+#calendar .days li[data-type="initial_selected"][data-availability="full"] .event,
+#calendar .days li[data-type="final_selected"][data-availability="full"] .event{
+  background:none;
+}
+
+/* Extra elements of calendar*/
+
+.click_list_calendar_tr[data-estado="selected"]{
+	background: #5889d6!important;
+	color: #fff!important;
+}
+
+.click_list_calendar_tr:hover{
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
+
+.arrow-before {
+    width:0px;
+    height:0px;
+    border-left: 6px solid transparent;  /* izquierda flecha */
+    border-right: 6px solid transparent; /* derecha flecha */
+    border-top: 6px solid black; /* base flecha y color*/
+    font-size:0px;
+    line-height:0px;
+    top: 0px;
+    left: -33px;
+    position: relative;
+}
+.arrow-after {
+    width:0px;
+    height:0px;
+    border-left: 6px solid transparent;  /* izquierda flecha */
+    border-right: 6px solid transparent; /* derecha flecha */
+    border-top: 6px solid #9e9e9e; /* base flecha y color*/
+    font-size:0px;
+    line-height:0px;
+    top: -1px;
+    left: -45px;
+    position: relative;
+    z-index: 100;
+}
+
+.modal-update {
+    margin-bottom: 0px !important;
+}
+
+.modal-update input[type="text"], .modal-update input[type="time"] {
+    display: inline-block !important;
+    float: none !important;
+    text-align: left !important;
+    line-height: 22px !important;
+    margin: 0 15px 0 0 !important;
+}
+
+.modalUpdateH {
+    background-color: rgba(0,0,0,.8);
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:-60px;
+    opacity:0;
+    pointer-events:none;    
+}
+
+.ventana-update {
+    background-color:#9e9e9e;
+    width:772px;
+    padding: 15px 25px 25px;
+    position: relative;  
+    border-radius: 6px;
+    color: #FFF;
+    margin-left: 260px;
+    height: 23px;
+}
+
+/*CSS PARTES*/
+.formularioTrab .label_partes{float: left;margin: 5px 5px 5px 20px;padding: 2px 0;line-height: 24px;}
+.formularioTrab .input_partes{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;}
+.formularioTrab .textarea_partes{line-height: initial;margin: 5px;}
+.formularioTrab .boton_fichar{padding: 10px 20px;color: #949494;background: white;border: 1px solid #5889d6;line-height: 20px; font-size: 12px;cursor: pointer;border-radius: 10px;}
+.formularioTrab .boton_fichar:HOVER{background-color: #5889d6;color: white;}
+.formularioTrab .boton_fichar:DISABLED{background-color: grey !important;color: white !important;border: 1px solid}
+.instalacion{float: left;width: 100%;margin: 0;}
+.detalle_inst{float: left;width: 100%;margin: 0;display: none;}
+.prl_inst{float: left;width: 100%;margin: 0;display: none;}
+.comentario{float: left;width: 100%;margin: 0;display: none;}
+.solucion_inst{float: left;width: 100%;margin: 0;display: none;}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  font-weight: 600;
+  line-height: 30px;
+}
+.cerrarTrabajo{
+	background-color: #F16345;
+  color: #FFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  margin: 20px 0 20px 0;
+  outline: none;
+  font-size: 25px;
+  transition: 0.4s;
+}
+.cerrarTrabajo:hover{
+	background-color: #BA371B;
+}
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+.grupo_evidencia input[type="number"]{
+ 	width: 50px !important;
+}
+.panel {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+.flag_obligatorio{
+	width:100px !important;
+}
+.botonRellena{
+	float: left;margin: 10px;padding: 5px 15px;color: #666;background-color: white;border: 1px solid #5889d6;line-height: 20px; font-size: 12px;cursor: pointer;border-radius: 3px;
+}
+.botonRellenaCancelar{
+	float: left;margin: 10px;padding: 5px 15px;color: #666;background-color: white;border: 1px solid #F16345;line-height: 20px; font-size: 12px;cursor: pointer;border-radius: 3px;
+}
+.botonRellenaCancelar:hover{
+	background-color: #BA371B;
+	color: white;
+}
+.botonRellena:hover{
+	background-color: #5889d6;
+	color: white;
+}
+.botonRellena:disabled{
+	background: rgb(221,221,221);border: 1px solid #bbb;
+	color: black;
+}
+.botonVerImagen{
+	float: left;padding: 5px 15px;margin: 10px;color: #666;background-color: white;border: 1px solid #5889d6;line-height: 20px; font-size: 12px;cursor: pointer;border-radius: 3px;
+
+}
+.botonVerImagen i{
+	padding: 4px;
+}
+.botonVerImagen:hover{
+	background-color: #5889d6;
+	color: white;
+}
+/*canvas firma*/
+.firma{
+    align-items: center;
+    justify-content: center;
+    background: #ececec;
+    overflow: hidden;
+}
+.firma .flex-row {
+    display: flex;
+	padding: 10px;
+}
+.firma.wrapper {
+    border: 1px solid #978B7F;
+}
+.firma canvas#signature-pad {
+    background: #fff;
+    width: 100%;
+    cursor: crosshair;
+    border: 1px solid #978B7F;
+}
+.firma button#empezar {
+    height: 100%;
+    background: #02AC66;
+    border: 1px solid #5889d6;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    max-width: 50px;
+}
+.firma button#empezar span {
+    transform: rotate(90deg);
+    display: block;
+}
+.firma button#clear {
+    height: 100%;
+    background: #5889d6;
+    border: 1px solid #5889d6;
+    color: #fff;
+    cursor: pointer;
+     max-width: 50px;
+}
+.firma button#clear:hover{
+    background: #3064b2;
+}
+.firma button#clear span {
+    transform: rotate(90deg);
+    display: block;
+    
+}
+/*Nuevos css para botones y popUp ayuda*/
+/*POPUP IMAGE*/
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.modalReclutamiento{
+  position: fixed; /* Fijar el modal en la pantalla */
+  z-index: 50; /* Asegurar que el modal esté por encima de otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Hacer que el modal ocupe todo el ancho de la pantalla */
+  height: 100%; /* Hacer que el modal ocupe todo el alto de la pantalla */
+  overflow: auto; /* Permitir el desplazamiento si el contenido es demasiado grande */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+.modalContentReclutamiento{
+  background-color: #fff; /* Fondo blanco para el contenido del modal */
+  margin: 10% auto; /* Centrar el modal verticalmente y horizontalmente */
+  padding: 30px; /* Espaciado interno */
+  border: 1px solid #888; /* Borde del modal */
+  width: 80%; /* Ancho del modal */
+  max-width: 600px; /* Ancho máximo del modal */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para el modal */
+  position: relative;
+  height: 72vh;
+}
+
+.closeReclutamiento{
+  color: #aaa; /* Color del botón de cierre */
+  position: absolute; /* Posición absoluta dentro del contenedor del modal */
+  top: 10px; /* Desplazamiento desde la parte superior */
+  right: 10px; /* Desplazamiento desde la parte derecha */
+  font-size: 28px; /* Tamaño de fuente del botón de cierre */
+  font-weight: bold; /* Peso de fuente del botón de cierre */
+}
+
+.closeReclutamiento:hover,
+.closeReclutamiento:focus{
+  color: #000; /* Cambiar el color al pasar el ratón o enfocar */
+  text-decoration: none; /* Quitar subrayado */
+  cursor: pointer; /* Cambiar el cursor a una mano */
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+#caption1 {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.closePartes {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.closePartes:hover,
+.closePartes:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+.closeIOS{
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.closeIOS:hover,
+.closeIOS:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+.close1 {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+div.contenedorRedireccion{
+  background: #3A25B1;
+  width: 100%;
+  height: 88px;
+  border-radius: 10px;
+  padding: 0 20px;
+  overflow: hidden;
+  margin-bottom: 65px;
+}
+div.contenidoRedireccion{
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  color: #fff;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.items{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:33%;
+  padding: 0 10px
+}
+div.items.avatar {
+  position: relative;
+  overflow: hidden;
+}
+div.items.avatar img{
+  position: relative;
+  top:15px;
+  width: 150px ;
+  height: 150px ;
+   
+}
+span.circulo{
+  position:absolute;
+  background: #FFB026;
+  border-radius: 50%;
+  width: 90px ;
+  height: 90px;
+  left: 35%;
+}
+a.items{
+  background: #51B224;
+  border: none;
+  border-radius: 180px;
+  padding: 6px 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  width: 160px !important;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+/*Nuevo form modal ayuda index*/
+.modal_form{height:auto; width: auto !important;background-color:white !important;border-radius:8px;padding:20px 30px;position:relative}
+.modal_input{width:100% !important;box-sizing:border-box;background:none;outline:none;resize:none;border: none !important;transition:all .3s;border-bottom:1px solid #bebed2 !important}
+.modal_input_IOS{width:100% !important;box-sizing:border-box;background:none;outline:none;resize:none;border: 1px solid #bebed2 !important;}
+.modal_btn_contraseña{width: 100%;padding:8px 12px;margin:8px 0 0;background-color: green;border:2px solid #4e9a06;background:0;color:#4e9a06;}
+.modal_btn_tarjeta{width: 100%;padding:8px 12px;margin:8px 0 0;background-color: #ef2929;border:2px solid #cc0000;background:0;color:#cc0000;}
+.modal_btn_enviar{width: 100%;padding:8px 12px;margin:8px 0 0;background-color: blue;border:2px solid #3465a4;background:0;color:#3465a4;}
+.modal_btn_sesion_IOS{width: 50%; padding:12px 8px;margin:8px 0 0;background-color: black;border-radius: 10px; color: white; border: none;font-size: 18px;}
+
+/*modulo asambleas*/
+.caja_todo{
+	width: 100%;
+	height: 100%;
+	max-height: 100vh;
+	float: left;
+}
+.item_caja{
+	width: 100%;
+	height: 50px;
+	float: left;
+	margin-top: 15px;
+}
+.asamblea_caja{
+	width: 100%;
+	height: 10vh;
+	max-height: 100vh;
+	float: left;}
+.personas_caja{
+	width: 40%;
+	height: 90vh;
+	max-height: 100vh;
+	float: left;
+}
+.fisicas_caja{
+	width: 100%;
+	max-height: 100vh;
+	float: left;
+	overflow-y: auto;
+}
+.juridicas_caja{
+	width: 100%;
+	max-height: 100vh;
+	float: left;
+	overflow-y: auto;
+}
+.asistencias_caja{
+	width: 60%;
+	height: 90vh;
+	max-height: 100vh;
+	float: left;
+	overflow-y: auto;
+}
+.titulo_def{
+	font-weight: 600;
+}
+
+.block02 .tabla .calendario_cursos{float: left;width: 100%;margin: 1%;}
+.block02 .tabla .calendario_cursos .week{float: left;width: 100%;margin: 0px;text-align: center;line-height: 24px;font-size: 20px;}
+.block02 .tabla .calendario_cursos .week .previous{font-size: 24px;text-align: right;margin-right:10%;cursor: pointer;}
+.block02 .tabla .calendario_cursos .week .next{font-size: 24px;text-align: left;margin-left:10%;cursor: pointer;}
+.block02 .tabla .calendario_cursos .semana{float: left;width: 98%;margin: 1%;height:auto;min-height: 380px;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana{float: left;width: 100%;margin: 0px;border-spacing: 5px;border-collapse: separate;border: 1px;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana thead tr th{float: left;width: 10%;height:40px;text-align: center;padding: 10px; font-size: 11px; background: #5889d6; color: #FFF;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr td{float:left;width: 9.80%;line-height:40px;text-align: center;padding: 10px;font-size: 11px;margin: 0px;border-spacing: 5px;border-collapse: separate;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr td input{ float: none;}
+/**  fila par **/
+.fila_par{background-color:#ddd;  border: 1px solid #FFFFFF;}
+
+
+/*.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr:nth-child(even){background: #ddd; width: 11%}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr:nth-child(odd){background: #fff;}*/
+
+/***  electivas y no electivas***/
+
+.block02 .tabla .calendario_cursos .semana{float: left;width: 100%;margin: 0%;height:auto;min-height: 380px;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana thead tr th{float: left;width: 9%;height:40px;text-align: center;padding: 7px; font-size: 11px; background: #5889d6; color: #FFF;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana thead tr .franjas{float: left;width: 13%;height:40px;text-align: center;padding: 7px; font-size: 11px; background: #5889d6; color: #FFF;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr td{float: left;width: 9%;height:40px;text-align: center;padding: 8.2px;font-size: 11px;line-height:40px;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr .franjas{float: left;width: 13%;height:40px;text-align: center;padding: 8.2px;font-size: 11px;line-height:40px;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr .franjas .item_elemento{margin-right: 0;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr .franjas .item_elemento p{font-size: 15px !important;margin: 0;}
+.block02 .tabla .calendario_cursos .semana .tabla_semana tbody tr .btn_delete{color: #e53434;font-size: 18px;font-weight: 600;}
+
+.modalDialog .divContacto {width: 400px;height: 300px;position: relative;margin: 10% auto;padding: 5px 20px 13px 20px;border-radius: 10px;background: #fff;background: -moz-linear-gradient(#fff, #eee);background: -webkit-linear-gradient(#fff, #eee);background: -o-linear-gradient(#fff, #eee);}
+.modalDialog .divContacto .buttonmodalActualizaciones {padding: 2px 10px;color: #666;background: rgb(221,221,221);border: 1px solid #bbb;line-height: 24px; font-size: 12px;cursor: pointer;bottom: 5%;right: 5%;position: absolute;}
+.modalDialog .divContacto .textoActualizaciones{overflow: hidden; height: 80px; max-height: 80px; inline-size: 400px; overflow-wrap: break-word;}
+.modalDialog .divContacto .divImagen {display: flex; justify-content: center}
+.modalDialog .divContacto .imgActualizaciones {top: 0;left: 0;right: 0;bottom: 15%;margin: auto;display: inline-block;width: auto;height: auto;max-width: 350px;max-height: 180px;}
+.modalDialog .divContacto .checkboxActualizaciones { vertical-align:middle;bottom: 7%;left: 5%;position: absolute; }
+.modalDialog .divContacto h1{
+	font-size: 20px; margin: 20px; font-weight: 600;text-align: center;
+}
+.modalDialog .divContacto .item_elemento{
+	 margin: 30px 20px; 
+}
+.formulario_dial_cont div{
+	float: left;
+}
+.formulario_dial_cont p{
+	margin: 20px;
+}
+.formulario_dial_cont select{
+	padding:3px 10px;
+	border:1px solid #d3d7cf;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:0 15px;
+}
+.div_emision_bt_inactivo {display: none;}
+.emision_bt .item_elemento input{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;}
+.emision_bt .item_elemento input[type="number"]{width: 100px;text-align: right;}
+.emision_bt .item_elemento select{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;width: 250px;}
+
+
+.estado_torno .item_elemento input{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;}
+.estado_torno .item_elemento input[type="number"]{width: 100px;text-align: right;}
+.estado_torno .item_elemento select{float: left;margin: 5px;padding: 3px;border: 1px solid #bbb;line-height: 20px; font-size: 12px;width: 250px;}
+
+.block02 .formulario form .tabla{border: none;}
+.block02 .formulario form .tabla .table_form tr:hover {background-color: #eee;}
+.block02 .formulario form .tabla .table_form tr {border-bottom: 1px solid #bbb;}
+
+.dialogInput{margin-left: 15px;border: 1px solid grey;}
+
+.block02 .formulario form .item_elemento .contenido-select-empresas{display: none;position: absolute;background-color: #f6f6f6;min-width: 287px;max-width: 287px;max-height: 200px;margin-top: 33px;margin-left: 86px;overflow: auto;border: 1px solid #ddd;z-index: 1;}
+.block02 .formulario form .item_elemento .contenido-select-empresas a{color: black;padding: 3px;text-decoration: none;display: block;line-height: 30px}
+.block02 .formulario form .item_elemento .contenido-select-empresas a:hover{background-color: #ddd;cursor: pointer;}
+.block02 .formulario form .item_elemento .contenido-select-empleados{display: none;position: absolute;background-color: #f6f6f6;min-width: 287px;max-width: 287px;max-height: 200px;margin-top: 33px;margin-left: 80px;overflow: auto;border: 1px solid #ddd;z-index: 1;}
+.block02 .formulario form .item_elemento .contenido-select-empleados a{color: black;padding: 3px;text-decoration: none;display: block;line-height: 30px}
+.block02 .formulario form .item_elemento .contenido-select-empleados a:hover{background-color: #ddd;cursor: pointer;}
+.block02 .formulario form .item_elemento .show{display: block;}
+
+/** Para Indicadores de Gestion **/
+
+.ocultar {
+  display: none;
+}
+
+.indicador { 
+  position: absolute;
+  top: 5px;  
+  background-color: red;
+  border-radius: 45%;
+  font-size: .9rem;
+  padding: 0px 3px 0px 3px;
+  color: white
+}
+
+.indicador_pos1{
+  left: 79%;
+}
+
+.indicador_pos2{
+  left: 74%;
+}
+
+.indicador_pos3{
+  left: 67%;
+}
+
+.indicador_pos4{
+  left: 60%;
+}
+
+/*CSS de cursos*/
+.cursos-item-asignacion{
+	width: 100%;
+	height: 100vh;
+	max-height: 100vh;
+	float: left;
+}
+.cursos-item-asignacion h2{
+	padding: 10px;
+}
+.cursos-item-sin-asignacion{
+	width: 70%;
+	height: 100vh;
+	max-height: 100vh;
+	float: left;
+}
+.cursos-item-con-asignacion{
+	width: 30%;
+	height: 100vh;
+	max-height: 100vh;
+	float: left;
+}
+.cursos-item-alumnos-sin{
+	width: 49%;
+	height: 100vh;
+	max-height: 100vh;
+	float: left;
+	border-right: 1px solid;
+}
+.cursos-lista-alumnos-sin{
+	width: auto;
+	padding: 10px;
+	max-height: 90vh;
+	overflow-y: scroll;
+}
+.cursos-item-profesores-sin{
+	width: 49%;
+	height: 100vh;
+	max-height: 100vh;
+	float: left;
+	border-right: 1px solid;
+}
+.cursos-lista-profesores-sin{
+	width: auto;
+	max-height: 90vh;
+	padding: 10px;
+	overflow-y: scroll;
+}
+.cursos-item-profesores-con{
+	width: 100%;
+	height: 30vh;
+	max-height: 30vh;
+	float: left;
+	border-bottom: 1px solid;
+}
+.cursos-lista-profesores-con{
+	width: auto;
+	padding: 10px;
+	max-height: 20vh;
+	overflow-y: scroll;
+}
+.cursos-item-alumnos-con{
+	width: 100%;
+	height: 70vh;
+	max-height: 70vh;
+	float: left;
+}
+.cursos-lista-alumnos-con{
+	width: auto;
+	padding: 10px;
+	max-height: 60vh;
+	overflow-y: scroll;
+}
+.cursos-elemento-lista{
+	float: left;
+	width: 90%;
+	padding: 5px;
+	background-color: #949494;
+	margin-bottom: 3px;
+}
+.cursos-elemento-lista-visible{
+	display: block;
+}
+.cursos-elemento-lista-oculto{
+	display: none;
+}
+.cursos-busqueda-filtro{
+	display: none !important;
+}
+.cursos-elemento-lista p{
+	float: left;
+	color: white;
+}
+.cursos-elemento-lista .cursos-lista-boton{
+	float: right;
+	color: white;
+	padding-right: 5px;
+	cursor: pointer;
+}
+.cursos_fila_personal {
+  padding: 18px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  text-align: left;
+  outline: none;
+  line-height: 30px;
+}
+.cursos_fila_personal .item_elemento{
+  width: 25%;
+  margin-right: 0 !important;
+}
+.calendario-tabla-cursos td, .calendario-tabla-cursos th {
+    width: 14%;
+    height: 70px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.2em;
+    position: relative;
+}
+.calendario-tabla-cursos td span {
+	position: absolute;
+	top: 0;
+	left: 10px;
+	font-size: 0.8em;
+    color: #666;
+}
+.calendario-tabla-cursos th.header {
+    background-color: #ddd;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.calendario-tabla-cursos a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    margin-right: 5px;
+    background-color: #eee;
+    color: #333;
+    border-radius: 4px;
+    font-size: 1.2em;
+}
+
+.calendario-tabla-cursos a.button:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+.calendario-tabla-cursos td.today {
+    background-color: #ff9;
+}
+
+.calendario-tabla-cursos .month {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 20px 0;
+}
+.calendario-tabla-cursos button{
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    margin-right: 5px;
+    background-color: #eee;
+    color: #333;
+    border-radius: 4px;
+    font-size: 1.2em;
+    text-align:center;
+    }
+
+.calendario-tabla-cursos button:hover {
+    background-color: #ddd;
+    color: #333;
+    cursor: pointer;
+}
+.lista-cursos{
+	width: 100%;
+	display: flex;
+}
+.lista-cursos .elemento-cursos{
+	width: 100%;
+}
+.lista-cursos .elemento-cursos p span{
+	border-radius: 10px;
+	padding: 0 12%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+.popUpCursos{
+    position: fixed;
+    display: flex;
+    font-size: 1.3em;
+    background-color: #eee;
+    color: #333;
+    border-radius: 4px;
+    font-size: 1.2em;
+    text-align: left;
+    padding: 10px 20px;
+    border: 2px solid #ccc;
+}
+	
+.msj_accion_seleccionar .pq-select-button{
+  width: 20% !important;
+  margin-top: 10px;
+}
+.metodos-ocultos{
+	display:none;
+}
+.metodos-visible{
+	display:block;
+}
+.procesos-ocultos{
+	display:none;
+}
+.procesos-visible{
+	display:block;
+}
+
+.olivia-f0 {
+  font-size: 20px !important;
+  fill: black !important;
+}
+
+.olivia-f1 {
+  font-size: 17px !important;
+  fill: black !important;
+}
+
+.olivia-f2 {
+  font-size: 14px !important;
+  fill: black !important;
+}
+
+.olivia-img {
+  clip-path: circle(50%);
+}
+
+.anexos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.famfamfam-flags{
+  margin: 0 10px;
+}
+button.druid__webchat__header-button.druid__webchat__header-minimize, button.druid__webchat__header-button{
+  z-index: 1!important;
+}
+
+/* Estilos para los botones de navegación */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 4rem;
+  transition: 0.6s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.prev {
+  left: 0;
+  margin-left: 1rem;
+}
+
+.next {
+  right: 0;
+  margin-right: 1rem;
+}
+
+.miniatura{
+    width: 100px; /* Ancho inicial del div */
+    height: 20px; /* Alto inicial del div, ajusta según necesites */
+    overflow: hidden; /* Oculta el contenido que sobrepasa el tamaño del div */
+    /* border: 1px solid #ccc; */ /* Borde para visualizar el área de la miniatura */
+    /* border-radius: 5px; */
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    transition: 0.3s; /* Transición suave al cambiar de tamaño */
+  
+}
+
+.miniatura::before {
+    content: "Texto Informativo"; /* Texto que se muestra al pasar el cursor */
+    display: block; /* Muestra el texto en una línea */
+    text-align: center; /* Centra el texto */
+    font-size: 12px; /* Tamaño de la fuente */
+    color: #666; /* Color del texto */
+    transition: 0.3s; /* Transición suave al cambiar de tamaño */
+}
+
+/***  Teletrabajo Charts ***/
+
+.weekBox{
+  background:#037bc9;
+  color:white;
+  width:20%;
+  font-size:1.2rem;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.leftCarouselBox{
+  background:#037bc9;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  color:white;
+  padding: 5px;
+}
+
+.rightCarouselBox{
+  background:#037bc9;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  color:white;
+  padding: 5px;
+}
+
+.weekFlexContainer{
+   display:flex;
+   gap:10px;
+   justify-content: center;
+}
+
+.weekTitleContainer{
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.weekTitle{
+  font-size:1.5rem;
+  font-weight: bold;
+}
+
+.widget-panel {
+  padding: 20px 20px;
+  border-radius: 4px;
+  color: #ffffff;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width:20%;
+  font-size: 18px;
+}
+
+.widget-panel-info {
+  padding: 20px 20px;
+  border-radius: 4px;
+  color: #ffffff;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width:40%;
+  font-size: 18px;
+}
+
+.widget-panel:hover{
+  opacity: 0.5;
+}
+
+.widget-style-2{
+  padding-left: 30px;
+} 
+
+.bg-info{
+  background-color: rgba(28, 168, 221, 0.8);
+}
+
+.bg-purple {
+  background-color: rgba(97, 92, 168, 0.8);
+}
+
+.bg-pink {
+  background-color: rgba(241, 60, 110, 0.8);
+}
+
+.bg-warning {
+  background-color: rgba(235, 193, 66, 0.8);
+}
+
+.widget-style-2 i {
+  font-size: 60px;
+  float: right;
+  padding: 30px;
+  margin-top: -40px;
+  margin-right: -20px;
+  color: #edf0f0;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cardsFlexContainer{
+  display:flex;
+  gap:20px;
+  justify-content: center;
+}
+
+.no-border{
+  border:none !important;
+}
+
+.cardsFlexContainer2{
+  display:flex;
+  justify-content: center;
+}
+
+.noInfoMessage {
+  text-align:center;
+  font-size: 1.5rem;
+}
+
+.chartTitle{
+  font-size:1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.divDatatable .boton-tabla-vpc-center-disable{
+  border: 1px solid #2C2554!important;
+  padding: 0.25rem 1.25rem 0.25rem 1.25rem;
+  color: #9e9da6;
+  font-weight: 500;
+  text-align: center;
+  background-color: #fff;
+  margin-right: 1px;
+}
+
+.boton_validando{
+  display: none;
+}
+
+
+
+    #openModalNom35 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0; /* Oculto inicialmente */
+        pointer-events: none; /* No interactuable inicialmente */
+        transition: opacity 0.3s ease;
+        z-index: 9999; /* Asegura que esté sobre otros elementos */
+    }
+
+    #modalContentNom35 {
+        width: 90%;
+        height: 90%;
+        background: white;
+        border-radius: 10px;
+        overflow: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #closeModalNom35 {
+        align-self: flex-end;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        color: red;
+        border: none;
+        background: transparent;
+    }
+
+    .custom-icon {
+      color: #1C274C;
+      font-weight: bold;
+      font-size: 20px; 
+    }
+
+    .custom-anchor {
+      display: flex;
+      height: 2.75rem;
+      width: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%; 
+      border: 1px solid #D9D9D961; 
+      background-color: #D9D9D961;
+      margin-right: 1.25rem; 
+      cursor: pointer; 
+    }
+    
+    .custom-anchor:hover {
+      background-color: white;
+    }
+
+    .custom-div-content {
+      width: 100%; 
+      display: flex; 
+      justify-content: center; 
+      margin-bottom: 1.25rem; 
+      flex-direction: column; 
+      text-align: center; 
+    }
+
+    .custom-div-buttons {
+      width: 100%; 
+      display: flex; 
+      justify-content: space-around;
+    }
+
+    .custom-style {
+      width: 60% !important; 
+      margin-top: 5% !important; 
+      margin-left: auto !important; 
+      margin-right: auto !important; 
+    }
+
+    .headerModalNoticias {
+      display: flex; 
+      justify-content: space-between;  
+      margin-bottom: 1.25rem;
+      width: 100%;
+    }
+
+    .divContenedor{
+      width: 5px;    
+      display: block;
+      background: transparent;
+      border-radius: 4px;
+    }
+
+    .imageModal{
+      width: 100%;
+      height: 20rem;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    .AdditionalInfoModal {
+      display: flex;
+      align-items: center;
+      color: #717171;
+      margin-bottom: 1.25rem;
+    }
+
+    .divDescripcionModal{
+      display:flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 1.25rem;
+    }
+
+    .modalTitleH1{
+      color: #412DB6; 
+      font-size: 30px;
+      font-weight:500;
+      margin-bottom:1.25rem;
+    }
+
+    .modalTitleH2{
+      color:#667185; 
+      font-size:20px; 
+      font-weight:500;
+    }
+
+    .modalTitleH3{
+      color:#667185; 
+      font-size:14px; 
+    }
+
+    .enlaceDocumentoModal{
+      height: 33px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-align: center;
+      width: 84px;
+      border-radius: 50%;
+      border: 1px solid #2C2554;
+      background-color: #2C2554;
+      color: #FFFFFF;
+      margin-left: 5px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .enlaceDocumentoModal:hover{
+      background-color: #FFFFFF;
+      color: #2C2554;
+    }
+
+    .block02 .formularioModal{
+      float: left; 
+      width: 100%;
+      min-height: 40px;
+      line-height: 40px;
+      margin: 1% 0;
+      background: transparent;
+    }
+
+    .isDisabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .isDisabled > a {
+      color: currentColor;
+      display: inline-block;  /* For IE11/ MS Edge bug */
+      pointer-events: none;
+      text-decoration: none;
+    }
+    .contenedor_rgpd_redes{
+      height: 360px;
+      width: 98%;
+      overflow: auto;
+      padding: 0 1rem;
+    }
+
+    .titulo_rgpd_redes {font-weight: bold;}
+
+    /* Estilos Base (Pantallas grandes) */
+    .celda_horario select {
+      width: auto; /* El ancho se adapta al contenido */
+      padding: 5px;
+      font-size: 0.85em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Incluye padding y border en el ancho */
+      max-width: 100%; /* Evita que sea más ancho que su contenedor */
+    }
+
+    /* Media Query para Laptop (max-width: 1200px) */
+    @media (max-width: 1200px) {
+      .celda_horario select {
+        width: 100%; /* El select ocupa todo el ancho de la celda */
+        font-size: 0.75em; /* Reduce el tamaño de la fuente */
+      }
+    }
+
+    /* Media Query para Tablet (max-width: 768px) */
+    @media (max-width: 768px) {
+      .celda_horario select {
+        font-size: 0.8em; /* Ajusta el tamaño de la fuente */
+      }
+    }
+
+    /* Media Query para Móviles (max-width: 480px) */
+    @media (max-width: 480px) {
+      .celda_horario select {
+        font-size: 0.7em; /* Reduce aún más el tamaño de la fuente */
+      }
+    }
+
+
+
+
+
+    .botonera_cap_redes {
+      float: left;
+      margin: 10px 100px;
+      padding: 0px 6px;
+      color: #666;
+      background: rgb(221, 221, 221);
+      border: 1px solid #bbb;
+      font-size: 12px;
+      cursor: pointer;
+      width: 120px;
+      height: 33px;      
+      /* Centrar texto */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+
+  .botonera_incidencia_redes {
+    float: inline-end;
+    margin: 6px 31px;
+    padding: 0px 6px;
+    color: #666;
+    background: rgb(221, 221, 221);
+    border: 1px solid #bbb;
+    font-size: 12px;
+    cursor: pointer;
+    width: 77%;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .botonera_verificar_redes {
+       margin: 6px 31px;
+       padding: 0px 6px;
+       color: #666;
+       background: rgb(221, 221, 221);
+       border: 1px solid #bbb;
+       font-size: 12px;
+       cursor: pointer;
+       width: 73%;
+       height: 33px;
+       display: flex
+   ;
+       align-items: center;
+       justify-content: center;
+  }
+
+  .boton_solicitar_pin {
+    margin: 6px 31px;
+    margin-left: 31%;
+    padding: 0px 6px;
+    color: #666;
+    background: rgb(221, 221, 221);
+    border: 1px solid #bbb;
+    font-size: 12px;
+    cursor: pointer;
+    width: 32%;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.boton_pdf_firmado_redes {
+    margin: 6px 31px;
+    padding: 0px 6px;
+    color: #666;
+    background: rgb(221, 221, 221);
+    border: 1px solid #bbb;
+    font-size: 12px;
+    cursor: pointer;
+    width: 54%;
+    height: 33px;
+    display: flex;
+    margin-left: 90px;
+    align-items: center;
+    justify-content: center;
+}
+    .hidden {
+        display: none;
+    }
+
+    
+
+    
+

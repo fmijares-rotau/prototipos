@@ -1,0 +1,76 @@
+.tabla_factura {
+    width: 98%;font-size: 12px;line-height: 16px; margin: 7px 0px;
+}
+.tabla_factura thead{font-weight: bolder;border: 2px solid #bbb;}
+.tabla_factura thead tr td{ border-left: 1px solid #bbb; font-size: 14px;}
+.tabla_factura tbody{font-weight: bolder;border: 1px solid #bbb;}
+.tabla_factura tbody tr td{ border-left: 1px solid #bbb;}
+.tabla_factura tr td.izquierda{ text-align: left;}
+.tabla_factura tr td.centrar{ text-align: center;}
+.tabla_factura tr td.derecha{ text-align: right;}
+.tabla_factura tr td.total{font-weight: bold; border: 1px solid #bbb;}
+
+.productos-contenedor{ 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;  
+    margin-left: -1px;
+}
+.producto{ 
+    border: 2px skyblue solid; 
+    border-radius: 10px; 
+    margin: 5px; 
+    padding: 5px; 
+    flex-direction: column;
+    font-family: arial;
+    width: 250px;
+    box-shadow: 0px 0px 11px #2c3742;
+}
+.precio {
+    color: grey;
+    font-size: 22px;
+}
+
+.producto button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #1e81b0;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.producto input {
+    border: 1px skyblue solid;
+    text-align: center; 
+    height: 25px;
+}
+
+.producto p {
+    text-align: center; 
+}
+
+.producto h1 {
+    text-align: center; 
+}
+
+.producto h3 {
+    text-align: center; 
+}
+
+.tabla_compras {
+  width: 98%;font-size: 14px;line-height: 20px;
+}
+.tabla_compras thead{font-weight: bolder;border-bottom: 1px solid #bbb;}
+.tabla_compras tbody tr{border-bottom: 1px solid #bbb;}
+.tabla_compras tbody tr.fila_responsable{font-weight: 600;}
+.tabla_compras tbody tr td{line-height: 30px;}
+.tabla_compras tbody tr td.grupo{font-weight: bold;}
+.tabla_compras tbody tr td.click{cursor: pointer;}
+.tabla_compras tbody tr td.nombre{width: 40%;}
+.tabla_compras tbody tr td.celda_numero{padding: 0px 3%;text-align: right;}
+.tabla_compras tbody tr td.celda_fecha{padding: 0px 1%;}
+.tabla_compras tbody tr td.alinea_derecha{text-align: right;padding-right: 3%;}
