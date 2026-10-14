@@ -970,93 +970,96 @@
             </a>
         </div>
     </div>
-    <!-- ============ Modal de detalle de novedad ============
-         Se teletransporta a <body> para no heredar el overflow/z-index del desplegable.
-         El @click.stop evita que el click.away del desplegable lo cierre al interactuar con la modal. -->
+    <!-- ============ Página interna de detalle de novedad ============ 
+         Se muestra como una vista completa dentro del prototipo, no como modal. -->
     <template x-teleport="body">
-        <div id="vpNovedadRoot"
-             x-show="novedadOpen"
-             x-cloak
-             @click.stop
-             @keydown.escape.window="onEscape()"
-             class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6">
+        <main id="vpNovedadRoot"
+              x-show="novedadOpen"
+              x-cloak
+              @click.stop
+              @keydown.escape.window="onEscape()"
+              class="fixed inset-0 z-[10001] overflow-y-auto bg-[#F4F5F8] text-[#1F2430]"
+              aria-labelledby="vpNovedadTitulo">
 
-            <!-- Capa semitransparente (mismo criterio que el buscador de módulos) -->
-            <div x-show="novedadOpen"
-                 x-transition:enter="transition-opacity duration-200 ease-out"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition-opacity duration-150 ease-in"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0"
-                 @click="closeNovedad()"
-                 class="absolute inset-0 bg-black/30 backdrop-blur-[2px]"
-                 aria-hidden="true"></div>
+            <!-- Barra superior de la página -->
+            <header class="sticky top-0 z-20 border-b border-[#E4E7EC] bg-white/95 backdrop-blur">
+                <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+                    <button type="button"
+                            @click="closeNovedad()"
+                            class="vp-focusable inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-[#4F46E5] transition hover:bg-[#F4F2FD]"
+                            aria-label="Volver a novedades">
+                        <i class="ti ti-arrow-left text-lg"></i>
+                        <span>Volver a novedades</span>
+                    </button>
+                    <div class="hidden items-center gap-2 text-xs text-[#6B7280] sm:flex">
+                        <i class="ti ti-news text-base"></i>
+                        <span>Centro de novedades</span>
+                    </div>
+                    <button type="button"
+                            @click="closeNovedad()"
+                            class="vp-focusable flex h-9 w-9 items-center justify-center rounded-full text-[#6B7280] transition hover:bg-[#F4F5F8] hover:text-[#1F2430]"
+                            aria-label="Cerrar detalle">
+                        <i class="ti ti-x text-lg"></i>
+                    </button>
+                </div>
+            </header>
 
-            <!-- Tarjeta -->
-            <div id="vpNovedadModal"
-                 x-show="novedadOpen"
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0 translate-y-2 scale-[.98]"
-                 x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-                 x-transition:leave="transition ease-in duration-150"
-                 x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-                 x-transition:leave-end="opacity-0 translate-y-2 scale-[.98]"
-                 @keydown.tab="trapFocus($event)"
-                 role="dialog"
-                 aria-modal="true"
-                 aria-labelledby="vpNovedadTitulo"
-                 aria-describedby="vpNovedadDesc"
-                 :class="videoAmpliado ? 'max-w-5xl' : 'max-w-2xl'"
-                 class="relative flex w-full max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] flex-col overflow-hidden rounded-2xl bg-white shadow-dropdown">
+            <template x-if="novedad">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-9 lg:px-8">
+                    <!-- Ruta de navegación -->
+                    <nav class="mb-5 flex items-center gap-2 text-xs text-[#6B7280]" aria-label="Ruta de navegación">
+                        <button type="button" @click="closeNovedad()" class="vp-focusable rounded hover:text-[#4F46E5]">Novedades</button>
+                        <i class="ti ti-chevron-right text-[10px]"></i>
+                        <span x-text="novedad.categoria" class="truncate"></span>
+                    </nav>
 
-                <!-- Icono cerrar -->
-                <button id="vpNovedadCerrarIcono"
-                        type="button"
-                        @click="closeNovedad()"
-                        aria-label="Cerrar novedad"
-                        class="vp-focusable absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-mute transition hover:bg-surfaceRaised hover:text-ink">
-                    <i class="ti ti-x text-[18px]"></i>
-                </button>
-
-                <template x-if="novedad">
-                    <div class="flex min-h-0 flex-1 flex-col">
-                        <div class="vp-scroll flex-1 overflow-y-auto pb-5">
-
-                            <!-- Cabecera: tipo, título y fecha -->
-                            <div class="px-5 pt-5 pr-14 sm:px-7 sm:pt-6 sm:pr-16">
-                                <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
+                    <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8">
+                        <!-- Artículo principal -->
+                        <article class="min-w-0 overflow-hidden rounded-2xl border border-[#E4E7EC] bg-white shadow-sm">
+                            <div class="px-5 pt-6 sm:px-8 sm:pt-8">
+                                <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold"
                                       :class="novedad.color">
                                     <i :class="novedad.icono"></i>
                                     <span x-text="novedad.categoria"></span>
                                 </span>
-                                <h2 id="vpNovedadTitulo" class="mt-3 text-xl font-bold leading-snug text-ink sm:text-2xl" x-text="novedad.titulo"></h2>
-                                <p class="mt-1.5 flex items-center gap-1.5 text-xs text-mute">
-                                    <i class="ti ti-clock"></i>
-                                    <time x-text="'Publicado ' + novedad.publicado.toLowerCase()"></time>
-                                </p>
+
+                                <h1 id="vpNovedadTitulo"
+                                    class="mt-4 max-w-4xl text-2xl font-bold leading-tight tracking-tight text-[#1F2430] sm:text-3xl lg:text-4xl"
+                                    x-text="novedad.titulo"></h1>
+
+                                <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#6B7280]">
+                                    <span class="inline-flex items-center gap-1.5">
+                                        <i class="ti ti-calendar-event"></i>
+                                        <time x-text="'Publicado ' + novedad.publicado.toLowerCase()"></time>
+                                    </span>
+                                    <span class="inline-flex items-center gap-1.5">
+                                        <i class="ti ti-book-open"></i>
+                                        <span>Información del producto</span>
+                                    </span>
+                                </div>
                             </div>
 
-                            <!-- Multimedia: imagen, vídeo nativo (<video>) o reproductor embebido (<iframe>) -->
-                            <figure class="mt-5" :class="videoAmpliado ? 'px-0' : 'px-5 sm:px-7'">
-                                <div class="relative aspect-video overflow-hidden bg-canvas ring-1 ring-edge"
-                                     :class="videoAmpliado ? 'max-h-[65vh] rounded-none' : 'rounded-xl'">
-
-                                    <!-- Imagen -->
+                            <!-- Imagen o reproductor multimedia -->
+                            <figure class="px-5 pt-6 sm:px-8 sm:pt-8">
+                                <div class="relative aspect-video overflow-hidden rounded-xl bg-[#F4F5F8] ring-1 ring-[#E4E7EC]">
                                     <template x-if="novedad.media.type === 'image'">
-                                        <img :src="novedad.media.src" :alt="novedad.media.alt" class="h-full w-full object-cover" />
+                                        <img :src="novedad.media.src"
+                                             :alt="novedad.media.alt"
+                                             class="h-full w-full object-contain"
+                                             loading="lazy" />
                                     </template>
 
-                                    <!-- Vídeo nativo: controles propios del navegador (reproducir, volumen, pantalla completa) -->
                                     <template x-if="novedad.media.type === 'video' && novedad.media.src">
-                                        <video controls playsinline preload="metadata" :src="novedad.media.src" :poster="novedad.media.poster || null" :aria-label="novedad.media.alt" class="h-full w-full bg-black object-contain">
+                                        <video controls playsinline preload="metadata"
+                                               :src="novedad.media.src"
+                                               :poster="novedad.media.poster || null"
+                                               :aria-label="novedad.media.alt"
+                                               class="h-full w-full bg-black object-contain">
                                             Tu navegador no puede reproducir este vídeo.
                                         </video>
                                     </template>
 
-                                    <!-- Reproductor embebido (YouTube u otro). Solo se monta con la modal abierta:
-                                         al cerrarla el iframe se elimina y el audio se detiene. -->
-                                    <template x-if="novedad.media.type === 'embed' && novedad.media.src && novedadOpen">
+                                    <template x-if="novedad.media.type === 'embed' && novedad.media.src">
                                         <iframe :src="novedad.media.src"
                                                 :title="novedad.media.alt"
                                                 class="h-full w-full border-0 bg-black"
@@ -1066,62 +1069,120 @@
                                                 referrerpolicy="strict-origin-when-cross-origin"></iframe>
                                     </template>
 
-                                    <!-- Espacio de ejemplo (no hay URL de vídeo) -->
                                     <template x-if="(novedad.media.type === 'video' || novedad.media.type === 'embed') && !novedad.media.src">
-                                        <div class="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-surfaceRaised to-white text-accent" role="img" :aria-label="novedad.media.alt">
-                                            <span class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-bar">
-                                                <i class="ti ti-player-play-filled text-2xl"></i>
+                                        <div class="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#F4F2FD] to-white px-4 text-center text-[#6C5CE7]"
+                                             role="img" :aria-label="novedad.media.alt">
+                                            <span class="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow">
+                                                <i class="ti ti-player-play-filled text-3xl"></i>
                                             </span>
-                                            <span class="text-center">
-                                                <span class="block text-xs font-medium text-ink">Vídeo de ejemplo</span>
-                                                <span class="block text-xs text-mute">Espacio reservado: aún no hay una URL de vídeo</span>
+                                            <span>
+                                                <span class="block text-sm font-semibold text-[#1F2430]">Vídeo de demostración</span>
+                                                <span class="mt-1 block max-w-sm text-xs text-[#6B7280]">El reproductor aparecerá aquí cuando se configure la URL del vídeo.</span>
                                             </span>
                                         </div>
                                     </template>
-
-                                    <!-- Ampliar / reducir el reproductor dentro de la modal (sin pantalla completa) -->
-                                    <button type="button"
-                                            x-show="novedad.media.type !== 'image'"
-                                            @click="videoAmpliado = !videoAmpliado"
-                                            :aria-pressed="videoAmpliado"
-                                            :aria-label="videoAmpliado ? 'Reducir vídeo' : 'Ampliar vídeo'"
-                                            :title="videoAmpliado ? 'Reducir vídeo' : 'Ampliar vídeo'"
-                                            class="vp-focusable absolute right-2 top-2 z-10 hidden h-8 w-8 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/60 sm:flex">
-                                        <i class="ti" :class="videoAmpliado ? 'ti-arrows-minimize' : 'ti-arrows-maximize'"></i>
-                                    </button>
                                 </div>
-                                <figcaption class="mt-2 px-5 text-xs text-faint sm:px-7" x-text="novedad.media.pie"></figcaption>
+                                <figcaption class="mt-3 text-xs leading-relaxed text-[#9CA3AF]" x-text="novedad.media.pie"></figcaption>
                             </figure>
 
-                            <!-- Descripción -->
-                            <div id="vpNovedadDesc" class="mt-5 space-y-3 px-5 text-sm leading-relaxed text-gray-600 sm:px-7">
-                                <template x-for="(p, i) in novedad.descripcion" :key="i">
-                                    <p x-text="p"></p>
-                                </template>
-                                <ul class="space-y-2 pt-1">
-                                    <template x-for="(punto, i) in novedad.puntos" :key="i">
-                                        <li class="flex items-start gap-2">
-                                            <i class="ti ti-check mt-0.5 text-accent"></i>
-                                            <span x-text="punto"></span>
-                                        </li>
+                            <!-- Texto de la novedad -->
+                            <div id="vpNovedadDesc" class="px-5 pb-7 pt-6 sm:px-8 sm:pb-9 sm:pt-8">
+                                <div class="max-w-3xl space-y-4 text-[15px] leading-7 text-[#4B5563]">
+                                    <template x-for="(p, i) in novedad.descripcion" :key="i">
+                                        <p x-text="p"></p>
                                     </template>
-                                </ul>
-                            </div>
-                        </div>
+                                </div>
 
-                        <!-- Pie con botón Cerrar -->
-                        <div class="flex justify-end border-t border-edge bg-white px-5 py-3 sm:px-7">
-                            <button id="vpNovedadCerrar"
-                                    type="button"
-                                    @click="closeNovedad()"
-                                    class="vp-focusable w-full rounded-lg border border-edge bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-canvas sm:w-auto">
-                                Cerrar
-                            </button>
-                        </div>
+                                <section class="mt-8 rounded-xl bg-[#F8F7FE] p-5 sm:p-6">
+                                    <h2 class="flex items-center gap-2 text-base font-bold text-[#1F2430]">
+                                        <i class="ti ti-sparkles text-xl text-[#6C5CE7]"></i>
+                                        Lo más destacado
+                                    </h2>
+                                    <ul class="mt-4 space-y-3">
+                                        <template x-for="(punto, i) in novedad.puntos" :key="i">
+                                            <li class="flex items-start gap-3 text-sm leading-6 text-[#4B5563]">
+                                                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E7E3FC] text-[#6C5CE7]">
+                                                    <i class="ti ti-check text-xs"></i>
+                                                </span>
+                                                <span x-text="punto"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </section>
+
+                                <div class="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[#E4E7EC] pt-5">
+                                    <p class="text-xs text-[#9CA3AF]">VisualPresencia Cloud · Novedades del producto</p>
+                                    <button type="button"
+                                            @click="closeNovedad()"
+                                            class="vp-focusable inline-flex items-center gap-2 rounded-lg bg-[#4F46E5] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#4338CA]">
+                                        <i class="ti ti-arrow-left"></i>
+                                        Volver al panel
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Columna lateral: navegación entre novedades -->
+                        <aside class="space-y-4 lg:sticky lg:top-24">
+                            <section class="rounded-2xl border border-[#E4E7EC] bg-white p-5 shadow-sm">
+                                <h2 class="text-sm font-bold text-[#1F2430]">Explora otras novedades</h2>
+                                <p class="mt-1 text-xs leading-5 text-[#6B7280]">Descubre más mejoras y funcionalidades de la plataforma.</p>
+
+                                <button type="button" @click="openNovedad('analiticas', $el)"
+                                        class="vp-focusable mt-4 flex w-full items-start gap-3 rounded-xl p-3 text-left transition hover:bg-[#F8F7FE]"
+                                        :class="novedad.titulo.includes('Analíticas') ? 'bg-[#F4F2FD]' : ''">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600"><i class="ti ti-puzzle text-lg"></i></span>
+                                    <span class="min-w-0">
+                                        <span class="block text-sm font-semibold text-[#1F2430]">Analíticas Avanzadas</span>
+                                        <span class="mt-1 block text-xs leading-5 text-[#6B7280]">Consulta indicadores y tendencias.</span>
+                                    </span>
+                                </button>
+
+                                <button type="button" @click="openNovedad('zapier', $el)"
+                                        class="vp-focusable flex w-full items-start gap-3 rounded-xl p-3 text-left transition hover:bg-[#F8F7FE]"
+                                        :class="novedad.titulo.includes('Zapier') ? 'bg-[#F4F2FD]' : ''">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-600"><i class="ti ti-plug text-lg"></i></span>
+                                    <span class="min-w-0">
+                                        <span class="block text-sm font-semibold text-[#1F2430]">Integración con Zapier</span>
+                                        <span class="mt-1 block text-xs leading-5 text-[#6B7280]">Conecta tus flujos de trabajo.</span>
+                                    </span>
+                                </button>
+
+                                <button type="button" @click="openNovedad('dashboards', $el)"
+                                        class="vp-focusable flex w-full items-start gap-3 rounded-xl p-3 text-left transition hover:bg-[#F8F7FE]"
+                                        :class="novedad.titulo.includes('Dashboards') ? 'bg-[#F4F2FD]' : ''">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-100 text-purple-600"><i class="ti ti-rocket text-lg"></i></span>
+                                    <span class="min-w-0">
+                                        <span class="block text-sm font-semibold text-[#1F2430]">Dashboards más rápidos</span>
+                                        <span class="mt-1 block text-xs leading-5 text-[#6B7280]">Una experiencia más fluida.</span>
+                                    </span>
+                                </button>
+
+                                <button type="button" @click="openNovedad('version25', $el)"
+                                        class="vp-focusable flex w-full items-start gap-3 rounded-xl p-3 text-left transition hover:bg-[#F8F7FE]"
+                                        :class="novedad.titulo.includes('Versión 2.5') ? 'bg-[#F4F2FD]' : ''">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-yellow-100 text-yellow-700"><i class="ti ti-star text-lg"></i></span>
+                                    <span class="min-w-0">
+                                        <span class="block text-sm font-semibold text-[#1F2430]">Versión 2.5</span>
+                                        <span class="mt-1 block text-xs leading-5 text-[#6B7280]">Nuevas APIs y seguridad.</span>
+                                    </span>
+                                </button>
+                            </section>
+
+                            <section class="rounded-2xl border border-[#E4E7EC] bg-white p-5">
+                                <div class="flex items-start gap-3">
+                                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F4F2FD] text-[#6C5CE7]"><i class="ti ti-bulb text-lg"></i></span>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-[#1F2430]">¿Necesitas ayuda?</h2>
+                                        <p class="mt-1 text-xs leading-5 text-[#6B7280]">Si tienes dudas sobre esta funcionalidad, contacta con el equipo de soporte.</p>
+                                    </div>
+                                </div>
+                            </section>
+                        </aside>
                     </div>
-                </template>
-            </div>
-        </div>
+                </div>
+            </template>
+        </main>
     </template>
 
 </div>
@@ -1371,29 +1432,42 @@
 
                         openNovedad(id, el) {
                             if (!datos[id]) return;
-                            trigger = el || null;
+                            const yaAbierta = this.novedadOpen;
+
+                            // Guarda el botón original solo al entrar desde el desplegable.
+                            // Al navegar entre artículos, conserva el origen para volver correctamente.
+                            if (!yaAbierta) {
+                                trigger = el || null;
+                                overflowPrevio = document.body.style.overflow;
+                                document.body.style.overflow = "hidden";
+                            }
+
                             this.novedad = datos[id];
                             this.videoAmpliado = false;
                             this.novedadOpen = true;
-                            overflowPrevio = document.body.style.overflow;
-                            document.body.style.overflow = "hidden";
-                            this.$nextTick(() => {
-                                const c = document.getElementById("vpNovedadCerrarIcono");
-                                if (c) c.focus({ preventScroll: true });
-                            });
+
+                            if (!yaAbierta) {
+                                this.$nextTick(() => {
+                                    const volver = document.querySelector("#vpNovedadRoot button");
+                                    if (volver) volver.focus({ preventScroll: true });
+                                });
+                            }
                         },
 
                         closeNovedad() {
                             if (!this.novedadOpen) return;
                             this.novedadOpen = false;
+                            // Al volver, deja abierto el desplegable en la pestaña de novedades.
+                            this.activeTab = "novedades";
+                            this.notifOpen = true;
                             document.body.style.overflow = overflowPrevio;
                             // Sale de pantalla completa si estuviera activa
                             if (fsActivo()) {
                                 const salir = document.exitFullscreen || document.webkitExitFullscreen;
                                 try { const r = salir && salir.call(document); if (r && r.catch) r.catch(() => {}); } catch (_) {}
                             }
-                            // Detiene el vídeo nativo (el iframe embebido se elimina solo al cerrar)
-                            const v = document.querySelector("#vpNovedadModal video");
+                            // Detiene el vídeo nativo (el iframe embebido se elimina al salir de la página)
+                            const v = document.querySelector("#vpNovedadRoot video");
                             if (v) v.pause();
                             if (trigger && trigger.focus) trigger.focus({ preventScroll: true });
                             trigger = null;

@@ -978,8 +978,9 @@
              x-show="novedadOpen"
              x-cloak
              @click.stop
-             @keydown.escape.window="novedadOpen && closeNovedad()"
-             class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6">
+             @keydown.escape.window="onEscape()"
+             :class="videoAmpliado ? 'p-0 sm:p-6' : 'p-4 sm:p-6'"
+             class="fixed inset-0 z-[10001] flex items-center justify-center">
 
             <!-- Capa semitransparente (mismo criterio que el buscador de módulos) -->
             <div x-show="novedadOpen"
@@ -1007,7 +1008,10 @@
                  aria-modal="true"
                  aria-labelledby="vpNovedadTitulo"
                  aria-describedby="vpNovedadDesc"
-                 class="relative flex w-full max-w-2xl max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] flex-col overflow-hidden rounded-2xl bg-white shadow-dropdown">
+                 :class="videoAmpliado
+                            ? 'max-w-6xl h-full max-h-[100dvh] rounded-none sm:h-auto sm:max-h-[calc(100dvh-3rem)] sm:rounded-2xl'
+                            : 'max-w-2xl max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] rounded-2xl'"
+                 class="relative flex w-full flex-col overflow-hidden bg-white shadow-dropdown">
 
                 <!-- Icono cerrar -->
                 <button id="vpNovedadCerrarIcono"
@@ -1020,10 +1024,12 @@
 
                 <template x-if="novedad">
                     <div class="flex min-h-0 flex-1 flex-col">
-                        <div class="vp-scroll flex-1 overflow-y-auto pb-5">
+                        <div class="vp-scroll flex-1 overflow-y-auto pb-5"
+                             :class="videoAmpliado ? 'lg:grid lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:content-start' : ''">
 
                             <!-- Cabecera: tipo, título y fecha -->
-                            <div class="px-5 pt-5 pr-14 sm:px-7 sm:pt-6 sm:pr-16">
+                            <div class="px-5 pt-5 pr-14 sm:px-7 sm:pt-6 sm:pr-16"
+                                 :class="videoAmpliado ? 'lg:col-start-2 lg:row-start-1' : ''">
                                 <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
                                       :class="novedad.color">
                                     <i :class="novedad.icono"></i>
@@ -1036,29 +1042,64 @@
                                 </p>
                             </div>
 
-                            <!-- Multimedia: imagen o vídeo -->
-                            <figure class="mt-5 px-5 sm:px-7">
-                                <div class="aspect-video overflow-hidden rounded-xl bg-canvas ring-1 ring-edge">
-                                    <template x-if="novedad.media.type === 'image'">
-                                        <img :src="novedad.media.src" :alt="novedad.media.alt" class="h-full w-full object-cover" />
+                            <!-- Multimedia: imagen, vídeo nativo (<video>) o reproductor embebido (<iframe>) -->
+                            <figure class="mt-5 px-5 sm:px-7" :class="videoAmpliado ? 'lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-start' : ''">
+                                <div class="group relative aspect-video overflow-hidden rounded-xl bg-canvas ring-1 ring-edge"
+                                     :class="videoAmpliado ? 'max-h-[70vh]' : ''">
+
+                                    <!-- Imagen -->
+                                    <template x-if="novedad.media.type === 'image' && !mediaAmpliada">
+                                        <img :src="novedad.media.src" :alt="novedad.media.alt" :class="videoAmpliado ? 'object-contain' : 'object-cover'" class="h-full w-full" />
                                     </template>
-                                    <template x-if="novedad.media.type === 'video' && novedad.media.src">
-                                        <video controls preload="metadata" :src="novedad.media.src" :poster="novedad.media.poster || null" :aria-label="novedad.media.alt" class="h-full w-full bg-black object-contain"></video>
+
+                                    <!-- Vídeo nativo: controles propios del navegador (reproducir, volumen, pantalla completa) -->
+                                    <template x-if="novedad.media.type === 'video' && novedad.media.src && !mediaAmpliada">
+                                        <video controls playsinline preload="metadata" :src="novedad.media.src" :poster="novedad.media.poster || null" :aria-label="novedad.media.alt" class="h-full w-full bg-black object-contain">
+                                            Tu navegador no puede reproducir este vídeo.
+                                        </video>
                                     </template>
-                                    <template x-if="novedad.media.type === 'video' && !novedad.media.src">
+
+                                    <!-- Reproductor embebido (YouTube u otro). Solo se monta con la modal abierta:
+                                         al cerrarla el iframe se elimina y el audio se detiene. -->
+                                    <template x-if="novedad.media.type === 'embed' && novedad.media.src && novedadOpen && !mediaAmpliada">
+                                        <iframe :src="novedad.media.src"
+                                                :title="novedad.media.alt"
+                                                class="h-full w-full border-0 bg-black"
+                                                loading="lazy"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                                                allowfullscreen
+                                                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                                    </template>
+
+                                    <!-- Espacio de ejemplo (no hay URL de vídeo) -->
+                                    <template x-if="(novedad.media.type === 'video' || novedad.media.type === 'embed') && !novedad.media.src">
                                         <div class="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-surfaceRaised to-white text-accent" role="img" :aria-label="novedad.media.alt">
                                             <span class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-bar">
                                                 <i class="ti ti-player-play-filled text-2xl"></i>
                                             </span>
-                                            <span class="text-xs font-medium text-mute">Espacio reservado para el vídeo</span>
+                                            <span class="text-center">
+                                                <span class="block text-xs font-medium text-ink">Vídeo de ejemplo</span>
+                                                <span class="block text-xs text-mute">Espacio reservado: aún no hay una URL de vídeo</span>
+                                            </span>
                                         </div>
                                     </template>
+
+                                    <!-- Ampliar solo el contenido multimedia, sin cambiar el tamaño de la modal -->
+                                    <button type="button"
+                                            x-show="novedad.media.type === 'image' || ((novedad.media.type === 'video' || novedad.media.type === 'embed') && novedad.media.src)"
+                                            @click="abrirMediaAmpliada()"
+                                            aria-label="Ampliar imagen o vídeo"
+                                            title="Ampliar imagen o vídeo"
+                                            class="vp-focusable absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-white opacity-0 backdrop-blur-sm transition hover:bg-black/75 focus-visible:opacity-100 group-hover:opacity-100 [@media(hover:none)]:opacity-100">
+                                        <i class="ti ti-arrows-maximize text-base"></i>
+                                    </button>
                                 </div>
-                                <figcaption class="mt-2 text-xs text-faint" x-text="novedad.media.pie"></figcaption>
+                                <figcaption class="mt-2 px-5 text-xs text-faint sm:px-7" x-text="novedad.media.pie"></figcaption>
                             </figure>
 
                             <!-- Descripción -->
-                            <div id="vpNovedadDesc" class="mt-5 space-y-3 px-5 text-sm leading-relaxed text-gray-600 sm:px-7">
+                            <div id="vpNovedadDesc" class="mt-5 space-y-3 px-5 text-sm leading-relaxed text-gray-600 sm:px-7"
+                                 :class="videoAmpliado ? 'lg:col-start-2 lg:row-start-2' : ''">
                                 <template x-for="(p, i) in novedad.descripcion" :key="i">
                                     <p x-text="p"></p>
                                 </template>
@@ -1084,6 +1125,49 @@
                         </div>
                     </div>
                 </template>
+            </div>
+
+            <!-- Visor ampliado independiente: la modal original permanece abierta debajo -->
+            <div x-show="mediaAmpliada && novedadOpen"
+                 x-transition:enter="transition-opacity duration-150 ease-out"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition-opacity duration-100 ease-in"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 @click.self="cerrarMediaAmpliada()"
+                 class="fixed inset-0 z-[10002] flex items-center justify-center bg-black/90 p-3 sm:p-8"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-label="Vista ampliada del contenido multimedia"
+                 x-cloak>
+                <button type="button"
+                        @click="cerrarMediaAmpliada()"
+                        aria-label="Cerrar vista ampliada"
+                        title="Cerrar vista ampliada"
+                        class="vp-focusable absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25 focus-visible:ring-2 focus-visible:ring-white sm:right-6 sm:top-6">
+                    <i class="ti ti-x text-2xl"></i>
+                </button>
+                <div class="flex h-full w-full max-w-7xl items-center justify-center" @click.stop>
+                    <template x-if="novedad && mediaAmpliada && novedad.media.type === 'image'">
+                        <img :src="novedad.media.src" :alt="novedad.media.alt" class="max-h-full max-w-full rounded-lg object-contain shadow-2xl" />
+                    </template>
+                    <template x-if="novedad && mediaAmpliada && novedad.media.type === 'video' && novedad.media.src">
+                        <video controls autoplay playsinline preload="metadata" :src="novedad.media.src" :poster="novedad.media.poster || null" :aria-label="novedad.media.alt" class="max-h-full w-full rounded-lg bg-black object-contain shadow-2xl">
+                            Tu navegador no puede reproducir este vídeo.
+                        </video>
+                    </template>
+                    <template x-if="novedad && mediaAmpliada && novedad.media.type === 'embed' && novedad.media.src">
+                        <iframe :src="novedad.media.src"
+                                :title="novedad.media.alt"
+                                class="aspect-video max-h-full w-full rounded-lg border-0 bg-black shadow-2xl"
+                                loading="eager"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                                allowfullscreen
+                                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </template>
+                </div>
+                <p x-show="novedad && novedad.media.pie" x-text="novedad ? novedad.media.pie : ''" class="absolute bottom-3 left-4 right-4 text-center text-xs text-white/75 sm:bottom-5"></p>
             </div>
         </div>
     </template>
@@ -1285,7 +1369,10 @@
                                 "Gráficas que se actualizan sin recargar la página",
                                 "Mejor respuesta con muchos empleados",
                             ],
-                            // Para mostrar un vídeo real, informa "src" (y opcionalmente "poster") con la URL de tu recurso.
+                            // Vídeo real: type "video" + src (archivo .mp4/.webm propio) y, opcional, poster.
+                            // Reproductor embebido: type "embed" + src con la URL de incrustación del proveedor
+                            // (p. ej. YouTube: https://www.youtube-nocookie.com/embed/ID_DEL_VIDEO).
+                            // Sin "src" se muestra el espacio de ejemplo.
                             media: { type: "video", src: "", poster: "", alt: "Espacio reservado para un vídeo sobre la mejora de velocidad de los dashboards", pie: "Vídeo de ejemplo: aquí se mostrará la demostración de la mejora." },
                         },
                         version25: {
@@ -1309,15 +1396,49 @@
 
                     let trigger = null; // botón «Ver más» que abrió la modal (para devolver el foco)
                     let overflowPrevio = "";
+                    let salidaPantallaCompleta = 0; // marca de tiempo de la última salida de pantalla completa
+                    const fsActivo = () => document.fullscreenElement || document.webkitFullscreenElement || null;
 
                     return {
                         novedadOpen: false,
                         novedad: null,
+                        videoAmpliado: false, // compatibilidad con los estilos del prototipo
+                        mediaAmpliada: false,
+
+                        init() {
+                            // Registra cuándo se sale de pantalla completa para que ese Escape no cierre también la modal
+                            const alCambiar = () => { if (!fsActivo()) salidaPantallaCompleta = Date.now(); };
+                            document.addEventListener("fullscreenchange", alCambiar);
+                            document.addEventListener("webkitfullscreenchange", alCambiar);
+                        },
+
+                        onEscape() {
+                            if (!this.novedadOpen) return;
+                            if (fsActivo() || Date.now() - salidaPantallaCompleta < 400) return;
+                            if (this.mediaAmpliada) {
+                                this.cerrarMediaAmpliada();
+                                return;
+                            }
+                            this.closeNovedad();
+                        },
+
+                        abrirMediaAmpliada() {
+                            if (!this.novedad || !this.novedad.media) return;
+                            const v = document.querySelector("#vpNovedadModal video");
+                            if (v) v.pause();
+                            this.mediaAmpliada = true;
+                        },
+
+                        cerrarMediaAmpliada() {
+                            this.mediaAmpliada = false;
+                        },
 
                         openNovedad(id, el) {
                             if (!datos[id]) return;
                             trigger = el || null;
                             this.novedad = datos[id];
+                            this.videoAmpliado = false;
+                            this.mediaAmpliada = false;
                             this.novedadOpen = true;
                             overflowPrevio = document.body.style.overflow;
                             document.body.style.overflow = "hidden";
@@ -1330,8 +1451,14 @@
                         closeNovedad() {
                             if (!this.novedadOpen) return;
                             this.novedadOpen = false;
+                            this.mediaAmpliada = false;
                             document.body.style.overflow = overflowPrevio;
-                            // Detiene cualquier vídeo en reproducción
+                            // Sale de pantalla completa si estuviera activa
+                            if (fsActivo()) {
+                                const salir = document.exitFullscreen || document.webkitExitFullscreen;
+                                try { const r = salir && salir.call(document); if (r && r.catch) r.catch(() => {}); } catch (_) {}
+                            }
+                            // Detiene el vídeo nativo (el iframe embebido se elimina solo al cerrar)
                             const v = document.querySelector("#vpNovedadModal video");
                             if (v) v.pause();
                             if (trigger && trigger.focus) trigger.focus({ preventScroll: true });
@@ -1341,7 +1468,7 @@
                         // Mantiene el foco del teclado dentro de la modal
                         trapFocus(e) {
                             const f = Array.from(
-                                e.currentTarget.querySelectorAll('button:not([disabled]), [href], video[controls]')
+                                e.currentTarget.querySelectorAll('button:not([disabled]), [href], video[controls], iframe')
                             ).filter((n) => n.offsetParent !== null);
                             if (!f.length) return;
                             const first = f[0], last = f[f.length - 1];
